@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="org.example.camping2.AñadirClienteController"
+            fitToWidth="true" fitToHeight="true" prefViewportWidth="400" prefViewportHeight="500">
+    <VBox alignment="CENTER" spacing="10" fillWidth="true" prefWidth="300">
+        <Label style="-fx-font-size: 20px;" text="Añadir Nuevo Cliente" />
+
+        <Label text="Nombre" />
+        <TextField fx:id="nombreField" maxWidth="200.0" promptText="Ingresa el nombre del cliente" />
+
+        <Label text="Apellido" />
+        <TextField fx:id="apellidoField" maxWidth="200.0" promptText="Ingresa el apellido del cliente" />
+
+        <Label text="DNI" />
+        <TextField fx:id="dniField" maxWidth="200.0" promptText="Ingresa el DNI del cliente" />
+
+        <Label text="Email" />
+        <TextField fx:id="emailField" maxWidth="200.0" promptText="Ingresa el email del cliente" />
+
+        <Label text="Teléfono" />
+        <TextField fx:id="telefonoField" maxWidth="200.0" promptText="Ingresa el teléfono del cliente" />
+
+        <Label text="Fecha de Nacimiento" />
+        <DatePicker fx:id="fechaNacimientoField" />
+
+        <Label text="Estado" />
+        <TextField fx:id="estadoField" maxWidth="200.0" promptText="Estado del cliente" />
+
+        <Button fx:id="añadirClienteButton" text="Añadir Cliente" onMouseClicked="#handleAñadirCliente" />
+
+    </VBox>
+</ScrollPane>
