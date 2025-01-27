@@ -117,8 +117,9 @@
                <ComboBox fx:id="estadoComboBox" promptText="Seleccione el estado">
                   <items>
                      <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="Activo" />
-                        <String fx:value="Inactivo" />
+                        <String fx:value="ACTIVO" />
+                        <String fx:value="SUSPENDIDO" />
+                        <String fx:value="BLOQUEADO" />
                      </FXCollections>
                   </items>
                </ComboBox>

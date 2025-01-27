@@ -19,10 +19,11 @@
 	<parameter name="apellido" class="java.lang.String"/>
 	<parameter name="fechaNacimiento" class="java.sql.Date"/>
 	<parameter name="estado" class="java.lang.String"/>
-	<query language="sql"><![CDATA[SELECT *
+	<query language="sql"><![CDATA[SELECT 
+*
 FROM cliente
-WHERE 1=1
-  AND ($P{nombre} IS NULL OR nombre = $P{nombre})
+WHERE
+ ($P{nombre} IS NULL OR nombre = $P{nombre})
   AND ($P{apellido} IS NULL OR apellido = $P{apellido})
   AND ($P{fechaNacimiento} IS NULL OR fecha_nacimiento = $P{fechaNacimiento})
   AND ($P{estado} IS NULL OR estado = $P{estado})
