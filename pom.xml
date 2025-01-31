@@ -195,7 +195,7 @@
                     <execution>
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>org.example.camping2/org.example.camping2.HelloApplication</mainClass>
+                            <mainClass>org.example.camping2/org.example.camping2.controladores.HelloApplication</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

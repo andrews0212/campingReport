@@ -1,4 +1,4 @@
-package org.example.camping2;
+package org.example.camping2.controladores;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -7,9 +7,19 @@ import javafx.scene.control.*;
 import org.example.camping2.dto.Cliente;
 import org.example.camping2.memoria.Memoria;
 
+/**
+ * Controller class responsible for handling the "Search Client" functionality in the camping application.
+ * This class allows users to search for clients based on various criteria (ID, name, or DNI) and displays
+ * the results in a table. It interacts with the `Memoria` service to retrieve client data stored in memory.
+ *
+ * @author Andrews Dos Ramos
+ * @version 1.0.0
+ * @since 31/01/2025
+ */
 public class BuscarClientePanelController {
 
     private Memoria<Cliente, Integer> memoria;
+
     @FXML
     private TextField idClienteTextField;
 
@@ -37,27 +47,31 @@ public class BuscarClientePanelController {
     @FXML
     private Label statusLabel;
 
-
-
     private ObservableList<Cliente> clientes = FXCollections.observableArrayList();
 
-
-
+    /**
+     * Initializes the controller and binds the columns of the table to the fields of the `Cliente` class.
+     * Also binds the `clientes` observable list to the `clientesTableView`.
+     */
     @FXML
     public void initialize() {
-        // Asocia las columnas con los campos de la clase Cliente
+        // Bind columns to Cliente fields
         idColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getId()));
         nombreColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getNombre()));
         apellidoColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getApellido()));
         dniColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getDni()));
 
-
-        // Vincula la lista observable con la tabla
+        // Bind the observable list to the TableView
         clientesTableView.setItems(clientes);
     }
 
+    /**
+     * Searches for clients based on the provided search criteria (ID, name, and/or DNI).
+     * The results are displayed in the table. If no clients are found or if an error occurs, an appropriate
+     * message is shown in the `statusLabel`.
+     */
     public void buscarClientes() {
-        // Limpia el estado anterior
+        // Clear previous results and reset status
         clientes.clear();
         statusLabel.setText("");
 
@@ -66,8 +80,7 @@ public class BuscarClientePanelController {
             String nombre = nombreTextField.getText();
             String dni = dniTextField.getText();
 
-            // Simula la lógica de búsqueda en la base de datos
-
+            // Simulate database search logic
             ObservableList<Cliente> resultados = buscarClientesEnBaseDatos(id, nombre, dni);
 
             if (resultados.isEmpty()) {
@@ -80,21 +93,30 @@ public class BuscarClientePanelController {
         }
     }
 
+    /**
+     * Simulates the search of clients based on the provided ID, name, and DNI.
+     * It compares the input values with the data stored in memory and returns a list of matching clients.
+     *
+     * @param id The ID of the client to search for (optional).
+     * @param nombre The name of the client to search for (optional).
+     * @param dni The DNI of the client to search for (optional).
+     * @return A list of clients that match the search criteria.
+     */
     private ObservableList<Cliente> buscarClientesEnBaseDatos(String id, String nombre, String dni) {
         ObservableList<Cliente> resultados = FXCollections.observableArrayList();
 
-        // Validar si no se introdujo ningún dato
+        // Validate that at least one search parameter is provided
         if (id.isEmpty() && nombre.isEmpty() && dni.isEmpty()) {
             System.out.println("No hay datos para buscar.");
             return resultados;
         }
 
-        // Buscar clientes en memoria
+        // Search clients in memory
         try {
             for (Cliente cliente : memoria.findAll()) {
                 boolean coincide = true;
 
-                // Comparar ID si no está vacío
+                // Compare ID if provided
                 if (!id.isEmpty()) {
                     try {
                         int idNum = Integer.parseInt(id);
@@ -105,17 +127,17 @@ public class BuscarClientePanelController {
                     }
                 }
 
-                // Comparar nombre si no está vacío
+                // Compare name if provided
                 if (!nombre.isEmpty()) {
                     coincide &= cliente.getNombre().equalsIgnoreCase(nombre);
                 }
 
-                // Comparar DNI si no está vacío
+                // Compare DNI if provided
                 if (!dni.isEmpty()) {
                     coincide &= cliente.getDni().equals(dni);
                 }
 
-                // Agregar a los resultados si todas las condiciones coinciden
+                // Add to results if all conditions match
                 if (coincide) {
                     resultados.add(cliente);
                 }
@@ -126,8 +148,13 @@ public class BuscarClientePanelController {
 
         return resultados;
     }
+
+    /**
+     * Sets the `Memoria` service used to store and retrieve the clients.
+     *
+     * @param memoria The memory service that will be used for client data.
+     */
     public void setMemoria(Memoria<Cliente, Integer> memoria) {
         this.memoria = memoria;
     }
-
 }

@@ -17,5 +17,6 @@ module org.example.camping2 {
     opens org.example.camping2.dto to org.hibernate.orm.core;
 
     opens org.example.camping2 to javafx.fxml;
-    exports org.example.camping2;
+    exports org.example.camping2.controladores;
+    opens org.example.camping2.controladores to javafx.fxml;
 }

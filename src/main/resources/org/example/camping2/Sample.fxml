@@ -1,39 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.ControladorVentanaCarga">
-   <top>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="EcoVenture" BorderPane.alignment="CENTER">
-         <font>
-            <Font name="Vladimir Script" size="54.0" />
-         </font>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-      </Text>
-   </top>
-   <center>
-      <ImageView fitHeight="200.0" fitWidth="200.0" BorderPane.alignment="CENTER">
-         <image>
-            <Image url="@logo.png" />
-         </image>
-      </ImageView>
-   </center>
-   <bottom>
-      <ProgressBar id="barraProgreso" fx:id="barraProgreso" prefHeight="18.0" prefWidth="509.0" progress="0.0" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="50.0" />
-         </BorderPane.margin>
-      </ProgressBar>
-   </bottom>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="800.0" style="-fx-background-color: #2094df;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.ControladorVentanaCarga">
    <padding>
       <Insets top="20.0" />
    </padding>
+   <center>
+      <Pane prefHeight="278.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="27.0" layoutY="14.0">
+               <image>
+                  <Image url="@logo.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="249.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EcoVenture" textAlignment="CENTER" wrappingWidth="469.779296875">
+               <font>
+                  <Font name="Vladimir Script" size="93.0" />
+               </font>
+            </Text>
+            <ProgressBar id="barraProgreso" fx:id="barraProgreso" layoutX="249.0" layoutY="214.0" prefHeight="18.0" prefWidth="509.0" progress="0.0" />
+         </children>
+      </Pane>
+   </center>
 </BorderPane>
