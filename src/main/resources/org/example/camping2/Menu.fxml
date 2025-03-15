@@ -122,7 +122,7 @@
                   </MenuBar>
                </children>
             </HBox>
-            <HBox alignment="CENTER" fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="121.0" prefWidth="804.0" style="-fx-background-color: #2094df;">
+            <HBox alignment="CENTER" fillHeight="false" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="121.0" prefWidth="804.0" style="-fx-background-color: #2094df;">
                <children>
                   <ImageView fitHeight="160.0" fitWidth="176.0">
                      <image>
