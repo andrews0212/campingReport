@@ -124,12 +124,12 @@
             </HBox>
             <HBox alignment="CENTER" fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="121.0" prefWidth="804.0" style="-fx-background-color: #2094df;">
                <children>
-                  <ImageView fitHeight="126.0" fitWidth="158.0">
+                  <ImageView fitHeight="160.0" fitWidth="176.0">
                      <image>
                         <Image url="@logo.png" />
                      </image>
                   </ImageView>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="EcoVenture" textAlignment="CENTER" wrappingWidth="262.13671875" HBox.hgrow="ALWAYS">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="EcoVenture" textAlignment="CENTER" wrappingWidth="313.13671875" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="Vladimir Script" size="54.0" />
                      </font>

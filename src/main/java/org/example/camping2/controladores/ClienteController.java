@@ -66,7 +66,7 @@ public class ClienteController {
      * This method is called automatically after the FXML file is loaded.
      */
     public void initialize() {
-        // Logic to initialize the table or any other necessary setup
+        memoria = new Memoria<>(Cliente.class);
     }
 
     /**
@@ -174,7 +174,9 @@ public class ClienteController {
      */
     @FXML
     private void manejarBotonBuscar() {
+
         cargarPanel("/org/example/camping2/BuscarClientePanel.fxml");
+
     }
 
     /**
@@ -217,16 +219,16 @@ public class ClienteController {
             Parent nuevoPanel = loader.load();
 
             // Get the controller of the loaded panel and pass the memory reference
-            if (archivoFXML.equals("AñadirClientePanel.fxml")) {
+            if (archivoFXML.equals("/org/example/camping2/AñadirClientePanel.fxml")) {
                 AñadirClienteController controlador = loader.getController();
                 controlador.setMemoria(memoria);
-            } else if (archivoFXML.equals("EliminarClientePane.fxml")) {
+            } else if (archivoFXML.equals("/org/example/camping2/EliminarClientePane.fxml")) {
                 EliminarClienteController controlador = loader.getController();
                 controlador.setMemoria(memoria);
-            } else if (archivoFXML.equals("ActualizarClientePanel.fxml")) {
+            } else if (archivoFXML.equals("/org/example/camping2/ActualizarClientePanel.fxml")) {
                 ModificarClienteController controlador = loader.getController();
                 controlador.setMemoria(memoria);
-            } else if (archivoFXML.equals("BuscarClientePanel.fxml")) {
+            } else if (archivoFXML.equals("/org/example/camping2/BuscarClientePanel.fxml")) {
                 BuscarClientePanelController controlador = loader.getController();
                 controlador.setMemoria(memoria);
             }
