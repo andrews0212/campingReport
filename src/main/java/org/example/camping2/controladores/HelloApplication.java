@@ -35,6 +35,8 @@ public class HelloApplication extends Application {
 
         // Create the scene from the loaded FXML and set it in the stage
         Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("EcoVenture");
+
         stage.setScene(scene);
 
         // Show the main stage

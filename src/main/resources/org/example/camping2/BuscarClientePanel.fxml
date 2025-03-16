@@ -3,8 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.BuscarClientePanelController">
-    <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Buscar Cliente" />
+<VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.BuscarClientePanelController">
+    <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Buscar Cliente" VBox.vgrow="ALWAYS" />
 
     <!-- Panel de filtros -->
     <GridPane alignment="CENTER" hgap="10" vgap="10">
@@ -36,7 +36,7 @@
    </HBox>
 
     <!-- Tabla para mostrar resultados -->
-    <TableView fx:id="clientesTableView" prefHeight="200" prefWidth="400">
+    <TableView fx:id="clientesTableView" maxWidth="-Infinity" prefHeight="199.0" prefWidth="451.0">
         <columns>
             <TableColumn fx:id="idColumn" prefWidth="50" text="ID" />
             <TableColumn fx:id="nombreColumn" prefWidth="150" text="Nombre" />

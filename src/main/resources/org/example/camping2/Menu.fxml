@@ -10,7 +10,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.ClienteController">
    <center>
-      <StackPane fx:id="areaContenido" prefHeight="467.0" prefWidth="510.0" BorderPane.alignment="CENTER">
+      <StackPane fx:id="areaContenido" alignment="TOP_CENTER" prefHeight="467.0" prefWidth="510.0" BorderPane.alignment="TOP_CENTER">
          <BorderPane.margin>
             <Insets left="20.0" right="20.0" top="20.0" />
          </BorderPane.margin>
