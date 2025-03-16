@@ -61,6 +61,18 @@ public class Usuario {
     @Column(name = "`CONTRASEÑA`", nullable = false, length = 60)
     private String contraseña;
 
+    public Usuario() {
+    }
+
+    public Usuario(String nickname, String nombre, String apellido, String email, String estado, String contraseña) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.nickname = nickname;
+        this.estado = estado;
+        this.contraseña = contraseña;
+    }
+
     /**
      * Returns the unique identifier of the user.
      *

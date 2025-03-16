@@ -23,9 +23,14 @@ public class Memoria<T, ID> {
         this.lista = daogn.findAll();
     }
 
-    public void add(T objecto) {
-        daogn.add(objecto);
-        lista.add(objecto);
+    public boolean add(T objecto) {
+        boolean validar = daogn.add(objecto);
+        if (validar){
+            lista.add(objecto);
+            return validar;
+        }
+        return validar;
+
     }
 
     public boolean update(T objecto) {

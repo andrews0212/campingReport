@@ -102,4 +102,18 @@ public class HelloController {
             }
         }
     }
+    public void AbrirRegistro() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/ventanaRegistro.fxml"));
+        Parent root = loader.load();
+
+        // Obtener el controlador de la nueva ventana y configurar la memoria de clientes
+        ControladorVentanaRegistro controladorVentanaRegistro = loader.getController();
+        controladorVentanaRegistro.setMemoria(memoria);
+
+        // Crear y mostrar la nueva escena
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+
+    }
 }

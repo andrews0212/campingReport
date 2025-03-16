@@ -36,23 +36,24 @@ public class DAOGN<T, ID> {
      *
      * @param objecto The entity to be added.
      */
-    public void add(T objecto) {
+    public boolean add(T objecto) {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(objecto);
             entityManager.getTransaction().commit();
+            return true;
         } catch (ConstraintViolationException cve) {
             entityManager.getTransaction().rollback();
             System.err.println("Violación de restricción: " + cve.getMessage());
-            throw cve;
+            return false;
         } catch (PersistenceException pe) {
             entityManager.getTransaction().rollback();
             System.err.println("Error de persistencia: " + pe.getMessage());
-            throw pe;
+           return false;
         } catch (Exception e) {
             entityManager.getTransaction().rollback();
             System.err.println("Error inesperado: " + e.getMessage());
-            throw new RuntimeException("Ocurrió un error al agregar el objeto", e);
+          return false;
         }
     }
 
