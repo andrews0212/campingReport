@@ -3,9 +3,12 @@ package org.example.camping2.controladores;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 
 /**
  * Main application class for the Camping Management System.
@@ -19,7 +22,7 @@ import java.io.IOException;
  * @version 1.0.0
  * @since 31/01/2025
  */
-public class HelloApplication extends Application {
+public class ControladorPantallaCarga extends Application {
 
     /**
      * The main entry point for starting the JavaFX application.
@@ -36,6 +39,12 @@ public class HelloApplication extends Application {
         // Create the scene from the loaded FXML and set it in the stage
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("EcoVenture");
+        URL url = getClass().getResource("/org/example/camping2/logo.png");
+        Image icon = new Image(url.toString());
+        ImageView imageView = new ImageView(icon);
+        imageView.setFitWidth(32); // Establecer el ancho del ícono
+        imageView.setFitHeight(32); // Establecer la altura del ícono
+        stage.getIcons().add(imageView.getImage());
 
         stage.setScene(scene);
 

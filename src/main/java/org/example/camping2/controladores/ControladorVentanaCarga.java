@@ -10,6 +10,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.example.camping2.dto.Usuario;
 import org.example.camping2.memoria.Memoria;
@@ -96,7 +98,7 @@ public class ControladorVentanaCarga implements Initializable {
             Parent root = loader.load();
 
             // Access the controller of the newly loaded FXML
-            HelloController controlador = loader.getController();
+            ControladorInicio controlador = loader.getController();
 
             // Pass the memory instance to the controller
             controlador.setMemoria(memoria);
@@ -104,8 +106,14 @@ public class ControladorVentanaCarga implements Initializable {
             // Create a new scene and set it to the stage
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.setTitle("Nueva Ventana");
+            stage.setTitle("EcoVenture");
             stage.setResizable(false);
+            URL url = getClass().getResource("/org/example/camping2/logo.png");
+            Image icon = new Image(url.toString());
+            ImageView imageView = new ImageView(icon);
+            imageView.setFitWidth(32); // Establecer el ancho del ícono
+            imageView.setFitHeight(32); // Establecer la altura del ícono
+            stage.getIcons().add(imageView.getImage());
             stage.show();
 
             // Close the current window (optional)
