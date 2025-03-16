@@ -1,0 +1,14 @@
+#ButtonBuscar{
+    -fx-background-color: #2094df;
+}
+#ButtonAgregar{
+    -fx-background-color: #43df20;
+
+}
+#ButtonModificar{
+    -fx-background-color: #f6880b;
+
+}
+#ButtonEliminar{
+    -fx-background-color: #f60b0b;
+}

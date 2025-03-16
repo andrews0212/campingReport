@@ -93,6 +93,23 @@ public class BuscarClientePanelController {
         }
     }
 
+    public void buscarTodosClientes(){
+        // Clear previous results and reset status
+        clientes.clear();
+        statusLabel.setText("");
+
+        try {
+            // Simulate database search logic
+            ObservableList<Cliente> resultados = FXCollections.observableArrayList();;
+            resultados.addAll(memoria.findAll());
+            clientes.addAll(resultados);
+
+
+        }catch (Exception e){
+            statusLabel.setText("Ocurrió un error al buscar los clientes.");
+        }
+    }
+
     /**
      * Simulates the search of clients based on the provided ID, name, and DNI.
      * It compares the input values with the data stored in memory and returns a list of matching clients.
