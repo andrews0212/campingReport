@@ -9,9 +9,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import org.example.camping2.dto.Cliente;
-import org.example.camping2.dto.Usuario;
-import org.example.camping2.memoria.Memoria;
+import org.example.camping2.modelo.dto.Cliente;
+import org.example.camping2.modelo.dto.Usuario;
+import org.example.camping2.modelo.memoria.Memoria;
 
 import javafx.scene.control.TextField;
 
@@ -113,7 +113,15 @@ public class ControladorInicio {
         }
     }
     public void AbrirRegistro() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/ventanaRegistro.fxml"));
+        // Cargar el archivo FXML
+        URL fxmlLocation = getClass().getResource("/org/example/camping2/VentanaRegistro.fxml");
+        if (fxmlLocation == null) {
+            System.err.println("No se pudo cargar el archivo FXML. La URL es nula.");
+            throw new IOException("No se encontró el archivo FXML.");
+        }
+        System.out.println("URL del archivo FXML cargada correctamente: " + fxmlLocation);
+
+        FXMLLoader loader = new FXMLLoader(fxmlLocation);
         Parent root = loader.load();
 
         // Obtener el controlador de la nueva ventana y configurar la memoria de clientes
@@ -123,14 +131,21 @@ public class ControladorInicio {
         // Crear y mostrar la nueva escena
         Stage stage = new Stage();
         stage.setTitle("EcoVenture");
-        URL url = getClass().getResource("/org/example/camping2/logo.png");
-        Image icon = new Image(url.toString());
-        ImageView imageView = new ImageView(icon);
-        imageView.setFitWidth(32); // Establecer el ancho del ícono
-        imageView.setFitHeight(32); // Establecer la altura del ícono
-        stage.getIcons().add(imageView.getImage());
+
+        // Intentar cargar el ícono
+        URL iconUrl = getClass().getResource("/org/example/camping2/logo.png");
+        if (iconUrl != null) {
+            Image icon = new Image(iconUrl.toString());
+            ImageView imageView = new ImageView(icon);
+            imageView.setFitWidth(32); // Establecer el ancho del ícono
+            imageView.setFitHeight(32); // Establecer la altura del ícono
+            stage.getIcons().add(imageView.getImage());
+        } else {
+            System.out.println("No se pudo cargar el ícono.");
+        }
+
         stage.setScene(new Scene(root));
         stage.show();
-
     }
+
 }

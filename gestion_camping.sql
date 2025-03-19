@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `gestion_camping`
 --
+Create database gestion_camping;
+use gestion_camping;
 
 -- --------------------------------------------------------
 

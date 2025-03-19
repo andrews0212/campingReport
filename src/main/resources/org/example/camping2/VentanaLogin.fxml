@@ -32,7 +32,7 @@
                <children>
                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre Usuario" textAlignment="RIGHT" wrappingWidth="150.13671875" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                      <font>
-                        <Font size="20.0" />
+                        <Font size="17.0" />
                      </font>
                      <GridPane.margin>
                         <Insets bottom="10.0" />
@@ -40,7 +40,7 @@
                   </Text>
                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña" textAlignment="RIGHT" wrappingWidth="154.13671875" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                      <font>
-                        <Font size="20.0" />
+                        <Font size="17.0" />
                      </font>
                      <GridPane.margin>
                         <Insets bottom="15.0" />

@@ -6,8 +6,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import org.example.camping2.dto.Cliente;
-import org.example.camping2.memoria.Memoria;
+import org.example.camping2.modelo.dto.Cliente;
+import org.example.camping2.modelo.memoria.Memoria;
+import org.example.camping2.modelo.validaciones.ValidarCliente;
+import org.example.camping2.modelo.validaciones.ValidarUsuario;
 
 /**
  * Controller class responsible for handling the "Add Client" UI in the camping application.
@@ -65,7 +67,23 @@ public class AñadirClienteController {
      */
     @FXML
     private void handleAñadirCliente(MouseEvent event) {
-        try {
+        if (ValidarCliente.ValidarNombre(nombreField.getText())){
+            mostrarAlerta("Error", "El nombre es invalido", Alert.AlertType.ERROR);
+        } else if (ValidarCliente.ValidarApellido(apellidoField.getText())) {
+            mostrarAlerta("Error", "El apellido es invalido", Alert.AlertType.ERROR);
+        } else if (ValidarCliente.ValidarDNIoNIE(dniField.getText())) {
+            mostrarAlerta("Error", "El dni es invalido", Alert.AlertType.ERROR);
+        } else if (ValidarCliente.ValidarCorreo(emailField.getText())) {
+            mostrarAlerta("Error", "El correo es invalido", Alert.AlertType.ERROR);
+        } else if (ValidarCliente.ValidarTelefono(telefonoField.getText())) {
+            mostrarAlerta("Error", "El telefono es invalido", Alert.AlertType.ERROR);
+        } else if (fechaNacimientoField.getValue() == null) {
+            mostrarAlerta("Error", "La fecha de nacimiento es invalida", Alert.AlertType.ERROR);
+        } else if (ValidarCliente.ValidarEstado(estadoField.getText())) {
+            mostrarAlerta("Error", "El estado es invalido", Alert.AlertType.ERROR);
+        } else {
+            try {
+
             // Create a new client object with the form data
             Cliente cliente = new Cliente(
                     nombreField.getText(),
@@ -88,6 +106,9 @@ public class AñadirClienteController {
             // Show error alert
             mostrarAlerta("Error", e.getMessage(), Alert.AlertType.ERROR);
         }
+        }
+
+
     }
 
     /**

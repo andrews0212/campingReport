@@ -13,8 +13,8 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import org.example.camping2.dto.Usuario;
-import org.example.camping2.memoria.Memoria;
+import org.example.camping2.modelo.dto.Usuario;
+import org.example.camping2.modelo.memoria.Memoria;
 
 import javax.swing.*;
 

@@ -1,13 +1,11 @@
-package org.example.camping2.memoria;
+package org.example.camping2.modelo.memoria;
 
 
-import jakarta.persistence.PersistenceException;
-import org.example.camping2.dao.DAOGN;
-import org.example.camping2.dto.Acompañante;
-import org.example.camping2.dto.Cliente;
-import org.example.camping2.dto.Recurso;
-import org.example.camping2.dto.Reserva;
-import org.hibernate.exception.ConstraintViolationException;
+import org.example.camping2.modelo.dao.DAOGN;
+import org.example.camping2.modelo.dto.Acompañante;
+import org.example.camping2.modelo.dto.Cliente;
+import org.example.camping2.modelo.dto.Recurso;
+import org.example.camping2.modelo.dto.Reserva;
 
 import java.util.List;
 

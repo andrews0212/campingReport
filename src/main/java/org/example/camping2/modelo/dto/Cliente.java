@@ -1,8 +1,9 @@
-package org.example.camping2.dto;
+package org.example.camping2.modelo.dto;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -80,7 +81,7 @@ public class Cliente {
      * The set of reservations associated with the client.
      */
     @OneToMany(mappedBy = "idcliente")
-    private Set<org.example.camping2.dto.Reserva> reservas = new LinkedHashSet<>();
+    private Set<org.example.camping2.modelo.dto.Reserva> reservas = new LinkedHashSet<>();
 
     /**
      * Constructor to create a client with specified details.
@@ -279,7 +280,7 @@ public class Cliente {
      *
      * @return the set of reservations for the client.
      */
-    public Set<org.example.camping2.dto.Reserva> getReservas() {
+    public Set<org.example.camping2.modelo.dto.Reserva> getReservas() {
         return reservas;
     }
 
@@ -288,7 +289,19 @@ public class Cliente {
      *
      * @param reservas the set of reservations to set for the client.
      */
-    public void setReservas(Set<org.example.camping2.dto.Reserva> reservas) {
+    public void setReservas(Set<org.example.camping2.modelo.dto.Reserva> reservas) {
         this.reservas = reservas;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Cliente cliente = (Cliente) o;
+        return Objects.equals(id, cliente.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }

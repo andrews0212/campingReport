@@ -4,8 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import org.example.camping2.dto.Cliente;
-import org.example.camping2.memoria.Memoria;
+import org.example.camping2.modelo.dto.Cliente;
+import org.example.camping2.modelo.memoria.Memoria;
 
 /**
  * Controller for the "Eliminar Cliente" (Delete Client) view.

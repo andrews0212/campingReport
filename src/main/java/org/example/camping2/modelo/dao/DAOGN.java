@@ -1,9 +1,9 @@
-package org.example.camping2.dao;
+package org.example.camping2.modelo.dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceException;
-import org.example.camping2.conection.ConectionEntityManager;
-import org.example.camping2.dto.Cliente;
+import org.example.camping2.modelo.conection.ConectionEntityManager;
+import org.example.camping2.modelo.dto.Cliente;
 import org.hibernate.exception.ConstraintViolationException;
 
 import java.time.LocalDate;

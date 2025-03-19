@@ -1,4 +1,4 @@
-package org.example.camping2.dto;
+package org.example.camping2.modelo.dto;
 
 import jakarta.persistence.*;
 

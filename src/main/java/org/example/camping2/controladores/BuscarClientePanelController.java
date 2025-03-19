@@ -4,8 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import org.example.camping2.dto.Cliente;
-import org.example.camping2.memoria.Memoria;
+import org.example.camping2.modelo.dto.Cliente;
+import org.example.camping2.modelo.memoria.Memoria;
 
 /**
  * Controller class responsible for handling the "Search Client" functionality in the camping application.

@@ -12,10 +12,9 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
-import org.example.camping2.dto.Cliente;
-import org.example.camping2.memoria.Memoria;
+import org.example.camping2.modelo.dto.Cliente;
+import org.example.camping2.modelo.memoria.Memoria;
 
-import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
@@ -87,27 +86,51 @@ public class ClienteController {
         try {
             // Prepare parameters for the report
             Map<String, Object> parametros = new HashMap<>();
-            parametros.put("nombre", nombreField.getText().isEmpty() ? null : nombreField.getText());
-            parametros.put("apellido", apellidoField.getText().isEmpty() ? null : apellidoField.getText());
-            parametros.put("fechaNacimiento", fechaNacimientoPicker.getValue() == null ? null : java.sql.Date.valueOf(fechaNacimientoPicker.getValue()));
-            parametros.put("estado", estadoComboBox.getValue() == null || estadoComboBox.getValue().isEmpty() ? null : estadoComboBox.getValue());
 
-            // Get the database connection
+            // Si el campo de nombre no está vacío, filtrar por aquellos nombres que comienzan con la letra proporcionada
+            String nombre = nombreField.getText().isEmpty() ? null : nombreField.getText();
+            if (nombre != null && !nombre.isEmpty()) {
+                // Si el nombre empieza con "A", podemos poner un filtro en el reporte para que solo se muestren los que comienzan con "A"
+                parametros.put("nombre", nombre + "%"); // El "%" es para la consulta SQL para el "LIKE"
+            } else {
+                parametros.put("nombre", null);
+            }
+
+            // Si el campo de apellido no está vacío, filtrar por aquellos apellidos que comienzan con la letra proporcionada
+            String apellido = apellidoField.getText().isEmpty() ? null : apellidoField.getText();
+            if (apellido != null && !apellido.isEmpty()) {
+                parametros.put("apellido", apellido + "%"); // Similar al filtro de nombre
+            } else {
+                parametros.put("apellido", null);
+            }
+
+            // Si la fecha de nacimiento no es nula, convertirla a java.sql.Date
+            parametros.put("fechaNacimiento", fechaNacimientoPicker.getValue() == null ? null : java.sql.Date.valueOf(fechaNacimientoPicker.getValue()));
+
+            // Solo agregar el estado si no es "NINGUN ESTADO"
+            String estado = estadoComboBox.getValue();
+            if (estado == null || estado.isEmpty() || "NINGUN ESTADO".equals(estado)) {
+                parametros.put("estado", null); // No se pasa el estado
+            } else {
+                parametros.put("estado", estado);
+            }
+
+            // Obtener la conexión a la base de datos
             Connection conexion = obtenerConexion();
 
-            // Fill the report with the connection, parameters, and design
+            // Llenar el reporte con la conexión, los parámetros y el diseño
             JasperPrint jasperPrint = JasperFillManager.fillReport(ClienteController.class.getResource("/Camping/Flower.jasper").getPath(),
                     parametros,
                     conexion
             );
 
-            // Export the report to PDF
+            // Exportar el reporte a un archivo PDF
             JasperExportManager.exportReportToPdfFile(jasperPrint, "src/main/resources/Pdf/report.pdf");
 
-            // Display the report
+            // Mostrar el reporte
             JasperViewer.viewReport(jasperPrint, false);
 
-            // Close the connection
+            // Cerrar la conexión
             conexion.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -124,8 +147,8 @@ public class ClienteController {
         try {
             // Database connection details
             String url = "jdbc:mysql://localhost:3306/gestion_camping";
-            String usuario = "root";
-            String contraseña = "";
+            String usuario = "andrews";
+            String contraseña = "Dosramos02";
             return DriverManager.getConnection(url, usuario, contraseña);
         } catch (Exception e) {
             e.printStackTrace();

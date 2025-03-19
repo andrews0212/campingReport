@@ -50,6 +50,7 @@
                         <String fx:value="ACTIVO" />
                         <String fx:value="SUSPENDIDO" />
                         <String fx:value="BLOQUEADO" />
+                        <String fx:value="NINGUN ESTADO"/>
                      </FXCollections>
                   </items>
                </ComboBox>

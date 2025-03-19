@@ -14,7 +14,7 @@ module org.example.camping2 {
     requires org.hibernate.orm.core;
     requires net.sf.jasperreports.core;
     requires org.slf4j;
-    opens org.example.camping2.dto to org.hibernate.orm.core;
+    opens org.example.camping2.modelo.dto to org.hibernate.orm.core;
 
     opens org.example.camping2 to javafx.fxml;
     exports org.example.camping2.controladores;

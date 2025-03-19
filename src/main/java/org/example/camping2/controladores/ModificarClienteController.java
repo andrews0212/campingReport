@@ -2,8 +2,9 @@ package org.example.camping2.controladores;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import org.example.camping2.dto.Cliente;
-import org.example.camping2.memoria.Memoria;
+import org.example.camping2.modelo.dto.Cliente;
+import org.example.camping2.modelo.memoria.Memoria;
+import org.example.camping2.modelo.validaciones.ValidarCliente;
 
 /**
  * Controlador para la ventana de modificación de clientes.
@@ -88,37 +89,52 @@ public class ModificarClienteController {
      * Primero valida si un cliente ha sido encontrado y luego actualiza los datos en la memoria (base de datos).
      */
     public void guardarCambios() {
-        try {
+
             String idCliente = idClienteTextField.getText();
             if (idCliente.isEmpty()) {
                 statusLabel.setText("Por favor, busque un cliente primero.");
                 return;
             }
 
-            // Crear un nuevo cliente con los datos modificados
-            Cliente cliente = new Cliente(
-                    nombreTextField.getText(),
-                    apellidoTextField.getText(),
-                    dniTextField.getText(),
-                    emailTextField.getText(),
-                    telefonoTextField.getText(),
-                    null, // Suponiendo que no se modifica la fecha de nacimiento aquí
-                    estadoTextField.getText(),
-                    comentariosTextArea.getText()
-            );
-
-            // Intentar actualizar el cliente en la base de datos (memoria)
-            boolean actualizado = actualizarClienteEnBaseDatos(Integer.parseInt(idCliente), cliente);
-            if (actualizado) {
-                statusLabel.setStyle("-fx-text-fill: green;");
-                statusLabel.setText("Cliente actualizado exitosamente.");
+            if (ValidarCliente.ValidarNombre(nombreTextField.getText())) {
+                mostrarAlerta("Error", "El nombre es invalido", Alert.AlertType.ERROR);
+            } else if (ValidarCliente.ValidarApellido(apellidoTextField.getText())) {
+                mostrarAlerta("Error", "El apellido es invalido", Alert.AlertType.ERROR);
+            } else if (ValidarCliente.ValidarDNIoNIE(dniTextField.getText())) {
+                mostrarAlerta("Error", "El dni es invalido", Alert.AlertType.ERROR);
+            } else if (ValidarCliente.ValidarCorreo(emailTextField.getText())) {
+                mostrarAlerta("Error", "El correo es invalido", Alert.AlertType.ERROR);
+            } else if (ValidarCliente.ValidarTelefono(telefonoTextField.getText())) {
+                mostrarAlerta("Error", "El telefono es invalido", Alert.AlertType.ERROR);
+            } else if (ValidarCliente.ValidarEstado(estadoTextField.getText())) {
+                mostrarAlerta("Error", "El estado es invalido", Alert.AlertType.ERROR);
             } else {
+                try {
+                // Crear un nuevo cliente con los datos modificados
+                Cliente cliente = new Cliente(
+                        nombreTextField.getText(),
+                        apellidoTextField.getText(),
+                        dniTextField.getText(),
+                        emailTextField.getText(),
+                        telefonoTextField.getText(),
+                        null, // Suponiendo que no se modifica la fecha de nacimiento aquí
+                        estadoTextField.getText(),
+                        comentariosTextArea.getText()
+                );
+
+                // Intentar actualizar el cliente en la base de datos (memoria)
+                boolean actualizado = actualizarClienteEnBaseDatos(Integer.parseInt(idCliente), cliente);
+                if (actualizado) {
+                    statusLabel.setStyle("-fx-text-fill: green;");
+                    statusLabel.setText("Cliente actualizado exitosamente.");
+                } else {
+                    statusLabel.setStyle("-fx-text-fill: red;");
+                    statusLabel.setText("Error al actualizar el cliente.");
+                }
+            } catch(Exception e){
                 statusLabel.setStyle("-fx-text-fill: red;");
-                statusLabel.setText("Error al actualizar el cliente.");
+                statusLabel.setText("Ocurrió un error al guardar los cambios.");
             }
-        } catch (Exception e) {
-            statusLabel.setStyle("-fx-text-fill: red;");
-            statusLabel.setText("Ocurrió un error al guardar los cambios.");
         }
     }
 
@@ -151,5 +167,12 @@ public class ModificarClienteController {
      */
     public void setMemoria(Memoria<Cliente, Integer> memoria) {
         this.memoria = memoria;
+    }
+
+    private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
+        Alert alerta = new Alert(tipo);
+        alerta.setTitle(titulo);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
     }
 }

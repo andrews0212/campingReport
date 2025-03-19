@@ -1,4 +1,4 @@
-package org.example.camping2.conection;
+package org.example.camping2.modelo.conection;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
