@@ -74,95 +74,90 @@ WHERE
 		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
 	</field>
 	<background height="802" splitType="Stretch"/>
-	<title height="88" splitType="Stretch">
-		<element kind="frame" uuid="29f958b3-9df5-4ee0-905e-9fd33029926f" mode="Opaque" x="-20" y="0" width="597" height="65" forecolor="#2820BD" backcolor="#122B54">
-			<element kind="staticText" uuid="cf1fabd8-9376-4a95-a65d-c762a7404011" x="260" y="0" width="216" height="64" markup="styled" fontName="Serif" fontSize="54.0" bold="false" hTextAlign="Center" style="Title">
-				<text><![CDATA[EcoVenture]]></text>
-			</element>
-			<element kind="image" uuid="0d45dc0d-0d4a-40e0-8181-8798f2e93574" x="0" y="-36" width="189" height="136">
+	<title height="90" splitType="Stretch">
+		<element kind="frame" uuid="29f958b3-9df5-4ee0-905e-9fd33029926f" mode="Opaque" x="-20" y="0" width="597" height="90" forecolor="#1786FC" backcolor="#1786FC">
+			<element kind="image" uuid="0d45dc0d-0d4a-40e0-8181-8798f2e93574" x="60" y="0" width="100" height="100">
 				<expression><![CDATA["logo.png"]]></expression>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			</element>
-			<element kind="staticText" uuid="ea13cd95-26ec-4adb-a5e0-22c7256da10c" x="212" y="0" width="363" height="64" forecolor="#FFFFFF" fontName="SansSerif" fontSize="46.0" hTextAlign="Center" vTextAlign="Middle">
+			<element kind="staticText" uuid="ea13cd95-26ec-4adb-a5e0-22c7256da10c" x="120" y="0" width="457" height="90" forecolor="#FFFFFF" fontName="SansSerif" fontSize="46.0" hTextAlign="Center" vTextAlign="Middle">
 				<text><![CDATA[EcoVenture]]></text>
 			</element>
 		</element>
+		<property name="com.jaspersoft.studio.unit.height" value="px"/>
 	</title>
 	<pageHeader splitType="Stretch"/>
 	<columnHeader height="31" splitType="Stretch">
-		<element kind="staticText" uuid="84466e5a-1fe9-4ec8-85bc-42fb8aa47092" x="0" y="12" width="50" height="16">
+		<element kind="staticText" uuid="84466e5a-1fe9-4ec8-85bc-42fb8aa47092" x="40" y="11" width="50" height="16">
 			<text><![CDATA[IDCLIENTE]]></text>
 			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4377bd5b-820d-4881-b294-76dcfc5b4806"/>
 		</element>
-		<element kind="staticText" uuid="7339b47d-face-4e49-b142-31ae4a24992d" x="60" y="12" width="50" height="16">
+		<element kind="staticText" uuid="7339b47d-face-4e49-b142-31ae4a24992d" x="100" y="11" width="50" height="16">
 			<text><![CDATA[NOMBRE]]></text>
 			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c0709afb-c8cb-4f58-a956-29daed1cd1ce"/>
 		</element>
-		<element kind="staticText" uuid="90287b0f-8628-4342-82b9-ac9074879caf" x="180" y="12" width="50" height="16">
+		<element kind="staticText" uuid="90287b0f-8628-4342-82b9-ac9074879caf" x="220" y="11" width="50" height="16">
 			<text><![CDATA[DNI]]></text>
 			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cbca2a90-650d-42a8-8e0d-e1d7fe0c36fc"/>
 		</element>
-		<element kind="staticText" uuid="208a7791-da74-46dc-a585-5111e2ae2e81" x="240" y="12" width="50" height="16">
+		<element kind="staticText" uuid="208a7791-da74-46dc-a585-5111e2ae2e81" x="280" y="11" width="50" height="16">
 			<text><![CDATA[EMAIL]]></text>
 			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d42a84b6-c88e-4159-9d96-090cfee38214"/>
 		</element>
-		<element kind="staticText" uuid="8d334844-0888-43a1-9d3c-1a8a2cd50b72" x="300" y="12" width="50" height="16">
+		<element kind="staticText" uuid="8d334844-0888-43a1-9d3c-1a8a2cd50b72" x="340" y="11" width="50" height="16">
 			<text><![CDATA[TELEFONO]]></text>
 			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0ec499c2-e967-44ae-a325-0385086e1123"/>
 		</element>
-		<element kind="staticText" uuid="4fd7c757-8abf-4099-b6d2-36df6a06df81" x="120" y="12" width="50" height="16">
+		<element kind="staticText" uuid="4fd7c757-8abf-4099-b6d2-36df6a06df81" x="160" y="11" width="50" height="16">
 			<text><![CDATA[APELLIDO]]></text>
 			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2f12e62d-62ee-4df9-b72c-8381c82973e9"/>
 		</element>
-		<element kind="staticText" uuid="d7f6d948-ebd2-4c1a-92f5-3f3797dd0d5a" x="420" y="12" width="50" height="16">
+		<element kind="staticText" uuid="d7f6d948-ebd2-4c1a-92f5-3f3797dd0d5a" x="460" y="11" width="50" height="16">
 			<text><![CDATA[ESTADO]]></text>
 			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fd4e0fd5-99a9-4c45-8742-9ef59a7dc34a"/>
 		</element>
-		<element kind="staticText" uuid="2003464d-e529-41db-b297-ba4464ba0b2e" x="360" y="12" width="50" height="16">
+		<element kind="staticText" uuid="2003464d-e529-41db-b297-ba4464ba0b2e" x="400" y="11" width="50" height="16">
 			<text><![CDATA[FECHA_NACIMIENTO]]></text>
 			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c75b276e-c871-45a8-ba95-92744d31e1da"/>
 		</element>
 	</columnHeader>
 	<detail>
 		<band height="22" splitType="Stretch">
-			<element kind="textField" uuid="55de6f94-d17b-4777-a413-7eaa44b59435" x="0" y="6" width="50" height="14">
+			<element kind="textField" uuid="55de6f94-d17b-4777-a413-7eaa44b59435" x="40" y="5" width="50" height="14">
 				<expression><![CDATA[$F{IDCLIENTE}]]></expression>
 				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4377bd5b-820d-4881-b294-76dcfc5b4806"/>
 			</element>
-			<element kind="textField" uuid="fba1d2ca-4484-444d-94e4-cf8cbb9451b5" x="60" y="6" width="50" height="14">
+			<element kind="textField" uuid="fba1d2ca-4484-444d-94e4-cf8cbb9451b5" x="100" y="5" width="50" height="14">
 				<expression><![CDATA[$F{NOMBRE}]]></expression>
 				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c0709afb-c8cb-4f58-a956-29daed1cd1ce"/>
 			</element>
-			<element kind="textField" uuid="c49497c0-88e9-4660-8d6f-c661d9c5e9cf" x="119" y="6" width="50" height="14">
+			<element kind="textField" uuid="c49497c0-88e9-4660-8d6f-c661d9c5e9cf" x="159" y="5" width="50" height="14">
 				<expression><![CDATA[$F{APELLIDO}]]></expression>
 				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2f12e62d-62ee-4df9-b72c-8381c82973e9"/>
 			</element>
-			<element kind="textField" uuid="31b9651e-7288-4e60-b013-cc0e4f5d652b" x="180" y="6" width="50" height="14">
+			<element kind="textField" uuid="31b9651e-7288-4e60-b013-cc0e4f5d652b" x="220" y="5" width="50" height="14">
 				<expression><![CDATA[$F{DNI}]]></expression>
 				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cbca2a90-650d-42a8-8e0d-e1d7fe0c36fc"/>
 			</element>
-			<element kind="textField" uuid="7c1ed1be-69ce-4821-86a7-e43113363568" x="240" y="6" width="50" height="14">
+			<element kind="textField" uuid="7c1ed1be-69ce-4821-86a7-e43113363568" x="280" y="5" width="50" height="14">
 				<expression><![CDATA[$F{EMAIL}]]></expression>
 				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d42a84b6-c88e-4159-9d96-090cfee38214"/>
 			</element>
-			<element kind="textField" uuid="b9d3e1a3-9e28-49cb-897a-d17ee336d873" x="300" y="6" width="50" height="14">
+			<element kind="textField" uuid="b9d3e1a3-9e28-49cb-897a-d17ee336d873" x="340" y="5" width="50" height="14">
 				<expression><![CDATA[$F{TELEFONO}]]></expression>
 				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0ec499c2-e967-44ae-a325-0385086e1123"/>
 			</element>
-			<element kind="textField" uuid="d9cc84a3-8ffd-477e-88c6-e724eeab445a" x="360" y="6" width="50" height="14">
+			<element kind="textField" uuid="d9cc84a3-8ffd-477e-88c6-e724eeab445a" x="400" y="5" width="50" height="14">
 				<expression><![CDATA[$F{FECHA_NACIMIENTO}]]></expression>
 				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c75b276e-c871-45a8-ba95-92744d31e1da"/>
 			</element>
-			<element kind="textField" uuid="bdfecdb3-57a6-4a32-836c-b72de9ef80a1" x="420" y="6" width="50" height="14">
+			<element kind="textField" uuid="bdfecdb3-57a6-4a32-836c-b72de9ef80a1" x="460" y="5" width="50" height="14">
 				<expression><![CDATA[$F{ESTADO}]]></expression>
 				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fd4e0fd5-99a9-4c45-8742-9ef59a7dc34a"/>
 			</element>
 		</band>
 	</detail>
-	<columnFooter height="7" splitType="Stretch">
-		<element kind="line" uuid="0a05d19c-77ff-48d5-91d6-460d221419e5" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1">
-			<pen lineWidth="0.5" lineColor="#999999"/>
-		</element>
-	</columnFooter>
 	<pageFooter height="13" splitType="Stretch">
 		<element kind="frame" uuid="21b8ec89-3912-4f38-b1d2-846c348d496b" mode="Opaque" x="2" y="0" width="555" height="13" forecolor="#D0B48E" backcolor="#006699">
 			<element kind="textField" uuid="2f1f4647-386f-4ee9-b3b1-779c70fd7960" x="513" y="0" width="40" height="13" forecolor="#FFFFFF" fontSize="10.0" evaluationTime="Report" bold="false" vTextAlign="Middle" style="Column header">

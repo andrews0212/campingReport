@@ -1,7 +1,5 @@
 package org.example.camping2.modelo.validaciones;
 
-import org.example.camping2.modelo.dto.Usuario;
-
 public class ValidarUsuario {
 
     public static boolean validarNombreUsuario(String nombreUsuario) {

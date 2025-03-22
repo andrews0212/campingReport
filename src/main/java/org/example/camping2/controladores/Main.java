@@ -22,7 +22,7 @@ import java.net.URL;
  * @version 1.0.0
  * @since 31/01/2025
  */
-public class ControladorPantallaCarga extends Application {
+public class Main extends Application {
 
     /**
      * The main entry point for starting the JavaFX application.
