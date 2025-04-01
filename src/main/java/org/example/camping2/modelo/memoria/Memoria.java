@@ -84,6 +84,7 @@ public class Memoria<T, ID> {
     }
 
     public List<T> findAll() {
+        lista = daogn.findAll();
         return lista;
     }
 

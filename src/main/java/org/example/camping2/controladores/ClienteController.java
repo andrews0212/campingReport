@@ -21,6 +21,7 @@ import java.net.URI;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -59,13 +60,17 @@ public class ClienteController {
 
     private Memoria<Cliente, Integer> memoria;
 
+    private Locale idioma;
+
 
     /**
      * Initializes the controller and the various panels in the client section of the application.
      * This method is called automatically after the FXML file is loaded.
      */
     public void initialize() {
+
         memoria = new Memoria<>(Cliente.class);
+
     }
 
     /**
@@ -75,6 +80,14 @@ public class ClienteController {
      */
     public void setMemoria(Memoria<Cliente, Integer> memoria) {
         this.memoria = memoria;
+    }
+
+    public Locale getIdioma() {
+        return idioma;
+    }
+
+    public void setIdioma(Locale idioma) {
+        this.idioma = idioma;
     }
 
     /**

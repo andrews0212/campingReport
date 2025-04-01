@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "usuario")
 public class Usuario {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)
     private Integer id;
 
@@ -42,6 +43,7 @@ public class Usuario {
         this.estado = estado;
         this.contraseña = contraseña;
     }
+
 
     public Integer getId() {
         return id;

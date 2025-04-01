@@ -44,7 +44,7 @@ public class ControladorVentanaRegistro {
         } else if (!RegexValidaciones.CONTRASEÑA.matcher(CampoContraseña.getText()).matches()) {
             alerta("La contraseña no es valida");
         } else if (CampoContraseña.getText().equals(CampoConfirmarContraseña.getText())){
-            Usuario usuario = new Usuario(CampoUsuario.getText(), CampoNombre.getText(), CampoApellido.getText(), CampoCorreo.getText(), "Activo", CampoContraseña.getText());
+            Usuario usuario = new Usuario(CampoNombre.getText(), CampoApellido.getText(), CampoCorreo.getText(), CampoUsuario.getText(), "ACTIVO", CampoContraseña.getText());
             if (memoria.add(usuario)){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Usuario creado correctamente", ButtonType.OK);
                 alert.setTitle("Usuario creado");

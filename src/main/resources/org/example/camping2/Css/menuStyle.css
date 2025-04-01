@@ -12,3 +12,29 @@
 #ButtonEliminar{
     -fx-background-color: #f60b0b;
 }
+
+.menu-bar {
+    -fx-background-color: white;
+}
+
+.menu {
+    -fx-background-color: white;
+}
+.menu .label {
+    -fx-text-fill: #2094df;
+}
+
+.menu .menu-item {
+    -fx-background-color: transparent; /* Fondo transparente por defecto */
+    -fx-text-fill: white; /* Color del texto */
+}
+
+.menu .menu-item:hover {
+    -fx-background-color: #0a1c60 !important; /* Asegura que el fondo sea negro */
+    -fx-text-fill: white; /* Texto en blanco */
+}
+
+.menu .menu-item:focused,
+.menu .menu-item:armed {
+    -fx-background-color: transparent;
+}

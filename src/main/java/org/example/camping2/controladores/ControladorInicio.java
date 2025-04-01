@@ -4,8 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.PasswordField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -13,11 +12,11 @@ import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.dto.Usuario;
 import org.example.camping2.modelo.memoria.Memoria;
 
-import javafx.scene.control.TextField;
-
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * Controlador para la ventana de inicio de sesión.
@@ -39,7 +38,34 @@ public class ControladorInicio {
     private TextField textFieldUsuario;
     @FXML
     private PasswordField textFieldContraseña;
+    @FXML
+    private Label labelUsuario;
+    @FXML
+    private Label labelContraseña;
 
+    @FXML
+    private Button botonInciar;
+    @FXML
+    private Button botonRegistrar;
+
+    @FXML
+    private MenuItem menuIngles;
+
+    @FXML
+    private MenuItem menuEspañol;
+
+    private ResourceBundle bundle;
+
+
+    @FXML
+    public void initialize() {
+        // Configurar eventos de cambio de idioma
+        menuIngles.setOnAction(event -> cambiarIdioma(new Locale("en", "US")));
+        menuEspañol.setOnAction(event -> cambiarIdioma(new Locale("es", "ES")));
+
+        // Cargar idioma predeterminado (Español)
+        cambiarIdioma(new Locale("es", "ES"));
+    }
     /**
      * Constructor del controlador. Este constructor está vacío porque JavaFX requiere un constructor sin parámetros
      * para trabajar con el FXML.
@@ -68,65 +94,53 @@ public class ControladorInicio {
     public void iniciar(javafx.event.ActionEvent actionEvent) throws IOException {
 
         if (memoria != null) {
-            // Verifica si las credenciales ingresadas coinciden con alguna en la memoria
-//            Optional<Usuario> usuarioEncontrado = memoria.lista.stream()
-//                    .filter(p -> p.getNickname().equals(textFieldUsuario.getText()) && p.getContraseña().equals(textFieldContraseña.getText()))
-//                    .findFirst();
-            Usuario usuario = memoria.findAll().stream().filter(x -> x.getNickname().equals(textFieldUsuario.getText())).findFirst().get();
+            Usuario usuario = null;
+            for (Usuario usu : memoria.findAll()){
+                if (usu.getNickname().equals(textFieldUsuario.getText())){
+                    usuario=usu;
+                }
+            }
+
             if (usuario != null) {
-                if(usuario.getIntentos() >= 3) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setContentText("Se han agotado los intentos");
-                    alert.showAndWait();
+                if(validarIntentos(usuario)){
+                    if (ContraseñaValida(usuario)) {
+                        if(validarIntentos(usuario)){
+                            try {
+                                // Cargar la nueva ventana (Menu.fxml) si el usuario es autenticado
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/Menu.fxml"));
+                                Parent root = loader.load();
 
-                } else if (usuario.getContraseña().equals(textFieldContraseña.getText())) {
-                    if(usuario.getIntentos() <= 3){
-                        try {
-                            // Cargar la nueva ventana (Menu.fxml) si el usuario es autenticado
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/Menu.fxml"));
-                            Parent root = loader.load();
+                                // Obtener el controlador de la nueva ventana y configurar la memoria de clientes
+                                ClienteController controladorCliente = loader.getController();
+                                controladorCliente.setMemoria(new Memoria<>(Cliente.class));
 
-                            // Obtener el controlador de la nueva ventana y configurar la memoria de clientes
-                            ClienteController controladorCliente = loader.getController();
-                            controladorCliente.setMemoria(new Memoria<>(Cliente.class));
+                                // Crear y mostrar la nueva escena
+                                Stage stage = new Stage();
+                                stage.setTitle("EcoVenture");
+                                URL url = getClass().getResource("/org/example/camping2/logo.png");
+                                Image icon = new Image(url.toString());
+                                ImageView imageView = new ImageView(icon);
+                                imageView.setFitWidth(32); // Establecer el ancho del ícono
+                                imageView.setFitHeight(32); // Establecer la altura del ícono
+                                stage.getIcons().add(imageView.getImage());
+                                stage.setScene(new Scene(root));
+                                stage.show();
 
-                            // Crear y mostrar la nueva escena
-                            Stage stage = new Stage();
-                            stage.setTitle("EcoVenture");
-                            URL url = getClass().getResource("/org/example/camping2/logo.png");
-                            Image icon = new Image(url.toString());
-                            ImageView imageView = new ImageView(icon);
-                            imageView.setFitWidth(32); // Establecer el ancho del ícono
-                            imageView.setFitHeight(32); // Establecer la altura del ícono
-                            stage.getIcons().add(imageView.getImage());
-                            stage.setScene(new Scene(root));
-                            stage.show();
+                                // Cerrar la ventana actual (de inicio de sesión)
+                                Stage ventanaActual = (Stage) textFieldContraseña.getScene().getWindow();
+                                ventanaActual.close();
 
-                            // Cerrar la ventana actual (de inicio de sesión)
-                            Stage ventanaActual = (Stage) textFieldContraseña.getScene().getWindow();
-                            ventanaActual.close();
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                            JOptionPane.showMessageDialog(null, "Error al abrir la nueva ventana: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                                JOptionPane.showMessageDialog(null, "Error al abrir la nueva ventana: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                            }
                         }
-                    }else {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setContentText("Se han agotado los intentos");
-                        alert.showAndWait();
-                    }
+                }
 
-
-
-                } else {
-                    if (usuario.getIntentos() == null){
-                        usuario.setIntentos(1);
-                    }else{
-                        usuario.setIntentos(usuario.getIntentos() + 1);
-                    }
+                }
 
                     memoria.update(usuario);
-                }
+
 
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -137,6 +151,37 @@ public class ControladorInicio {
 
         }
     }
+
+    private boolean ContraseñaValida(Usuario usuario) {
+         if(usuario.getContraseña().equals(textFieldContraseña.getText())){
+             usuario.setIntentos(0);
+             memoria.update(usuario);
+             return true;
+         }
+         if(usuario.getIntentos() == null){
+             usuario.setIntentos(1);
+             return false;
+         }else{
+             usuario.setIntentos(usuario.getIntentos() + 1);
+             return false;
+         }
+
+
+    }
+
+    private boolean validarIntentos(Usuario usuario) {
+        if (usuario.getIntentos() == null){
+            usuario.setIntentos(0);
+        }
+        if(usuario.getIntentos() >= 3) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Se han agotado los intentos");
+            alert.showAndWait();
+            return false;
+        }
+        return true;
+    }
+
     public void AbrirRegistro() throws IOException {
         // Cargar el archivo FXML
         URL fxmlLocation = getClass().getResource("/org/example/camping2/VentanaRegistro.fxml");
@@ -171,6 +216,15 @@ public class ControladorInicio {
 
         stage.setScene(new Scene(root));
         stage.show();
+    }
+    private void cambiarIdioma(Locale locale) {
+        bundle = ResourceBundle.getBundle("org.example.camping2.idiomas.messages", locale);
+        labelUsuario.setText(bundle.getString("usuario"));
+        labelContraseña.setText(bundle.getString("contraseña"));
+        textFieldUsuario.setPromptText(bundle.getString("usuario"));
+        textFieldContraseña.setPromptText(bundle.getString("contraseña"));
+        botonInciar.setText(bundle.getString("iniciar"));
+        botonRegistrar.setText(bundle.getString("registrar"));
     }
 
 }
