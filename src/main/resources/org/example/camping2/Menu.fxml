@@ -50,7 +50,7 @@
                         <String fx:value="ACTIVO" />
                         <String fx:value="SUSPENDIDO" />
                         <String fx:value="BLOQUEADO" />
-                        <String fx:value="NINGUN ESTADO"/>
+                        <String fx:value="NINGUN ESTADO" />
                      </FXCollections>
                   </items>
                </ComboBox>
@@ -139,6 +139,13 @@
                <children>
                   <MenuBar>
                     <menus>
+                        <Menu mnemonicParsing="false" text="Gestion">
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Cliente" />
+                            <MenuItem fx:id="menuItemsReserva" mnemonicParsing="false" text="Reselva" />
+                              <MenuItem mnemonicParsing="false" text="Recursos" />
+                          </items>
+                        </Menu>
                       <Menu mnemonicParsing="false" text="Help">
                         <items>
                           <MenuItem fx:id="AyudaJava" mnemonicParsing="false" onAction="#JavaDoc" text="Ayuda Java" />
