@@ -1,5 +1,6 @@
 package org.example.camping2.controladores;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -18,6 +19,7 @@ import org.example.camping2.modelo.memoria.Memoria;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.HashMap;
@@ -35,6 +37,8 @@ import java.util.Map;
  */
 public class ClienteController {
 
+    @FXML
+    private VBox panelIzquierdo; // VBox on the left side of the screen
     @FXML
     private VBox panelDerecho; // VBox on the right side of the screen
     @FXML
@@ -181,6 +185,7 @@ public class ClienteController {
      * Loads the "Add Client" panel into the content area.
      * This method is called when the "Add" button is pressed.
      */
+    
     @FXML
     private void manejarBotonAñadir() {
         cargarPanel("/org/example/camping2/AñadirClientePanel.fxml");
@@ -213,6 +218,20 @@ public class ClienteController {
 
         cargarPanel("/org/example/camping2/BuscarClientePanel.fxml");
 
+    }
+    @FXML
+    public void agregarReservaBoton(ActionEvent actionEvent) {
+    }
+    @FXML
+    public void BuscarReservaBoton(ActionEvent actionEvent) {
+        cargarPanel("/org/example/camping2/BuscarReserva.fxml");
+
+    }
+    @FXML
+    public void modificarReservaBoton(ActionEvent actionEvent) {
+    }
+    @FXML
+    public void eliminarReservaBoton(ActionEvent actionEvent) {
     }
 
     /**
@@ -247,8 +266,7 @@ public class ClienteController {
      */
     private void cargarPanel(String archivoFXML) {
         try {
-            // Clear the content area before adding a new panel
-            areaContenido.getChildren().clear();
+                areaContenido.getChildren().clear();
 
             // Load the FXML file for the specified panel
             FXMLLoader loader = new FXMLLoader(getClass().getResource(archivoFXML));
@@ -276,4 +294,23 @@ public class ClienteController {
             mostrarMensaje("Error al cargar el panel: " + e.getMessage());
         }
     }
+
+    public void cargarPanelIzquierdoReservas(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/BotonesCrudReserva.fxml"));
+            Parent nuevoPanel = loader.load();
+
+            // Inyectamos areaContenido en el nuevo controlador de botones
+            ReservaController controller = loader.getController();
+            controller.setAreaContenido(areaContenido);
+
+            panelIzquierdo.getChildren().clear();
+            panelIzquierdo.getChildren().add(nuevoPanel);
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarMensaje("Error al cargar el panel izquierdo: " + e.getMessage());
+        }
+    }
+
+
 }

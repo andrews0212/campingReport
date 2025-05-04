@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.BuscarClientePanelController">
+<VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.BuscarClientePanelController">
     <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Buscar Cliente" VBox.vgrow="ALWAYS" />
 
     <!-- Panel de filtros -->
@@ -21,8 +30,8 @@
          <ColumnConstraints />
       </columnConstraints>
       <rowConstraints>
-         <RowConstraints />
-         <RowConstraints />
+         <RowConstraints maxHeight="44.0" minHeight="20.0" prefHeight="27.0" />
+         <RowConstraints maxHeight="30.0" minHeight="6.0" prefHeight="23.0" />
          <RowConstraints />
       </rowConstraints>
     </GridPane>
@@ -33,6 +42,12 @@
           <Button onAction="#buscarClientes" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Buscar" />
          <Button mnemonicParsing="false" onAction="#buscarTodosClientes" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="BuscarTodos" />
       </children>
+      <opaqueInsets>
+         <Insets />
+      </opaqueInsets>
+      <VBox.margin>
+         <Insets />
+      </VBox.margin>
    </HBox>
 
     <!-- Tabla para mostrar resultados -->

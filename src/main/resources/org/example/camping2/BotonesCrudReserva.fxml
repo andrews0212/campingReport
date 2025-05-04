@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="487.0" prefWidth="136.0" spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.ReservaController">
+   <children>
+      <Button fx:id="ButtonBuscar" alignment="CENTER" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#BuscarReservaBoton" style="-fx-padding: 10;" styleClass="botonMenu" stylesheets="@Css/menuStyle.css" text="Buscar" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="ALWAYS">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0">
+               <image>
+                  <Image url="@Iconos/busquedaReservas.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <VBox.margin>
+            <Insets left="20.0" />
+         </VBox.margin>
+         <font>
+            <Font name="Franklin Gothic Medium" size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="ButtonAgregar" alignment="CENTER" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#agregarReservaBoton" style="-fx-padding: 10;" styleClass="botonMenu" stylesheets="@Css/menuStyle.css" text="Agregar" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="ALWAYS">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0">
+               <image>
+                  <Image url="@Iconos/añadirReservas.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <VBox.margin>
+            <Insets left="20.0" />
+         </VBox.margin>
+         <font>
+            <Font name="Franklin Gothic Medium" size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="ButtonModificar" alignment="CENTER" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#modificarReservaBoton" style="-fx-padding: 10;" styleClass="botonMenu" stylesheets="@Css/menuStyle.css" text="Modificar" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="ALWAYS">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0">
+               <image>
+                  <Image url="@Iconos/updateReserva.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <VBox.margin>
+            <Insets left="20.0" />
+         </VBox.margin>
+         <font>
+            <Font name="Franklin Gothic Medium" size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="ButtonEliminar" alignment="CENTER" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#eliminarReservaBoton" style="-fx-padding: 10;" styleClass="botonMenu" stylesheets="@Css/menuStyle.css" text="Eliminar" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="ALWAYS">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0">
+               <image>
+                  <Image url="@Iconos/eliminarReservas.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <VBox.margin>
+            <Insets left="20.0" />
+         </VBox.margin>
+         <font>
+            <Font name="Franklin Gothic Medium" size="21.0" />
+         </font>
+      </Button>
+   </children>
+</VBox>
