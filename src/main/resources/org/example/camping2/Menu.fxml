@@ -153,9 +153,9 @@
                     <menus>
                         <Menu mnemonicParsing="false" text="Gestion">
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Cliente" />
-                            <MenuItem fx:id="menuItemsReserva" mnemonicParsing="false" onAction="#cargarPanelIzquierdoReservas" text="Reselva" />
-                              <MenuItem mnemonicParsing="false" text="Recursos" />
+                              <MenuItem fx:id="ClienteMenu" mnemonicParsing="false" onAction="#cargarPanelIzquierdoReservas" text="Cliente" />
+                            <MenuItem fx:id="ReservaMenu" mnemonicParsing="false" onAction="#cargarPanelIzquierdoReservas" text="Reserva" />
+                              <MenuItem fx:id="RecursoMenu" mnemonicParsing="false" text="Recursos" />
                           </items>
                         </Menu>
                       <Menu mnemonicParsing="false" text="Help">

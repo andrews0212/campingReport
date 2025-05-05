@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.fxml.FXMLLoader;
@@ -297,20 +298,45 @@ public class ClienteController {
 
     public void cargarPanelIzquierdoReservas(ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/BotonesCrudReserva.fxml"));
+            FXMLLoader loader = null;
+            MenuItem item = (MenuItem) actionEvent.getSource();
+            String id = item.getId();  //  Aquí obtienes el ID
+            if(id.equals("ReservaMenu")){
+                 loader = new FXMLLoader(getClass().getResource("/org/example/camping2/BotonesCrudReserva.fxml"));
+
+            }
+            if(id.equals("ClienteMenu")){
+                 loader = new FXMLLoader(getClass().getResource("/org/example/camping2/BotonesCrudCliente.fxml"));
+            }
+
             Parent nuevoPanel = loader.load();
 
             // Inyectamos areaContenido en el nuevo controlador de botones
-            ReservaController controller = loader.getController();
-            controller.setAreaContenido(areaContenido);
+            if(id.equals("ReservaMenu")){
+                ReservaController controller = loader.getController();
+                controller.setAreaContenido(areaContenido);
 
-            panelIzquierdo.getChildren().clear();
-            panelIzquierdo.getChildren().add(nuevoPanel);
+                panelIzquierdo.getChildren().clear();
+                panelIzquierdo.getChildren().add(nuevoPanel);
+
+            }
+            if(id.equals("ClienteMenu")){
+                ClienteController controller = loader.getController();
+                controller.setAreaContenido(areaContenido);
+
+                panelIzquierdo.getChildren().clear();
+                panelIzquierdo.getChildren().add(nuevoPanel);
+            }
+
+
         } catch (IOException e) {
             e.printStackTrace();
             mostrarMensaje("Error al cargar el panel izquierdo: " + e.getMessage());
         }
     }
 
+    public void setAreaContenido(StackPane areaContenido) {
+        this.areaContenido = areaContenido;
+    }
 
 }
