@@ -33,11 +33,11 @@ public class ReservaController {
     }
 
     public void modificarReservaBoton(ActionEvent actionEvent) {
-        cargarPanel("/org/example/camping2/vistas/ModificarReservaPanel.fxml");
+        cargarPanel("/org/example/camping2/ModificarReservas.fxml");
     }
 
     public void eliminarReservaBoton(ActionEvent actionEvent) {
-        cargarPanel("/org/example/camping2/vistas/EliminarReservaPanel.fxml");
+        cargarPanel("/org/example/camping2/EliminarReserva.fxml");
     }
     public void setAreaContenido(StackPane areaContenido) {
         this.areaContenido = areaContenido;
