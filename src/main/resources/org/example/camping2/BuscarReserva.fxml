@@ -47,7 +47,7 @@
       <HBox alignment="CENTER" prefHeight="0.0" prefWidth="400.0" spacing="20.0">
          <children>
             <Button style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Buscar" />
-            <Button mnemonicParsing="false" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="BuscarTodos" />
+            <Button mnemonicParsing="false" onAction="#buscaTodos" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="BuscarTodos" />
          </children>
          <VBox.margin>
             <Insets bottom="20.0" top="20.0" />
@@ -55,14 +55,14 @@
       </HBox>
       <TableView fx:id="clientesTableView" maxWidth="-Infinity" prefHeight="197.0" prefWidth="673.0">
          <columns>
-            <TableColumn fx:id="idColumn" prefWidth="50" text="ID" />
-            <TableColumn prefWidth="75.0" text="ID Cliente" />
-            <TableColumn prefWidth="75.0" text="DNI" />
-            <TableColumn fx:id="nombreColumn" prefWidth="97.0" text="Fecha De Inicio" />
-            <TableColumn fx:id="apellidoColumn" prefWidth="109.0" text="Fecha De Fin" />
-            <TableColumn fx:id="dniColumn" prefWidth="93.0" text="Estado" />
-            <TableColumn text="Numero De Personas" />
-            <TableColumn prefWidth="93.0" text="Precio Total" />
+            <TableColumn fx:id="IDReserva" prefWidth="50" text="ID" />
+            <TableColumn fx:id="IDClientecolumn" prefWidth="75.0" text="ID Cliente" />
+            <TableColumn fx:id="dniColumn" prefWidth="60.0" text="DNI" />
+            <TableColumn fx:id="FechaInicioColumn" prefWidth="136.0" text="Fecha De Inicio" />
+            <TableColumn fx:id="FechaFinColumn" prefWidth="85.0" text="Fecha De Fin" />
+            <TableColumn fx:id="EstadoColumn" prefWidth="93.0" text="Estado" />
+            <TableColumn fx:id="PersonasColumn" prefWidth="77.0" text="Numero De Personas" />
+            <TableColumn fx:id="PrecioTotalColumn" prefWidth="96.0" text="Precio Total" />
          </columns>
       </TableView>
    </children>

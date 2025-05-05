@@ -10,14 +10,17 @@ import org.example.camping2.modelo.memoria.Memoria;
 import java.io.IOException;
 
 public class ReservaController {
+
     private StackPane areaContenido;
     private Memoria<Reserva, Integer> memoriaReserva;
 
-
-    private void cargarPanel(String archivoFXML) {
+    public void BuscarReservaBoton(ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(archivoFXML));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/BuscarReserva.fxml"));
             Parent nuevoPanel = loader.load();
+
+            BuscaReservaController buscaReservaController = loader.getController();
+            buscaReservaController.setMemoriaReserva(memoriaReserva);
             areaContenido.getChildren().clear();
             areaContenido.getChildren().add(nuevoPanel);
         } catch (IOException e) {
@@ -26,21 +29,47 @@ public class ReservaController {
         }
     }
 
-    public void BuscarReservaBoton(ActionEvent actionEvent) {
-
-        cargarPanel("/org/example/camping2/BuscarReserva.fxml");
-    }
-
     public void agregarReservaBoton(ActionEvent actionEvent) {
-        cargarPanel("/org/example/camping2/CrearReserva.fxml");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/CrearReserva.fxml"));
+            Parent nuevoPanel = loader.load();
+
+            CrearReservaController crearReservaController = loader.getController();
+            crearReservaController.setMemoriaReserva(memoriaReserva);
+            areaContenido.getChildren().clear();
+            areaContenido.getChildren().add(nuevoPanel);
+        } catch (IOException e) {
+            e.printStackTrace();
+            // aquí puedes poner un Alert si quieres
+        }
     }
 
     public void modificarReservaBoton(ActionEvent actionEvent) {
-        cargarPanel("/org/example/camping2/ModificarReservas.fxml");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/ModificarReservas.fxml"));
+            Parent nuevoPanel = loader.load();
+
+            ModificarReservaController modificarReservaController = loader.getController();
+            modificarReservaController.setMemoriaReserva(memoriaReserva);
+            areaContenido.getChildren().clear();
+            areaContenido.getChildren().add(nuevoPanel);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void eliminarReservaBoton(ActionEvent actionEvent) {
-        cargarPanel("/org/example/camping2/EliminarReserva.fxml");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/EliminarReserva.fxml"));
+            Parent nuevoPanel = loader.load();
+            EliminarReservaController eliminarReservaController = loader.getController();
+            eliminarReservaController.setMemoriaReserva(memoriaReserva);
+
+            areaContenido.getChildren().clear();
+            areaContenido.getChildren().add(nuevoPanel);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public void setAreaContenido(StackPane areaContenido) {
         this.areaContenido = areaContenido;
