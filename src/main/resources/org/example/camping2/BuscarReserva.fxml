@@ -32,13 +32,13 @@
          </rowConstraints>
          <children>
             <Label text="ID Cliente:" GridPane.rowIndex="1" />
-            <TextField fx:id="idClienteTextField" promptText="Ingrese el ID" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="IDClienteText" promptText="Ingrese el ID" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Nombre:" GridPane.rowIndex="2" />
             <TextField fx:id="nombreTextField" promptText="Ingrese el nombre" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="DNI:" GridPane.rowIndex="3" />
             <TextField fx:id="dniTextField" promptText="Ingrese el DNI" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label text="ID Reserva:" />
-            <TextField fx:id="idClienteTextField1" promptText="Ingrese el ID" GridPane.columnIndex="1" />
+            <TextField fx:id="IDReservaText" promptText="Ingrese el ID" GridPane.columnIndex="1" />
          </children>
          <VBox.margin>
             <Insets top="20.0" />
@@ -46,7 +46,7 @@
       </GridPane>
       <HBox alignment="CENTER" prefHeight="0.0" prefWidth="400.0" spacing="20.0">
          <children>
-            <Button style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Buscar" />
+            <Button onAction="#buscarReserva" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Buscar" />
             <Button mnemonicParsing="false" onAction="#buscaTodos" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="BuscarTodos" />
          </children>
          <VBox.margin>
