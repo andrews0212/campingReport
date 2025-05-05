@@ -19,4 +19,8 @@ module org.example.camping2 {
     opens org.example.camping2 to javafx.fxml;
     exports org.example.camping2.controladores;
     opens org.example.camping2.controladores to javafx.fxml;
+    exports org.example.camping2.controladores.Reservas;
+    opens org.example.camping2.controladores.Reservas to javafx.fxml;
+    exports org.example.camping2.controladores.Clientes;
+    opens org.example.camping2.controladores.Clientes to javafx.fxml;
 }

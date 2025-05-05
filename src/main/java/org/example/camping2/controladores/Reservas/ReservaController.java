@@ -1,14 +1,17 @@
-package org.example.camping2.controladores;
+package org.example.camping2.controladores.Reservas;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
+import org.example.camping2.modelo.dto.Reserva;
+import org.example.camping2.modelo.memoria.Memoria;
 
 import java.io.IOException;
 
 public class ReservaController {
     private StackPane areaContenido;
+    private Memoria<Reserva, Integer> memoriaReserva;
 
 
     private void cargarPanel(String archivoFXML) {
@@ -43,5 +46,15 @@ public class ReservaController {
         this.areaContenido = areaContenido;
     }
 
+    public StackPane getAreaContenido() {
+        return areaContenido;
+    }
 
+    public Memoria<Reserva, Integer> getMemoriaReserva() {
+        return memoriaReserva;
+    }
+
+    public void setMemoriaReserva(Memoria<Reserva, Integer> memoriaReserva) {
+        this.memoriaReserva = memoriaReserva;
+    }
 }

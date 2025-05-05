@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<ScrollPane fitToHeight="true" fitToWidth="true" prefViewportHeight="500" prefViewportWidth="400" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.AñadirClienteController">
+<ScrollPane fitToHeight="true" fitToWidth="true" prefViewportHeight="500" prefViewportWidth="400" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.Clientes.AñadirClienteController">
     <VBox alignment="TOP_CENTER" fillWidth="true" prefWidth="300" spacing="10">
         <Label style="-fx-font-size: 20px;" text="Añadir Nuevo Cliente" />
 

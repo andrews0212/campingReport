@@ -1,4 +1,4 @@
-package org.example.camping2.controladores;
+package org.example.camping2.controladores.Clientes;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,13 +14,14 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
+import org.example.camping2.controladores.Reservas.ReservaController;
 import org.example.camping2.modelo.dto.Cliente;
+import org.example.camping2.modelo.dto.Reserva;
 import org.example.camping2.modelo.memoria.Memoria;
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.HashMap;
@@ -63,7 +64,9 @@ public class ClienteController {
     @FXML
     private ComboBox<String> estadoComboBox;
 
-    private Memoria<Cliente, Integer> memoria;
+    private Memoria<Cliente, Integer> memoriaCliente;
+    private Memoria<Reserva, Integer> memoriaReserva;
+
 
     private Locale idioma;
 
@@ -74,17 +77,17 @@ public class ClienteController {
      */
     public void initialize() {
 
-        memoria = new Memoria<>(Cliente.class);
-
+        memoriaCliente = new Memoria<>(Cliente.class);
+        memoriaReserva = new Memoria<>(Reserva.class);
     }
 
     /**
      * Sets the memory service that is responsible for storing and managing clients.
      *
-     * @param memoria The memory service used for client data.
+     * @param memoriaCliente The memory service used for client data.
      */
-    public void setMemoria(Memoria<Cliente, Integer> memoria) {
-        this.memoria = memoria;
+    public void setMemoriaCliente(Memoria<Cliente, Integer> memoriaCliente) {
+        this.memoriaCliente = memoriaCliente;
     }
 
     public Locale getIdioma() {
@@ -276,16 +279,16 @@ public class ClienteController {
             // Get the controller of the loaded panel and pass the memory reference
             if (archivoFXML.equals("/org/example/camping2/AñadirClientePanel.fxml")) {
                 AñadirClienteController controlador = loader.getController();
-                controlador.setMemoria(memoria);
+                controlador.setMemoria(memoriaCliente);
             } else if (archivoFXML.equals("/org/example/camping2/EliminarClientePane.fxml")) {
                 EliminarClienteController controlador = loader.getController();
-                controlador.setMemoria(memoria);
+                controlador.setMemoria(memoriaCliente);
             } else if (archivoFXML.equals("/org/example/camping2/ActualizarClientePanel.fxml")) {
                 ModificarClienteController controlador = loader.getController();
-                controlador.setMemoria(memoria);
+                controlador.setMemoria(memoriaCliente);
             } else if (archivoFXML.equals("/org/example/camping2/BuscarClientePanel.fxml")) {
                 BuscarClientePanelController controlador = loader.getController();
-                controlador.setMemoria(memoria);
+                controlador.setMemoria(memoriaCliente);
             }
 
             // Add the loaded panel to the content area
@@ -315,6 +318,7 @@ public class ClienteController {
             if(id.equals("ReservaMenu")){
                 ReservaController controller = loader.getController();
                 controller.setAreaContenido(areaContenido);
+                controller.setMemoriaReserva(memoriaReserva);
 
                 panelIzquierdo.getChildren().clear();
                 panelIzquierdo.getChildren().add(nuevoPanel);

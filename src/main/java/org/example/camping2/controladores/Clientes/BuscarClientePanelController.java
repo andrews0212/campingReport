@@ -1,4 +1,4 @@
-package org.example.camping2.controladores;
+package org.example.camping2.controladores.Clientes;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

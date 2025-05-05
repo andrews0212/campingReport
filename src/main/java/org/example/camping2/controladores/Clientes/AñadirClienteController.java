@@ -1,4 +1,4 @@
-package org.example.camping2.controladores;
+package org.example.camping2.controladores.Clientes;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -9,7 +9,6 @@ import javafx.scene.input.MouseEvent;
 import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.memoria.Memoria;
 import org.example.camping2.modelo.validaciones.ValidarCliente;
-import org.example.camping2.modelo.validaciones.ValidarUsuario;
 
 /**
  * Controller class responsible for handling the "Add Client" UI in the camping application.

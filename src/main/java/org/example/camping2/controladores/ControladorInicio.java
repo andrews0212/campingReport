@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import org.example.camping2.controladores.Clientes.ClienteController;
 import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.dto.Usuario;
 import org.example.camping2.modelo.memoria.Memoria;
@@ -112,7 +113,7 @@ public class ControladorInicio {
 
                                 // Obtener el controlador de la nueva ventana y configurar la memoria de clientes
                                 ClienteController controladorCliente = loader.getController();
-                                controladorCliente.setMemoria(new Memoria<>(Cliente.class));
+                                controladorCliente.setMemoriaCliente(new Memoria<>(Cliente.class));
 
                                 // Crear y mostrar la nueva escena
                                 Stage stage = new Stage();

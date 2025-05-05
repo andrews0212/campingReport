@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="TOP_CENTER" spacing="10" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.ModificarClienteController">
+<VBox alignment="TOP_CENTER" spacing="10" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.Clientes.ModificarClienteController">
     <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Modificar Cliente" />
 
     <HBox alignment="TOP_CENTER" spacing="5">
