@@ -94,7 +94,7 @@ public class ControladorVentanaCarga implements Initializable {
     private void abrirNuevaVentana() {
         try {
             // Load the content for the new window
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/VentanaLogin.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/VentanaLogin.fxml"));
             Parent root = loader.load();
 
             // Access the controller of the newly loaded FXML

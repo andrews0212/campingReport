@@ -86,7 +86,7 @@
                                 <Insets bottom="15.0" />
                             </GridPane.margin>
                         </Line>
-                        <MenuBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="27.0" prefWidth="483.0" stylesheets="@Css/menuStyle.css" GridPane.columnIndex="1">
+                        <MenuBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="27.0" prefWidth="483.0" stylesheets="@../Css/menuStyle.css" GridPane.columnIndex="1">
                             <menus>
                                 <Menu mnemonicParsing="false" text="Lenguaje">
                                     <items>
@@ -106,7 +106,7 @@
                     <children>
                         <ImageView fitHeight="324.0" fitWidth="288.0">
                             <image>
-                                <Image url="@logo.png" />
+                                <Image url="@../logo.png" />
                             </image>
                             <VBox.margin>
                                 <Insets />

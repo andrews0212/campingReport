@@ -108,7 +108,7 @@ public class ControladorInicio {
                         if(validarIntentos(usuario)){
                             try {
                                 // Cargar la nueva ventana (Menu.fxml) si el usuario es autenticado
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/Menu.fxml"));
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/Menu.fxml"));
                                 Parent root = loader.load();
 
                                 // Obtener el controlador de la nueva ventana y configurar la memoria de clientes
@@ -185,7 +185,7 @@ public class ControladorInicio {
 
     public void AbrirRegistro() throws IOException {
         // Cargar el archivo FXML
-        URL fxmlLocation = getClass().getResource("/org/example/camping2/VentanaRegistro.fxml");
+        URL fxmlLocation = getClass().getResource("/org/example/camping2/vista/VentanaRegistro.fxml");
         if (fxmlLocation == null) {
             System.err.println("No se pudo cargar el archivo FXML. La URL es nula.");
             throw new IOException("No se encontró el archivo FXML.");

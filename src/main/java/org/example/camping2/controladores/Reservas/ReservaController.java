@@ -16,7 +16,7 @@ public class ReservaController {
 
     public void BuscarReservaBoton(ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/BuscarReserva.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/reservas/BuscarReserva.fxml"));
             Parent nuevoPanel = loader.load();
 
             BuscaReservaController buscaReservaController = loader.getController();
@@ -31,7 +31,7 @@ public class ReservaController {
 
     public void agregarReservaBoton(ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/CrearReserva.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/reservas/CrearReserva.fxml"));
             Parent nuevoPanel = loader.load();
 
             CrearReservaController crearReservaController = loader.getController();
@@ -46,7 +46,7 @@ public class ReservaController {
 
     public void modificarReservaBoton(ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/ModificarReservas.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/reservas/ModificarReservas.fxml"));
             Parent nuevoPanel = loader.load();
 
             ModificarReservaController modificarReservaController = loader.getController();
@@ -60,7 +60,7 @@ public class ReservaController {
 
     public void eliminarReservaBoton(ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/EliminarReserva.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/reservas/EliminarReserva.fxml"));
             Parent nuevoPanel = loader.load();
             EliminarReservaController eliminarReservaController = loader.getController();
             eliminarReservaController.setMemoriaReserva(memoriaReserva);

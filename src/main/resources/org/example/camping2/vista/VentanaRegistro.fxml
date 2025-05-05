@@ -14,7 +14,7 @@
                <children>
                   <ImageView fitHeight="315.0" fitWidth="338.0">
                      <image>
-                        <Image url="@logo.png" />
+                        <Image url="@../logo.png" />
                      </image>
                   </ImageView>
                   <Label style="-fx-text-fill: white;" text="EcoVenture" textFill="WHITE">

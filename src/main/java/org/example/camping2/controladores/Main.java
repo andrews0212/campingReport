@@ -34,7 +34,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         // Load the FXML file for the initial UI (PantallaCarga.fxml)
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/camping2/PantallaCarga.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/PantallaCarga.fxml"));
 
         // Create the scene from the loaded FXML and set it in the stage
         Scene scene = new Scene(fxmlLoader.load());

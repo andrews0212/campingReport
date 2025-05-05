@@ -192,7 +192,7 @@ public class ClienteController {
     
     @FXML
     private void manejarBotonAñadir() {
-        cargarPanel("/org/example/camping2/AñadirClientePanel.fxml");
+        cargarPanel("/org/example/camping2/vista/clientes/AñadirClientePanel.fxml");
     }
 
     /**
@@ -201,7 +201,7 @@ public class ClienteController {
      */
     @FXML
     private void manejarBotonEliminar() {
-        cargarPanel("/org/example/camping2/EliminarClientePane.fxml");
+        cargarPanel("/org/example/camping2/vista/clientes/EliminarClientePane.fxml");
     }
 
     /**
@@ -210,7 +210,7 @@ public class ClienteController {
      */
     @FXML
     private void manejarBotonActualizar() {
-        cargarPanel("/org/example/camping2/ActualizarClientePanel.fxml");
+        cargarPanel("/org/example/camping2/vista/clientes/ActualizarClientePanel.fxml");
     }
 
     /**
@@ -220,7 +220,7 @@ public class ClienteController {
     @FXML
     private void manejarBotonBuscar() {
 
-        cargarPanel("/org/example/camping2/BuscarClientePanel.fxml");
+        cargarPanel("/org/example/camping2/vista/clientes/BuscarClientePanel.fxml");
 
     }
     @FXML
@@ -228,7 +228,7 @@ public class ClienteController {
     }
     @FXML
     public void BuscarReservaBoton(ActionEvent actionEvent) {
-        cargarPanel("/org/example/camping2/BuscarReserva.fxml");
+        cargarPanel("/org/example/camping2/vista/reservas/BuscarReserva.fxml");
 
     }
     @FXML
@@ -277,16 +277,16 @@ public class ClienteController {
             Parent nuevoPanel = loader.load();
 
             // Get the controller of the loaded panel and pass the memory reference
-            if (archivoFXML.equals("/org/example/camping2/AñadirClientePanel.fxml")) {
+            if (archivoFXML.equals("/org/example/camping2/vista/clientes/AñadirClientePanel.fxml")) {
                 AñadirClienteController controlador = loader.getController();
                 controlador.setMemoria(memoriaCliente);
-            } else if (archivoFXML.equals("/org/example/camping2/EliminarClientePane.fxml")) {
+            } else if (archivoFXML.equals("/org/example/camping2/vista/clientes/EliminarClientePane.fxml")) {
                 EliminarClienteController controlador = loader.getController();
                 controlador.setMemoria(memoriaCliente);
-            } else if (archivoFXML.equals("/org/example/camping2/ActualizarClientePanel.fxml")) {
+            } else if (archivoFXML.equals("/org/example/camping2/vista/clientes/ActualizarClientePanel.fxml")) {
                 ModificarClienteController controlador = loader.getController();
                 controlador.setMemoria(memoriaCliente);
-            } else if (archivoFXML.equals("/org/example/camping2/BuscarClientePanel.fxml")) {
+            } else if (archivoFXML.equals("/org/example/camping2/vista/clientes/BuscarClientePanel.fxml")) {
                 BuscarClientePanelController controlador = loader.getController();
                 controlador.setMemoria(memoriaCliente);
             }
@@ -305,11 +305,11 @@ public class ClienteController {
             MenuItem item = (MenuItem) actionEvent.getSource();
             String id = item.getId();  //  Aquí obtienes el ID
             if(id.equals("ReservaMenu")){
-                 loader = new FXMLLoader(getClass().getResource("/org/example/camping2/BotonesCrudReserva.fxml"));
+                 loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/reservas/BotonesCrudReserva.fxml"));
 
             }
             if(id.equals("ClienteMenu")){
-                 loader = new FXMLLoader(getClass().getResource("/org/example/camping2/BotonesCrudCliente.fxml"));
+                 loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/clientes/BotonesCrudCliente.fxml"));
             }
 
             Parent nuevoPanel = loader.load();
