@@ -2,13 +2,17 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.Reservas.CrearReservaController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../Css/menuStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.Reservas.CrearReservaController">
    <children>
       <Label text="Crear Reselvas" textAlignment="CENTER">
          <font>
@@ -17,28 +21,49 @@
          <VBox.margin>
             <Insets bottom="20.0" top="20.0" />
          </VBox.margin></Label>
-      <HBox alignment="TOP_CENTER" prefHeight="35.0" prefWidth="600.0">
+      <ComboBox prefWidth="150.0" promptText="BUNGALOW">
+         <VBox.margin>
+            <Insets bottom="20.0" />
+         </VBox.margin>
+      </ComboBox>
+      <TableView prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn prefWidth="139.0" text="Nombre" />
+          <TableColumn prefWidth="88.0" text="Capacidad" />
+            <TableColumn prefWidth="132.0" text="Tipo" />
+            <TableColumn prefWidth="104.0" text="Precio" />
+            <TableColumn prefWidth="136.0" text="minimo Personas" />
+        </columns>
+      </TableView>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" text="+" />
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="126.0" text="Buscar Cliente" />
+            <VBox alignment="CENTER" prefHeight="104.0" prefWidth="132.0">
+               <children>
+                  <Label text="DNI" />
+                  <TextField promptText="Introduzca su DNI" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Fecha Inicio" />
+                  <DatePicker promptText="Fecha Inicio" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Fecha Fin" />
+                  <DatePicker promptText="Fecha Fin" />
+               </children>
+            </VBox>
          </children>
          <VBox.margin>
-            <Insets bottom="20.0" top="20.0" />
+            <Insets bottom="20.0" />
          </VBox.margin>
       </HBox>
-      <Label text="Fecha Inicio" />
-      <DatePicker />
-      <Label text="Fecha Fin" />
-      <DatePicker />
-      <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="157.0" text="Añadir acompañante">
+      <Label fx:id="alertText" />
+      <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="121.0" style="-fx-background-color: #3498db; -fx-text-fill: white;" stylesheets="@../Css/menuStyle.css" text="Reservar">
          <VBox.margin>
-            <Insets bottom="20.0" top="20.0" />
-         </VBox.margin>
-      </Button>
-      <Button mnemonicParsing="false" text="Reservar">
-         <VBox.margin>
-            <Insets top="20.0" />
-         </VBox.margin>
-      </Button>
+            <Insets bottom="20.0" />
+         </VBox.margin></Button>
    </children>
 </VBox>
