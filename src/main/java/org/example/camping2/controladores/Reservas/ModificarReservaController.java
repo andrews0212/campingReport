@@ -8,6 +8,8 @@ import javafx.scene.control.*;
 import org.example.camping2.modelo.dto.Reserva;
 import org.example.camping2.modelo.memoria.Memoria;
 
+import java.util.stream.Stream;
+
 public class ModificarReservaController {
     Memoria<Reserva, Integer> memoriaReserva;
 
@@ -40,10 +42,22 @@ public class ModificarReservaController {
 
     private ObservableList<Reserva> Reserva = FXCollections.observableArrayList();
 
+    @FXML
+    private  TextField idText1;
+    @FXML
+    private DatePicker fechaInicio1;
+    @FXML
+    private DatePicker fechaFin1;
+    @FXML
+    private TextField precioText1;
+    @FXML
+    private ComboBox estadoCombo1;
 
     @FXML
     public void initialize() {
         estadoCombo.setItems(tipos);
+        estadoCombo1.setItems(tipos);
+        estadoCombo1.getSelectionModel().selectFirst();
         estadoCombo.getSelectionModel().selectFirst();
         reservaTable.setItems(Reserva);
         idColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getId()));
@@ -53,6 +67,49 @@ public class ModificarReservaController {
         nombreColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getIdcliente().getNombre()));
         apellidoColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getIdcliente().getApellido()));
         dniColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getIdcliente().getDni()));
+    }
+    @FXML
+    public void buscarReservas() {
+        Stream<Reserva> stream = memoriaReserva.findAll().stream();
+
+        // Filtrar por ID si no está vacío
+        if (!idText1.getText().isEmpty()) {
+            try {
+                int id = Integer.parseInt(idText1.getText());
+                stream = stream.filter(reserva -> reserva.getId() == id);
+            } catch (NumberFormatException e) {
+                // Puedes mostrar una alerta si lo deseas
+            }
+        }
+
+        // Filtrar por fecha de inicio
+        if (fechaInicio1.getValue() != null) {
+            stream = stream.filter(reserva -> !reserva.getFechaInicio().isBefore(fechaInicio1.getValue()));
+        }
+
+        // Filtrar por fecha de fin
+        if (fechaFin1.getValue() != null) {
+            stream = stream.filter(reserva -> !reserva.getFechaFin().isAfter(fechaFin1.getValue()));
+        }
+
+        // Filtrar por precio
+        if (!precioText1.getText().isEmpty()) {
+            try {
+                double precio = Double.parseDouble(precioText1.getText());
+                stream = stream.filter(reserva -> reserva.getPrecioTotal() == precio);
+            } catch (NumberFormatException e) {
+                // Puedes mostrar una alerta si lo deseas
+            }
+        }
+
+        // Filtrar por estado
+        String estadoSeleccionado = (String) estadoCombo1.getSelectionModel().getSelectedItem();
+        if (estadoSeleccionado != null && !estadoSeleccionado.isEmpty()) {
+            stream = stream.filter(reserva -> reserva.getEstado().equalsIgnoreCase(estadoSeleccionado));
+        }
+
+        // Actualizar tabla
+        Reserva.setAll(stream.toList());
     }
 
     @FXML
