@@ -322,6 +322,7 @@ public class ClienteController {
                 controller.setAreaContenido(areaContenido);
                 controller.setMemoriaReserva(memoriaReserva);
                 controller.setMemoriaRecurso(memoriaRecurso);
+                controller.setMemoriaCliente(memoriaCliente);
                 panelIzquierdo.getChildren().clear();
                 panelIzquierdo.getChildren().add(nuevoPanel);
 

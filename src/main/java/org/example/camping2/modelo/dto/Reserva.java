@@ -79,11 +79,26 @@ public class Reserva {
     @OneToMany(mappedBy = "idreserva")
     private Set<Acompañante> acompañantes = new LinkedHashSet<>();
 
+    public Reserva(Cliente idcliente, Recurso idrecurso, LocalDate fechaInicio, LocalDate fechaFin, String estado, Integer precioTotal, Integer numeroPersonas) {
+        this.idcliente = idcliente;
+        this.idrecurso = idrecurso;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.estado = estado;
+        this.precioTotal = precioTotal;
+        this.numeroPersonas = numeroPersonas;
+    }
+
+    public Reserva() {
+
+    }
+
     /**
      * Returns the unique identifier of the reservation.
      *
      * @return the reservation ID.
      */
+
     public Integer getId() {
         return id;
     }

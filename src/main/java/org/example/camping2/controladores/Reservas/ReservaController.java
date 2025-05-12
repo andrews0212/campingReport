@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
+import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.dto.Recurso;
 import org.example.camping2.modelo.dto.Reserva;
 import org.example.camping2.modelo.memoria.Memoria;
@@ -15,6 +16,7 @@ public class ReservaController {
     private StackPane areaContenido;
     private Memoria<Reserva, Integer> memoriaReserva;
     private Memoria<Recurso, Integer> memoriaRecurso;
+    private Memoria<Cliente, Integer> memoriaCliente;
 
     public void BuscarReservaBoton(ActionEvent actionEvent) {
         try {
@@ -39,6 +41,7 @@ public class ReservaController {
             CrearReservaController crearReservaController = loader.getController();
             crearReservaController.setMemoriaReserva(memoriaReserva);
             crearReservaController.setMemoriaRecurso(memoriaRecurso);
+            crearReservaController.setMemoriaCliente(memoriaCliente);
             areaContenido.getChildren().clear();
             areaContenido.getChildren().add(nuevoPanel);
         } catch (IOException e) {
@@ -96,5 +99,9 @@ public class ReservaController {
 
     public void setMemoriaRecurso(Memoria<Recurso, Integer> memoriaRecurso) {
         this.memoriaRecurso = memoriaRecurso;
+    }
+
+    public void setMemoriaCliente(Memoria<Cliente, Integer> memoriaCliente) {
+        this.memoriaCliente = memoriaCliente;
     }
 }
