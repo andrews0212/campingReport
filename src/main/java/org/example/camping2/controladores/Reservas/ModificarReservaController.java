@@ -117,7 +117,57 @@ public class ModificarReservaController {
         Reserva.clear();
         Reserva.addAll(memoriaReserva.findAll());
     }
+    @FXML
+    public void modificarReserva() {
+        Reserva seleccionada = reservaTable.getSelectionModel().getSelectedItem();
 
+        if (seleccionada == null) {
+            mostrarAlerta("Debe seleccionar una reserva para modificar.");
+            return;
+        }
+
+        // Validar y actualizar fechaInicio
+        if (fechaInicio.getValue() != null) {
+            seleccionada.setFechaInicio(fechaInicio.getValue());
+        }
+
+        // Validar y actualizar fechaFin
+        if (fechaFin.getValue() != null) {
+            seleccionada.setFechaFin(fechaFin.getValue());
+        }
+
+        // Validar y actualizar precio
+        if (!precioText.getText().isEmpty()) {
+            try {
+                Integer precio = Integer.parseInt(precioText.getText());
+                seleccionada.setPrecioTotal(precio);
+            } catch (NumberFormatException e) {
+                mostrarAlerta("Precio inválido. Debe ser un número.");
+                return;
+            }
+        }
+
+        // Actualizar estado
+        String estado = (String) estadoCombo.getSelectionModel().getSelectedItem();
+        if (estado != null) {
+            seleccionada.setEstado(estado);
+        }
+
+        // Guardar los cambios en la memoria
+        memoriaReserva.update(seleccionada);
+
+        // Refrescar la tabla
+        reservaTable.refresh();
+    }
+
+
+    private void mostrarAlerta(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Advertencia");
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
 
 
     public Memoria<Reserva, Integer> getMemoriaReserva() {
