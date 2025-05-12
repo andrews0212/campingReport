@@ -63,10 +63,6 @@ public class BuscaReservaController {
 
     }
 
-    public Memoria<Reserva, Integer> getMemoriaReserva() {
-        return memoriaReserva;
-    }
-
     public void setMemoriaReserva(Memoria<Reserva, Integer> memoriaReserva) {
         this.memoriaReserva = memoriaReserva;
     }

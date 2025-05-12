@@ -16,6 +16,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 import org.example.camping2.controladores.Reservas.ReservaController;
 import org.example.camping2.modelo.dto.Cliente;
+import org.example.camping2.modelo.dto.Recurso;
 import org.example.camping2.modelo.dto.Reserva;
 import org.example.camping2.modelo.memoria.Memoria;
 
@@ -66,7 +67,7 @@ public class ClienteController {
 
     private Memoria<Cliente, Integer> memoriaCliente;
     private Memoria<Reserva, Integer> memoriaReserva;
-
+    private Memoria<Recurso, Integer> memoriaRecurso;
 
     private Locale idioma;
 
@@ -79,6 +80,7 @@ public class ClienteController {
 
         memoriaCliente = new Memoria<>(Cliente.class);
         memoriaReserva = new Memoria<>(Reserva.class);
+        memoriaRecurso = new Memoria<>(Recurso.class);
     }
 
     /**
@@ -319,7 +321,7 @@ public class ClienteController {
                 ReservaController controller = loader.getController();
                 controller.setAreaContenido(areaContenido);
                 controller.setMemoriaReserva(memoriaReserva);
-
+                controller.setMemoriaRecurso(memoriaRecurso);
                 panelIzquierdo.getChildren().clear();
                 panelIzquierdo.getChildren().add(nuevoPanel);
 

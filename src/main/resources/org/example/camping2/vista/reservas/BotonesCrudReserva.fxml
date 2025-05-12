@@ -13,7 +13,7 @@
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0">
                <image>
-                  <Image url="@Iconos/busquedaReservas.png" />
+                  <Image url="@../../Iconos/busquedaReservas.png" />
                </image>
             </ImageView>
          </graphic>
@@ -28,7 +28,7 @@
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0">
                <image>
-                  <Image url="@Iconos/añadirReservas.png" />
+                  <Image url="@../../Iconos/añadirReservas.png" />
                </image>
             </ImageView>
          </graphic>
@@ -43,7 +43,7 @@
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0">
                <image>
-                  <Image url="@Iconos/updateReserva.png" />
+                  <Image url="@../../Iconos/updateReserva.png" />
                </image>
             </ImageView>
          </graphic>
@@ -58,7 +58,7 @@
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0">
                <image>
-                  <Image url="@Iconos/eliminarReservas.png" />
+                  <Image url="@../../Iconos/eliminarReservas.png" />
                </image>
             </ImageView>
          </graphic>

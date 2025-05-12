@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../Css/menuStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.Reservas.CrearReservaController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.Reservas.CrearReservaController">
    <children>
       <Label text="Crear Reselvas" textAlignment="CENTER">
          <font>
@@ -21,18 +21,20 @@
          <VBox.margin>
             <Insets bottom="20.0" top="20.0" />
          </VBox.margin></Label>
-      <ComboBox prefWidth="150.0" promptText="BUNGALOW">
-         <VBox.margin>
-            <Insets bottom="20.0" />
-         </VBox.margin>
-      </ComboBox>
-      <TableView prefHeight="200.0" prefWidth="200.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <ComboBox fx:id="tipoComboBox" prefWidth="150.0" promptText="BUNGALOW" />
+            <Button mnemonicParsing="false" onAction="#cargar" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Cargar" />
+         </children>
+      </HBox>
+      <TableView fx:id="tablaRecurso" prefHeight="200.0" prefWidth="200.0">
         <columns>
-          <TableColumn prefWidth="139.0" text="Nombre" />
-          <TableColumn prefWidth="88.0" text="Capacidad" />
-            <TableColumn prefWidth="132.0" text="Tipo" />
-            <TableColumn prefWidth="104.0" text="Precio" />
-            <TableColumn prefWidth="136.0" text="minimo Personas" />
+            <TableColumn fx:id="IDColumn" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="nombreColumn" prefWidth="139.0" text="Nombre" />
+          <TableColumn fx:id="capacidadColumn" prefWidth="88.0" text="Capacidad" />
+            <TableColumn fx:id="tipoColumn" prefWidth="112.0" text="Tipo" />
+            <TableColumn fx:id="precioColumn" prefWidth="82.0" text="Precio" />
+            <TableColumn fx:id="minimoPersonasColumn" prefWidth="103.0" text="minimo Personas" />
         </columns>
       </TableView>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -61,7 +63,7 @@
          </VBox.margin>
       </HBox>
       <Label fx:id="alertText" />
-      <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="121.0" style="-fx-background-color: #3498db; -fx-text-fill: white;" stylesheets="@../Css/menuStyle.css" text="Reservar">
+      <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="121.0" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Reservar">
          <VBox.margin>
             <Insets bottom="20.0" />
          </VBox.margin></Button>
