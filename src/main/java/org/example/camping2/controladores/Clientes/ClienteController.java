@@ -14,6 +14,7 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
+import org.example.camping2.controladores.Recursos.RecursoController;
 import org.example.camping2.controladores.Reservas.ReservaController;
 import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.dto.Recurso;
@@ -313,6 +314,9 @@ public class ClienteController {
             if(id.equals("ClienteMenu")){
                  loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/clientes/BotonesCrudCliente.fxml"));
             }
+            if(id.equals("RecursoMenu")){
+                loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/recurso/BotonesCrudRecurso.fxml"));
+            }
 
             Parent nuevoPanel = loader.load();
 
@@ -329,6 +333,13 @@ public class ClienteController {
             }
             if(id.equals("ClienteMenu")){
                 ClienteController controller = loader.getController();
+                controller.setAreaContenido(areaContenido);
+
+                panelIzquierdo.getChildren().clear();
+                panelIzquierdo.getChildren().add(nuevoPanel);
+            }
+            if(id.equals("RecursoMenu")){
+                RecursoController controller = loader.getController();
                 controller.setAreaContenido(areaContenido);
 
                 panelIzquierdo.getChildren().clear();
