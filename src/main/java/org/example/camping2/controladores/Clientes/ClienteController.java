@@ -341,7 +341,7 @@ public class ClienteController {
             if(id.equals("RecursoMenu")){
                 RecursoController controller = loader.getController();
                 controller.setAreaContenido(areaContenido);
-
+                controller.setMemoria(memoriaRecurso);
                 panelIzquierdo.getChildren().clear();
                 panelIzquierdo.getChildren().add(nuevoPanel);
             }
