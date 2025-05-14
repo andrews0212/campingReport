@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -9,8 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.Reservas.EliminarReservaController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="765.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.Reservas.EliminarReservaController">
    <children>
       <Label text="Eliminar Reserva" />
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -18,39 +19,61 @@
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label text="ID" />
-                  <TextField prefHeight="24.0" prefWidth="37.0" />
+                  <TextField fx:id="idText1" alignment="CENTER" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label text="Fecha Inicio" />
-                  <DatePicker />
+                  <DatePicker fx:id="fechaInicio1" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label text="Fecha Fin" />
-                  <DatePicker />
+                  <DatePicker fx:id="fechaFin1" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Precio" />
+                  <TextField fx:id="precioText1" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Estado" />
+                  <ComboBox fx:id="estadoCombo1" prefWidth="150.0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label text="DNI" />
-                  <TextField />
+                  <TextField fx:id="dniText" />
                </children>
             </VBox>
+            <Button mnemonicParsing="false" onAction="#buscarReservas" prefHeight="24.0" prefWidth="80.0" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="buscar">
+               <HBox.margin>
+                  <Insets left="30.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#cargarTodos" prefHeight="30.0" prefWidth="105.0" text="buscar Todos">
+               <HBox.margin>
+                  <Insets left="30.0" top="10.0" />
+               </HBox.margin>
+            </Button>
          </children>
       </HBox>
-      <TableView prefHeight="200.0" prefWidth="514.0">
+      <TableView fx:id="reservaTable" prefHeight="200.0" prefWidth="514.0">
          <columns>
-            <TableColumn prefWidth="75.0" text="ID" />
-            <TableColumn prefWidth="116.0" text="Fecha Inicio" />
-            <TableColumn prefWidth="103.0" text="Fecha Fin" />
-            <TableColumn minWidth="0.0" prefWidth="103.0" text="Nombre" />
-            <TableColumn prefWidth="91.0" text="Apellido" />
-            <TableColumn prefWidth="111.0" text="DNI" />
+            <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="fechaInicioColumn" prefWidth="116.0" text="Fecha Inicio" />
+            <TableColumn fx:id="fechaFinColumn" prefWidth="103.0" text="Fecha Fin" />
+            <TableColumn fx:id="nombreColumn" minWidth="0.0" prefWidth="103.0" text="Nombre" />
+            <TableColumn fx:id="apellidoColumn" prefWidth="91.0" text="Apellido" />
+            <TableColumn fx:id="dniColumn" prefWidth="111.0" text="DNI" />
          </columns>
       </TableView>
-      <Button mnemonicParsing="false" text="Eliminar" />
+      <Button mnemonicParsing="false" onAction="#eliminarReserva" text="Eliminar" />
    </children>
 </VBox>

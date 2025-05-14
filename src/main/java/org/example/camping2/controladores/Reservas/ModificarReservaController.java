@@ -21,6 +21,8 @@ public class ModificarReservaController {
     private TextField precioText;
     @FXML
     private ComboBox estadoCombo;
+    @FXML
+    private TextField dniText;
 
     ObservableList<String> tipos = FXCollections.observableArrayList("ACTIVA", "FINALIZADA", "CANCELADA");
     @FXML
@@ -108,9 +110,16 @@ public class ModificarReservaController {
             stream = stream.filter(reserva -> reserva.getEstado().equalsIgnoreCase(estadoSeleccionado));
         }
 
+        // 🔍 Filtrar por DNI
+        if (!dniText.getText().isEmpty()) {
+            String dni = dniText.getText().trim();
+            stream = stream.filter(reserva -> reserva.getIdcliente().getDni().equalsIgnoreCase(dni));
+        }
+
         // Actualizar tabla
         Reserva.setAll(stream.toList());
     }
+
 
     @FXML
     public void cargarTodos(){

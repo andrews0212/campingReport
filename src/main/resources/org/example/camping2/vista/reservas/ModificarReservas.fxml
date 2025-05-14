@@ -46,6 +46,12 @@
                   <ComboBox fx:id="estadoCombo1" prefWidth="150.0" />
                </children>
             </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="DNI" />
+                  <TextField fx:id="dniText" />
+               </children>
+            </VBox>
             <Button mnemonicParsing="false" onAction="#buscarReservas" prefHeight="24.0" prefWidth="80.0" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="buscar">
                <HBox.margin>
                   <Insets left="30.0" top="10.0" />
