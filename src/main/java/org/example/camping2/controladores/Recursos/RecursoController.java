@@ -49,11 +49,11 @@ public class RecursoController {
     @FXML
     public void ModificarRecurso(ActionEvent actionEvent){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/reservas/ModificarReservas.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/recurso/ModificarRecurso.fxml"));
             Parent nuevoPanel = loader.load();
 
-            BuscarRecursoController buscaReservaController = loader.getController();
-            buscaReservaController.setMemoriaRecurso(memoria);
+            ModificarRecursoController modificarRecursoController = loader.getController();
+            modificarRecursoController.setMemoriaRecurso(memoria);
             areaContenido.getChildren().clear();
             areaContenido.getChildren().add(nuevoPanel);
         } catch (IOException e) {
@@ -64,11 +64,11 @@ public class RecursoController {
     @FXML
     public void EliminarRecurso(ActionEvent actionEvent){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/reservas/EliminarReserva.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/recurso/EliminarRecurso.fxml"));
             Parent nuevoPanel = loader.load();
 
-            BuscarRecursoController buscaReservaController = loader.getController();
-            buscaReservaController.setMemoriaRecurso(memoria);
+            EliminarRecursoController eliminarRecursoController = loader.getController();
+            eliminarRecursoController.setMemoriaRecurso(memoria);
             areaContenido.getChildren().clear();
             areaContenido.getChildren().add(nuevoPanel);
         } catch (IOException e) {

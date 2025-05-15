@@ -1,8 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?><?import java.util.*?><?import javafx.scene.*?><?import javafx.scene.control.*?><?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-    fx:controller="org.example.camping2.vista.recurso.ModificarRecurso" prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="469.0" prefWidth="724.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.Recursos.ModificarRecursoController">
+   <children>
+      <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Modificar Recursos">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </Label>
+      <HBox alignment="CENTER" prefHeight="0.0" prefWidth="400.0" spacing="20.0">
+         <VBox.margin>
+            <Insets bottom="20.0" top="20.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="48.0" prefWidth="678.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="ID Recurso:" />
+                  <TextField fx:id="idText" promptText="Ingrese el ID" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Nombre:" />
+                  <TextField fx:id="nombreText" promptText="Ingrese el Nombre" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Tipo:" />
+                  <ComboBox prefWidth="150.0" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Capacidad" />
+                  <TextField fx:id="capacidadText" promptText="Introduce Capacidad" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Precio" />
+                  <TextField fx:id="precioText" promptText="Introduce Precio" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Minimo Personas" />
+                  <TextField fx:id="minimoPersonaText" promptText="Introduce Minimo Personas" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Estado" />
+                  <TextField fx:id="estadoText" promptText="Introduce Estado" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="43.0" prefWidth="724.0">
+         <children>
+            <Button style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Buscar" />
+            <Button mnemonicParsing="false" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="BuscarTodos">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <TableView fx:id="recursoTable" maxWidth="-Infinity" prefHeight="197.0" prefWidth="673.0">
+         <columns>
+            <TableColumn fx:id="idColumn" prefWidth="169.0" text="ID Recursos" />
+            <TableColumn fx:id="nombreColumn" prefWidth="134.0" text="Nombre" />
+            <TableColumn fx:id="tipoColumn" prefWidth="66.0" text="Tipo" />
+            <TableColumn fx:id="capacidadColumn" prefWidth="67.0" text="Capacidad" />
+            <TableColumn fx:id="precioColumn" prefWidth="61.0" text="Precio" />
+            <TableColumn fx:id="minimoColumn" prefWidth="87.0" text="Minimo Personas" />
+            <TableColumn fx:id="estadoColumn" prefWidth="88.0" text="Estado" />
+         </columns>
+      </TableView>
+      <HBox alignment="CENTER" prefHeight="48.0" prefWidth="678.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Nombre:" />
+                  <TextField fx:id="nombreText1" promptText="Ingrese el Nombre" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Tipo:" />
+                  <ComboBox prefWidth="150.0" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Capacidad" />
+                  <TextField fx:id="capacidadText1" promptText="Introduce Capacidad" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Precio" />
+                  <TextField fx:id="precioText1" promptText="Introduce Precio" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Minimo Personas" />
+                  <TextField fx:id="minimoPersonaText1" promptText="Introduce Minimo Personas" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Estado" />
+                  <TextField fx:id="estadoText1" promptText="Introduce Estado" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="43.0" prefWidth="724.0">
+         <children>
+            <Button style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Modificar" />
+         </children>
+      </HBox>
+   </children>
+</VBox>
