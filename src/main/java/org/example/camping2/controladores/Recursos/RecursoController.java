@@ -22,6 +22,36 @@ public class RecursoController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/recurso/BuscarRecurso.fxml"));
             Parent nuevoPanel = loader.load();
 
+            BuscarRecursoController buscarRecursoController = loader.getController();
+            buscarRecursoController.setMemoriaRecurso(memoria);
+            areaContenido.getChildren().clear();
+            areaContenido.getChildren().add(nuevoPanel);
+        } catch (IOException e) {
+            e.printStackTrace();
+            // aquí puedes poner un Alert si quieres
+        }
+    }
+    @FXML
+    public void CrearRecurso(ActionEvent actionEvent){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/recurso/CrearRecurso.fxml"));
+            Parent nuevoPanel = loader.load();
+
+            CrearRecursoController crearRecursoController = loader.getController();
+            crearRecursoController.setMemoriaRecurso(memoria);
+            areaContenido.getChildren().clear();
+            areaContenido.getChildren().add(nuevoPanel);
+        } catch (IOException e) {
+            e.printStackTrace();
+            // aquí puedes poner un Alert si quieres
+        }
+    }
+    @FXML
+    public void ModificarRecurso(ActionEvent actionEvent){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/reservas/ModificarReservas.fxml"));
+            Parent nuevoPanel = loader.load();
+
             BuscarRecursoController buscaReservaController = loader.getController();
             buscaReservaController.setMemoriaRecurso(memoria);
             areaContenido.getChildren().clear();
@@ -31,6 +61,22 @@ public class RecursoController {
             // aquí puedes poner un Alert si quieres
         }
     }
+    @FXML
+    public void EliminarRecurso(ActionEvent actionEvent){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/reservas/EliminarReserva.fxml"));
+            Parent nuevoPanel = loader.load();
+
+            BuscarRecursoController buscaReservaController = loader.getController();
+            buscaReservaController.setMemoriaRecurso(memoria);
+            areaContenido.getChildren().clear();
+            areaContenido.getChildren().add(nuevoPanel);
+        } catch (IOException e) {
+            e.printStackTrace();
+            // aquí puedes poner un Alert si quieres
+        }
+    }
+
 
 
 
