@@ -5,8 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
-import org.example.camping2.controladores.Recursos.BuscarRecursoController;
-import org.example.camping2.controladores.Recursos.CrearRecursoController;
 import org.example.camping2.modelo.dto.Acompañante;
 import org.example.camping2.modelo.dto.Reserva;
 import org.example.camping2.modelo.memoria.Memoria;
@@ -61,10 +59,36 @@ public class AcompañanteController {
 
     @FXML
     public void ModificarAcompañante(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/acompañante/ModificarAcompaniante.fxml"));
+            Parent nuevoPanel = loader.load();
+
+            ModificarAcompañanteController modificarAcompañanteController = loader.getController();
+            modificarAcompañanteController.setMemoriaAcompañante(memoriaAcompañante);
+            areaContenido.getChildren().clear();
+            areaContenido.getChildren().add(nuevoPanel);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            // aquí puedes poner un Alert si quieres
+        }
     }
 
     @FXML
     public void EliminarAcompañante(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/acompañante/EliminarAcompaniante.fxml"));
+            Parent nuevoPanel = loader.load();
+
+            EliminarAcompañanteController eliminarAcompañanteController = loader.getController();
+            eliminarAcompañanteController.setMemoriaAcompañante(memoriaAcompañante);
+            areaContenido.getChildren().clear();
+            areaContenido.getChildren().add(nuevoPanel);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            // aquí puedes poner un Alert si quieres
+        }
     }
 
     public void setMemoriaAcompañante(Memoria<Acompañante, Integer> memoriaAcompañante) {
