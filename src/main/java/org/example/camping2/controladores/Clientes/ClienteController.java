@@ -14,8 +14,10 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
+import org.example.camping2.controladores.Acompañante.AcompañanteController;
 import org.example.camping2.controladores.Recursos.RecursoController;
 import org.example.camping2.controladores.Reservas.ReservaController;
+import org.example.camping2.modelo.dto.Acompañante;
 import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.dto.Recurso;
 import org.example.camping2.modelo.dto.Reserva;
@@ -69,6 +71,7 @@ public class ClienteController {
     private Memoria<Cliente, Integer> memoriaCliente;
     private Memoria<Reserva, Integer> memoriaReserva;
     private Memoria<Recurso, Integer> memoriaRecurso;
+    private Memoria<Acompañante, Integer> memoriaAcompañante;
 
     private Locale idioma;
 
@@ -82,6 +85,7 @@ public class ClienteController {
         memoriaCliente = new Memoria<>(Cliente.class);
         memoriaReserva = new Memoria<>(Reserva.class);
         memoriaRecurso = new Memoria<>(Recurso.class);
+        memoriaAcompañante = new Memoria<>(Acompañante.class);
     }
 
     /**
@@ -317,6 +321,9 @@ public class ClienteController {
             if(id.equals("RecursoMenu")){
                 loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/recurso/BotonesCrudRecurso.fxml"));
             }
+            if(id.equals("AcompañanteMenu")){
+                loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/acompañante/BotonesCrudAcompaniante.fxml"));
+            }
 
             Parent nuevoPanel = loader.load();
 
@@ -342,6 +349,13 @@ public class ClienteController {
                 RecursoController controller = loader.getController();
                 controller.setAreaContenido(areaContenido);
                 controller.setMemoria(memoriaRecurso);
+                panelIzquierdo.getChildren().clear();
+                panelIzquierdo.getChildren().add(nuevoPanel);
+            }
+            if(id.equals("AcompañanteMenu")){
+                AcompañanteController controller = loader.getController();
+                controller.setAreaContenido(areaContenido);
+                controller.setMemoria(memoriaAcompañante);
                 panelIzquierdo.getChildren().clear();
                 panelIzquierdo.getChildren().add(nuevoPanel);
             }
