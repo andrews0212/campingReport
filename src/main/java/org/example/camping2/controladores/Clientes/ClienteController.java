@@ -355,7 +355,8 @@ public class ClienteController {
             if(id.equals("AcompañanteMenu")){
                 AcompañanteController controller = loader.getController();
                 controller.setAreaContenido(areaContenido);
-                controller.setMemoria(memoriaAcompañante);
+                controller.setMemoriaAcompañante(memoriaAcompañante);
+                controller.setMemoriaReserva(memoriaReserva);
                 panelIzquierdo.getChildren().clear();
                 panelIzquierdo.getChildren().add(nuevoPanel);
             }

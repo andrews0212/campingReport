@@ -1,8 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?><?import java.util.*?><?import javafx.scene.*?><?import javafx.scene.control.*?><?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-    fx:controller="org.example.camping2.vista.acompañante.CrearAcompaniante" prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="469.0" prefWidth="724.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.Acompañante.CrearAcompañanteController">
+   <children>
+      <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Crear Aconpañante">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </Label>
+      <HBox alignment="CENTER" prefHeight="38.0" prefWidth="724.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="104.0" prefWidth="132.0">
+               <children>
+                  <Label text="DNI" />
+                  <TextField fx:id="dniText" promptText="Introduzca su DNI" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Fecha Inicio" />
+                  <DatePicker fx:id="fechaInicio" promptText="Fecha Inicio" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Fecha Fin" />
+                  <DatePicker fx:id="fechaFin" promptText="Fecha Fin" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Precio" />
+                  <TextField fx:id="precioText" alignment="CENTER" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="0.0" prefWidth="400.0" spacing="20.0">
+         <children>
+            <Button style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Buscar" />
+            <Button mnemonicParsing="false" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="BuscarTodos" />
+         </children>
+         <VBox.margin>
+            <Insets bottom="20.0" top="20.0" />
+         </VBox.margin>
+      </HBox>
+      <TableView fx:id="clientesTableView" maxWidth="-Infinity" prefHeight="197.0" prefWidth="673.0">
+         <columns>
+            <TableColumn fx:id="IDReserva" prefWidth="50" text="ID" />
+            <TableColumn fx:id="IDClientecolumn" prefWidth="75.0" text="ID Cliente" />
+            <TableColumn fx:id="dniColumn" prefWidth="60.0" text="DNI" />
+            <TableColumn fx:id="FechaInicioColumn" prefWidth="136.0" text="Fecha De Inicio" />
+            <TableColumn fx:id="FechaFinColumn" prefWidth="85.0" text="Fecha De Fin" />
+            <TableColumn fx:id="EstadoColumn" prefWidth="93.0" text="Estado" />
+            <TableColumn fx:id="PersonasColumn" prefWidth="77.0" text="Numero De Personas" />
+            <TableColumn fx:id="PrecioTotalColumn" prefWidth="96.0" text="Precio Total" />
+         </columns>
+      </TableView>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Nombre" />
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Apellido" />
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="DNI" />
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Email" />
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Telefono" />
+                  <TextField />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="0.0" prefWidth="400.0" spacing="20.0">
+         <children>
+            <Button style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Crear" />
+         </children>
+      </HBox>
+   </children>
+</VBox>
