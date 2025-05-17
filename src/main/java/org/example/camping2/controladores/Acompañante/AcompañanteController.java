@@ -1,17 +1,31 @@
 package org.example.camping2.controladores.Acompañante;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import org.example.camping2.controladores.Liberable;
 import org.example.camping2.modelo.dto.Acompañante;
 import org.example.camping2.modelo.dto.Reserva;
 import org.example.camping2.modelo.memoria.Memoria;
 
+
 import java.io.IOException;
 
-public class AcompañanteController {
+public class AcompañanteController implements Liberable {
+
+    @FXML
+    private ImageView buscarImage;
+    @FXML
+    private ImageView agregarImage;
+    @FXML
+    private ImageView modificarImage;
+    @FXML
+    private ImageView eliminarImage;
+
 
     private Memoria<Acompañante, Integer> memoriaAcompañante;
     private Memoria<Reserva, Integer> memoriaReserva;
@@ -98,4 +112,33 @@ public class AcompañanteController {
     public void setMemoriaReserva(Memoria<Reserva, Integer> memoriaReserva) {
         this.memoriaReserva = memoriaReserva;
     }
+
+    @Override
+    public void liberarRecursos() {
+        Platform.runLater(() -> {
+
+
+            if (agregarImage.getImage() != null) {
+                agregarImage.getImage().cancel();
+            }
+            agregarImage.setImage(null);
+
+            if (eliminarImage.getImage() != null) {
+                eliminarImage.getImage().cancel();
+            }
+            eliminarImage.setImage(null);
+
+            if (modificarImage.getImage() != null) {
+                modificarImage.getImage().cancel();
+            }
+            modificarImage.setImage(null);
+
+            if (buscarImage.getImage() != null) {
+                buscarImage.getImage().cancel();
+            }
+            buscarImage.setImage(null);
+        });
+    }
+
 }
+

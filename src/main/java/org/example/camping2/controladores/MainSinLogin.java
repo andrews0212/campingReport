@@ -17,9 +17,15 @@ import java.net.URL;
 
 public class MainSinLogin extends Application {
 //87654321B
+
+    public static void main(String[] args) {
+        System.setProperty("prism.order", "sw"); // Forzar renderizado por software
+        launch(args);
+    }
     @Override
     public void start(Stage stage) throws Exception {
         try {
+
             // Cargar la nueva ventana (Menu.fxml) si el usuario es autenticado
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/Menu.fxml"));
             Parent root = loader.load();

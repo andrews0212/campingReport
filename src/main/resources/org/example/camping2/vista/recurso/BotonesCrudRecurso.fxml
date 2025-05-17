@@ -16,7 +16,7 @@
             <Font name="Franklin Gothic Medium" size="21.0" />
          </font>
          <graphic>
-            <ImageView fitHeight="50.0" fitWidth="40.0">
+            <ImageView fx:id="buscarImage" fitHeight="50.0" fitWidth="40.0">
                <image>
                   <Image url="@../../Iconos/buscarRecursos.png" />
                </image>
@@ -31,7 +31,7 @@
             <Font name="Franklin Gothic Medium" size="21.0" />
          </font>
          <graphic>
-            <ImageView fitHeight="50.0" fitWidth="40.0">
+            <ImageView fx:id="agregarImage" fitHeight="50.0" fitWidth="40.0">
                <image>
                   <Image url="@../../Iconos/addRecurso.png" />
                </image>
@@ -46,7 +46,7 @@
             <Font name="Franklin Gothic Medium" size="21.0" />
          </font>
          <graphic>
-            <ImageView fitHeight="50.0" fitWidth="40.0">
+            <ImageView fx:id="modificarImage" fitHeight="50.0" fitWidth="40.0">
                <image>
                   <Image url="@../../Iconos/updateRecurso.png" />
                </image>
@@ -61,7 +61,7 @@
             <Font name="Franklin Gothic Medium" size="21.0" />
          </font>
          <graphic>
-            <ImageView fitHeight="50.0" fitWidth="40.0">
+            <ImageView fx:id="eliminarImage" fitHeight="50.0" fitWidth="40.0">
                <image>
                   <Image url="@../../Iconos/eliminarRecurso.png" />
                </image>

@@ -1,16 +1,28 @@
 package org.example.camping2.controladores.Recursos;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import org.example.camping2.controladores.Liberable;
 import org.example.camping2.modelo.dto.Recurso;
 import org.example.camping2.modelo.memoria.Memoria;
 
 import java.io.IOException;
 
-public class RecursoController {
+public class RecursoController implements Liberable {
+
+    @FXML
+    private ImageView buscarImage;
+    @FXML
+    private ImageView agregarImage;
+    @FXML
+    private ImageView modificarImage;
+    @FXML
+    private ImageView eliminarImage;
 
     private StackPane areaContenido;
     private Memoria<Recurso, Integer> memoria;
@@ -87,4 +99,33 @@ public class RecursoController {
     public void setAreaContenido(StackPane areaContenido) {
         this.areaContenido = areaContenido;
     }
+
+    @Override
+    public void liberarRecursos() {
+        Platform.runLater(() -> {
+
+
+            if (agregarImage.getImage() != null) {
+                agregarImage.getImage().cancel();
+            }
+            agregarImage.setImage(null);
+
+            if (eliminarImage.getImage() != null) {
+                eliminarImage.getImage().cancel();
+            }
+            eliminarImage.setImage(null);
+
+            if (modificarImage.getImage() != null) {
+                modificarImage.getImage().cancel();
+            }
+            modificarImage.setImage(null);
+
+            if (buscarImage.getImage() != null) {
+                buscarImage.getImage().cancel();
+            }
+            buscarImage.setImage(null);
+        });
+    }
+
 }
+

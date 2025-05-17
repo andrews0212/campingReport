@@ -1,11 +1,14 @@
 package org.example.camping2.controladores.Clientes;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,6 +18,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 import org.example.camping2.controladores.Acompañante.AcompañanteController;
+import org.example.camping2.controladores.Liberable;
 import org.example.camping2.controladores.Recursos.RecursoController;
 import org.example.camping2.controladores.Reservas.ReservaController;
 import org.example.camping2.modelo.dto.Acompañante;
@@ -41,7 +45,17 @@ import java.util.Map;
  * @version 1.0.0
  * @since 31/01/2025
  */
-public class ClienteController {
+public class ClienteController implements Liberable{
+
+
+    @FXML
+    private ImageView buscarImage;
+    @FXML
+    private ImageView agregarImage;
+    @FXML
+    private ImageView modificarImage;
+    @FXML
+    private ImageView eliminarImage;
 
     @FXML
     private VBox panelIzquierdo; // VBox on the left side of the screen
@@ -311,6 +325,16 @@ public class ClienteController {
             FXMLLoader loader = null;
             MenuItem item = (MenuItem) actionEvent.getSource();
             String id = item.getId();  //  Aquí obtienes el ID
+
+            // 🔁 Liberar recursos del panel actual si es necesario
+            if (!panelIzquierdo.getChildren().isEmpty()) {
+                Node nodoActual = panelIzquierdo.getChildren().get(0);
+                Object controllerActual = nodoActual.getProperties().get("controller");
+                if (controllerActual instanceof Liberable) {
+                    ((Liberable) controllerActual).liberarRecursos();
+                }
+            }
+
             if(id.equals("ReservaMenu")){
                  loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/reservas/BotonesCrudReserva.fxml"));
 
@@ -372,4 +396,33 @@ public class ClienteController {
         this.areaContenido = areaContenido;
     }
 
+    @Override
+    public void liberarRecursos() {
+        Platform.runLater(() -> {
+
+
+            if (agregarImage.getImage() != null) {
+                agregarImage.getImage().cancel();
+            }
+            agregarImage.setImage(null);
+
+            if (eliminarImage.getImage() != null) {
+                eliminarImage.getImage().cancel();
+            }
+            eliminarImage.setImage(null);
+
+            if (modificarImage.getImage() != null) {
+                modificarImage.getImage().cancel();
+            }
+            modificarImage.setImage(null);
+
+            if (buscarImage.getImage() != null) {
+                buscarImage.getImage().cancel();
+            }
+            buscarImage.setImage(null);
+        });
+    }
+
 }
+
+
