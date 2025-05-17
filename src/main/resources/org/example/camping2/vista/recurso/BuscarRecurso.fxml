@@ -55,8 +55,8 @@
       </GridPane>
       <HBox alignment="CENTER" prefHeight="0.0" prefWidth="400.0" spacing="20.0">
          <children>
-            <Button style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Buscar" />
-            <Button mnemonicParsing="false"  style="-fx-background-color: #3498db; -fx-text-fill: white;" text="BuscarTodos" />
+            <Button style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Buscar" onAction="#Buscar"/>
+            <Button mnemonicParsing="false"  style="-fx-background-color: #3498db; -fx-text-fill: white;" text="BuscarTodos" onAction="#BuscarTodos" />
          </children>
          <VBox.margin>
             <Insets bottom="20.0" top="20.0" />
