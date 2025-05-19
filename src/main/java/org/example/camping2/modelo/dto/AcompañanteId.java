@@ -25,11 +25,6 @@ public class AcompañanteId implements java.io.Serializable {
     @Column(name = "`IDACOMPAÑANTE`", nullable = false)
     private Integer idacompañante;
 
-    /**
-     * The unique identifier of the client.
-     */
-    @Column(name = "IDCLIENTE", nullable = false)
-    private Integer idcliente;
 
     /**
      * The unique identifier of the reservation.
@@ -60,18 +55,6 @@ public class AcompañanteId implements java.io.Serializable {
      *
      * @return the unique identifier of the client.
      */
-    public Integer getIdcliente() {
-        return idcliente;
-    }
-
-    /**
-     * Sets the ID of the client.
-     *
-     * @param idcliente the unique identifier to set for the client.
-     */
-    public void setIdcliente(Integer idcliente) {
-        this.idcliente = idcliente;
-    }
 
     /**
      * Returns the ID of the reservation.
@@ -104,8 +87,7 @@ public class AcompañanteId implements java.io.Serializable {
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         AcompañanteId entity = (AcompañanteId) o;
         return Objects.equals(this.idreserva, entity.idreserva) &&
-                Objects.equals(this.idacompañante, entity.idacompañante) &&
-                Objects.equals(this.idcliente, entity.idcliente);
+                Objects.equals(this.idacompañante, entity.idacompañante);
     }
 
     /**
@@ -116,6 +98,6 @@ public class AcompañanteId implements java.io.Serializable {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(idreserva, idacompañante, idcliente);
+        return Objects.hash(idreserva, idacompañante);
     }
 }

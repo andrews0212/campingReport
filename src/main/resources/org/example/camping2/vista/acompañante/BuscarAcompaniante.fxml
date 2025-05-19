@@ -36,21 +36,21 @@
          </rowConstraints>
          <children>
             <Label text="ID Cliente" GridPane.rowIndex="1" />
-            <TextField fx:id="nombreText" promptText="Ingrese el Nombre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="idClienteText" promptText="Ingrese el IDCliente" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="ID Reserva" GridPane.rowIndex="2" />
-            <TextField fx:id="tipoText" promptText="Introduce Tipo" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="idReservaText" promptText="Introduce IDReserva" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="Nombre" GridPane.rowIndex="3" />
-            <TextField fx:id="capacidadText" promptText="Introduce Capacidad" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="nombreText" promptText="Introduce Nombre" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label text="ID Acompañante" />
             <TextField fx:id="idText" promptText="Ingrese el ID" GridPane.columnIndex="1" />
             <Label text="Apellido" GridPane.rowIndex="4" />
             <Label text="DNI" GridPane.rowIndex="5" />
             <Label text="Email" GridPane.rowIndex="6" />
-            <TextField fx:id="precioText" promptText="Introduce Precio" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="minimoPersonaText" promptText="Introduce Minimo Personas" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="estadoText" promptText="Introduce Estado" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="apellidoText" promptText="Introduce Apellido" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="dniText" promptText="Introduce DNI" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="emailText" promptText="Introduce Email" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <Label text="Telefono" GridPane.rowIndex="7" />
-            <TextField promptText="Introduce el telefono" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="telefonoText" promptText="Introduce el Telefono" GridPane.columnIndex="1" GridPane.rowIndex="7" />
          </children>
          <VBox.margin>
             <Insets top="20.0" />
@@ -58,8 +58,8 @@
       </GridPane>
       <HBox alignment="CENTER" prefHeight="0.0" prefWidth="400.0" spacing="20.0">
          <children>
-            <Button style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Buscar" />
-            <Button mnemonicParsing="false" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="BuscarTodos" />
+            <Button style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Buscar" onAction="#buscar" />
+            <Button mnemonicParsing="false" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="BuscarTodos" onAction="#cargarTablaCompleta" />
          </children>
          <VBox.margin>
             <Insets bottom="20.0" top="20.0" />
@@ -74,7 +74,7 @@
             <TableColumn fx:id="precioColumn" prefWidth="86.0" text="Apellido" />
             <TableColumn fx:id="minimoColumn" prefWidth="84.0" text="DNI" />
             <TableColumn fx:id="estadoColumn" prefWidth="77.0" text="Email" />
-            <TableColumn prefWidth="147.0" text="Telefono" />
+            <TableColumn fx:id="telefonoColumn" prefWidth="147.0" text="Telefono" />
          </columns>
       </TableView>
    </children>
