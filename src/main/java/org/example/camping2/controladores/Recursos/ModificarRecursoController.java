@@ -69,7 +69,7 @@ public class ModificarRecursoController {
     private TextField nombreText1;
 
     @FXML
-    private ComboBox<?> tipoComboBox1; // También deberías asignarle un fx:id, como fx:id="tipoComboBox1"
+    private ComboBox<String> tipoCombo1; // También deberías asignarle un fx:id, como fx:id="tipoComboBox1"
 
     @FXML
     private TextField capacidadText1;
@@ -91,14 +91,16 @@ public class ModificarRecursoController {
             this.memoria = memoria;
 
             // Cargar recursos desde la memoria y mostrarlos directamente
-            recursoList.setAll(memoria.findAll());
-            recursoTable.setItems(recursoList);
+        cargarRecursosDesdeMemoria();
 
     }
+
     @FXML
     public void initialize() {
         tipoCombo.getItems().addAll("PARCELA", "BUNGALOW", "BARBACOA");
         tipoCombo.getSelectionModel().select(0);
+        tipoCombo1.getItems().addAll("PARCELA", "BUNGALOW", "BARBACOA");
+        tipoCombo1.getSelectionModel().select(0);
         // Asociar columnas con propiedades del modelo Recurso
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nombreColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
@@ -112,6 +114,7 @@ public class ModificarRecursoController {
 
     private void cargarRecursosDesdeMemoria() {
         recursoList.setAll(memoria.findAll());
+        recursoTable.setItems(recursoList);
     }
     @FXML
     private void filtrarRecursos() {
@@ -138,6 +141,64 @@ public class ModificarRecursoController {
                         .toList()
         );
     }
+
+    @FXML
+    private void modificarRecurso() {
+        Recurso seleccionado = recursoTable.getSelectionModel().getSelectedItem();
+        if (seleccionado != null) {
+            String nombreNuevo = nombreText1.getText().trim();
+            String tipoNuevo = tipoCombo1.getValue();
+            String capacidadNuevo = capacidadText1.getText().trim();
+            String precioNuevo = precioText1.getText().trim();
+            String minimoNuevo = minimoPersonaText1.getText().trim();
+            String estadoNuevo = estadoText1.getText().trim();
+
+            if (!nombreNuevo.isEmpty()) {
+                seleccionado.setNombre(nombreNuevo);
+            }
+            if (tipoNuevo != null && !tipoNuevo.isEmpty()) {
+                seleccionado.setTipo(tipoNuevo);
+            }
+            if (!capacidadNuevo.isEmpty()) {
+                try {
+                    seleccionado.setCapacidad(Integer.parseInt(capacidadNuevo));
+                } catch (NumberFormatException e) {
+                    System.err.println("Capacidad inválida.");
+                    return;
+                }
+            }
+            if (!precioNuevo.isEmpty()) {
+                try {
+                    seleccionado.setPrecio(Integer.parseInt(precioNuevo));
+                } catch (NumberFormatException e) {
+                    System.err.println("Precio inválido.");
+                    return;
+                }
+            }
+            if (!minimoNuevo.isEmpty()) {
+                try {
+                    seleccionado.setMinimoPersonas(Integer.parseInt(minimoNuevo));
+                } catch (NumberFormatException e) {
+                    System.err.println("Mínimo personas inválido.");
+                    return;
+                }
+            }
+            if (!estadoNuevo.isEmpty()) {
+                seleccionado.setEstado(estadoNuevo);
+            }
+
+            if (memoria.update(seleccionado)) {
+                recursoTable.refresh();
+            } else {
+                System.err.println("Error al actualizar el recurso en memoria.");
+            }
+        }
+    }
+    @FXML
+    public void buscarTodos(){
+        cargarRecursosDesdeMemoria();
+    }
+
 
     private Integer parseInteger(String texto) {
         try {

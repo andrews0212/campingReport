@@ -71,7 +71,7 @@
       <HBox alignment="CENTER" prefHeight="43.0" prefWidth="724.0">
          <children>
             <Button style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Buscar" onAction="#filtrarRecursos"/>
-            <Button mnemonicParsing="false" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="BuscarTodos">
+            <Button mnemonicParsing="false" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="BuscarTodos" onAction="#buscarTodos">
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
@@ -131,7 +131,7 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="43.0" prefWidth="724.0">
          <children>
-            <Button style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Modificar" />
+            <Button style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Modificar" onAction="#modificarRecurso" />
          </children>
       </HBox>
    </children>
