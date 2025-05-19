@@ -61,6 +61,18 @@ public class Recurso {
     @Column(name = "ESTADO", nullable = false)
     private String estado;
 
+    public Recurso(String nombre, String tipo, int capacidad, int precio, int minimoPersonas) {
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.capacidad = capacidad;
+        this.precio = precio;
+        this.minimoPersonas = minimoPersonas;
+        this.estado = "DISPONIBLE";
+    }
+
+    public Recurso() {
+    }
+
     /**
      * Returns the unique identifier of the resource.
      *
