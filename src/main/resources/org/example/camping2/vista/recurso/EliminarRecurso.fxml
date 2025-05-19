@@ -39,7 +39,7 @@
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label text="Tipo:" />
-                  <ComboBox prefWidth="150.0" />
+                  <ComboBox fx:id="tipoCombo" prefWidth="150.0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -70,8 +70,8 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="43.0" prefWidth="724.0">
          <children>
-            <Button style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Buscar" />
-            <Button mnemonicParsing="false" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="BuscarTodos">
+            <Button onAction="#buscarRecursos" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Buscar" />
+            <Button mnemonicParsing="false" onAction="#buscarTodos" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="BuscarTodos">
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
@@ -91,7 +91,7 @@
       </TableView>
       <HBox alignment="CENTER" prefHeight="43.0" prefWidth="724.0">
          <children>
-            <Button style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Eliminar" />
+            <Button onAction="#eliminarRecurso" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Eliminar" />
          </children>
       </HBox>
    </children>
