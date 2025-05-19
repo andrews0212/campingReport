@@ -14,7 +14,11 @@ module org.example.camping2 {
     requires org.hibernate.orm.core;
     requires net.sf.jasperreports.core;
     requires org.slf4j;
-    opens org.example.camping2.modelo.dto to org.hibernate.orm.core;
+
+    // Necesario para Hibernate
+    opens org.example.camping2.modelo.dto to org.hibernate.orm.core, javafx.base;
+
+    // Necesario para JavaFX TableView y PropertyValueFactory
 
     opens org.example.camping2 to javafx.fxml;
     exports org.example.camping2.controladores;
@@ -27,5 +31,4 @@ module org.example.camping2 {
     opens org.example.camping2.controladores.Recursos to javafx.fxml;
     exports org.example.camping2.controladores.Acompañante;
     opens org.example.camping2.controladores.Acompañante to javafx.fxml;
-
 }
