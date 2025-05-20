@@ -29,8 +29,6 @@ public class BuscaAcompananteController {
     @FXML
     private TableColumn<Acompanante, Integer> idColumn;
     @FXML
-    private TableColumn<Acompanante, Integer> nombreColumn;   // Aquí se asume que ID Cliente es Integer
-    @FXML
     private TableColumn<Acompanante, Integer> tipoColumn;     // ID Reserva Integer
     @FXML
     private TableColumn<Acompanante, String> capacidadColumn; // Nombre
@@ -55,17 +53,11 @@ public class BuscaAcompananteController {
     private void initialize() {
         // Asociar columnas a propiedades del objeto Acompanante (ajustar nombres según la clase)
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nombreColumn.setCellValueFactory(new PropertyValueFactory<>("idCliente"));  // Cambia por el nombre real
-        tipoColumn.setCellValueFactory(new PropertyValueFactory<>("idReserva"));   // Cambia por el nombre real
+        tipoColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getIdreserva().getId()));
         capacidadColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         precioColumn.setCellValueFactory(new PropertyValueFactory<>("apellido"));
         minimoColumn.setCellValueFactory(new PropertyValueFactory<>("dni"));
         estadoColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-
-        // Como el teléfono no tiene fx:id en FXML, para mostrarlo hay que asignarlo aquí con código
-        // Para esto, lo mejor es darle fx:id al TableColumn del teléfono en FXML y enlazarlo aquí,
-        // o crear una columna programáticamente.
-        // Aquí asumo que has añadido fx:id="telefonoColumn" en el FXML para la columna Teléfono:
         telefonoColumn.setCellValueFactory(new PropertyValueFactory<>("telefono"));
 
         recursoTable.setItems(AcompanantesObservable);
