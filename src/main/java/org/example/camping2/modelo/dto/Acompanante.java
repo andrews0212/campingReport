@@ -29,6 +29,18 @@ public class Acompanante {
     @Column(name = "TELEFONO", length = 9)
     private String telefono;
 
+    public Acompanante(Reserva idreserva, String nombre, String apellido, String dni, String email, String telefono) {
+        this.idreserva = idreserva;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.email = email;
+        this.telefono = telefono;
+    }
+
+    public Acompanante() {
+    }
+
     public Integer getId() {
         return id;
     }

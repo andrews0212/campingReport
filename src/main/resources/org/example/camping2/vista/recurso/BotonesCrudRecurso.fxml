@@ -61,7 +61,7 @@
             <Font name="Franklin Gothic Medium" size="21.0" />
          </font>
          <graphic>
-            <ImageView fx:id="eliminarImage" fitHeight="50.0" fitWidth="40.0">
+            <ImageView fx:id="eliminarImage" fitHeight="59.0" fitWidth="53.0">
                <image>
                   <Image url="@../../Iconos/eliminarRecurso.png" />
                </image>
