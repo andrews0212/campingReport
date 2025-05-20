@@ -144,7 +144,7 @@
                               <MenuItem fx:id="ClienteMenu" mnemonicParsing="false" onAction="#cargarPanelIzquierdoReservas" text="Cliente" />
                             <MenuItem fx:id="ReservaMenu" mnemonicParsing="false" onAction="#cargarPanelIzquierdoReservas" text="Reserva" />
                               <MenuItem fx:id="RecursoMenu" mnemonicParsing="false" onAction="#cargarPanelIzquierdoReservas" text="Recursos" />
-                              <MenuItem fx:id="AcompañanteMenu" mnemonicParsing="false" onAction="#cargarPanelIzquierdoReservas" text="Acompañante" />
+                              <MenuItem fx:id="AcompananteMenu" mnemonicParsing="false" onAction="#cargarPanelIzquierdoReservas" text="Acompañante" />
                           </items>
                         </Menu>
                       <Menu mnemonicParsing="false" text="Help">

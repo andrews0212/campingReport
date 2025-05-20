@@ -77,7 +77,7 @@ public class Reserva {
      * The list of accompanying guests for the reservation.
      */
     @OneToMany(mappedBy = "idreserva")
-    private Set<Acompañante> acompañantes = new LinkedHashSet<>();
+    private Set<Acompanante> acompañantes = new LinkedHashSet<>();
 
     public Reserva(Cliente idcliente, Recurso idrecurso, LocalDate fechaInicio, LocalDate fechaFin, String estado, Integer precioTotal, Integer numeroPersonas) {
         this.idcliente = idcliente;
@@ -243,7 +243,7 @@ public class Reserva {
      *
      * @return the accompanying guests.
      */
-    public Set<Acompañante> getAcompañantes() {
+    public Set<Acompanante> getAcompañantes() {
         return acompañantes;
     }
 
@@ -252,7 +252,7 @@ public class Reserva {
      *
      * @param acompañantes the guests to set.
      */
-    public void setAcompañantes(Set<Acompañante> acompañantes) {
+    public void setAcompañantes(Set<Acompanante> acompañantes) {
         this.acompañantes = acompañantes;
     }
 }

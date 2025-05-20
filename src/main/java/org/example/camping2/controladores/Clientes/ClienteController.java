@@ -17,11 +17,11 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
-import org.example.camping2.controladores.Acompañante.AcompañanteController;
+import org.example.camping2.controladores.Acompanante.AcompananteController;
 import org.example.camping2.controladores.Liberable;
 import org.example.camping2.controladores.Recursos.RecursoController;
 import org.example.camping2.controladores.Reservas.ReservaController;
-import org.example.camping2.modelo.dto.Acompañante;
+import org.example.camping2.modelo.dto.Acompanante;
 import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.dto.Recurso;
 import org.example.camping2.modelo.dto.Reserva;
@@ -85,7 +85,7 @@ public class ClienteController implements Liberable{
     private Memoria<Cliente, Integer> memoriaCliente;
     private Memoria<Reserva, Integer> memoriaReserva;
     private Memoria<Recurso, Integer> memoriaRecurso;
-    private Memoria<Acompañante, Integer> memoriaAcompañante;
+    private Memoria<Acompanante, Integer> memoriaAcompanante;
 
     private Locale idioma;
 
@@ -99,7 +99,7 @@ public class ClienteController implements Liberable{
         memoriaCliente = new Memoria<>(Cliente.class);
         memoriaReserva = new Memoria<>(Reserva.class);
         memoriaRecurso = new Memoria<>(Recurso.class);
-        memoriaAcompañante = new Memoria<>(Acompañante.class);
+        memoriaAcompanante = new Memoria<>(Acompanante.class);
     }
 
     /**
@@ -345,8 +345,8 @@ public class ClienteController implements Liberable{
             if(id.equals("RecursoMenu")){
                 loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/recurso/BotonesCrudRecurso.fxml"));
             }
-            if(id.equals("AcompañanteMenu")){
-                loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/acompañante/BotonesCrudAcompaniante.fxml"));
+            if(id.equals("AcompananteMenu")){
+                loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/Acompanante/BotonesCrudAcompaniante.fxml"));
             }
 
             Parent nuevoPanel = loader.load();
@@ -376,10 +376,10 @@ public class ClienteController implements Liberable{
                 panelIzquierdo.getChildren().clear();
                 panelIzquierdo.getChildren().add(nuevoPanel);
             }
-            if(id.equals("AcompañanteMenu")){
-                AcompañanteController controller = loader.getController();
+            if(id.equals("AcompananteMenu")){
+                AcompananteController controller = loader.getController();
                 controller.setAreaContenido(areaContenido);
-                controller.setMemoriaAcompañante(memoriaAcompañante);
+                controller.setMemoriaAcompanante(memoriaAcompanante);
                 controller.setMemoriaReserva(memoriaReserva);
                 panelIzquierdo.getChildren().clear();
                 panelIzquierdo.getChildren().add(nuevoPanel);

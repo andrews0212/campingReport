@@ -1,22 +1,21 @@
-package org.example.camping2.controladores.Acompañante;
+package org.example.camping2.controladores.Acompanante;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.example.camping2.modelo.dto.Acompañante;
+import org.example.camping2.modelo.dto.Acompanante;
 import org.example.camping2.modelo.memoria.Memoria;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class BuscaAcompañanteController {
+public class BuscaAcompananteController {
 
-    private Memoria<Acompañante, Integer> memoriaAcompañante;
+    private Memoria<Acompanante, Integer> memoriaAcompanante;
 
     // TextFields (con fx:id del FXML)
     @FXML
@@ -25,36 +24,36 @@ public class BuscaAcompañanteController {
 
     // Tabla y columnas
     @FXML
-    private TableView<Acompañante> recursoTable;
+    private TableView<Acompanante> recursoTable;
 
     @FXML
-    private TableColumn<Acompañante, Integer> idColumn;
+    private TableColumn<Acompanante, Integer> idColumn;
     @FXML
-    private TableColumn<Acompañante, Integer> nombreColumn;   // Aquí se asume que ID Cliente es Integer
+    private TableColumn<Acompanante, Integer> nombreColumn;   // Aquí se asume que ID Cliente es Integer
     @FXML
-    private TableColumn<Acompañante, Integer> tipoColumn;     // ID Reserva Integer
+    private TableColumn<Acompanante, Integer> tipoColumn;     // ID Reserva Integer
     @FXML
-    private TableColumn<Acompañante, String> capacidadColumn; // Nombre
+    private TableColumn<Acompanante, String> capacidadColumn; // Nombre
     @FXML
-    private TableColumn<Acompañante, String> precioColumn;    // Apellido
+    private TableColumn<Acompanante, String> precioColumn;    // Apellido
     @FXML
-    private TableColumn<Acompañante, String> minimoColumn;    // DNI
+    private TableColumn<Acompanante, String> minimoColumn;    // DNI
     @FXML
-    private TableColumn<Acompañante, String> estadoColumn;    // Email
+    private TableColumn<Acompanante, String> estadoColumn;    // Email
     @FXML
-    private TableColumn<Acompañante, String> telefonoColumn;  // Teléfono, que no tiene fx:id en FXML, se añade aquí
+    private TableColumn<Acompanante, String> telefonoColumn;  // Teléfono, que no tiene fx:id en FXML, se añade aquí
 
 
-    private ObservableList<Acompañante> acompañantesObservable = FXCollections.observableArrayList();
+    private ObservableList<Acompanante> AcompanantesObservable = FXCollections.observableArrayList();
 
-    public void setMemoriaAcompañante(Memoria<Acompañante, Integer> memoriaAcompañante) {
-        this.memoriaAcompañante = memoriaAcompañante;
+    public void setMemoriaAcompanante(Memoria<Acompanante, Integer> memoriaAcompanante) {
+        this.memoriaAcompanante = memoriaAcompanante;
         cargarTablaCompleta();
     }
 
     @FXML
     private void initialize() {
-        // Asociar columnas a propiedades del objeto Acompañante (ajustar nombres según la clase)
+        // Asociar columnas a propiedades del objeto Acompanante (ajustar nombres según la clase)
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nombreColumn.setCellValueFactory(new PropertyValueFactory<>("idCliente"));  // Cambia por el nombre real
         tipoColumn.setCellValueFactory(new PropertyValueFactory<>("idReserva"));   // Cambia por el nombre real
@@ -69,25 +68,25 @@ public class BuscaAcompañanteController {
         // Aquí asumo que has añadido fx:id="telefonoColumn" en el FXML para la columna Teléfono:
         telefonoColumn.setCellValueFactory(new PropertyValueFactory<>("telefono"));
 
-        recursoTable.setItems(acompañantesObservable);
+        recursoTable.setItems(AcompanantesObservable);
     }
 
     @FXML
     private void cargarTablaCompleta() {
-        acompañantesObservable.clear();
-        if (memoriaAcompañante != null) {
-            List<Acompañante> lista = memoriaAcompañante.findAll(); // Asegúrate que Memoria tiene método listar()
-            acompañantesObservable.addAll(lista);
+        AcompanantesObservable.clear();
+        if (memoriaAcompanante != null) {
+            List<Acompanante> lista = memoriaAcompanante.findAll(); // Asegúrate que Memoria tiene método listar()
+            AcompanantesObservable.addAll(lista);
         }
     }
 
     @FXML
     private void buscar() {
-        if (memoriaAcompañante == null) return;
+        if (memoriaAcompanante == null) return;
 
-        List<Acompañante> lista = memoriaAcompañante.findAll();
+        List<Acompanante> lista = memoriaAcompanante.findAll();
 
-        List<Acompañante> filtrados = lista.stream().filter(a -> {
+        List<Acompanante> filtrados = lista.stream().filter(a -> {
             boolean coincide = true;
 
             if (!idClienteText.getText().isEmpty()) {
@@ -125,6 +124,6 @@ public class BuscaAcompañanteController {
             return coincide;
         }).collect(Collectors.toList());
 
-        acompañantesObservable.setAll(filtrados);
+        AcompanantesObservable.setAll(filtrados);
     }
 }

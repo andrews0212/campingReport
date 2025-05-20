@@ -2,7 +2,7 @@ package org.example.camping2.modelo.memoria;
 
 
 import org.example.camping2.modelo.dao.DAOGN;
-import org.example.camping2.modelo.dto.Acompañante;
+import org.example.camping2.modelo.dto.Acompanante;
 import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.dto.Recurso;
 import org.example.camping2.modelo.dto.Reserva;
@@ -67,8 +67,8 @@ public class Memoria<T, ID> {
                     return objeto;
                 }
 
-            } else if (entityClass.isAssignableFrom(Acompañante.class)) {
-                Acompañante acompañante = (Acompañante) objeto;
+            } else if (entityClass.isAssignableFrom(Acompanante.class)) {
+                Acompanante acompañante = (Acompanante) objeto;
                 if (acompañante.getId().equals(id)) {
                     return objeto;
                 }
