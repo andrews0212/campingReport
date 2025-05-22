@@ -319,11 +319,18 @@ public class MapaCamping {
                     .filter(r -> r.getNombre().equals(id))
                     .findFirst();
 
-            String imagen;
-
             if (recursoOpt.isPresent()) {
-                String estado = recursoOpt.get().getEstado().toLowerCase();
-                if(recursoOpt.get().getTipo().toLowerCase().startsWith("parcela")){
+                Recurso recurso = recursoOpt.get();
+
+                // Si el recurso es barbacoa, no hacemos nada, pasamos al siguiente
+                if (recurso.getTipo().toLowerCase().startsWith("barbacoa")) {
+                    continue; // salta a la siguiente iteración del for
+                }
+
+                String estado = recurso.getEstado().toLowerCase();
+                String imagen;
+
+                if (recurso.getTipo().toLowerCase().startsWith("parcela")) {
                     switch (estado) {
                         case "disponible":
                             imagen = "acampada_verde.png";
@@ -335,7 +342,6 @@ public class MapaCamping {
                             imagen = "acampada_amarillo.png";
                             break;
                         default:
-                            // En caso de que no reconozca el estado, puedes poner un icono neutro o el verde
                             imagen = "acampada_verde.png";
                             break;
                     }
@@ -351,20 +357,22 @@ public class MapaCamping {
                             imagen = "home_amarillo.png";
                             break;
                         default:
-                            // En caso de que no reconozca el estado, puedes poner un icono neutro o el verde
                             imagen = "home_verde.png";
                             break;
                     }
                 }
 
+                casa.setImage(new javafx.scene.image.Image(
+                        getClass().getResource("/org/example/camping2/Iconos/" + imagen).toExternalForm()));
+
             } else {
                 // Si no encuentra el recurso, puedes poner imagen por defecto o nada
-                imagen = "home_verde.png";
+                casa.setImage(new javafx.scene.image.Image(
+                        getClass().getResource("/org/example/camping2/Iconos/home_verde.png").toExternalForm()));
             }
-
-            casa.setImage(new javafx.scene.image.Image(getClass().getResource("/org/example/camping2/Iconos/" + imagen).toExternalForm()));
         }
     }
+
 
 
 

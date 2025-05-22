@@ -242,11 +242,11 @@
       </ImageView>
       <Button fx:id="B5" layoutX="975.0" layoutY="235.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="32.0" />
       <Button fx:id="PR13" layoutX="105.0" layoutY="52.0" mnemonicParsing="false" prefHeight="87.0" prefWidth="32.0" />
-      <Button fx:id="PR12" layoutX="44.0" layoutY="155.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="26.0" />
-      <Button fx:id="PR11" layoutX="46.0" layoutY="221.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="26.0" />
-      <Button fx:id="PR14" layoutX="118.0" layoutY="167.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="26.0" />
-      <Button fx:id="PR4" layoutX="710.0" layoutY="167.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="26.0" />
-      <Button fx:id="PR15" layoutX="650.0" layoutY="243.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="26.0" />
+      <Button fx:id="PR12" layoutX="20.0" layoutY="149.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="68.0" />
+      <Button fx:id="PR11" layoutX="32.0" layoutY="216.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="55.0" />
+      <Button fx:id="PR14" layoutX="105.0" layoutY="157.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="55.0" />
+      <Button fx:id="PR4" layoutX="697.0" layoutY="167.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="55.0" />
+      <Button fx:id="PR15" layoutX="637.0" layoutY="233.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="55.0" />
       <ImageView fx:id="parcelaA30" fitHeight="44.0" fitWidth="39.0" layoutX="154.0" layoutY="149.0">
          <image>
             <Image url="@../../Iconos/acampada.png" />
@@ -502,9 +502,39 @@
             <Image url="@../../Iconos/acampada.png" />
          </image>
       </ImageView>
+      <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="43.0" layoutY="154.0">
+         <image>
+            <Image url="@../../Iconos/barbacoa.png" />
+         </image>
+      </ImageView>
       <ImageView fx:id="parcelaS13" fitHeight="44.0" fitWidth="39.0" layoutX="867.0" layoutY="223.0">
          <image>
             <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="43.0" layoutY="223.0">
+         <image>
+            <Image url="@../../Iconos/barbacoa.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="649.0" layoutY="241.0">
+         <image>
+            <Image url="@../../Iconos/barbacoa.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="709.0" layoutY="172.0">
+         <image>
+            <Image url="@../../Iconos/barbacoa.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="105.0" layoutY="70.0">
+         <image>
+            <Image url="@../../Iconos/barbacoa.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="116.0" layoutY="162.0">
+         <image>
+            <Image url="@../../Iconos/barbacoa.png" />
          </image>
       </ImageView>
 
