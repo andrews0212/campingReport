@@ -1,11 +1,18 @@
 package org.example.camping2.controladores;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import org.example.camping2.controladores.Recursos.VistaRecursoEvent;
 import org.example.camping2.modelo.dto.Recurso;
 import org.example.camping2.modelo.memoria.Memoria;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -134,22 +141,40 @@ public class MapaCamping {
     }
 
     private void manejarClicBoton(String idBoton, MouseEvent event) {
-        Optional<Recurso> recursoEncontrado = memoriaRecurso.findAll().stream().filter(p -> p.getNombre().equals(idBoton)).findFirst();
+        Optional<Recurso> recursoEncontrado = memoriaRecurso.findAll().stream()
+                .filter(p -> p.getNombre().equals(idBoton))
+                .findFirst();
+
         if (recursoEncontrado.isPresent()) {
             Recurso recurso = recursoEncontrado.get();
-            // Mostrar detalles del recurso en la terminal
-            System.out.println("Clic en botón: " + idBoton);
-            System.out.println("Detalles del recurso:");
-            System.out.println("Nombre: " + recurso.getNombre());
-            System.out.println("Tipo: " + recurso.getTipo());
-            System.out.println("Capacidad: " + recurso.getCapacidad());
-            System.out.println("Precio: " + recurso.getPrecio());
-            System.out.println("Mínimo personas: " + recurso.getMinimoPersonas());
-            System.out.println("Estado: " + recurso.getEstado());
+
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/mapa/vistaRecursoEvent.fxml"));
+                Parent root = loader.load();
+
+                // Obtener el controlador de la ventana detalle
+                VistaRecursoEvent controladorDetalle = loader.getController();
+
+                // Pasar el recurso al controlador
+                controladorDetalle.setRecurso(recurso);
+
+                // Crear nueva escena y ventana para mostrar
+                Stage stage = new Stage();
+                stage.setTitle("Detalles del recurso");
+                stage.setScene(new Scene(root));
+                stage.initModality(Modality.APPLICATION_MODAL); // Bloquea la ventana principal mientras está abierta
+                stage.show();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("Error al abrir la ventana de detalles");
+            }
+
         } else {
             System.out.println("Recurso con nombre " + idBoton + " no encontrado.");
         }
     }
+
 
     public void setMemoriaRecurso(Memoria<Recurso, Integer> memoriaRecurso) {
         this.memoriaRecurso = memoriaRecurso;

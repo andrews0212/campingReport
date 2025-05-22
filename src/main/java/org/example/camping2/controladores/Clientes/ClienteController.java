@@ -429,7 +429,7 @@ public class ClienteController implements Liberable{
     @FXML
     public void cargarVentanaMapa(){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/MapaCamping.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/mapa/MapaCamping.fxml"));
             Parent root = loader.load();
             MapaCamping controller = loader.getController();
             controller.setMemoriaRecurso(memoriaRecurso);
