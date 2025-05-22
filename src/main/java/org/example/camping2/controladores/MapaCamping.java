@@ -1,10 +1,12 @@
 package org.example.camping2.controladores;
 
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -20,7 +22,39 @@ import java.util.Optional;
 public class MapaCamping {
 
     private final Map<String, Button> botones = new HashMap<>();
+    private Map<String, ImageView> casas = new HashMap<>();
+
     private Memoria<Recurso, Integer> memoriaRecurso;
+    //=== Imagens casas ==//
+    @FXML private ImageView casaEL4;
+    @FXML private ImageView casaEL3;
+    @FXML private ImageView casaEL2;
+    @FXML private ImageView casaEL1;
+    @FXML private ImageView casaDII;
+    @FXML private ImageView casaDI;
+    @FXML private ImageView casaB29;
+    @FXML private ImageView casaB28;
+    @FXML private ImageView casaB27;
+    @FXML private ImageView casaB26;
+    @FXML private ImageView casaB25;
+    @FXML private ImageView casaB24;
+    @FXML private ImageView casaB23;
+    @FXML private ImageView casaB22;
+    @FXML private ImageView casaB21;
+    @FXML private ImageView casaB20;
+    @FXML private ImageView casaB19;
+    @FXML private ImageView casaB18;
+    @FXML private ImageView casaB17;
+    @FXML private ImageView casaB16;
+    @FXML private ImageView casaB15;
+    @FXML private ImageView casaB14;
+    @FXML private ImageView casaB13;
+    @FXML private ImageView casaB12;
+    @FXML private ImageView casaB11;
+    @FXML private ImageView casaB10;
+    @FXML private ImageView casaB7;
+    @FXML private ImageView casaB6;
+    @FXML private ImageView casaB5;
     // === Sección EL ===
     @FXML private Button EL1;
     @FXML private Button EL2;
@@ -130,7 +164,81 @@ public class MapaCamping {
             Button boton = entry.getValue();
             boton.setOnMouseClicked(event -> manejarClicBoton(entry.getKey(), event));
         }
+        prepararReferenciasCasas();      // <-- Llama este nuevo método
+
     }
+
+    private void prepararReferenciasCasas() {
+        casas.put("EL1", casaEL1);
+        casas.put("EL2", casaEL2);
+        casas.put("EL3", casaEL3);
+        casas.put("EL4", casaEL4);
+        casas.put("DI", casaDI);
+        casas.put("DII", casaDII);
+        casas.put("B29", casaB29);
+        casas.put("B28", casaB28);
+        casas.put("B27", casaB27);
+        casas.put("B26", casaB26);
+        casas.put("B25", casaB25);
+        casas.put("B24", casaB24);
+        casas.put("B23", casaB23);
+        casas.put("B22", casaB22);
+        casas.put("B21", casaB21);
+        casas.put("B20", casaB20);
+        casas.put("B19", casaB19);
+        casas.put("B18", casaB18);
+        casas.put("B17", casaB17);
+        casas.put("B16", casaB16);
+        casas.put("B15", casaB15);
+        casas.put("B14", casaB14);
+        casas.put("B13", casaB13);
+        casas.put("B12", casaB12);
+        casas.put("B11", casaB11);
+        casas.put("B10", casaB10);
+        casas.put("B7", casaB7);
+        casas.put("B6", casaB6);
+        casas.put("B5", casaB5);
+    }
+    private void actualizarColoresCasas() {
+        for (Map.Entry<String, ImageView> entry : casas.entrySet()) {
+            String id = entry.getKey();
+            ImageView casa = entry.getValue();
+
+            // Buscar recurso por nombre (id)
+            Optional<Recurso> recursoOpt = memoriaRecurso.findAll().stream()
+                    .filter(r -> r.getNombre().equals(id))
+                    .findFirst();
+
+            String imagen;
+
+            if (recursoOpt.isPresent()) {
+                String estado = recursoOpt.get().getEstado().toLowerCase();
+
+                switch (estado) {
+                    case "disponible":
+                        imagen = "home_verde.png";
+                        break;
+                    case "ocupado":
+                        imagen = "home_rojo.png";
+                        break;
+                    case "mantenimiento":
+                        imagen = "home_amarillo.png";
+                        break;
+                    default:
+                        // En caso de que no reconozca el estado, puedes poner un icono neutro o el verde
+                        imagen = "home_verde.png";
+                        break;
+                }
+            } else {
+                // Si no encuentra el recurso, puedes poner imagen por defecto o nada
+                imagen = "home_verde.png";
+            }
+
+            casa.setImage(new javafx.scene.image.Image(getClass().getResource("/org/example/camping2/Iconos/" + imagen).toExternalForm()));
+        }
+    }
+
+
 
     private void agregarBotones(Button... botonesArray) {
         for (Button b : botonesArray) {
@@ -178,5 +286,13 @@ public class MapaCamping {
 
     public void setMemoriaRecurso(Memoria<Recurso, Integer> memoriaRecurso) {
         this.memoriaRecurso = memoriaRecurso;
+        actualizarColoresCasas();        // <-- Primer actualización al inicio
+
+        // Crear temporizador que actualice cada 5 minutos
+        Timeline timeline = new javafx.animation.Timeline(
+                new javafx.animation.KeyFrame(javafx.util.Duration.minutes(5), e -> actualizarColoresCasas())
+        );
+        timeline.setCycleCount(javafx.animation.Animation.INDEFINITE); // hace que se repita indefinidamente
+        timeline.play();
     }
 }

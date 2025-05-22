@@ -13,159 +13,159 @@
          </image>
       </ImageView>
       <Button fx:id="EL4" layoutX="142.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="4.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="140.0" layoutY="87.0">
+      <ImageView fx:id="casaEL4" fitHeight="34.0" fitWidth="20.0" layoutX="140.0" layoutY="87.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
       <Button fx:id="EL3" layoutX="165.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="165.0" layoutY="87.0">
+      <ImageView fx:id="casaEL3" fitHeight="34.0" fitWidth="20.0" layoutX="165.0" layoutY="87.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
       <Button fx:id="EL2" layoutX="192.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="4.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="190.0" layoutY="87.0">
+      <ImageView fx:id="casaEL2" fitHeight="34.0" fitWidth="20.0" layoutX="190.0" layoutY="87.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
       <Button fx:id="EL1" layoutX="216.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="4.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="214.0" layoutY="87.0">
+      <ImageView fx:id="casaEL1" fitHeight="34.0" fitWidth="20.0" layoutX="214.0" layoutY="87.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
       <Button fx:id="DII" layoutX="239.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="4.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="238.0" layoutY="87.0">
+      <ImageView fx:id="casaDII" fitHeight="34.0" fitWidth="20.0" layoutX="238.0" layoutY="87.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
       <Button fx:id="DI" layoutX="261.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="4.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="260.0" layoutY="87.0">
+      <ImageView fx:id="casaDI" fitHeight="34.0" fitWidth="20.0" layoutX="260.0" layoutY="87.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
       <Button fx:id="B29" layoutX="287.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="4.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="287.0" layoutY="87.0">
+      <ImageView fx:id="casaB29" fitHeight="34.0" fitWidth="20.0" layoutX="287.0" layoutY="87.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
       <Button fx:id="B28" layoutX="318.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="4.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="316.0" layoutY="87.0">
+      <ImageView fx:id="casaB28" fitHeight="34.0" fitWidth="20.0" layoutX="316.0" layoutY="87.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
       <Button fx:id="B27" layoutX="350.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="4.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="350.0" layoutY="87.0">
+      <ImageView fx:id="casaB27" fitHeight="34.0" fitWidth="20.0" layoutX="350.0" layoutY="87.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
       <Button fx:id="B26" layoutX="381.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="4.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="379.0" layoutY="87.0">
+      <ImageView fx:id="casaB26" fitHeight="34.0" fitWidth="20.0" layoutX="379.0" layoutY="87.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
       <Button fx:id="B25" layoutX="413.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="4.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="411.0" layoutY="87.0">
+      <ImageView fx:id="casaB25" fitHeight="34.0" fitWidth="20.0" layoutX="411.0" layoutY="87.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
       <Button fx:id="B24" layoutX="445.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="4.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="442.0" layoutY="87.0">
+      <ImageView fx:id="casaB24" fitHeight="34.0" fitWidth="20.0" layoutX="442.0" layoutY="87.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
       <Button fx:id="B23" layoutX="475.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="4.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="473.0" layoutY="87.0">
+      <ImageView fx:id="casaB23" fitHeight="34.0" fitWidth="20.0" layoutX="473.0" layoutY="87.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
       <Button fx:id="B22" layoutX="507.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="4.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="505.0" layoutY="87.0">
+      <ImageView fx:id="casaB22" fitHeight="34.0" fitWidth="20.0" layoutX="505.0" layoutY="87.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
       <Button fx:id="B21" layoutX="540.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="4.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="538.0" layoutY="87.0">
+      <ImageView fx:id="casaB21" fitHeight="34.0" fitWidth="20.0" layoutX="538.0" layoutY="87.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
       <Button fx:id="B20" layoutX="571.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="4.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="569.0" layoutY="87.0">
+      <ImageView fx:id="casaB20" fitHeight="34.0" fitWidth="20.0" layoutX="569.0" layoutY="87.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
       <Button fx:id="B19" layoutX="698.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="4.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="698.0" layoutY="87.0">
+      <ImageView fx:id="casaB19" fitHeight="34.0" fitWidth="20.0" layoutX="698.0" layoutY="87.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
       <Button fx:id="B18" layoutX="731.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="4.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="730.0" layoutY="87.0">
+      <ImageView fx:id="casaB18" fitHeight="34.0" fitWidth="20.0" layoutX="730.0" layoutY="87.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
       <Button fx:id="B17" layoutX="763.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="4.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="761.0" layoutY="87.0">
+      <ImageView fx:id="casaB17" fitHeight="34.0" fitWidth="20.0" layoutX="761.0" layoutY="87.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
       <Button fx:id="B16" layoutX="794.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="4.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="792.0" layoutY="87.0">
+      <ImageView fx:id="casaB16" fitHeight="34.0" fitWidth="20.0" layoutX="792.0" layoutY="87.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
       <Button fx:id="B15" layoutX="824.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="4.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="823.0" layoutY="87.0">
+      <ImageView fx:id="casaB15" fitHeight="34.0" fitWidth="20.0" layoutX="823.0" layoutY="87.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
 
       <Button fx:id="B14" layoutX="857.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="4.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="855.0" layoutY="87.0">
+      <ImageView fx:id="casaB14" fitHeight="34.0" fitWidth="20.0" layoutX="855.0" layoutY="87.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
       <Button fx:id="B13" layoutX="888.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="4.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="886.0" layoutY="87.0">
+      <ImageView fx:id="casaB13" fitHeight="34.0" fitWidth="20.0" layoutX="886.0" layoutY="87.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
       <Button fx:id="B12" layoutX="918.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="4.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="917.0" layoutY="87.0">
+      <ImageView fx:id="casaB12" fitHeight="34.0" fitWidth="20.0" layoutX="917.0" layoutY="87.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
       <Button fx:id="B11" layoutX="952.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="4.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="950.0" layoutY="87.0">
+      <ImageView fx:id="casaB11" fitHeight="34.0" fitWidth="20.0" layoutX="950.0" layoutY="87.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
 
       <Button fx:id="B10" layoutX="983.0" layoutY="91.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="4.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="981.0" layoutY="87.0">
+      <ImageView fx:id="casaB10" fitHeight="34.0" fitWidth="20.0" layoutX="981.0" layoutY="87.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
@@ -223,19 +223,19 @@
       <Button fx:id="S14" layoutX="837.0" layoutY="237.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="26.0" />
       <Button fx:id="S13" layoutX="865.0" layoutY="237.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="32.0" />
 
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="910.0" layoutY="241.0">
+      <ImageView fx:id="casaB7" fitHeight="34.0" fitWidth="20.0" layoutX="910.0" layoutY="241.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
       <Button fx:id="B7" layoutX="911.0" layoutY="247.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="945.0" layoutY="241.0">
+      <ImageView fx:id="casaB6" fitHeight="34.0" fitWidth="20.0" layoutX="945.0" layoutY="241.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
       <Button fx:id="B6" layoutX="945.0" layoutY="247.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" />
-      <ImageView fitHeight="34.0" fitWidth="20.0" layoutX="980.0" layoutY="240.0">
+      <ImageView fx:id="casaB5" fitHeight="34.0" fitWidth="20.0" layoutX="980.0" layoutY="240.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
