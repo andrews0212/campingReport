@@ -228,25 +228,285 @@
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
-      <Button fx:id="B7" layoutX="911.0" layoutY="247.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" />
+      <Button fx:id="B7" layoutX="905.0" layoutY="238.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="32.0" />
       <ImageView fx:id="casaB6" fitHeight="34.0" fitWidth="20.0" layoutX="945.0" layoutY="241.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
-      <Button fx:id="B6" layoutX="945.0" layoutY="247.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" />
+      <Button fx:id="B6" layoutX="939.0" layoutY="237.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="32.0" />
       <ImageView fx:id="casaB5" fitHeight="34.0" fitWidth="20.0" layoutX="980.0" layoutY="240.0">
          <image>
             <Image url="@../../Iconos/home.png" />
          </image>
       </ImageView>
-      <Button fx:id="B5" layoutX="983.0" layoutY="247.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" />
+      <Button fx:id="B5" layoutX="975.0" layoutY="235.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="32.0" />
       <Button fx:id="PR13" layoutX="105.0" layoutY="52.0" mnemonicParsing="false" prefHeight="87.0" prefWidth="32.0" />
       <Button fx:id="PR12" layoutX="44.0" layoutY="155.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="26.0" />
       <Button fx:id="PR11" layoutX="46.0" layoutY="221.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="26.0" />
       <Button fx:id="PR14" layoutX="118.0" layoutY="167.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="26.0" />
       <Button fx:id="PR4" layoutX="710.0" layoutY="167.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="26.0" />
       <Button fx:id="PR15" layoutX="650.0" layoutY="243.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="26.0" />
+      <ImageView fx:id="parcelaA30" fitHeight="44.0" fitWidth="39.0" layoutX="154.0" layoutY="149.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaA29" fitHeight="44.0" fitWidth="39.0" layoutX="182.0" layoutY="149.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaA28" fitHeight="44.0" fitWidth="39.0" layoutX="210.0" layoutY="149.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaA27" fitHeight="44.0" fitWidth="39.0" layoutX="237.0" layoutY="150.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaA26" fitHeight="44.0" fitWidth="39.0" layoutX="265.0" layoutY="150.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaA25" fitHeight="44.0" fitWidth="39.0" layoutX="293.0" layoutY="150.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaA24" fitHeight="44.0" fitWidth="39.0" layoutX="320.0" layoutY="150.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaA23" fitHeight="44.0" fitWidth="39.0" layoutX="349.0" layoutY="150.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaA22" fitHeight="44.0" fitWidth="39.0" layoutX="376.0" layoutY="150.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaA21" fitHeight="44.0" fitWidth="39.0" layoutX="404.0" layoutY="150.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaA20" fitHeight="44.0" fitWidth="39.0" layoutX="436.0" layoutY="151.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaA19" fitHeight="44.0" fitWidth="39.0" layoutX="465.0" layoutY="151.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaA18" fitHeight="44.0" fitWidth="39.0" layoutX="492.0" layoutY="151.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaA17" fitHeight="44.0" fitWidth="39.0" layoutX="520.0" layoutY="151.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaA16" fitHeight="44.0" fitWidth="39.0" layoutX="549.0" layoutY="152.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaA15" fitHeight="44.0" fitWidth="39.0" layoutX="576.0" layoutY="152.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaA14" fitHeight="44.0" fitWidth="39.0" layoutX="603.0" layoutY="152.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaA13" fitHeight="44.0" fitWidth="39.0" layoutX="631.0" layoutY="151.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaA12" fitHeight="44.0" fitWidth="39.0" layoutX="658.0" layoutY="151.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaA9" fitHeight="44.0" fitWidth="39.0" layoutX="746.0" layoutY="150.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaA8" fitHeight="44.0" fitWidth="39.0" layoutX="775.0" layoutY="150.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaA7" fitHeight="44.0" fitWidth="39.0" layoutX="804.0" layoutY="150.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaA6" fitHeight="44.0" fitWidth="39.0" layoutX="832.0" layoutY="150.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaA5" fitHeight="44.0" fitWidth="39.0" layoutX="860.0" layoutY="151.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaA4" fitHeight="44.0" fitWidth="39.0" layoutX="889.0" layoutY="151.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaA3" fitHeight="44.0" fitWidth="39.0" layoutX="918.0" layoutY="150.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaA2" fitHeight="44.0" fitWidth="39.0" layoutX="946.0" layoutY="150.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaS39" fitHeight="44.0" fitWidth="39.0" layoutX="99.0" layoutY="220.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaS38" fitHeight="44.0" fitWidth="39.0" layoutX="127.0" layoutY="220.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaS37" fitHeight="44.0" fitWidth="39.0" layoutX="155.0" layoutY="221.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaS36" fitHeight="44.0" fitWidth="39.0" layoutX="181.0" layoutY="221.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaS35" fitHeight="44.0" fitWidth="39.0" layoutX="209.0" layoutY="221.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaS34" fitHeight="44.0" fitWidth="39.0" layoutX="237.0" layoutY="221.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaS33" fitHeight="44.0" fitWidth="39.0" layoutX="265.0" layoutY="221.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaS32" fitHeight="44.0" fitWidth="39.0" layoutX="293.0" layoutY="221.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaS31" fitHeight="44.0" fitWidth="39.0" layoutX="322.0" layoutY="221.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaS30" fitHeight="44.0" fitWidth="39.0" layoutX="349.0" layoutY="221.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaS29" fitHeight="44.0" fitWidth="39.0" layoutX="377.0" layoutY="223.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaS28" fitHeight="44.0" fitWidth="39.0" layoutX="405.0" layoutY="223.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaS27" fitHeight="44.0" fitWidth="39.0" layoutX="438.0" layoutY="222.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaS26" fitHeight="44.0" fitWidth="39.0" layoutX="464.0" layoutY="223.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaS25" fitHeight="44.0" fitWidth="39.0" layoutX="492.0" layoutY="223.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaS24" fitHeight="44.0" fitWidth="39.0" layoutX="520.0" layoutY="223.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaS23" fitHeight="44.0" fitWidth="39.0" layoutX="548.0" layoutY="222.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaS22" fitHeight="44.0" fitWidth="39.0" layoutX="576.0" layoutY="223.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaS21" fitHeight="44.0" fitWidth="39.0" layoutX="604.0" layoutY="223.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaS18" fitHeight="44.0" fitWidth="39.0" layoutX="693.0" layoutY="223.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaS17" fitHeight="44.0" fitWidth="39.0" layoutX="729.0" layoutY="224.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaS16" fitHeight="44.0" fitWidth="39.0" layoutX="764.0" layoutY="223.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaS15" fitHeight="44.0" fitWidth="39.0" layoutX="798.0" layoutY="223.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaS14" fitHeight="44.0" fitWidth="39.0" layoutX="831.0" layoutY="223.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parcelaS13" fitHeight="44.0" fitWidth="39.0" layoutX="867.0" layoutY="223.0">
+         <image>
+            <Image url="@../../Iconos/acampada.png" />
+         </image>
+      </ImageView>
 
 
    </children>

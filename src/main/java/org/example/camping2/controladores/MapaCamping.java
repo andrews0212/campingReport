@@ -25,6 +25,61 @@ public class MapaCamping {
     private Map<String, ImageView> casas = new HashMap<>();
 
     private Memoria<Recurso, Integer> memoriaRecurso;
+
+    //=== Imagenes parcelas == /
+
+    @FXML private ImageView parcelaA30;
+    @FXML private ImageView parcelaA29;
+    @FXML private ImageView parcelaA28;
+    @FXML private ImageView parcelaA27;
+    @FXML private ImageView parcelaA26;
+    @FXML private ImageView parcelaA25;
+    @FXML private ImageView parcelaA24;
+    @FXML private ImageView parcelaA23;
+    @FXML private ImageView parcelaA22;
+    @FXML private ImageView parcelaA21;
+    @FXML private ImageView parcelaA20;
+    @FXML private ImageView parcelaA19;
+    @FXML private ImageView parcelaA18;
+    @FXML private ImageView parcelaA17;
+    @FXML private ImageView parcelaA16;
+    @FXML private ImageView parcelaA15;
+    @FXML private ImageView parcelaA14;
+    @FXML private ImageView parcelaA13;
+    @FXML private ImageView parcelaA12;
+    @FXML private ImageView parcelaA9;
+    @FXML private ImageView parcelaA8;
+    @FXML private ImageView parcelaA7;
+    @FXML private ImageView parcelaA6;
+    @FXML private ImageView parcelaA5;
+    @FXML private ImageView parcelaA4;
+    @FXML private ImageView parcelaA3;
+    @FXML private ImageView parcelaA2;
+    @FXML private ImageView parcelaS39;
+    @FXML private ImageView parcelaS38;
+    @FXML private ImageView parcelaS37;
+    @FXML private ImageView parcelaS36;
+    @FXML private ImageView parcelaS35;
+    @FXML private ImageView parcelaS34;
+    @FXML private ImageView parcelaS33;
+    @FXML private ImageView parcelaS32;
+    @FXML private ImageView parcelaS31;
+    @FXML private ImageView parcelaS30;
+    @FXML private ImageView parcelaS29;
+    @FXML private ImageView parcelaS28;
+    @FXML private ImageView parcelaS27;
+    @FXML private ImageView parcelaS26;
+    @FXML private ImageView parcelaS25;
+    @FXML private ImageView parcelaS24;
+    @FXML private ImageView parcelaS23;
+    @FXML private ImageView parcelaS22;
+    @FXML private ImageView parcelaS21;
+    @FXML private ImageView parcelaS18;
+    @FXML private ImageView parcelaS17;
+    @FXML private ImageView parcelaS16;
+    @FXML private ImageView parcelaS15;
+    @FXML private ImageView parcelaS13;
+
     //=== Imagens casas ==//
     @FXML private ImageView casaEL4;
     @FXML private ImageView casaEL3;
@@ -66,6 +121,9 @@ public class MapaCamping {
     @FXML private Button DII;
 
     // === Sección B (10 al 29) ===
+    @FXML private Button B5;
+    @FXML private Button B6;
+    @FXML private Button B7;
     @FXML private Button B10;
     @FXML private Button B11;
     @FXML private Button B12;
@@ -147,7 +205,7 @@ public class MapaCamping {
     public void initialize() {
         agregarBotones(
                 EL1, EL2, EL3, EL4,
-                DI, DII,
+                DI, DII,B5,B6,B7,
                 B10, B11, B12, B13, B14, B15, B16, B17, B18, B19,
                 B20, B21, B22, B23, B24, B25, B26, B27, B28, B29,
                 A2, A3, A4, A5, A6, A7, A8, A9,
@@ -198,6 +256,58 @@ public class MapaCamping {
         casas.put("B7", casaB7);
         casas.put("B6", casaB6);
         casas.put("B5", casaB5);
+        casas.put("A30", parcelaA30);
+        casas.put("A29", parcelaA29);
+        casas.put("A28", parcelaA28);
+        casas.put("A27", parcelaA27);
+        casas.put("A26", parcelaA26);
+        casas.put("A25", parcelaA25);
+        casas.put("A24", parcelaA24);
+        casas.put("A23", parcelaA23);
+        casas.put("A22", parcelaA22);
+        casas.put("A21", parcelaA21);
+        casas.put("A20", parcelaA20);
+        casas.put("A19", parcelaA19);
+        casas.put("A18", parcelaA18);
+        casas.put("A17", parcelaA17);
+        casas.put("A16", parcelaA16);
+        casas.put("A15", parcelaA15);
+        casas.put("A14", parcelaA14);
+        casas.put("A13", parcelaA13);
+        casas.put("A12", parcelaA12);
+        casas.put("A9", parcelaA9);
+        casas.put("A8", parcelaA8);
+        casas.put("A7", parcelaA7);
+        casas.put("A6", parcelaA6);
+        casas.put("A5", parcelaA5);
+        casas.put("A4", parcelaA4);
+        casas.put("A3", parcelaA3);
+        casas.put("A2", parcelaA2);
+        casas.put("S39", parcelaS39);
+        casas.put("S38", parcelaS38);
+        casas.put("S37", parcelaS37);
+        casas.put("S36", parcelaS36);
+        casas.put("S35", parcelaS35);
+        casas.put("S34", parcelaS34);
+        casas.put("S33", parcelaS33);
+        casas.put("S32", parcelaS32);
+        casas.put("S31", parcelaS31);
+        casas.put("S30", parcelaS30);
+        casas.put("S29", parcelaS29);
+        casas.put("S28", parcelaS28);
+        casas.put("S27", parcelaS27);
+        casas.put("S26", parcelaS26);
+        casas.put("S25", parcelaS25);
+        casas.put("S24", parcelaS24);
+        casas.put("S23", parcelaS23);
+        casas.put("S22", parcelaS22);
+        casas.put("S21", parcelaS21);
+        casas.put("S18", parcelaS18);
+        casas.put("S17", parcelaS17);
+        casas.put("S16", parcelaS16);
+        casas.put("S15", parcelaS15);
+        casas.put("S13", parcelaS13);
+
     }
     private void actualizarColoresCasas() {
         for (Map.Entry<String, ImageView> entry : casas.entrySet()) {
@@ -213,22 +323,40 @@ public class MapaCamping {
 
             if (recursoOpt.isPresent()) {
                 String estado = recursoOpt.get().getEstado().toLowerCase();
-
-                switch (estado) {
-                    case "disponible":
-                        imagen = "home_verde.png";
-                        break;
-                    case "ocupado":
-                        imagen = "home_rojo.png";
-                        break;
-                    case "mantenimiento":
-                        imagen = "home_amarillo.png";
-                        break;
-                    default:
-                        // En caso de que no reconozca el estado, puedes poner un icono neutro o el verde
-                        imagen = "home_verde.png";
-                        break;
+                if(recursoOpt.get().getTipo().toLowerCase().startsWith("parcela")){
+                    switch (estado) {
+                        case "disponible":
+                            imagen = "acampada_verde.png";
+                            break;
+                        case "ocupado":
+                            imagen = "acampada_rojo.png";
+                            break;
+                        case "mantenimiento":
+                            imagen = "acampada_amarillo.png";
+                            break;
+                        default:
+                            // En caso de que no reconozca el estado, puedes poner un icono neutro o el verde
+                            imagen = "acampada_verde.png";
+                            break;
+                    }
+                } else {
+                    switch (estado) {
+                        case "disponible":
+                            imagen = "home_verde.png";
+                            break;
+                        case "ocupado":
+                            imagen = "home_rojo.png";
+                            break;
+                        case "mantenimiento":
+                            imagen = "home_amarillo.png";
+                            break;
+                        default:
+                            // En caso de que no reconozca el estado, puedes poner un icono neutro o el verde
+                            imagen = "home_verde.png";
+                            break;
+                    }
                 }
+
             } else {
                 // Si no encuentra el recurso, puedes poner imagen por defecto o nada
                 imagen = "home_verde.png";
