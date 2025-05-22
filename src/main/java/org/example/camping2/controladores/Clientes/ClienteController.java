@@ -21,6 +21,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 import org.example.camping2.controladores.Acompanante.AcompananteController;
 import org.example.camping2.controladores.Liberable;
+import org.example.camping2.controladores.MapaCamping;
 import org.example.camping2.controladores.Recursos.RecursoController;
 import org.example.camping2.controladores.Reservas.ReservaController;
 import org.example.camping2.modelo.dto.Acompanante;
@@ -430,7 +431,8 @@ public class ClienteController implements Liberable{
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/MapaCamping.fxml"));
             Parent root = loader.load();
-
+            MapaCamping controller = loader.getController();
+            controller.setMemoriaRecurso(memoriaRecurso);
             Stage stage = new Stage();
             stage.setTitle("Mapa del Camping");
             stage.setScene(new Scene(root));

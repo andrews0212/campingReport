@@ -3,14 +3,17 @@ package org.example.camping2.controladores;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import org.example.camping2.modelo.dto.Recurso;
+import org.example.camping2.modelo.memoria.Memoria;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class MapaCamping {
 
     private final Map<String, Button> botones = new HashMap<>();
-
+    private Memoria<Recurso, Integer> memoriaRecurso;
     // === Sección EL ===
     @FXML private Button EL1;
     @FXML private Button EL2;
@@ -131,7 +134,24 @@ public class MapaCamping {
     }
 
     private void manejarClicBoton(String idBoton, MouseEvent event) {
-        System.out.println("Clic en botón: " + idBoton);
-        // Aquí puedes abrir una nueva vista o mostrar detalles del recurso
+        Optional<Recurso> recursoEncontrado = memoriaRecurso.findAll().stream().filter(p -> p.getNombre().equals(idBoton)).findFirst();
+        if (recursoEncontrado.isPresent()) {
+            Recurso recurso = recursoEncontrado.get();
+            // Mostrar detalles del recurso en la terminal
+            System.out.println("Clic en botón: " + idBoton);
+            System.out.println("Detalles del recurso:");
+            System.out.println("Nombre: " + recurso.getNombre());
+            System.out.println("Tipo: " + recurso.getTipo());
+            System.out.println("Capacidad: " + recurso.getCapacidad());
+            System.out.println("Precio: " + recurso.getPrecio());
+            System.out.println("Mínimo personas: " + recurso.getMinimoPersonas());
+            System.out.println("Estado: " + recurso.getEstado());
+        } else {
+            System.out.println("Recurso con nombre " + idBoton + " no encontrado.");
+        }
+    }
+
+    public void setMemoriaRecurso(Memoria<Recurso, Integer> memoriaRecurso) {
+        this.memoriaRecurso = memoriaRecurso;
     }
 }
