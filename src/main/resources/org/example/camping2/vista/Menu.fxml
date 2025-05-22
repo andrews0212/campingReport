@@ -147,6 +147,11 @@
                               <MenuItem fx:id="AcompananteMenu" mnemonicParsing="false" onAction="#cargarPanelIzquierdoReservas" text="Acompañante" />
                           </items>
                         </Menu>
+                        <Menu mnemonicParsing="false" text="Visualizar">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#cargarVentanaMapa" text="Mapa Interactivo" />
+                          </items>
+                        </Menu>
                       <Menu mnemonicParsing="false" text="Help">
                         <items>
                           <MenuItem fx:id="AyudaJava" mnemonicParsing="false" onAction="#JavaDoc" text="Ayuda Java" />
