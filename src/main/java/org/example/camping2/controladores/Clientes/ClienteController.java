@@ -21,7 +21,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 import org.example.camping2.controladores.Acompanante.AcompananteController;
 import org.example.camping2.controladores.Liberable;
-import org.example.camping2.controladores.MapaCamping;
+import org.example.camping2.Mapa.MapaCamping;
 import org.example.camping2.controladores.Recursos.RecursoController;
 import org.example.camping2.controladores.Reservas.ReservaController;
 import org.example.camping2.modelo.dto.Acompanante;

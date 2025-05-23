@@ -5,7 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="297.0" prefWidth="1246.0" stylesheets="@../../Css/mapa.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.MapaCamping">
+<AnchorPane prefHeight="297.0" prefWidth="1246.0" stylesheets="@../../Css/mapa.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.Mapa.MapaCamping">
    <children>
       <ImageView fitHeight="340.0" fitWidth="1251.0" layoutX="-5.0" layoutY="-9.0">
          <image>
@@ -502,39 +502,9 @@
             <Image url="@../../Iconos/acampada.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="43.0" layoutY="154.0">
-         <image>
-            <Image url="@../../Iconos/barbacoa.png" />
-         </image>
-      </ImageView>
       <ImageView fx:id="parcelaS13" fitHeight="44.0" fitWidth="39.0" layoutX="867.0" layoutY="223.0">
          <image>
             <Image url="@../../Iconos/acampada.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="43.0" layoutY="223.0">
-         <image>
-            <Image url="@../../Iconos/barbacoa.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="649.0" layoutY="241.0">
-         <image>
-            <Image url="@../../Iconos/barbacoa.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="709.0" layoutY="172.0">
-         <image>
-            <Image url="@../../Iconos/barbacoa.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="105.0" layoutY="70.0">
-         <image>
-            <Image url="@../../Iconos/barbacoa.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="116.0" layoutY="162.0">
-         <image>
-            <Image url="@../../Iconos/barbacoa.png" />
          </image>
       </ImageView>
 

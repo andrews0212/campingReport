@@ -1,4 +1,4 @@
-package org.example.camping2.controladores;
+package org.example.camping2.Mapa;
 
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -16,8 +16,10 @@ import org.example.camping2.modelo.memoria.Memoria;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class MapaCamping {
 
@@ -201,6 +203,13 @@ public class MapaCamping {
     @FXML private Button S38;
     @FXML private Button S39;
 
+    @FXML private Button PR14;
+    @FXML private Button PR13;
+    @FXML private Button PR12;
+    @FXML private Button PR11;
+    @FXML private Button PR4;
+    @FXML private Button PR15;
+
     @FXML
     public void initialize() {
         agregarBotones(
@@ -214,7 +223,7 @@ public class MapaCamping {
                 S13,S14,S15,
                 S16, S17, S18, S21, S22, S23,
                 S24, S25, S26, S27, S28, S29, S30, S31,
-                S32, S33, S34, S35, S36, S37, S38, S39
+                S32, S33, S34, S35, S36, S37, S38, S39, PR4, PR11, PR12, PR13, PR14, PR15
         );
 
         // Asignar evento de clic a cada botón
@@ -385,6 +394,65 @@ public class MapaCamping {
     }
 
     private void manejarClicBoton(String idBoton, MouseEvent event) {
+
+        if (idBoton.startsWith("PR")) {
+            // Abrir ventana MerenderoControlador y pasarle las barbacoas adecuadas
+            abrirVentanaMerendero(idBoton);
+        } else {
+            mostrarDetalleRecurso(idBoton); // Lo que ya hacías con los demás botones
+        }
+
+    }
+
+    private void abrirVentanaMerendero(String prId) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/mapa/Merenderos.fxml"));
+            Parent root = loader.load();
+
+            MerenderoControlador controlador = loader.getController();
+
+            int[] rango = switch (prId) {
+                case "PR4" -> new int[]{1, 10};
+                case "PR11" -> new int[]{11, 20};
+                case "PR12" -> new int[]{21, 30};
+                case "PR13" -> new int[]{31, 40};
+                case "PR14" -> new int[]{41, 50};
+                case "PR15" -> new int[]{51, 60};
+                default -> new int[]{1, 10};
+            };
+
+            final int inicio = rango[0];
+            final int fin = rango[1];
+
+            List<Recurso> barbacoas = memoriaRecurso.findAll().stream()
+                    .filter(r -> r.getTipo().toLowerCase().contains("barbacoa"))
+                    .filter(r -> {
+                        try {
+                            String numeroStr = r.getNombre().replaceAll("[^0-9]", "");
+                            int numero = Integer.parseInt(numeroStr);
+                            return numero >= inicio && numero <= fin;
+                        } catch (Exception e) {
+                            return false;
+                        }
+                    })
+                    .collect(Collectors.toList());
+
+
+            // Pasar barbacoas al controlador
+            controlador.setBarbacoas(barbacoas);
+
+            Stage stage = new Stage();
+            stage.setTitle("Merendero " + prId);
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void mostrarDetalleRecurso(String idBoton) {
         Optional<Recurso> recursoEncontrado = memoriaRecurso.findAll().stream()
                 .filter(p -> p.getNombre().equals(idBoton))
                 .findFirst();
@@ -417,7 +485,9 @@ public class MapaCamping {
         } else {
             System.out.println("Recurso con nombre " + idBoton + " no encontrado.");
         }
+
     }
+    
 
 
     public void setMemoriaRecurso(Memoria<Recurso, Integer> memoriaRecurso) {

@@ -31,4 +31,6 @@ module org.example.camping2 {
     opens org.example.camping2.controladores.Recursos to javafx.fxml;
     exports org.example.camping2.controladores.Acompanante;
     opens org.example.camping2.controladores.Acompanante to javafx.fxml;
+    exports org.example.camping2.Mapa;
+    opens org.example.camping2.Mapa to javafx.fxml;
 }
