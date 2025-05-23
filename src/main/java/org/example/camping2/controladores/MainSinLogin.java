@@ -21,21 +21,17 @@ public class MainSinLogin extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         try {
-
-            // Cargar la nueva ventana (Menu.fxml) si el usuario es autenticado
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/Menu.fxml"));
             Parent root = loader.load();
-            // Obtener el controlador de la nueva ventana y configurar la memoria de clientes
             ClienteController controladorCliente = loader.getController();
             controladorCliente.setMemoriaCliente(new Memoria<>(Cliente.class));
-            // Crear y mostrar la nueva escena
             stage = new Stage();
             stage.setTitle("EcoVenture");
             URL url = getClass().getResource("/org/example/camping2/logo.png");
             Image icon = new Image(url.toString());
             ImageView imageView = new ImageView(icon);
-            imageView.setFitWidth(32); // Establecer el ancho del ícono
-            imageView.setFitHeight(32); // Establecer la altura del ícono
+            imageView.setFitWidth(32);
+            imageView.setFitHeight(32);
             stage.getIcons().add(imageView.getImage());
             stage.setScene(new Scene(root));
             stage.show();

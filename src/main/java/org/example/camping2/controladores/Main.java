@@ -33,10 +33,7 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage stage) throws IOException {
-        // Load the FXML file for the initial UI (PantallaCarga.fxml)
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/PantallaCarga.fxml"));
-
-        // Create the scene from the loaded FXML and set it in the stage
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("EcoVenture");
         URL url = getClass().getResource("/org/example/camping2/logo.png");
@@ -45,10 +42,7 @@ public class Main extends Application {
         imageView.setFitWidth(32); // Establecer el ancho del ícono
         imageView.setFitHeight(32); // Establecer la altura del ícono
         stage.getIcons().add(imageView.getImage());
-
         stage.setScene(scene);
-
-        // Show the main stage
         stage.show();
     }
 

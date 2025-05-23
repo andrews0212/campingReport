@@ -18,31 +18,31 @@
    </center>
    <right>
       <VBox alignment="TOP_LEFT" prefHeight="487.0" prefWidth="151.0" spacing="10">
-         <Button alignment="TOP_LEFT" onAction="#alternarPanelDerecho" prefHeight="25.0" prefWidth="176.0" text="Ocultar/Mostrar Panel">
+         <Button fx:id="botonOcultar" alignment="TOP_LEFT" onAction="#alternarPanelDerecho" prefHeight="25.0" prefWidth="176.0" text="Ocultar/Mostrar Panel">
             <VBox.margin>
                <Insets top="20.0" />
             </VBox.margin></Button>
          <VBox fx:id="panelDerecho" prefHeight="200.0" prefWidth="100.0">
             <children>
-               <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Filtro de Clientes" />
+               <Label fx:id="filtroLabel" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Filtro de Clientes" />
       
                <HBox alignment="CENTER_LEFT" spacing="10">
-                  <Label text="Nombre:" />
+                  <Label fx:id="nombreLabel" text="Nombre:" />
                </HBox>
                <TextField fx:id="nombreField" promptText="Ingrese el nombre" />
       
                <HBox alignment="CENTER_LEFT" spacing="10">
-                  <Label text="Apellido:" />
+                  <Label fx:id="apellidoLabel" text="Apellido:" />
                </HBox>
                <TextField fx:id="apellidoField" promptText="Ingrese el apellido" />
       
                <HBox alignment="CENTER_LEFT" spacing="10">
-                  <Label text="Fecha de Nacimiento:" />
+                  <Label fx:id="fechaNacimientoLabel" text="Fecha de Nacimiento:" />
                </HBox>
                <DatePicker fx:id="fechaNacimientoPicker" />
       
                <HBox alignment="CENTER_LEFT" spacing="10">
-                  <Label text="Estado:" />
+                  <Label fx:id="estadoLabel" text="Estado:" />
                </HBox>
                <ComboBox fx:id="estadoComboBox" promptText="Seleccione el estado">
                   <items>
@@ -56,7 +56,7 @@
                </ComboBox>
                <Label />
       
-               <Button onAction="#generarReporte" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Generar Reporte" />
+               <Button fx:id="generarButton" onAction="#generarReporte" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Generar Reporte" />
             </children>
          </VBox>
          <BorderPane.margin>
@@ -139,7 +139,7 @@
                <children>
                   <MenuBar>
                     <menus>
-                        <Menu mnemonicParsing="false" text="Gestion">
+                        <Menu fx:id="GestionMenu" mnemonicParsing="false" text="Gestion">
                           <items>
                               <MenuItem fx:id="ClienteMenu" mnemonicParsing="false" onAction="#cargarPanelIzquierdoReservas" text="Cliente" />
                             <MenuItem fx:id="ReservaMenu" mnemonicParsing="false" onAction="#cargarPanelIzquierdoReservas" text="Reserva" />
@@ -147,9 +147,15 @@
                               <MenuItem fx:id="AcompananteMenu" mnemonicParsing="false" onAction="#cargarPanelIzquierdoReservas" text="Acompañante" />
                           </items>
                         </Menu>
-                        <Menu mnemonicParsing="false" text="Visualizar">
+                        <Menu fx:id="VisualizarMenu" mnemonicParsing="false" text="Visualizar">
                           <items>
                             <MenuItem mnemonicParsing="false" onAction="#cargarVentanaMapa" text="Mapa Interactivo" />
+                          </items>
+                        </Menu>
+                        <Menu fx:id="IdiomaMenu" mnemonicParsing="false" text="Idiomas">
+                          <items>
+                            <MenuItem fx:id="menuIngles" mnemonicParsing="false" text="Ingles" />
+                              <MenuItem fx:id="menuEspanol" mnemonicParsing="false" text="Español" />
                           </items>
                         </Menu>
                       <Menu mnemonicParsing="false" text="Help">

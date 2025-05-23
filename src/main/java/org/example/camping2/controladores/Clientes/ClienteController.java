@@ -38,6 +38,7 @@ import java.sql.DriverManager;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 /**
  * Controller class responsible for managing client-related functionalities within the camping management application.
@@ -49,8 +50,6 @@ import java.util.Map;
  * @since 31/01/2025
  */
 public class ClienteController implements Liberable{
-
-
     @FXML
     private ImageView buscarImage;
     @FXML
@@ -59,50 +58,46 @@ public class ClienteController implements Liberable{
     private ImageView modificarImage;
     @FXML
     private ImageView eliminarImage;
-
     @FXML
     private VBox panelIzquierdo; // VBox on the left side of the screen
     @FXML
     private VBox panelDerecho; // VBox on the right side of the screen
     @FXML
     private TableView<?> tablaClientes;
-
     @FXML
-    private Button btnCliente, btnRecurso, btnReservas, btnAñadir, btnEliminar, btnActualizar, btnBuscar;
-
+    private Button ButtonBuscar, ButtonAgregar, ButtonModificar, ButtonEliminar;
     @FXML
     private StackPane areaContenido; // Container for dynamically loaded content
-
     @FXML
     private TextField nombreField;
-
     @FXML
     private TextField apellidoField;
-
     @FXML
     private DatePicker fechaNacimientoPicker;
-
     @FXML
     private ComboBox<String> estadoComboBox;
+    @FXML
+    private MenuItem menuEspanol, menuIngles;
 
     private Memoria<Cliente, Integer> memoriaCliente;
     private Memoria<Reserva, Integer> memoriaReserva;
     private Memoria<Recurso, Integer> memoriaRecurso;
     private Memoria<Acompanante, Integer> memoriaAcompanante;
-
-    private Locale idioma;
-
-
+    private ResourceBundle bundle;
     /**
      * Initializes the controller and the various panels in the client section of the application.
      * This method is called automatically after the FXML file is loaded.
      */
     public void initialize() {
-
         memoriaCliente = new Memoria<>(Cliente.class);
         memoriaReserva = new Memoria<>(Reserva.class);
         memoriaRecurso = new Memoria<>(Recurso.class);
         memoriaAcompanante = new Memoria<>(Acompanante.class);
+        menuIngles.setOnAction(event -> cambiarIdioma(new Locale("en", "US")));
+        menuEspanol.setOnAction(event -> cambiarIdioma(new Locale("es", "ES")));
+
+        // Cargar idioma predeterminado (Español)
+        cambiarIdioma(new Locale("es", "ES"));
     }
 
     /**
@@ -114,13 +109,6 @@ public class ClienteController implements Liberable{
         this.memoriaCliente = memoriaCliente;
     }
 
-    public Locale getIdioma() {
-        return idioma;
-    }
-
-    public void setIdioma(Locale idioma) {
-        this.idioma = idioma;
-    }
 
     /**
      * Handles the button click for generating a report with client data based on the input fields.
@@ -261,7 +249,6 @@ public class ClienteController implements Liberable{
     @FXML
     public void eliminarReservaBoton(ActionEvent actionEvent) {
     }
-
     /**
      * Displays a message to the user using an informational alert.
      *
@@ -274,7 +261,6 @@ public class ClienteController implements Liberable{
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
-
     @FXML
     private void JavaDoc(){
         try {
@@ -285,7 +271,6 @@ public class ClienteController implements Liberable{
         }
 
     }
-
     /**
      * Loads the given FXML file into the content area (StackPane).
      * This method is responsible for dynamically loading and displaying different client-related panels.
@@ -295,7 +280,6 @@ public class ClienteController implements Liberable{
     private void cargarPanel(String archivoFXML) {
         try {
                 areaContenido.getChildren().clear();
-
             // Load the FXML file for the specified panel
             FXMLLoader loader = new FXMLLoader(getClass().getResource(archivoFXML));
             Parent nuevoPanel = loader.load();
@@ -328,7 +312,6 @@ public class ClienteController implements Liberable{
             FXMLLoader loader = null;
             MenuItem item = (MenuItem) actionEvent.getSource();
             String id = item.getId();  //  Aquí obtienes el ID
-
             // 🔁 Liberar recursos del panel actual si es necesario
             if (!panelIzquierdo.getChildren().isEmpty()) {
                 Node nodoActual = panelIzquierdo.getChildren().get(0);
@@ -337,7 +320,6 @@ public class ClienteController implements Liberable{
                     ((Liberable) controllerActual).liberarRecursos();
                 }
             }
-
             if(id.equals("ReservaMenu")){
                  loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/reservas/BotonesCrudReserva.fxml"));
 
@@ -351,9 +333,7 @@ public class ClienteController implements Liberable{
             if(id.equals("AcompananteMenu")){
                 loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/Acompanante/BotonesCrudAcompaniante.fxml"));
             }
-
             Parent nuevoPanel = loader.load();
-
             // Inyectamos areaContenido en el nuevo controlador de botones
             if(id.equals("ReservaMenu")){
                 ReservaController controller = loader.getController();
@@ -387,8 +367,6 @@ public class ClienteController implements Liberable{
                 panelIzquierdo.getChildren().clear();
                 panelIzquierdo.getChildren().add(nuevoPanel);
             }
-
-
         } catch (IOException e) {
             e.printStackTrace();
             mostrarMensaje("Error al cargar el panel izquierdo: " + e.getMessage());
@@ -398,12 +376,9 @@ public class ClienteController implements Liberable{
     public void setAreaContenido(StackPane areaContenido) {
         this.areaContenido = areaContenido;
     }
-
     @Override
     public void liberarRecursos() {
         Platform.runLater(() -> {
-
-
             if (agregarImage.getImage() != null) {
                 agregarImage.getImage().cancel();
             }
@@ -425,7 +400,6 @@ public class ClienteController implements Liberable{
             buscarImage.setImage(null);
         });
     }
-
     @FXML
     public void cargarVentanaMapa(){
         try {
@@ -441,6 +415,14 @@ public class ClienteController implements Liberable{
             e.printStackTrace();
         }
     }
+    private void cambiarIdioma(Locale locale) {
+        bundle = ResourceBundle.getBundle("org.example.camping2.idiomas.messages", locale);
+        ButtonBuscar.setText(bundle.getString("buscar"));
+        ButtonAgregar.setText(bundle.getString("agregar"));
+        ButtonModificar.setText(bundle.getString("actualizar"));
+        ButtonEliminar.setText(bundle.getString("eliminar"));
+    }
+
 }
 
 
