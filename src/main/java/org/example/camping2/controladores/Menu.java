@@ -39,6 +39,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import static org.example.camping2.controladores.GestorIdiomas.cambiarIdioma;
+import static org.example.camping2.controladores.GestorIdiomas.getTexto;
+
 /**
  * Controller class responsible for managing client-related functionalities within the camping management application.
  * This class handles the creation of clients, client updates, deletions, searches, and generates reports based on client data.
@@ -48,7 +51,7 @@ import java.util.ResourceBundle;
  * @version 1.0.0
  * @since 31/01/2025
  */
-public class Menu implements Liberable{
+public class Menu implements Liberable,IdiomaListener{
     @FXML
     private ImageView buscarImage;
     @FXML
@@ -83,6 +86,7 @@ public class Menu implements Liberable{
     private Memoria<Recurso, Integer> memoriaRecurso;
     private Memoria<Acompanante, Integer> memoriaAcompanante;
     private ClienteController clienteController;
+    private ResourceBundle bundle;
 
     /**
      * Initializes the controller and the various panels in the client section of the application.
@@ -93,22 +97,36 @@ public class Menu implements Liberable{
         memoriaReserva = new Memoria<>(Reserva.class);
         memoriaRecurso = new Memoria<>(Recurso.class);
         memoriaAcompanante = new Memoria<>(Acompanante.class);
-
+        GestorIdiomas.agregarListener(this);
+        actualizarTextos();
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/clientes/BotonesCrudCliente.fxml"));
             Parent nuevoPanel = loader.load();                   // ① carga el FXML y crea el controlador
             clienteController = loader.getController();  // ② ahora ya no es null
-            clienteController.setMenu(menuEspanol, menuIngles,acompananteMenu, recursoMenu, reservaMenu, clienteMenu, mapaIteractivoMenu, gestionMenu, visualizarMenu, idiomaMenu, gestionMenu, visualizarMenu, idiomaMenu, Idioma.idioma);
             clienteController.setAreaContenido(areaContenido);
             clienteController.setMemoria(memoriaCliente);
             panelIzquierdo.getChildren().clear();
             panelIzquierdo.getChildren().add(nuevoPanel);
+            menuIngles.setOnAction(e -> {cambiarIdiomaIngles();});
+            menuEspanol.setOnAction(e -> {cambiarIdiomaEspañol();});
         } catch (IOException e) {
             e.printStackTrace();
             mostrarMensaje("Error al cargar el panel izquierdo: " + e.getMessage());
         }
     }
+
+
+    @FXML
+    private void cambiarIdiomaEspañol() {
+        cambiarIdioma(new Locale("es", "ES"));
+    }
+
+    @FXML
+    private void cambiarIdiomaIngles() {
+       cambiarIdioma(new Locale("en", "US"));
+    }
+
 
 
     public void alternarPanelDerecho() {
@@ -267,7 +285,6 @@ public class Menu implements Liberable{
             }
             if(id.equals("clienteMenu")){
                 clienteController = loader.getController();  // ② ahora ya no es null
-                clienteController.setMenu(menuEspanol, menuIngles,acompananteMenu, recursoMenu, reservaMenu, clienteMenu, mapaIteractivoMenu, gestionMenu, visualizarMenu, idiomaMenu, gestionMenu, visualizarMenu, idiomaMenu, Idioma.idioma);
                 clienteController.setMemoria(memoriaCliente);
                 clienteController.setAreaContenido(areaContenido);
                 panelIzquierdo.getChildren().clear();
@@ -338,6 +355,21 @@ public class Menu implements Liberable{
     }
 
 
+    @Override
+    public void idiomaCambiado() {
+        actualizarTextos();
+    }
+
+    private void actualizarTextos() {
+        acompananteMenu.setText(getTexto("acompanante"));
+        recursoMenu.setText(getTexto("recurso"));
+        reservaMenu.setText(getTexto("reserva"));
+        clienteMenu.setText(getTexto("cliente"));
+        mapaIteractivoMenu.setText(getTexto("mapa"));
+        gestionMenu.setText(getTexto("gestion"));
+        visualizarMenu.setText(getTexto("visualizar"));
+        idiomaMenu.setText(getTexto("idioma"));
+    }
 }
 
 

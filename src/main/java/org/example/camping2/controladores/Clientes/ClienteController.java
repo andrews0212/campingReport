@@ -2,13 +2,15 @@ package org.example.camping2.controladores.Clientes;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.StackPane;
-import org.example.camping2.controladores.Idioma;
+import org.example.camping2.controladores.GestorIdiomas;
+import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.memoria.Memoria;
 
@@ -16,48 +18,27 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class ClienteController {
+public class ClienteController implements IdiomaListener{
 
     @FXML
     private Button ButtonBuscar, ButtonAgregar, ButtonModificar, ButtonEliminar;
-    private ResourceBundle bundle;
     private StackPane areaContenido;
-    private MenuItem menuIngles;
-    private MenuItem menuEspanol;
-    private MenuItem acompananteMenu;
-    private MenuItem recursoMenu;
-    private MenuItem reservaMenu;
-    private MenuItem clienteMenu;
-    private MenuItem mapaIteractivoMenu;
-    private javafx.scene.control.Menu gestionMenu, visualizarMenu, idiomaMenu;
     private Memoria<Cliente, Integer> memoria;
+
+
+    @FXML
+    public void initialize() {
+        GestorIdiomas.agregarListener(this);
+        actualizarTextos();
+    }
 
 
     public void setMemoria(Memoria<Cliente, Integer> memoria) {
         this.memoria = memoria;
-    }
-
-
-    private void cambiarIdioma(Locale locale) {
-        bundle = ResourceBundle.getBundle("org.example.camping2.idiomas.messages", locale);
-        ButtonBuscar.setText(bundle.getString("buscar"));
-        ButtonAgregar.setText(bundle.getString("agregar"));
-        ButtonModificar.setText(bundle.getString("actualizar"));
-        ButtonEliminar.setText(bundle.getString("eliminar"));
-        acompananteMenu.setText(bundle.getString("acompanante"));
-        recursoMenu.setText(bundle.getString("recurso"));
-        reservaMenu.setText(bundle.getString("reserva"));
-        clienteMenu.setText(bundle.getString("cliente"));
-        gestionMenu .setText(bundle.getString("gestion"));
-        visualizarMenu.setText(bundle.getString("visualizar"));
-        idiomaMenu.setText(bundle.getString("idioma"));
-        mapaIteractivoMenu.setText(bundle.getString("mapa"));
-        Idioma.idioma = locale;
 
     }
-    private static void guardarIdioma(Locale locale){
 
-    }
+
 
 
     /**
@@ -171,20 +152,17 @@ public class ClienteController {
         ButtonEliminar = buttonEliminar;
     }
 
-    public void setMenu(MenuItem menuEspanol, MenuItem menuIngles, MenuItem acompananteMenu, MenuItem recursoMenu, MenuItem reservaMenu, MenuItem clienteMenu, MenuItem mapaIteractivoMenu, Menu gestionMenu, Menu visualizarMenu, Menu idiomaMenu, Menu gestionMenu1, Menu visualizarMenu1, Menu idiomaMenu1, Locale locale) {
-        this.menuIngles = menuIngles;
-        this.menuEspanol = menuEspanol;
-        this.acompananteMenu = acompananteMenu;
-        this.recursoMenu = recursoMenu;
-        this.reservaMenu = reservaMenu;
-        this.clienteMenu = clienteMenu;
-        this.mapaIteractivoMenu = mapaIteractivoMenu;
-        this.gestionMenu = gestionMenu;
-        this.visualizarMenu = visualizarMenu;
-        this.idiomaMenu = idiomaMenu;
-        menuIngles.setOnAction(event -> cambiarIdioma(new Locale("en", "US")));
-        menuEspanol.setOnAction(event -> cambiarIdioma(new Locale("es", "ES")));
-        cambiarIdioma(locale);
 
+    private void actualizarTextos() {
+        ButtonBuscar.setText(GestorIdiomas.getTexto("buscar"));
+        ButtonAgregar.setText(GestorIdiomas.getTexto("agregar"));
+        ButtonModificar.setText(GestorIdiomas.getTexto("actualizar"));
+        ButtonEliminar.setText(GestorIdiomas.getTexto("eliminar"));
+
+    }
+
+    @Override
+    public void idiomaCambiado() {
+        actualizarTextos();
     }
 }
