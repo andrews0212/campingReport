@@ -204,5 +204,9 @@ public class BuscarClientePanelController implements IdiomaListener {
     dniColumn.setText(GestorIdiomas.getTexto("dni"));
     apellidoColumn.setText(GestorIdiomas.getTexto("apellido"));
 
+    idClienteTextField.setPromptText(GestorIdiomas.getTexto("idText"));
+    nombreTextField.setPromptText(GestorIdiomas.getTexto("nombreText"));
+    dniTextField.setPromptText(GestorIdiomas.getTexto("dniText"));
+
     }
 }
