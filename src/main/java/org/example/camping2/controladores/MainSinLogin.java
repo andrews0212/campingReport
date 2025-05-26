@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import org.example.camping2.controladores.Clientes.ClienteController;
 import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.memoria.Memoria;
 
@@ -23,7 +22,7 @@ public class MainSinLogin extends Application {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/Menu.fxml"));
             Parent root = loader.load();
-            ClienteController controladorCliente = loader.getController();
+            Menu controladorCliente = loader.getController();
             controladorCliente.setMemoriaCliente(new Memoria<>(Cliente.class));
             stage = new Stage();
             stage.setTitle("EcoVenture");

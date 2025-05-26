@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+
 <VBox fx:id="panelIzquierdo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="487.0" prefWidth="136.0" spacing="10" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.Clientes.ClienteController">
    <children>
       <Button fx:id="ButtonBuscar" alignment="CENTER" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#manejarBotonBuscar" style="-fx-padding: 10;" styleClass="botonMenu" stylesheets="@../../Css/menuStyle.css" text="Buscar" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="ALWAYS">
