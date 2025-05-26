@@ -4,6 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import org.example.camping2.controladores.GestorIdiomas;
+import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.memoria.Memoria;
 
@@ -16,7 +18,15 @@ import org.example.camping2.modelo.memoria.Memoria;
  * @version 1.0.0
  * @since 31/01/2025
  */
-public class BuscarClientePanelController {
+public class BuscarClientePanelController implements IdiomaListener {
+
+
+    @FXML
+    private Label labelTitulo, labelId, labelNombre, labelDNI;
+    @FXML
+    private Button buttonBuscar;
+    @FXML
+    private Button buttonBuscarTodos;
 
     private Memoria<Cliente, Integer> memoria;
 
@@ -63,6 +73,8 @@ public class BuscarClientePanelController {
 
         // Bind the observable list to the TableView
         clientesTableView.setItems(clientes);
+        GestorIdiomas.agregarListener(this);
+        actualizarTexto();
     }
 
     /**
@@ -173,5 +185,24 @@ public class BuscarClientePanelController {
      */
     public void setMemoria(Memoria<Cliente, Integer> memoria) {
         this.memoria = memoria;
+    }
+
+    @Override
+    public void idiomaCambiado() {
+    actualizarTexto();
+    }
+    public void actualizarTexto(){
+    buttonBuscar.setText(GestorIdiomas.getTexto("buscar"));
+    buttonBuscarTodos.setText(GestorIdiomas.getTexto("buscarTodos"));
+    labelTitulo.setText(GestorIdiomas.getTexto("buscarCliente"));
+    labelId.setText(GestorIdiomas.getTexto("idcliente"));
+    labelNombre.setText(GestorIdiomas.getTexto("nombre"));
+    labelDNI.setText(GestorIdiomas.getTexto("dni"));
+
+    idColumn.setText(GestorIdiomas.getTexto("idcliente"));
+    nombreColumn.setText(GestorIdiomas.getTexto("nombre"));
+    dniColumn.setText(GestorIdiomas.getTexto("dni"));
+    apellidoColumn.setText(GestorIdiomas.getTexto("apellido"));
+
     }
 }
