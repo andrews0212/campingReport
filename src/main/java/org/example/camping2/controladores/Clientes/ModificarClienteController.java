@@ -2,6 +2,8 @@ package org.example.camping2.controladores.Clientes;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import org.example.camping2.controladores.GestorIdiomas;
+import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.memoria.Memoria;
 import org.example.camping2.modelo.validaciones.ValidarCliente;
@@ -17,7 +19,7 @@ import org.example.camping2.modelo.validaciones.ValidarCliente;
  * @version 1.0.0
  * @since 31/01/2025
  */
-public class ModificarClienteController {
+public class ModificarClienteController implements IdiomaListener {
 
     @FXML
     private TextField idClienteTextField;
@@ -46,6 +48,31 @@ public class ModificarClienteController {
     @FXML
     private Label statusLabel;
 
+    @FXML
+    private Label labelID;
+    @FXML
+    private Label labelNombre;
+    @FXML
+    private Label labelApellido;
+    @FXML
+    private Label labelDNI;
+    @FXML
+    private Label labelEmail;
+    @FXML
+    private Label labelTelefono;
+    @FXML
+    private Label labelEstado;
+    @FXML
+    private Label labelComentarios;
+    @FXML
+    private Button btnBuscar;
+    @FXML
+    private Button btnGuardar;
+    @FXML
+    private Label textTitulo;
+
+
+
     private Memoria<Cliente, Integer> memoria;
 
     /**
@@ -53,6 +80,13 @@ public class ModificarClienteController {
      *
      * @throws NumberFormatException Si el ID ingresado no es un número válido.
      */
+
+    public void initialize() {
+        GestorIdiomas.agregarListener(this);
+        actualizarTexto();
+    }
+
+
     public void buscarCliente() {
         String idCliente = idClienteTextField.getText();
 
@@ -174,5 +208,34 @@ public class ModificarClienteController {
         alerta.setTitle(titulo);
         alerta.setContentText(mensaje);
         alerta.showAndWait();
+    }
+
+    @Override
+    public void idiomaCambiado() {
+        actualizarTexto();
+    }
+    public void actualizarTexto(){
+        labelNombre.setText(GestorIdiomas.getTexto("nombre"));
+        labelApellido.setText(GestorIdiomas.getTexto("apellido"));
+        labelComentarios.setText(GestorIdiomas.getTexto("comentarios"));
+        labelDNI.setText(GestorIdiomas.getTexto("dni"));
+        labelEmail.setText(GestorIdiomas.getTexto("email"));
+        labelEstado.setText(GestorIdiomas.getTexto("estado"));
+        labelTelefono.setText(GestorIdiomas.getTexto("telefono"));
+        labelID.setText(GestorIdiomas.getTexto("id"));
+        btnBuscar.setText(GestorIdiomas.getTexto("buscar"));
+        btnGuardar.setText(GestorIdiomas.getTexto("guardar"));
+        idClienteTextField.setPromptText(GestorIdiomas.getTexto("idText"));
+        nombreTextField.setPromptText(GestorIdiomas.getTexto("nombreField"));
+        apellidoTextField.setPromptText(GestorIdiomas.getTexto("apellidoField"));
+        dniTextField.setPromptText(GestorIdiomas.getTexto("dniField"));
+        emailTextField.setPromptText(GestorIdiomas.getTexto("emailField"));
+        telefonoTextField.setPromptText(GestorIdiomas.getTexto("telefonoField"));
+        estadoTextField.setPromptText(GestorIdiomas.getTexto("estadoField"));
+        comentariosTextArea.setPromptText(GestorIdiomas.getTexto("comentariosField"));
+        textTitulo.setText(GestorIdiomas.getTexto("modificarCliente"));
+
+
+
     }
 }

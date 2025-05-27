@@ -20,44 +20,34 @@ import org.example.camping2.modelo.memoria.Memoria;
  */
 public class BuscarClientePanelController implements IdiomaListener {
 
-
     @FXML
     private Label labelTitulo, labelId, labelNombre, labelDNI;
     @FXML
     private Button buttonBuscar;
     @FXML
     private Button buttonBuscarTodos;
-
-    private Memoria<Cliente, Integer> memoria;
-
     @FXML
     private TextField idClienteTextField;
-
     @FXML
     private TextField nombreTextField;
-
     @FXML
     private TextField dniTextField;
-
     @FXML
     private TableView<Cliente> clientesTableView;
-
     @FXML
     private TableColumn<Cliente, Integer> idColumn;
-
     @FXML
     private TableColumn<Cliente, String> nombreColumn;
-
     @FXML
     private TableColumn<Cliente, String> apellidoColumn;
-
     @FXML
     private TableColumn<Cliente, String> dniColumn;
-
     @FXML
     private Label statusLabel;
 
+
     private ObservableList<Cliente> clientes = FXCollections.observableArrayList();
+    private Memoria<Cliente, Integer> memoria;
 
     /**
      * Initializes the controller and binds the columns of the table to the fields of the `Cliente` class.

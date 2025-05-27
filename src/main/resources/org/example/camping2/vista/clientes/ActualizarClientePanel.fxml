@@ -1,37 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" spacing="10" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.Clientes.ModificarClienteController">
-    <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Modificar Cliente" />
+<VBox alignment="TOP_CENTER" spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.Clientes.ModificarClienteController">
+    <Label fx:id="textTitulo" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Modificar Cliente" />
 
     <HBox alignment="TOP_CENTER" spacing="5">
-        <Label prefHeight="17.0" prefWidth="76.0" text="ID Cliente:" />
+        <Label fx:id="labelID" prefHeight="17.0" prefWidth="76.0" text="ID Cliente:" />
         <TextField fx:id="idClienteTextField" promptText="Ingrese el ID del cliente" />
-        <Button onAction="#buscarCliente" text="Buscar" />
+        <Button fx:id="btnBuscar" onAction="#buscarCliente" text="Buscar" />
     </HBox>
 
     <GridPane alignment="TOP_CENTER" hgap="10" vgap="10">
-        <Label text="Nombre:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Label fx:id="labelNombre" text="Nombre:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
         <TextField fx:id="nombreTextField" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-        <Label text="Apellido:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Label fx:id="labelApellido" text="Apellido:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
         <TextField fx:id="apellidoTextField" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-        <Label text="DNI:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Label fx:id="labelDNI" text="DNI:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
         <TextField fx:id="dniTextField" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-        <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <Label fx:id="labelEmail" text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
         <TextField fx:id="emailTextField" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-        <Label text="Teléfono:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <Label fx:id="labelTelefono" text="Teléfono:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
         <TextField fx:id="telefonoTextField" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-        <Label text="Estado:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+        <Label fx:id="labelEstado" text="Estado:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
         <TextField fx:id="estadoTextField" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
-        <Label text="Comentarios:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+        <Label fx:id="labelComentarios" text="Comentarios:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
         <TextArea fx:id="comentariosTextArea" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
       <columnConstraints>
          <ColumnConstraints />
@@ -48,7 +55,7 @@
       </rowConstraints>
     </GridPane>
 
-    <Button onAction="#guardarCambios" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Guardar Cambios" />
+    <Button fx:id="btnGuardar" onAction="#guardarCambios" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Guardar Cambios" />
 
     <Label fx:id="statusLabel" style="-fx-text-fill: red;" text="" />
 </VBox>

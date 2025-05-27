@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox alignment="TOP_CENTER" spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.Clientes.EliminarClienteController">
-    <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Eliminar Cliente" />
+    <Label fx:id="eliminarText" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Eliminar Cliente" />
 
     <HBox alignment="CENTER" spacing="5">
-        <Label text="ID Cliente:" />
+        <Label fx:id="idText" text="ID Cliente:" />
         <TextField fx:id="idClienteTextField" promptText="Ingrese el ID del cliente" />
     </HBox>
 
-    <Button onAction="#eliminarCliente" style="-fx-background-color: #e74c3c; -fx-text-fill: white;" text="Eliminar" />
+    <Button fx:id="btnEliminar" onAction="#eliminarCliente" style="-fx-background-color: #e74c3c; -fx-text-fill: white;" text="Eliminar" />
 
     <Label fx:id="statusLabel" style="-fx-text-fill: red;" text="" />
 </VBox>

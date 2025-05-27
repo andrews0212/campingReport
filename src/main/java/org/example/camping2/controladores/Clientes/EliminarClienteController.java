@@ -2,8 +2,11 @@ package org.example.camping2.controladores.Clientes;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import org.example.camping2.controladores.GestorIdiomas;
+import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.memoria.Memoria;
 
@@ -24,8 +27,14 @@ import org.example.camping2.modelo.memoria.Memoria;
  * @version 1.0.0
  * @since 31/01/2025
  */
-public class EliminarClienteController {
+public class EliminarClienteController implements IdiomaListener {
 
+    @FXML
+    private Label eliminarText;
+    @FXML
+    private Label idText;
+    @FXML
+    private Button btnEliminar;
     @FXML
     private TextField idClienteTextField;  // Text field for entering the client ID to delete
 
@@ -33,6 +42,15 @@ public class EliminarClienteController {
     private Label statusLabel;  // Label for showing the status of the deletion operation
 
     private Memoria<Cliente, Integer> memoria;  // Memory service for handling client data
+
+
+
+    @FXML
+    private void initialize() {
+        GestorIdiomas.agregarListener(this);
+        actualizarTexto();
+    }
+
 
     /**
      * Attempts to delete the client based on the provided client ID.
@@ -108,5 +126,17 @@ public class EliminarClienteController {
      */
     public void setMemoria(Memoria<Cliente, Integer> memoria) {
         this.memoria = memoria;
+    }
+
+
+    @Override
+    public void idiomaCambiado() {
+        actualizarTexto();
+    }
+    public void actualizarTexto(){
+        eliminarText.setText(GestorIdiomas.getTexto("eliminarText"));
+        idText.setText(GestorIdiomas.getTexto("idText"));
+        btnEliminar.setText(GestorIdiomas.getTexto("btnEliminar"));
+        idClienteTextField.setPromptText(GestorIdiomas.getTexto("idTextField"));
     }
 }
