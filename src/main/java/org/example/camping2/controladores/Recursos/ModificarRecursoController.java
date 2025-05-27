@@ -3,18 +3,58 @@ package org.example.camping2.controladores.Recursos;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.example.camping2.controladores.GestorIdiomas;
+import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Recurso;
 import org.example.camping2.modelo.memoria.Memoria;
 
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
-public class ModificarRecursoController {
+
+public class ModificarRecursoController implements IdiomaListener {
+
+
+    @FXML
+    private Label labelModificar;
+    @FXML
+    private Label labelId;
+    @FXML
+    private Label labelNombre;
+    @FXML
+    private Label labelTipo;
+    @FXML
+    private Label labelCapacidad;
+    @FXML
+    private Label labelPrecio;
+    @FXML
+    private Label labelMinimoPersona;
+    @FXML
+    private Label labelEstado;
+    @FXML
+    private Label labelNombre2;
+    @FXML
+    private Label labelTipo2;
+    @FXML
+    private Label labelCapacidad2;
+    @FXML
+    private Label labelPrecio2;
+    @FXML
+    private Label labelMinimo2;
+    @FXML
+    private Label labelEstado2;
+
+    @FXML
+    private Button btnModificar;
+    @FXML
+    private Button btnBuscar;
+    @FXML
+    private Button btnBuscarTodos;
+
 
     @FXML
     private TextField idText;
@@ -83,6 +123,7 @@ public class ModificarRecursoController {
     @FXML
     private TextField estadoText1;
 
+    private Map<String, String> mapaTipoTraducido;
 
     private Memoria<Recurso, Integer> memoria;
 
@@ -97,9 +138,15 @@ public class ModificarRecursoController {
 
     @FXML
     public void initialize() {
-        tipoCombo.getItems().addAll("PARCELA", "BUNGALOW", "BARBACOA");
+        mapaTipoTraducido = new HashMap<>();
+        mapaTipoTraducido.clear();
+        mapaTipoTraducido.put("PARCELA", GestorIdiomas.getTexto("PARCELA"));
+        mapaTipoTraducido.put("BUNGALOW", GestorIdiomas.getTexto("BUNGALOW"));
+        mapaTipoTraducido.put("BARBACOA", GestorIdiomas.getTexto("BARBACOA"));
+        ObservableList<String> traducciones = FXCollections.observableArrayList(mapaTipoTraducido.values());
+        tipoCombo.setItems(traducciones);
         tipoCombo.getSelectionModel().select(0);
-        tipoCombo1.getItems().addAll("PARCELA", "BUNGALOW", "BARBACOA");
+        tipoCombo1.setItems(traducciones);
         tipoCombo1.getSelectionModel().select(0);
         // Asociar columnas con propiedades del modelo Recurso
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -110,6 +157,9 @@ public class ModificarRecursoController {
         minimoColumn.setCellValueFactory(new PropertyValueFactory<>("minimoPersonas"));
         estadoColumn.setCellValueFactory(new PropertyValueFactory<>("estado"));
         recursoTable.setItems(recursoList);
+        GestorIdiomas.agregarListener(this);
+        actualizarTexto();
+
     }
 
     private void cargarRecursosDesdeMemoria() {
@@ -120,6 +170,14 @@ public class ModificarRecursoController {
     private void filtrarRecursos() {
         String nombreFiltro = nombreText.getText().toLowerCase().trim();
         String tipoFiltro = tipoCombo.getValue() != null ? tipoCombo.getValue().toLowerCase().trim() : "";
+
+        String tipo = mapaTipoTraducido.entrySet().stream()
+                .filter(e -> e.getValue().equals(tipoFiltro))
+                .map(Map.Entry::getKey)
+                .findFirst()
+                .orElse("PARCELA");
+
+
         String estadoFiltro = estadoText.getText().toLowerCase().trim();
 
         // Para los campos numéricos, parseamos con cuidado:
@@ -127,11 +185,12 @@ public class ModificarRecursoController {
         Integer precioFiltro = parseInteger(precioText.getText());
         Integer minimoPersonaFiltro = parseInteger(minimoPersonaText.getText());
 
+
         recursoList.setAll(
                 memoria.findAll().stream()
                         .filter(recurso ->
                                 (nombreFiltro.isEmpty() || recurso.getNombre().toLowerCase().contains(nombreFiltro)) &&
-                                        (tipoFiltro.isEmpty() || recurso.getTipo().toLowerCase().contains(tipoFiltro)) &&
+                                        (tipo.isEmpty() || recurso.getTipo().toLowerCase().contains(tipo)) &&
                                         (estadoFiltro.isEmpty() || recurso.getEstado().toLowerCase().contains(estadoFiltro)) &&
 
                                         (capacidadFiltro == null || recurso.getCapacidad() == capacidadFiltro) &&
@@ -148,6 +207,11 @@ public class ModificarRecursoController {
         if (seleccionado != null) {
             String nombreNuevo = nombreText1.getText().trim();
             String tipoNuevo = tipoCombo1.getValue();
+            String tipo = mapaTipoTraducido.entrySet().stream()
+                    .filter(e -> e.getValue().equals(tipoNuevo))
+                    .map(Map.Entry::getKey)
+                    .findFirst()
+                    .orElse("PARCELA");
             String capacidadNuevo = capacidadText1.getText().trim();
             String precioNuevo = precioText1.getText().trim();
             String minimoNuevo = minimoPersonaText1.getText().trim();
@@ -157,7 +221,7 @@ public class ModificarRecursoController {
                 seleccionado.setNombre(nombreNuevo);
             }
             if (tipoNuevo != null && !tipoNuevo.isEmpty()) {
-                seleccionado.setTipo(tipoNuevo);
+                seleccionado.setTipo(tipo);
             }
             if (!capacidadNuevo.isEmpty()) {
                 try {
@@ -212,5 +276,46 @@ public class ModificarRecursoController {
     }
 
 
+    @Override
+    public void idiomaCambiado() {
+        actualizarTexto();
+    }
+    private void actualizarTexto(){
 
+            labelModificar.setText(GestorIdiomas.getTexto("modificarRecurso"));
+            labelNombre.setText(GestorIdiomas.getTexto("nombre"));
+            labelTipo.setText(GestorIdiomas.getTexto("tipo"));
+            labelCapacidad.setText(GestorIdiomas.getTexto("capacidad"));
+            labelId.setText(GestorIdiomas.getTexto("id"));
+            labelPrecio.setText(GestorIdiomas.getTexto("precio"));
+            labelMinimoPersona.setText(GestorIdiomas.getTexto("minimoPersonas"));
+            labelEstado.setText(GestorIdiomas.getTexto("estado"));
+            btnBuscar.setText(GestorIdiomas.getTexto("buscar"));
+            btnBuscarTodos.setText(GestorIdiomas.getTexto("buscarTodos"));
+            idColumn.setText(GestorIdiomas.getTexto("id"));
+            nombreColumn.setText(GestorIdiomas.getTexto("nombre"));
+            tipoColumn.setText(GestorIdiomas.getTexto("tipo"));
+            capacidadColumn.setText(GestorIdiomas.getTexto("capacidad"));
+            precioColumn.setText(GestorIdiomas.getTexto("precio"));
+            minimoColumn.setText(GestorIdiomas.getTexto("minimoPersonas"));
+            estadoColumn.setText(GestorIdiomas.getTexto("estado"));
+            nombreText.setPromptText(GestorIdiomas.getTexto("nombreText"));
+            capacidadText.setPromptText(GestorIdiomas.getTexto("capacidadText"));;
+            idText.setPromptText(GestorIdiomas.getTexto("idText"));
+            precioText.setPromptText(GestorIdiomas.getTexto("precioText"));
+            minimoPersonaText.setPromptText(GestorIdiomas.getTexto("minimoPersonaText"));
+            estadoText.setPromptText(GestorIdiomas.getTexto("estadoText"));
+            labelNombre2.setText(GestorIdiomas.getTexto("nombre"));
+            labelTipo2.setText(GestorIdiomas.getTexto("tipo"));
+            labelCapacidad2.setText(GestorIdiomas.getTexto("capacidad"));
+            labelPrecio2.setText(GestorIdiomas.getTexto("precio"));
+            labelMinimo2.setText(GestorIdiomas.getTexto("minimoPersonas"));
+            labelEstado2.setText(GestorIdiomas.getTexto("estado"));
+            btnModificar.setText(GestorIdiomas.getTexto("modificar"));
+            nombreText1.setPromptText(GestorIdiomas.getTexto("nombreText"));
+            capacidadText1.setPromptText(GestorIdiomas.getTexto("capacidadText"));
+            precioText1.setPromptText(GestorIdiomas.getTexto("precioText"));
+            minimoPersonaText1.setPromptText(GestorIdiomas.getTexto("minimoPersonaText"));
+            estadoText1.setPromptText(GestorIdiomas.getTexto("estadoText"));
+    }
 }
