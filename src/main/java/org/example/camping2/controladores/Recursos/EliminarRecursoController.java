@@ -4,12 +4,42 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import org.example.camping2.controladores.GestorIdiomas;
+import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Recurso;
 import org.example.camping2.modelo.memoria.Memoria;
 
-public class EliminarRecursoController {
+import java.util.HashMap;
+import java.util.Map;
+
+public class EliminarRecursoController implements IdiomaListener {
+
+    @FXML
+    private Button btnBuscar;
+    @FXML
+    private Button btnBuscarTodos;
+    @FXML
+    private Button btnEliminar;
+
+    @FXML
+    private Label labelEliminar;
+    @FXML
+    private Label labelId;
+    @FXML
+    private Label labelNombre;
+    @FXML
+    private Label labelTipo;
+    @FXML
+    private Label labelCapacidad;
+    @FXML
+    private Label labelPrecio;
+    @FXML
+    private Label labelMinimoPersona;
+    @FXML
+    private Label labelEstado;
 
     private Memoria<Recurso, Integer> memoria;
+    private Map<String, String> mapaTipoTraducido;
 
     @FXML
     private TextField idText;
@@ -65,7 +95,13 @@ public class EliminarRecursoController {
 
     @FXML
     private void initialize() {
-        tipoCombo.getItems().addAll("PARCELA", "BUNGALOW", "BARBACOA");
+        mapaTipoTraducido = new HashMap<>();
+        mapaTipoTraducido.clear();
+        mapaTipoTraducido.put("PARCELA", GestorIdiomas.getTexto("PARCELA"));
+        mapaTipoTraducido.put("BUNGALOW", GestorIdiomas.getTexto("BUNGALOW"));
+        mapaTipoTraducido.put("BARBACOA", GestorIdiomas.getTexto("BARBACOA"));
+        ObservableList<String> traducciones = FXCollections.observableArrayList(mapaTipoTraducido.values());
+        tipoCombo.setItems(traducciones);
         tipoCombo.getSelectionModel().select(0);
         idColumn.setCellValueFactory(cellData ->
                 new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getId()));
@@ -83,6 +119,8 @@ public class EliminarRecursoController {
                 new javafx.beans.property.SimpleStringProperty(cellData.getValue().getEstado()));
 
         recursoTable.setItems(recursoList);
+        GestorIdiomas.agregarListener(this);
+        actualizarTexto();
     }
 
 
@@ -109,7 +147,12 @@ public class EliminarRecursoController {
                                 coincide = coincide && r.getNombre().toLowerCase().contains(nombreText.getText().toLowerCase().trim());
                             }
                             if (tipoCombo.getValue() != null && !tipoCombo.getValue().isEmpty()) {
-                                coincide = coincide && r.getTipo().toLowerCase().contains(tipoCombo.getValue().toLowerCase());
+                                String tipo = mapaTipoTraducido.entrySet().stream()
+                                        .filter(e -> e.getValue().equals(tipoCombo.getValue()))
+                                        .map(Map.Entry::getKey)
+                                        .findFirst()
+                                        .orElse("PARCELA");
+                                coincide = coincide && r.getTipo().toLowerCase().contains(tipo.toLowerCase());
                             }
                             if (!capacidadText.getText().trim().isEmpty()) {
                                 try {
@@ -173,5 +216,39 @@ public class EliminarRecursoController {
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
         alert.showAndWait();
+    }
+
+    @Override
+    public void idiomaCambiado() {
+        actualizarTexto();
+    }
+
+    private void actualizarTexto(){
+
+        labelEliminar.setText(GestorIdiomas.getTexto("eliminarRecurso"));
+        labelNombre.setText(GestorIdiomas.getTexto("nombre"));
+        labelTipo.setText(GestorIdiomas.getTexto("tipo"));
+        labelCapacidad.setText(GestorIdiomas.getTexto("capacidad"));
+        labelId.setText(GestorIdiomas.getTexto("id"));
+        labelPrecio.setText(GestorIdiomas.getTexto("precio"));
+        labelMinimoPersona.setText(GestorIdiomas.getTexto("minimoPersonas"));
+        labelEstado.setText(GestorIdiomas.getTexto("estado"));
+        btnBuscar.setText(GestorIdiomas.getTexto("buscar"));
+        btnBuscarTodos.setText(GestorIdiomas.getTexto("buscarTodos"));
+        idColumn.setText(GestorIdiomas.getTexto("id"));
+        nombreColumn.setText(GestorIdiomas.getTexto("nombre"));
+        tipoColumn.setText(GestorIdiomas.getTexto("tipo"));
+        capacidadColumn.setText(GestorIdiomas.getTexto("capacidad"));
+        precioColumn.setText(GestorIdiomas.getTexto("precio"));
+        minimoColumn.setText(GestorIdiomas.getTexto("minimoPersonas"));
+        estadoColumn.setText(GestorIdiomas.getTexto("estado"));
+        nombreText.setPromptText(GestorIdiomas.getTexto("nombreText"));
+        capacidadText.setPromptText(GestorIdiomas.getTexto("capacidadText"));;
+        idText.setPromptText(GestorIdiomas.getTexto("idText"));
+        precioText.setPromptText(GestorIdiomas.getTexto("precioText"));
+        minimoPersonaText.setPromptText(GestorIdiomas.getTexto("minimoPersonaText"));
+        estadoText.setPromptText(GestorIdiomas.getTexto("estadoText"));
+        btnEliminar.setText(GestorIdiomas.getTexto("eliminar"));
+
     }
 }
