@@ -4,13 +4,36 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import org.example.camping2.controladores.GestorIdiomas;
+import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Recurso;
 import org.example.camping2.modelo.memoria.Memoria;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class BuscarRecursoController {
+public class BuscarRecursoController implements IdiomaListener {
+
+    //label
+
+    @FXML
+    private Label labelBuscarRecurso;
+    @FXML
+    private Label labelNombre;
+    @FXML
+    private Label labelTipo;
+    @FXML
+    private Label labelCapacidad;
+    @FXML
+    private Label labelId;
+    @FXML
+    private Label labelPrecio;
+    @FXML
+    private Label labelMinimoPersonas;
+    @FXML
+    private Label labelEstado;
+
+    //text
 
     @FXML
     private TextField nombreText;
@@ -26,6 +49,14 @@ public class BuscarRecursoController {
     private TextField minimoPersonaText;
     @FXML
     private TextField estadoText;
+
+    //Button
+    @FXML
+    private Button buscarButton;
+    @FXML
+    private Button buscarTodosButton;
+
+
 
     @FXML
     private TableView<Recurso> recursoTable;
@@ -63,8 +94,9 @@ public class BuscarRecursoController {
         precioColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getPrecio()));
         minimoColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getMinimoPersonas()));
         estadoColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getEstado()));
-
         recursoTable.setItems(recursoList);
+        GestorIdiomas.agregarListener(this);
+        actualizarTexto();
     }
     @FXML
     private void Buscar() {
@@ -75,9 +107,7 @@ public class BuscarRecursoController {
         // Filtrar según los campos que no estén vacíos
         List<Recurso> filtrados = recursos.stream().filter(r -> {
             boolean matches = true;
-
             // Para cada campo, si el TextField no está vacío, filtrar por coincidencia
-
             if (!nombreText.getText().trim().isEmpty()) {
                 matches = matches && r.getNombre().toLowerCase().contains(nombreText.getText().toLowerCase().trim());
             }
@@ -131,5 +161,37 @@ public class BuscarRecursoController {
     private void cargarTodosRecursos() {
         if (memoriaRecurso == null) return;
         recursoList.setAll(memoriaRecurso.findAll());
+    }
+
+    @Override
+
+    public void idiomaCambiado() {
+    actualizarTexto();
+    }
+    public void actualizarTexto(){
+        labelBuscarRecurso.setText(GestorIdiomas.getTexto("buscarRecurso"));
+        labelNombre.setText(GestorIdiomas.getTexto("nombre"));
+        labelTipo.setText(GestorIdiomas.getTexto("tipo"));
+        labelCapacidad.setText(GestorIdiomas.getTexto("capacidad"));
+        labelId.setText(GestorIdiomas.getTexto("id"));
+        labelPrecio.setText(GestorIdiomas.getTexto("precio"));
+        labelMinimoPersonas.setText(GestorIdiomas.getTexto("minimoPersonas"));
+        labelEstado.setText(GestorIdiomas.getTexto("estado"));
+        buscarButton.setText(GestorIdiomas.getTexto("buscar"));
+        buscarTodosButton.setText(GestorIdiomas.getTexto("buscarTodos"));
+        idColumn.setText(GestorIdiomas.getTexto("id"));
+        nombreColumn.setText(GestorIdiomas.getTexto("nombre"));
+        tipoColumn.setText(GestorIdiomas.getTexto("tipo"));
+        capacidadColumn.setText(GestorIdiomas.getTexto("capacidad"));
+        precioColumn.setText(GestorIdiomas.getTexto("precio"));
+        minimoColumn.setText(GestorIdiomas.getTexto("minimoPersonas"));
+        estadoColumn.setText(GestorIdiomas.getTexto("estado"));
+        nombreText.setPromptText(GestorIdiomas.getTexto("nombreText"));
+        tipoText.setPromptText(GestorIdiomas.getTexto("tipoText"));
+        capacidadText.setPromptText(GestorIdiomas.getTexto("capacidadText"));;
+        idText.setPromptText(GestorIdiomas.getTexto("idText"));
+        precioText.setPromptText(GestorIdiomas.getTexto("precioText"));
+        minimoPersonaText.setPromptText(GestorIdiomas.getTexto("minimoPersonaText"));
+        estadoText.setPromptText(GestorIdiomas.getTexto("estadoText"));
     }
 }

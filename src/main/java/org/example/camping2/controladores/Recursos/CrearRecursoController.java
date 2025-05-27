@@ -1,13 +1,35 @@
 package org.example.camping2.controladores.Recursos;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
+import org.example.camping2.controladores.GestorIdiomas;
+import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Recurso;
 import org.example.camping2.modelo.memoria.Memoria;
 
-public class CrearRecursoController {
+import java.util.HashMap;
+import java.util.Map;
+
+public class CrearRecursoController implements IdiomaListener {
+
+    @FXML
+    private Label labelAgregar;
+
+
+    @FXML
+    private Label labelTipo;
+    @FXML
+    private Label labelNombre;
+    @FXML
+    private Label labelCapacidad;
+    @FXML
+    private Label labelPrecio;
+    @FXML
+    private Label labelMinimoPersonas;
+    @FXML
+    private Button btnCrear;
 
     private Memoria<Recurso, Integer> memoria;
 
@@ -30,17 +52,36 @@ public class CrearRecursoController {
     @FXML
     private TextField minimoPersonasField;
 
+    private Map<String, String> mapaTipoTraducido;
+
+
     @FXML
     public void initialize() {
-        tipoComboBox.getItems().addAll("PARCELA", "BUNGALOW", "BARBACOA");
+
+        mapaTipoTraducido = new HashMap<>();
+        mapaTipoTraducido.clear();
+        mapaTipoTraducido.put("PARCELA", GestorIdiomas.getTexto("PARCELA"));
+        mapaTipoTraducido.put("BUNGALOW", GestorIdiomas.getTexto("BUNGALOW"));
+        mapaTipoTraducido.put("BARBACOA", GestorIdiomas.getTexto("BARBACOA"));
+        ObservableList<String> traducciones = FXCollections.observableArrayList(mapaTipoTraducido.values());
+        tipoComboBox.setItems(traducciones);
         tipoComboBox.getSelectionModel().select(0);
+        GestorIdiomas.agregarListener(this);
+        actualizarTexto();
+
     }
 
     @FXML
     private void crearRecurso() {
         try {
             String nombre = nombreField.getText();
-            String tipo = tipoComboBox.getValue();
+            String tipoTraducido = tipoComboBox.getValue();
+            String tipo = mapaTipoTraducido.entrySet().stream()
+                    .filter(e -> e.getValue().equals(tipoTraducido))
+                    .map(Map.Entry::getKey)
+                    .findFirst()
+                    .orElse("PARCELA");  // valor por defecto si no se encuentra
+
             int capacidad = Integer.parseInt(capacidadField.getText());
             int precio = Integer.parseInt(precioField.getText());
             int minimoPersonas = Integer.parseInt(minimoPersonasField.getText());
@@ -76,5 +117,30 @@ public class CrearRecursoController {
         capacidadField.clear();
         precioField.clear();
         minimoPersonasField.clear();
+    }
+
+    @Override
+    public void idiomaCambiado() {
+        actualizarTexto();
+    }
+    public void actualizarTexto(){
+        labelAgregar.setText(GestorIdiomas.getTexto("labelAgregar"));
+        labelNombre.setText(GestorIdiomas.getTexto("nombre"));
+        nombreField.setPromptText(GestorIdiomas.getTexto("nombreField"));
+        labelTipo.setText(GestorIdiomas.getTexto("tipo"));
+        labelCapacidad.setText(GestorIdiomas.getTexto("capacidad"));
+        capacidadField.setPromptText(GestorIdiomas.getTexto("capacidadField"));
+        labelPrecio.setText(GestorIdiomas.getTexto("precio"));
+        precioField.setPromptText(GestorIdiomas.getTexto("precioField"));
+        labelMinimoPersonas.setText(GestorIdiomas.getTexto("minimoPersonas"));
+        minimoPersonasField.setPromptText(GestorIdiomas.getTexto("minimoPersonasField"));
+        btnCrear.setText(GestorIdiomas.getTexto("btnCrear"));
+        mapaTipoTraducido.clear();
+        mapaTipoTraducido.put("PARCELA", GestorIdiomas.getTexto("PARCELA"));
+        mapaTipoTraducido.put("BUNGALOW", GestorIdiomas.getTexto("BUNGALOW"));
+        mapaTipoTraducido.put("BARBACOA", GestorIdiomas.getTexto("BARBACOA"));
+        ObservableList<String> traducciones = FXCollections.observableArrayList(mapaTipoTraducido.values());
+        tipoComboBox.setItems(traducciones);
+        tipoComboBox.getSelectionModel().select(0);
     }
 }

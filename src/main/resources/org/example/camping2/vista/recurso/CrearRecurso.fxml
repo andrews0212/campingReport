@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" spacing="10" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.example.camping2.controladores.Recursos.CrearRecursoController">
+<VBox alignment="TOP_CENTER" spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.Recursos.CrearRecursoController">
    <children>
-      <Label style="-fx-font-size: 20px;" text="Añadir Nuevo Recurso" />
-      <Label text="Nombre" />
-      <TextField fx:id="nombreField" promptText="Nombre del recurso" />
-      <Label text="Tipo" />
+      <Label fx:id="labelAgregar" style="-fx-font-size: 20px;" text="Añadir Nuevo Recurso" />
+      <Label fx:id="labelNombre" text="Nombre" />
+      <TextField fx:id="nombreField" maxWidth="200.0" prefHeight="20.0" prefWidth="200.0" promptText="Nombre del recurso" />
+      <Label fx:id="labelTipo" text="Tipo" />
       <ComboBox fx:id="tipoComboBox" promptText="Selecciona un tipo" />
-      <Label text="Capacidad" />
-      <TextField fx:id="capacidadField" promptText="Capacidad" />
-      <Label text="Precio" />
-      <TextField fx:id="precioField" promptText="Precio por noche" />
-      <Label text="Mínimo de personas" />
-      <TextField fx:id="minimoPersonasField" promptText="Personas mínimas" />
-      <Button text="Crear Recurso" onAction="#crearRecurso" />
+      <Label fx:id="labelCapacidad" text="Capacidad" />
+      <TextField fx:id="capacidadField" maxWidth="200.0" prefHeight="20.0" prefWidth="200.0" promptText="Capacidad" />
+      <Label fx:id="labelPrecio" text="Precio" />
+      <TextField fx:id="precioField" maxWidth="200.0" prefHeight="20.0" prefWidth="200.0" promptText="Precio por noche" />
+      <Label fx:id="labelMinimoPersonas" text="Mínimo de personas" />
+      <TextField fx:id="minimoPersonasField" maxWidth="200.0" prefHeight="20.0" prefWidth="200.0" promptText="Personas mínimas" />
+      <Button fx:id="btnCrear" onAction="#crearRecurso" text="Crear Recurso" />
    </children>
 </VBox>
