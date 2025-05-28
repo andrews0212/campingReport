@@ -13,51 +13,51 @@
 
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="765.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.Reservas.ModificarReservaController">
    <children>
-      <Label text="Modificar Reserva" />
+      <Label fx:id="labelModificar" text="Modificar Reserva" />
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label text="ID" />
+                  <Label fx:id="labelId" text="ID" />
                   <TextField fx:id="idText1" alignment="CENTER" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label text="Fecha Inicio" />
+                  <Label fx:id="labelFechaInicio" text="Fecha Inicio" />
                   <DatePicker fx:id="fechaInicio1" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label text="Fecha Fin" />
+                  <Label fx:id="labelFechaFin" text="Fecha Fin" />
                   <DatePicker fx:id="fechaFin1" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label text="Precio" />
+                  <Label fx:id="labelPrecio" text="Precio" />
                   <TextField fx:id="precioText1" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label text="Estado" />
+                  <Label fx:id="labelEstado" text="Estado" />
                   <ComboBox fx:id="estadoCombo1" prefWidth="150.0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label text="DNI" />
+                  <Label fx:id="labelDNI" text="DNI" />
                   <TextField fx:id="dniText" />
                </children>
             </VBox>
-            <Button mnemonicParsing="false" onAction="#buscarReservas" prefHeight="24.0" prefWidth="80.0" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="buscar">
+            <Button fx:id="btnBuscar" mnemonicParsing="false" onAction="#buscarReservas" prefHeight="24.0" prefWidth="80.0" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="buscar">
                <HBox.margin>
                   <Insets left="30.0" top="10.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#cargarTodos" prefHeight="30.0" prefWidth="105.0" text="buscar Todos">
+            <Button fx:id="btnBuscarTodos" mnemonicParsing="false" onAction="#cargarTodos" prefHeight="30.0" prefWidth="105.0" text="buscar Todos">
                <HBox.margin>
                   <Insets left="30.0" top="10.0" />
                </HBox.margin>
@@ -79,29 +79,29 @@
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label text="Fecha Inicio" />
+                  <Label fx:id="labelFechaInicio2" text="Fecha Inicio" />
                   <DatePicker fx:id="fechaInicio" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label text="Fecha Fin" />
+                  <Label fx:id="labelFechaFin2" text="Fecha Fin" />
                   <DatePicker fx:id="fechaFin" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label text="Precio" />
+                  <Label fx:id="labelPrecio2" text="Precio" />
                   <TextField fx:id="precioText" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label text="Estado" />
+                  <Label fx:id="labelEstado2" text="Estado" />
                   <ComboBox fx:id="estadoCombo" prefWidth="150.0" />
                </children>
             </VBox>
-            <Button mnemonicParsing="false" onAction="#modificarReserva" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Modificar">
+            <Button fx:id="btnModificar" mnemonicParsing="false" onAction="#modificarReserva" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Modificar">
                <HBox.margin>
                   <Insets left="30.0" top="10.0" />
                </HBox.margin>

@@ -5,12 +5,50 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import org.example.camping2.controladores.GestorIdiomas;
+import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Reserva;
 import org.example.camping2.modelo.memoria.Memoria;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Stream;
 
-public class ModificarReservaController {
+public class ModificarReservaController implements IdiomaListener {
+
+
+
+    @FXML
+    private Label labelModificar;
+    @FXML
+    private Label labelId;
+    @FXML
+    private Label labelFechaInicio;
+    @FXML
+    private Label labelFechaFin;
+    @FXML
+    private Label labelPrecio;
+    @FXML
+    private Label labelEstado;
+    @FXML
+    private Label labelDNI;
+
+    @FXML
+    private Button btnBuscar;
+    @FXML
+    private Button btnBuscarTodos;
+    @FXML
+    private Label labelFechaInicio2;
+    @FXML
+    private Label labelFechaFin2;
+    @FXML
+    private Label labelPrecio2;
+    @FXML
+    private Label labelEstado2;
+    @FXML
+    private Button btnModificar;
+
+
     Memoria<Reserva, Integer> memoriaReserva;
 
     @FXML
@@ -55,10 +93,19 @@ public class ModificarReservaController {
     @FXML
     private ComboBox estadoCombo1;
 
+    Map<String, String> mapaEstadoTraducido;
+
     @FXML
     public void initialize() {
-        estadoCombo.setItems(tipos);
-        estadoCombo1.setItems(tipos);
+        mapaEstadoTraducido = new HashMap<>();
+        mapaEstadoTraducido.clear();
+        mapaEstadoTraducido.put("DISPONIBLE", GestorIdiomas.getTexto("DISPONIBLE"));
+        mapaEstadoTraducido.put("OCUPADO", GestorIdiomas.getTexto("OCUPADO"));
+        mapaEstadoTraducido.put("MANTENIMIENTO", GestorIdiomas.getTexto("MANTENIMIENTO"));
+
+
+        estadoCombo.setItems(FXCollections.observableArrayList(mapaEstadoTraducido.values()));
+        estadoCombo1.setItems(FXCollections.observableArrayList(mapaEstadoTraducido.values()));
         estadoCombo1.getSelectionModel().selectFirst();
         estadoCombo.getSelectionModel().selectFirst();
         reservaTable.setItems(Reserva);
@@ -69,6 +116,8 @@ public class ModificarReservaController {
         nombreColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getIdcliente().getNombre()));
         apellidoColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getIdcliente().getApellido()));
         dniColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getIdcliente().getDni()));
+        GestorIdiomas.agregarListener(this);
+        actualizarTexto();
     }
     @FXML
     public void buscarReservas() {
@@ -185,5 +234,62 @@ public class ModificarReservaController {
 
     public void setMemoriaReserva(Memoria<Reserva, Integer> memoriaReserva) {
         this.memoriaReserva = memoriaReserva;
+    }
+
+    @Override
+    public void idiomaCambiado() {
+        actualizarTexto();
+    }
+
+    private void actualizarTexto() {
+        labelModificar.setText(GestorIdiomas.getTexto("labelModificarReserva"));
+        labelId.setText(GestorIdiomas.getTexto("id"));
+        labelFechaInicio.setText(GestorIdiomas.getTexto("fechaInicio"));
+        labelFechaFin.setText(GestorIdiomas.getTexto("fechaFin"));
+        labelPrecio.setText(GestorIdiomas.getTexto("precioTotal"));
+        labelEstado.setText(GestorIdiomas.getTexto("estado"));
+        labelDNI.setText(GestorIdiomas.getTexto("dni"));
+
+        btnBuscar.setText(GestorIdiomas.getTexto("buscar"));
+        btnBuscarTodos.setText(GestorIdiomas.getTexto("buscarTodos"));
+        btnModificar.setText(GestorIdiomas.getTexto("modificar"));
+
+        labelFechaInicio2.setText(GestorIdiomas.getTexto("fechaInicio"));
+        labelFechaFin2.setText(GestorIdiomas.getTexto("fechaFin"));
+        labelPrecio2.setText(GestorIdiomas.getTexto("precioTotal"));
+        labelEstado2.setText(GestorIdiomas.getTexto("estado"));
+
+        idColumn.setText(GestorIdiomas.getTexto("id"));
+        fechaInicioColumn.setText(GestorIdiomas.getTexto("fechaInicio"));
+        fechaFinColumn.setText(GestorIdiomas.getTexto("fechaFin"));
+        precioColumn.setText(GestorIdiomas.getTexto("precioTotal"));
+        nombreColumn.setText(GestorIdiomas.getTexto("nombre"));
+        apellidoColumn.setText(GestorIdiomas.getTexto("apellido"));
+        dniColumn.setText(GestorIdiomas.getTexto("dni"));
+
+        dniText.setPromptText(GestorIdiomas.getTexto("dniText"));
+        idText1.setPromptText(GestorIdiomas.getTexto("idText"));
+        fechaInicio1.setPromptText(GestorIdiomas.getTexto("fechaInicioText"));
+        fechaFin1.setPromptText(GestorIdiomas.getTexto("fechaFinText"));
+        precioText1.setPromptText(GestorIdiomas.getTexto("precioField"));
+        estadoCombo1.setPromptText(GestorIdiomas.getTexto("estadoText"));
+        estadoCombo.setPromptText(GestorIdiomas.getTexto("estadoText"));
+
+        fechaInicio.setPromptText(GestorIdiomas.getTexto("fechaInicioText"));
+        fechaFin.setPromptText(GestorIdiomas.getTexto("fechaFinText"));
+        precioText.setPromptText(GestorIdiomas.getTexto("precioField"));
+        estadoCombo.setPromptText(GestorIdiomas.getTexto("estadoText"));
+
+
+        mapaEstadoTraducido.clear();
+        mapaEstadoTraducido.put("DISPONIBLE", GestorIdiomas.getTexto("DISPONIBLE"));
+        mapaEstadoTraducido.put("OCUPADO", GestorIdiomas.getTexto("OCUPADO"));
+        mapaEstadoTraducido.put("MANTENIMIENTO", GestorIdiomas.getTexto("MANTENIMIENTO"));
+
+        estadoCombo.setItems(FXCollections.observableArrayList(mapaEstadoTraducido.values()));
+        estadoCombo1.setItems(FXCollections.observableArrayList(mapaEstadoTraducido.values()));
+        estadoCombo1.getSelectionModel().selectFirst();
+        estadoCombo.getSelectionModel().selectFirst();
+
     }
 }
