@@ -6,6 +6,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import org.example.camping2.controladores.GestorIdiomas;
+import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Acompanante;
 import org.example.camping2.modelo.dto.Reserva;
 import org.example.camping2.modelo.dto.Cliente;
@@ -15,7 +17,22 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CrearAcompananteController {
+public class CrearAcompananteController implements IdiomaListener {
+
+
+    @FXML private Button btnBuscar;
+    @FXML private Button btnBuscarTodos;
+    @FXML private Button btnCrear;
+    @FXML private Label labelCrearAcompanante;
+    @FXML private Label labelDNI;
+    @FXML private Label labelFechaInicio;
+    @FXML private Label labelFechaFin;
+    @FXML private Label labelPrecio;
+    @FXML private Label labelNombre;
+    @FXML private Label labelApellido;
+    @FXML private Label labelDNI2;
+    @FXML private Label labelEmail;
+    @FXML private Label labelTelefono;
 
     @FXML private TextField dniText;
     @FXML private DatePicker fechaInicio;
@@ -65,6 +82,8 @@ public class CrearAcompananteController {
         EstadoColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getEstado()));
         PersonasColumn.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getNumeroPersonas()));
         PrecioTotalColumn.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getPrecioTotal()));
+        GestorIdiomas.agregarListener(this);
+        actualizarTexto();
     }
 
     @FXML
@@ -178,4 +197,46 @@ public class CrearAcompananteController {
         alerta.setContentText(mensaje);
         alerta.showAndWait();
     }
+
+    @Override
+    public void idiomaCambiado() {
+        actualizarTexto();
+    }
+
+    private void actualizarTexto() {
+    labelCrearAcompanante.setText(GestorIdiomas.getTexto("labelCrearAcompanante"));
+    labelDNI.setText(GestorIdiomas.getTexto("dni"));
+    labelFechaInicio.setText(GestorIdiomas.getTexto("fechaInicio"));
+    labelFechaFin.setText(GestorIdiomas.getTexto("fechaFin"));
+    labelPrecio.setText(GestorIdiomas.getTexto("precio"));
+    labelNombre.setText(GestorIdiomas.getTexto("nombre"));
+    labelApellido.setText(GestorIdiomas.getTexto("apellido"));
+    labelDNI2.setText(GestorIdiomas.getTexto("dni"));
+    labelEmail.setText(GestorIdiomas.getTexto("email"));
+    labelTelefono.setText(GestorIdiomas.getTexto("telefono"));
+    btnBuscar.setText(GestorIdiomas.getTexto("buscar"));
+    btnBuscarTodos.setText(GestorIdiomas.getTexto("buscarTodos"));
+    btnCrear.setText(GestorIdiomas.getTexto("crear"));
+    IDReserva.setText(GestorIdiomas.getTexto("IDReserva"));
+    IDClientecolumn.setText(GestorIdiomas.getTexto("IDCliente"));
+    dniColumn.setText(GestorIdiomas.getTexto("dni"));
+    FechaInicioColumn.setText(GestorIdiomas.getTexto("fechaInicio"));
+    FechaFinColumn.setText(GestorIdiomas.getTexto("fechaFin"));
+    EstadoColumn.setText(GestorIdiomas.getTexto("estado"));
+    PersonasColumn.setText(GestorIdiomas.getTexto("numeroPersonas"));
+    PrecioTotalColumn.setText(GestorIdiomas.getTexto("precioTotal"));
+    dniText.setPromptText(GestorIdiomas.getTexto("dniText"));
+    fechaInicio.setPromptText(GestorIdiomas.getTexto("fechaInicioText"));
+    fechaFin.setPromptText(GestorIdiomas.getTexto("fechaFinText"));
+    precioText.setPromptText(GestorIdiomas.getTexto("precioText"));
+    nombreText.setPromptText(GestorIdiomas.getTexto("nombreText"));
+    apellidoText.setPromptText(GestorIdiomas.getTexto("apellidoField"));
+    dniAcompText.setPromptText(GestorIdiomas.getTexto("dniField"));
+    emailText.setPromptText(GestorIdiomas.getTexto("emailField"));
+    telefonoText.setPromptText(GestorIdiomas.getTexto("telefonoField"));
+
+
+
+    }
+
 }
