@@ -4,17 +4,39 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import org.example.camping2.controladores.GestorIdiomas;
+import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.dto.Recurso;
 import org.example.camping2.modelo.dto.Reserva;
 import org.example.camping2.modelo.memoria.Memoria;
 
 import java.awt.event.ActionEvent;
+import java.util.HashMap;
+import java.util.Map;
 
-public class CrearReservaController {
+public class CrearReservaController implements IdiomaListener {
+
+
     Memoria<Reserva, Integer> memoriaReserva;
     Memoria<Recurso, Integer> memoriaRecurso;
     Memoria<Cliente, Integer> memoriaCliente;
+
+    @FXML
+    private Label labelCrearReserva;
+    @FXML
+    private Button btnCargar;
+    @FXML
+    private Button btnReserva;
+    @FXML
+    private Label labelDNI;
+    @FXML
+    private Label labelFechaInicio;
+    @FXML
+    private Label labelFechaFin;
+    @FXML
+    private Label labelPrecio;
+
     @FXML
     private ComboBox tipoComboBox;
     @FXML
@@ -42,11 +64,17 @@ public class CrearReservaController {
     private TableColumn<Recurso, Integer> minimoPersonasColumn;
 
     private ObservableList<Recurso> recursos = FXCollections.observableArrayList();
-
+    private Map<String, String> mapaTipoTraducido;
     @FXML
     public void initialize() {
     tipoComboBox.setItems(tipos);
-    tipoComboBox.getSelectionModel().selectFirst();
+        mapaTipoTraducido = new HashMap<>();
+        mapaTipoTraducido.clear();
+        mapaTipoTraducido.put("PARCELA", GestorIdiomas.getTexto("PARCELA"));
+        mapaTipoTraducido.put("BUNGALOW", GestorIdiomas.getTexto("BUNGALOW"));
+        mapaTipoTraducido.put("BARBACOA", GestorIdiomas.getTexto("BARBACOA"));
+    tipoComboBox.setItems(FXCollections.observableArrayList(mapaTipoTraducido.values()));
+    tipoComboBox.getSelectionModel().select(0);
     nombreColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getNombre()));
     tipoColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getTipo()));
     capacidadColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getCapacidad()));
@@ -54,6 +82,8 @@ public class CrearReservaController {
     minimoPersonasColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getMinimoPersonas()));
     IDColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getId()));
     recursos.clear();
+    GestorIdiomas.agregarListener(this);
+    actualizarTexto();
     }
 
     public void setMemoriaReserva(Memoria<Reserva, Integer> memoriaReserva) {
@@ -74,8 +104,13 @@ public class CrearReservaController {
             // Simulate database search logic
             recursos.clear();
             ObservableList<Recurso> recursos1 = FXCollections.observableArrayList();
-            String selection = tipoComboBox.getSelectionModel().getSelectedItem().toString();
-            recursos1.addAll(memoriaRecurso.findAll().stream().filter(p -> p.getTipo().equals(selection)).toList());
+            String tipo = tipoComboBox.getSelectionModel().getSelectedItem().toString();
+            String tipoTraducido = mapaTipoTraducido.entrySet().stream()
+                    .filter(entry -> entry.getValue().equals(tipo))
+                    .map(Map.Entry::getKey)
+                    .findFirst()
+                    .orElse(null);
+            recursos1.addAll(memoriaRecurso.findAll().stream().filter(p -> p.getTipo().equals(tipoTraducido)).toList());
             recursos.addAll(recursos1);
             tablaRecurso.setItems(recursos);
 
@@ -91,5 +126,37 @@ public class CrearReservaController {
        if (cliente != null && recurso != null) {
            memoriaReserva.add(new Reserva(cliente, recurso, fechaInicio.getValue(), fechaFin.getValue(), "ACTIVA", Integer.parseInt(precioText.getText()), 0));
        }
+    }
+    @Override
+    public void idiomaCambiado() {
+    actualizarTexto();
+    }
+
+    private void actualizarTexto() {
+        labelCrearReserva.setText(GestorIdiomas.getTexto("labelCrearReserva"));
+        btnCargar.setText(GestorIdiomas.getTexto("btnCargar"));
+        btnReserva.setText(GestorIdiomas.getTexto("btnReserva"));
+        labelDNI.setText(GestorIdiomas.getTexto("dni"));
+        labelFechaInicio.setText(GestorIdiomas.getTexto("fechaInicio"));
+        labelFechaFin.setText(GestorIdiomas.getTexto("fechaFin"));
+        labelPrecio.setText(GestorIdiomas.getTexto("precioTotal"));
+        IDColumn.setText(GestorIdiomas.getTexto("id"));
+        nombreColumn.setText(GestorIdiomas.getTexto("nombre"));
+        tipoColumn.setText(GestorIdiomas.getTexto("tipo"));
+        capacidadColumn.setText(GestorIdiomas.getTexto("capacidad"));
+        precioColumn.setText(GestorIdiomas.getTexto("precio"));
+        minimoPersonasColumn.setText(GestorIdiomas.getTexto("minimoPersonas"));
+        mapaTipoTraducido.clear();
+        mapaTipoTraducido.put("PARCELA", GestorIdiomas.getTexto("PARCELA"));
+        mapaTipoTraducido.put("BUNGALOW", GestorIdiomas.getTexto("BUNGALOW"));
+        mapaTipoTraducido.put("BARBACOA", GestorIdiomas.getTexto("BARBACOA"));
+        dniText.setPromptText(GestorIdiomas.getTexto("dniField"));
+        precioText.setPromptText(GestorIdiomas.getTexto("precioText"));
+        fechaInicio.setPromptText(GestorIdiomas.getTexto("fechaInicioText"));
+        fechaFin.setPromptText(GestorIdiomas.getTexto("fechaFinText"));
+
+        tipoComboBox.setItems(FXCollections.observableArrayList(mapaTipoTraducido.values()));
+        tipoComboBox.getSelectionModel().select(0);
+
     }
 }

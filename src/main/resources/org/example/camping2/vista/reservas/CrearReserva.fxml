@@ -14,7 +14,7 @@
 
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.Reservas.CrearReservaController">
    <children>
-      <Label text="Crear Reselvas" textAlignment="CENTER">
+      <Label fx:id="labelCrearReserva" text="Crear Reservas" textAlignment="CENTER">
          <font>
             <Font size="22.0" />
          </font>
@@ -24,7 +24,7 @@
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
             <ComboBox fx:id="tipoComboBox" prefWidth="150.0" promptText="BUNGALOW" />
-            <Button mnemonicParsing="false" onAction="#cargar" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Cargar" />
+            <Button fx:id="btnCargar" mnemonicParsing="false" onAction="#cargar" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Cargar" />
          </children>
       </HBox>
       <TableView fx:id="tablaRecurso" prefHeight="200.0" prefWidth="200.0">
@@ -41,25 +41,25 @@
          <children>
             <VBox alignment="CENTER" prefHeight="104.0" prefWidth="132.0">
                <children>
-                  <Label text="DNI" />
+                  <Label fx:id="labelDNI" text="DNI" />
                   <TextField fx:id="dniText" promptText="Introduzca su DNI" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label text="Fecha Inicio" />
+                  <Label fx:id="labelFechaInicio" text="Fecha Inicio" />
                   <DatePicker fx:id="fechaInicio" promptText="Fecha Inicio" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label text="Fecha Fin" />
+                  <Label fx:id="labelFechaFin" text="Fecha Fin" />
                   <DatePicker fx:id="fechaFin" promptText="Fecha Fin" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label text="Precio" />
+                  <Label fx:id="labelPrecio" text="Precio" />
                   <TextField fx:id="precioText" alignment="CENTER" />
                </children>
             </VBox>
@@ -69,7 +69,7 @@
          </VBox.margin>
       </HBox>
       <Label fx:id="alertText" />
-      <Button mnemonicParsing="false" onAction="#hacerReserva" prefHeight="24.0" prefWidth="121.0" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Reservar">
+      <Button fx:id="btnReserva" mnemonicParsing="false" onAction="#hacerReserva" prefHeight="24.0" prefWidth="121.0" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Reservar">
          <VBox.margin>
             <Insets bottom="20.0" />
          </VBox.margin></Button>
