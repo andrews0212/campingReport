@@ -5,13 +5,39 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import org.example.camping2.controladores.GestorIdiomas;
+import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Reserva;
 import org.example.camping2.modelo.memoria.Memoria;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Stream;
 
-public class EliminarReservaController {
+public class EliminarReservaController implements IdiomaListener {
     Memoria<Reserva, Integer> memoriaReserva;
+
+    @FXML
+    private Label labelEliminarReserva;
+    @FXML
+    private Label labelId;
+    @FXML
+    private Label labelFechaInicio;
+    @FXML
+    private Label labelFechaFin;
+    @FXML
+    private Label labelPrecio;
+    @FXML
+    private Label labelEstado;
+    @FXML
+    private Label labelDNI;
+    @FXML
+    private Button btnBuscar;
+    @FXML
+    private Button btnBuscarTodos;
+    @FXML
+    private Button btnEliminar;
+
     @FXML
     private  TextField idText1;
     @FXML
@@ -25,7 +51,6 @@ public class EliminarReservaController {
     @FXML
     private TextField dniText;
 
-    ObservableList<String> tipos = FXCollections.observableArrayList("ACTIVA", "FINALIZADA", "CANCELADA");
     @FXML
     private TableView<Reserva> reservaTable;
     @FXML
@@ -52,9 +77,15 @@ public class EliminarReservaController {
         this.memoriaReserva = memoriaReserva;
     }
 
+    private Map<String, String> mapaEstadoTraducido;
     @FXML
     public void initialize() {
-        estadoCombo1.setItems(tipos);
+        mapaEstadoTraducido = new HashMap<>();
+        mapaEstadoTraducido.clear();
+        mapaEstadoTraducido.put("ACTIVA", GestorIdiomas.getTexto("ACTIVA"));
+        mapaEstadoTraducido.put("FINALIZADA", GestorIdiomas.getTexto("FINALIZADA"));
+        mapaEstadoTraducido.put("CANCELADA", GestorIdiomas.getTexto("CANCELADA"));
+        estadoCombo1.setItems(FXCollections.observableArrayList(mapaEstadoTraducido.values()));
         estadoCombo1.getSelectionModel().selectFirst();
         reservaTable.setItems(Reserva);
         idColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getId()));
@@ -63,6 +94,8 @@ public class EliminarReservaController {
         nombreColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getIdcliente().getNombre()));
         apellidoColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getIdcliente().getApellido()));
         dniColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getIdcliente().getDni()));
+        GestorIdiomas.agregarListener(this);
+        actualizarTexto();
     }
     @FXML
     public void buscarReservas() {
@@ -100,8 +133,13 @@ public class EliminarReservaController {
 
         // Filtrar por estado
         String estadoSeleccionado = (String) estadoCombo1.getSelectionModel().getSelectedItem();
+        String estadoTraducido = mapaEstadoTraducido.entrySet().stream()
+                .filter(entry -> entry.getValue().equals(estadoSeleccionado))
+                .map(Map.Entry::getKey)
+                .findFirst()
+                .orElse(null);
         if (estadoSeleccionado != null && !estadoSeleccionado.isEmpty()) {
-            stream = stream.filter(reserva -> reserva.getEstado().equalsIgnoreCase(estadoSeleccionado));
+            stream = stream.filter(reserva -> reserva.getEstado().equalsIgnoreCase(estadoTraducido));
         }
 
         // 🔍 Filtrar por DNI
@@ -147,5 +185,42 @@ public class EliminarReservaController {
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
         alert.showAndWait();
+    }
+
+    @Override
+    public void idiomaCambiado() {
+        actualizarTexto();
+    }
+
+    private void actualizarTexto() {
+        mapaEstadoTraducido.clear();
+        mapaEstadoTraducido.put("ACTIVA", GestorIdiomas.getTexto("ACTIVA"));
+        mapaEstadoTraducido.put("FINALIZADA", GestorIdiomas.getTexto("FINALIZADA"));
+        mapaEstadoTraducido.put("CANCELADA", GestorIdiomas.getTexto("CANCELADA"));
+        estadoCombo1.setItems(FXCollections.observableArrayList(mapaEstadoTraducido.values()));
+        estadoCombo1.getSelectionModel().selectFirst();
+        labelEliminarReserva.setText(GestorIdiomas.getTexto("eliminarReserva"));
+        labelId.setText(GestorIdiomas.getTexto("id"));
+        labelFechaInicio.setText(GestorIdiomas.getTexto("fechaInicio"));
+        labelFechaFin.setText(GestorIdiomas.getTexto("fechaFin"));
+        labelPrecio.setText(GestorIdiomas.getTexto("precioTotal"));
+        labelEstado.setText(GestorIdiomas.getTexto("estado"));
+        labelDNI.setText(GestorIdiomas.getTexto("dni"));
+        btnBuscar.setText(GestorIdiomas.getTexto("buscar"));
+        btnBuscarTodos.setText(GestorIdiomas.getTexto("buscarTodos"));
+        btnEliminar.setText(GestorIdiomas.getTexto("eliminar"));
+        idColumn.setText(GestorIdiomas.getTexto("id"));
+        fechaInicioColumn.setText(GestorIdiomas.getTexto("fechaInicio"));
+        fechaFinColumn.setText(GestorIdiomas.getTexto("fechaFin"));
+        nombreColumn.setText(GestorIdiomas.getTexto("nombre"));
+        apellidoColumn.setText(GestorIdiomas.getTexto("apellido"));
+        dniColumn.setText(GestorIdiomas.getTexto("dni"));
+        idText1.setPromptText(GestorIdiomas.getTexto("idText"));
+        fechaInicio1.setPromptText(GestorIdiomas.getTexto("fechaInicioText"));
+        fechaFin1.setPromptText(GestorIdiomas.getTexto("fechaFinText"));
+        precioText1.setPromptText(GestorIdiomas.getTexto("precioText"));
+        dniText.setPromptText(GestorIdiomas.getTexto("dniField"));
+
+
     }
 }

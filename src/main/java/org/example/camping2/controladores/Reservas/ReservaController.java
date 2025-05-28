@@ -5,8 +5,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import org.example.camping2.controladores.GestorIdiomas;
+import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.controladores.Liberable;
 import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.dto.Recurso;
@@ -15,7 +18,16 @@ import org.example.camping2.modelo.memoria.Memoria;
 
 import java.io.IOException;
 
-public class ReservaController implements Liberable {
+public class ReservaController implements Liberable, IdiomaListener {
+
+    @FXML
+    private Button ButtonBuscar;
+    @FXML
+    private Button ButtonAgregar;
+     @FXML
+    private Button ButtonModificar;
+     @FXML
+    private Button ButtonEliminar;
 
     @FXML
     private ImageView buscarImage;
@@ -31,7 +43,13 @@ public class ReservaController implements Liberable {
     private Memoria<Recurso, Integer> memoriaRecurso;
     private Memoria<Cliente, Integer> memoriaCliente;
 
-    public void BuscarReservaBoton(ActionEvent actionEvent) {
+
+    public void initialize() {
+        GestorIdiomas.agregarListener(this);
+        actualizarTexto();
+    }
+
+        public void BuscarReservaBoton(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/reservas/BuscarReserva.fxml"));
             Parent nuevoPanel = loader.load();
@@ -145,4 +163,15 @@ public class ReservaController implements Liberable {
         });
     }
 
+    @Override
+    public void idiomaCambiado() {
+        actualizarTexto();
+    }
+
+    private void actualizarTexto() {
+        ButtonBuscar.setText(GestorIdiomas.getTexto("buscar"));
+        ButtonAgregar.setText(GestorIdiomas.getTexto("agregar"));
+        ButtonModificar.setText(GestorIdiomas.getTexto("actualizar"));
+        ButtonEliminar.setText(GestorIdiomas.getTexto("eliminar"));
+    }
 }

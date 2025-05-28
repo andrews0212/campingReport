@@ -99,9 +99,9 @@ public class ModificarReservaController implements IdiomaListener {
     public void initialize() {
         mapaEstadoTraducido = new HashMap<>();
         mapaEstadoTraducido.clear();
-        mapaEstadoTraducido.put("DISPONIBLE", GestorIdiomas.getTexto("DISPONIBLE"));
-        mapaEstadoTraducido.put("OCUPADO", GestorIdiomas.getTexto("OCUPADO"));
-        mapaEstadoTraducido.put("MANTENIMIENTO", GestorIdiomas.getTexto("MANTENIMIENTO"));
+        mapaEstadoTraducido.put("ACTIVA", GestorIdiomas.getTexto("ACTIVA"));
+        mapaEstadoTraducido.put("FINALIZADA", GestorIdiomas.getTexto("FINALIZADA"));
+        mapaEstadoTraducido.put("CANCELADA", GestorIdiomas.getTexto("CANCELADA"));
 
 
         estadoCombo.setItems(FXCollections.observableArrayList(mapaEstadoTraducido.values()));
@@ -154,9 +154,15 @@ public class ModificarReservaController implements IdiomaListener {
         }
 
         // Filtrar por estado
+
         String estadoSeleccionado = (String) estadoCombo1.getSelectionModel().getSelectedItem();
+        String estadoTraducido = mapaEstadoTraducido.entrySet().stream()
+                .filter(entry -> entry.getValue().equals(estadoSeleccionado))
+                .map(Map.Entry::getKey)
+                .findFirst()
+                .orElse(null);
         if (estadoSeleccionado != null && !estadoSeleccionado.isEmpty()) {
-            stream = stream.filter(reserva -> reserva.getEstado().equalsIgnoreCase(estadoSeleccionado));
+            stream = stream.filter(reserva -> reserva.getEstado().equalsIgnoreCase(estadoTraducido));
         }
 
         // 🔍 Filtrar por DNI
@@ -280,11 +286,10 @@ public class ModificarReservaController implements IdiomaListener {
         precioText.setPromptText(GestorIdiomas.getTexto("precioField"));
         estadoCombo.setPromptText(GestorIdiomas.getTexto("estadoText"));
 
-
         mapaEstadoTraducido.clear();
-        mapaEstadoTraducido.put("DISPONIBLE", GestorIdiomas.getTexto("DISPONIBLE"));
-        mapaEstadoTraducido.put("OCUPADO", GestorIdiomas.getTexto("OCUPADO"));
-        mapaEstadoTraducido.put("MANTENIMIENTO", GestorIdiomas.getTexto("MANTENIMIENTO"));
+        mapaEstadoTraducido.put("ACTIVA", GestorIdiomas.getTexto("ACTIVA"));
+        mapaEstadoTraducido.put("FINALIZADA", GestorIdiomas.getTexto("FINALIZADA"));
+        mapaEstadoTraducido.put("CANCELADA", GestorIdiomas.getTexto("CANCELADA"));
 
         estadoCombo.setItems(FXCollections.observableArrayList(mapaEstadoTraducido.values()));
         estadoCombo1.setItems(FXCollections.observableArrayList(mapaEstadoTraducido.values()));
