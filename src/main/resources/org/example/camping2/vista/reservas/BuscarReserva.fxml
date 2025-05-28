@@ -14,7 +14,7 @@
 
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="469.0" prefWidth="724.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.Reservas.BuscaReservaController">
    <children>
-      <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Buscar Reservas">
+      <Label fx:id="labelBuscarReserva" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Buscar Reservas">
          <VBox.margin>
             <Insets />
          </VBox.margin>
@@ -31,13 +31,13 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" />
          </rowConstraints>
          <children>
-            <Label text="ID Cliente:" GridPane.rowIndex="1" />
+            <Label fx:id="labelIDCliente" text="ID Cliente:" GridPane.rowIndex="1" />
             <TextField fx:id="IDClienteText" promptText="Ingrese el ID" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Nombre:" GridPane.rowIndex="2" />
+            <Label fx:id="labelNombre" text="Nombre:" GridPane.rowIndex="2" />
             <TextField fx:id="nombreTextField" promptText="Ingrese el nombre" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="DNI:" GridPane.rowIndex="3" />
+            <Label fx:id="labelDNI" text="DNI:" GridPane.rowIndex="3" />
             <TextField fx:id="dniTextField" promptText="Ingrese el DNI" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label text="ID Reserva:" />
+            <Label fx:id="labelIDReserva" text="ID Reserva:" />
             <TextField fx:id="IDReservaText" promptText="Ingrese el ID" GridPane.columnIndex="1" />
          </children>
          <VBox.margin>
@@ -46,8 +46,8 @@
       </GridPane>
       <HBox alignment="CENTER" prefHeight="0.0" prefWidth="400.0" spacing="20.0">
          <children>
-            <Button onAction="#buscarReserva" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Buscar" />
-            <Button mnemonicParsing="false" onAction="#buscaTodos" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="BuscarTodos" />
+            <Button fx:id="btnBuscar" onAction="#buscarReserva" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Buscar" />
+            <Button fx:id="btnBuscarTodos" mnemonicParsing="false" onAction="#buscaTodos" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="BuscarTodos" />
          </children>
          <VBox.margin>
             <Insets bottom="20.0" top="20.0" />

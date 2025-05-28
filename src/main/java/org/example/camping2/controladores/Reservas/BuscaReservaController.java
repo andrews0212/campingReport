@@ -4,9 +4,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import org.example.camping2.controladores.GestorIdiomas;
+import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.dto.Reserva;
 import org.example.camping2.modelo.memoria.Memoria;
@@ -14,10 +14,24 @@ import org.example.camping2.modelo.memoria.Memoria;
 import java.util.Date;
 import java.util.List;
 
-public class BuscaReservaController {
+public class BuscaReservaController implements IdiomaListener {
 
     Memoria<Reserva, Integer> memoriaReserva;
 
+    @FXML
+    private Label labelBuscarReserva;
+    @FXML
+    private Label labelIDReserva;
+    @FXML
+    private Label labelIDCliente;
+    @FXML
+    private Label labelNombre;
+    @FXML
+    private Label labelDNI;
+    @FXML
+    private Button btnBuscar;
+    @FXML
+    private Button btnBuscarTodos;
     @FXML
     private TextField IDReservaText;
     @FXML
@@ -59,6 +73,8 @@ public class BuscaReservaController {
         PersonasColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getNumeroPersonas()));
         PrecioTotalColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getPrecioTotal()));
         clientesTableView.setItems(Reservas);
+        GestorIdiomas.agregarListener(this);
+        actualizarTexto();
 
 
     }
@@ -157,5 +173,36 @@ public class BuscaReservaController {
         }
 
         return resultados;
+    }
+
+    @Override
+    public void idiomaCambiado() {
+        actualizarTexto();
+    }
+
+    private void actualizarTexto() {
+        labelBuscarReserva.setText(GestorIdiomas.getTexto("labelBuscarReserva"));
+        labelIDReserva.setText(GestorIdiomas.getTexto("labelIDReserva"));
+        labelIDCliente.setText(GestorIdiomas.getTexto("labelIDCliente"));
+        labelNombre.setText(GestorIdiomas.getTexto("nombre"));
+        labelDNI.setText(GestorIdiomas.getTexto("dni"));
+        btnBuscar.setText(GestorIdiomas.getTexto("buscar"));
+        btnBuscarTodos.setText(GestorIdiomas.getTexto("buscarTodos"));
+        IDReserva.setText(GestorIdiomas.getTexto("labelIDReserva"));
+        IDClientecolumn.setText(GestorIdiomas.getTexto("labelIDCliente"));
+        dniColumn.setText(GestorIdiomas.getTexto("dni"));
+        FechaInicioColumn.setText(GestorIdiomas.getTexto("fechaInicio"));
+        FechaFinColumn.setText(GestorIdiomas.getTexto("fechaFin"));
+        EstadoColumn.setText(GestorIdiomas.getTexto("estado"));
+        PersonasColumn.setText(GestorIdiomas.getTexto("numeroPersonas"));
+        PrecioTotalColumn.setText(GestorIdiomas.getTexto("precioTotal"));
+        IDReservaText.setPromptText(GestorIdiomas.getTexto("idReservaText"));
+        IDClienteText.setPromptText(GestorIdiomas.getTexto("idClienteText"));
+        nombreTextField.setPromptText(GestorIdiomas.getTexto("nombreText"));
+        dniTextField.setPromptText(GestorIdiomas.getTexto("dniText"));
+        clientesTableView.setPlaceholder(new Label(GestorIdiomas.getTexto("noResultados")));
+
+
+
     }
 }
