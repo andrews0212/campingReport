@@ -5,8 +5,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import org.example.camping2.controladores.GestorIdiomas;
+import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.controladores.Liberable;
 import org.example.camping2.modelo.dto.Acompanante;
 import org.example.camping2.modelo.dto.Reserva;
@@ -15,8 +18,16 @@ import org.example.camping2.modelo.memoria.Memoria;
 
 import java.io.IOException;
 
-public class AcompananteController implements Liberable {
+public class AcompananteController implements Liberable, IdiomaListener {
 
+    @FXML
+    private Button ButtonBuscar;
+    @FXML
+    private Button ButtonAgregar;
+    @FXML
+    private Button ButtonModificar;
+    @FXML
+    private Button ButtonEliminar;
     @FXML
     private ImageView buscarImage;
     @FXML
@@ -36,6 +47,11 @@ public class AcompananteController implements Liberable {
         this.areaContenido = areaContenido;
     }
 
+    @FXML
+    public void initialize() {
+        GestorIdiomas.agregarListener(this);
+        actualizarTexto();
+    }
     @FXML
     public void BuscarAcompanante(ActionEvent actionEvent) {
         try {
@@ -140,5 +156,16 @@ public class AcompananteController implements Liberable {
         });
     }
 
+    @Override
+    public void idiomaCambiado() {
+        actualizarTexto();
+    }
+
+    private void actualizarTexto() {
+        ButtonBuscar.setText(GestorIdiomas.getTexto("buscar"));
+        ButtonAgregar.setText(GestorIdiomas.getTexto("agregar"));
+        ButtonModificar.setText(GestorIdiomas.getTexto("actualizar"));
+        ButtonEliminar.setText(GestorIdiomas.getTexto("eliminar"));
+    }
 }
 
