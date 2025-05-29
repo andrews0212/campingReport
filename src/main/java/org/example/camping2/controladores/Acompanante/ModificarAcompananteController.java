@@ -5,13 +5,20 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.example.camping2.controladores.GestorIdiomas;
+import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Acompanante;
 import org.example.camping2.modelo.memoria.Memoria;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ModificarAcompananteController {
+public class ModificarAcompananteController implements IdiomaListener {
+
+    @FXML private Label labelModificarAcompanante;
+    @FXML private Button btnBuscar, btnBuscarTodos;
+    @FXML private Label labelIDAcompanante, labelIDReserva, labelNombre, labelApellido, labelDNI, labelEmail, labelTelefono;
+    @FXML private Label labelNombre2, labelApellido2, labelDNI2, labelEmail2, labelTelefono2;
 
     @FXML private TextField idText, idReserva, nombreText, ApellidoText, dniText, emailText, telefonoText;
     @FXML private TableView<Acompanante> recursoTable;
@@ -19,7 +26,7 @@ public class ModificarAcompananteController {
     @FXML private TableColumn<Acompanante, String> capacidadColumn, precioColumn, minimoColumn, estadoColumn;
     @FXML private TableColumn<Acompanante, String> telefonoColumn;
     @FXML private TextField nombreText1, ApellidoText1, dniText1, emailText1, telefonoText1;
-    @FXML private Button modificarBtn;
+    @FXML private Button btnModificar;
 
     private Memoria<Acompanante, Integer> memoriaAcompanante;
 
@@ -38,7 +45,8 @@ public class ModificarAcompananteController {
         estadoColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         telefonoColumn.setCellValueFactory(new PropertyValueFactory<>("telefono"));
 
-        recursoTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSel, newSel) -> mostrarSeleccionado(newSel));
+        GestorIdiomas.agregarListener(this);
+        actualizarTexto();
     }
 
     @FXML
@@ -76,15 +84,6 @@ public class ModificarAcompananteController {
         recursoTable.setItems(datos);
     }
 
-    private void mostrarSeleccionado(Acompanante acompanante) {
-        if (acompanante != null) {
-            nombreText1.setText(acompanante.getNombre());
-            ApellidoText1.setText(acompanante.getApellido());
-            dniText1.setText(acompanante.getDni());
-            emailText1.setText(acompanante.getEmail());
-            telefonoText1.setText(acompanante.getTelefono());
-        }
-    }
 
     @FXML
     public void modificar() {
@@ -116,4 +115,53 @@ public class ModificarAcompananteController {
         alerta.setContentText(contenido);
         alerta.showAndWait();
     }
+
+    @Override
+    public void idiomaCambiado() {
+        actualizarTexto();
+    }
+
+    private void actualizarTexto() {
+        labelModificarAcompanante.setText(GestorIdiomas.getTexto("modificarAcompanante"));
+        btnBuscar.setText(GestorIdiomas.getTexto("buscar"));
+        btnBuscarTodos.setText(GestorIdiomas.getTexto("buscarTodos"));
+        labelIDAcompanante.setText(GestorIdiomas.getTexto("labelIDAcompanante"));
+        labelIDReserva.setText(GestorIdiomas.getTexto("labelIDReserva"));
+        labelNombre.setText(GestorIdiomas.getTexto("nombre"));
+        labelApellido.setText(GestorIdiomas.getTexto("apellido"));
+        labelDNI.setText(GestorIdiomas.getTexto("dni"));
+        labelEmail.setText(GestorIdiomas.getTexto("email"));
+        labelTelefono.setText(GestorIdiomas.getTexto("telefono"));
+        labelNombre2.setText(GestorIdiomas.getTexto("nombre"));
+        labelApellido2.setText(GestorIdiomas.getTexto("apellido"));
+        labelDNI2.setText(GestorIdiomas.getTexto("dni"));
+        labelEmail2.setText(GestorIdiomas.getTexto("email"));
+        labelTelefono2.setText(GestorIdiomas.getTexto("telefono"));
+        btnModificar.setText(GestorIdiomas.getTexto("modificar"));
+
+        idColumn.setText(GestorIdiomas.getTexto("labelIDAcompanante"));
+        tipoColumn.setText(GestorIdiomas.getTexto("labelIDReserva"));
+        capacidadColumn.setText(GestorIdiomas.getTexto("nombre"));
+        precioColumn.setText(GestorIdiomas.getTexto("apellido"));
+        minimoColumn.setText(GestorIdiomas.getTexto("dni"));
+        estadoColumn.setText(GestorIdiomas.getTexto("email"));
+        telefonoColumn.setText(GestorIdiomas.getTexto("telefono"));
+
+        idText.setPromptText(GestorIdiomas.getTexto("labelIDAcompanante"));
+        idReserva.setPromptText(GestorIdiomas.getTexto("labelIDReserva"));
+        nombreText.setPromptText(GestorIdiomas.getTexto("nombreText"));
+        ApellidoText.setPromptText(GestorIdiomas.getTexto("apellidoField"));
+        dniText.setPromptText(GestorIdiomas.getTexto("dniField"));
+        emailText.setPromptText(GestorIdiomas.getTexto("emailField"));
+        telefonoText.setPromptText(GestorIdiomas.getTexto("telefonoField"));
+        nombreText1.setPromptText(GestorIdiomas.getTexto("nombreText"));
+        ApellidoText1.setPromptText(GestorIdiomas.getTexto("apellidoField"));
+        dniText1.setPromptText(GestorIdiomas.getTexto("dniField"));
+        emailText1.setPromptText(GestorIdiomas.getTexto("emailField"));
+        telefonoText1.setPromptText(GestorIdiomas.getTexto("telefonoField"));
+
+
+
+    }
+
 }

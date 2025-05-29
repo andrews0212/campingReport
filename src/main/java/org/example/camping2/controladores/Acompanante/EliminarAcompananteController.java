@@ -5,18 +5,22 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.example.camping2.controladores.GestorIdiomas;
+import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Acompanante;
 import org.example.camping2.modelo.memoria.Memoria;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class EliminarAcompananteController {
+public class EliminarAcompananteController implements IdiomaListener {
 
+    @FXML private Label labelEliminarAcompanante, labelIDAcompanante, labelIDCliente, labelIDReserva, labelNombre, labelApellido, labelDNI, labelEmail;
+    @FXML private Button btnBuscar, btnBuscarTodos, btnEliminar;
     @FXML private TextField idText, nombreText, tipoText, capacidadText, precioText, minimoPersonaText, estadoText;
     @FXML private TableView<Acompanante> recursoTable;
     @FXML private TableColumn<Acompanante, Integer> idColumn;
-    @FXML private TableColumn<Acompanante, String> nombreColumn, tipoColumn, capacidadColumn, precioColumn, minimoColumn, estadoColumn;
+    @FXML private TableColumn<Acompanante, String> nombreColumn, tipoColumn, capacidadColumn, precioColumn, minimoColumn, estadoColumn, telefonoColumn;
 
     private Memoria<Acompanante, Integer> memoriaAcompanante;
 
@@ -34,6 +38,9 @@ public class EliminarAcompananteController {
         precioColumn.setCellValueFactory(new PropertyValueFactory<>("apellido"));
         minimoColumn.setCellValueFactory(new PropertyValueFactory<>("dni"));
         estadoColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+        telefonoColumn.setCellValueFactory(new PropertyValueFactory<>("telefono"));
+        GestorIdiomas.agregarListener(this);
+        actualizarTexto();
     }
 
     @FXML
@@ -94,5 +101,35 @@ public class EliminarAcompananteController {
         alerta.setTitle(titulo);
         alerta.setContentText(contenido);
         alerta.showAndWait();
+    }
+
+    @Override
+    public void idiomaCambiado() {
+        actualizarTexto();
+    }
+
+    private void actualizarTexto() {
+        labelEliminarAcompanante.setText(GestorIdiomas.getTexto("EliminarAcompanante"));
+        labelIDAcompanante.setText(GestorIdiomas.getTexto("IDAcompanante"));
+        labelIDCliente.setText(GestorIdiomas.getTexto("IDCliente"));
+        labelIDReserva.setText(GestorIdiomas.getTexto("IDReserva"));
+        labelNombre.setText(GestorIdiomas.getTexto("nombre"));
+        labelApellido.setText(GestorIdiomas.getTexto("apellido"));
+        labelDNI.setText(GestorIdiomas.getTexto("dni"));
+        labelEmail.setText(GestorIdiomas.getTexto("email"));
+        btnBuscar.setText(GestorIdiomas.getTexto("buscar"));
+        btnBuscarTodos.setText(GestorIdiomas.getTexto("buscarTodos"));
+        btnEliminar.setText(GestorIdiomas.getTexto("eliminar"));
+        idText.setPromptText(GestorIdiomas.getTexto("IDAcompananteField"));
+        nombreText.setPromptText(GestorIdiomas.getTexto("idClienteText"));
+        tipoText.setPromptText(GestorIdiomas.getTexto("idReservaText"));
+        capacidadText.setPromptText(GestorIdiomas.getTexto("nombreText"));
+        precioText.setPromptText(GestorIdiomas.getTexto("apellidoField"));
+        minimoColumn.setText(GestorIdiomas.getTexto("dniField"));
+        estadoColumn.setText(GestorIdiomas.getTexto("emailField"));
+        telefonoColumn.setText(GestorIdiomas.getTexto("telefonoField"));
+
+
+
     }
 }

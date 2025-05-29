@@ -80,6 +80,7 @@ public class MapaCamping {
     @FXML private ImageView parcelaS17;
     @FXML private ImageView parcelaS16;
     @FXML private ImageView parcelaS15;
+    @FXML private ImageView parcelaS14;
     @FXML private ImageView parcelaS13;
 
     //=== Imagens casas ==//
@@ -315,6 +316,7 @@ public class MapaCamping {
         casas.put("S17", parcelaS17);
         casas.put("S16", parcelaS16);
         casas.put("S15", parcelaS15);
+        casas.put("S14", parcelaS14);
         casas.put("S13", parcelaS13);
 
     }
