@@ -22,8 +22,8 @@ public class ModificarAcompananteController implements IdiomaListener {
 
     @FXML private TextField idText, idReserva, nombreText, ApellidoText, dniText, emailText, telefonoText;
     @FXML private TableView<Acompanante> recursoTable;
-    @FXML private TableColumn<Acompanante, Integer> idColumn, tipoColumn;
-    @FXML private TableColumn<Acompanante, String> capacidadColumn, precioColumn, minimoColumn, estadoColumn;
+    @FXML private TableColumn<Acompanante, Integer> idColumn, idReservaColum;
+    @FXML private TableColumn<Acompanante, String> nombreColumn, apellidoColumn, dniColumn, emailColumn;
     @FXML private TableColumn<Acompanante, String> telefonoColumn;
     @FXML private TextField nombreText1, ApellidoText1, dniText1, emailText1, telefonoText1;
     @FXML private Button btnModificar;
@@ -38,11 +38,11 @@ public class ModificarAcompananteController implements IdiomaListener {
     @FXML
     public void initialize() {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        tipoColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getIdreserva().getId()));
-        capacidadColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        precioColumn.setCellValueFactory(new PropertyValueFactory<>("apellido"));
-        minimoColumn.setCellValueFactory(new PropertyValueFactory<>("dni"));
-        estadoColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+        idReservaColum.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getIdreserva().getId()));
+        nombreColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        apellidoColumn.setCellValueFactory(new PropertyValueFactory<>("apellido"));
+        dniColumn.setCellValueFactory(new PropertyValueFactory<>("dni"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         telefonoColumn.setCellValueFactory(new PropertyValueFactory<>("telefono"));
 
         GestorIdiomas.agregarListener(this);
@@ -140,11 +140,11 @@ public class ModificarAcompananteController implements IdiomaListener {
         btnModificar.setText(GestorIdiomas.getTexto("modificar"));
 
         idColumn.setText(GestorIdiomas.getTexto("labelIDAcompanante"));
-        tipoColumn.setText(GestorIdiomas.getTexto("labelIDReserva"));
-        capacidadColumn.setText(GestorIdiomas.getTexto("nombre"));
-        precioColumn.setText(GestorIdiomas.getTexto("apellido"));
-        minimoColumn.setText(GestorIdiomas.getTexto("dni"));
-        estadoColumn.setText(GestorIdiomas.getTexto("email"));
+        idReservaColum.setText(GestorIdiomas.getTexto("labelIDReserva"));
+        nombreColumn.setText(GestorIdiomas.getTexto("nombre"));
+        apellidoColumn.setText(GestorIdiomas.getTexto("apellido"));
+        dniColumn.setText(GestorIdiomas.getTexto("dni"));
+        emailColumn.setText(GestorIdiomas.getTexto("email"));
         telefonoColumn.setText(GestorIdiomas.getTexto("telefono"));
 
         idText.setPromptText(GestorIdiomas.getTexto("labelIDAcompanante"));

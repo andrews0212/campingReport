@@ -74,11 +74,11 @@
       <TableView fx:id="recursoTable" maxWidth="-Infinity" prefHeight="197.0" prefWidth="673.0">
          <columns>
             <TableColumn fx:id="idColumn" prefWidth="33.0" text="ID Acompañante" />
-            <TableColumn fx:id="tipoColumn" prefWidth="43.0" text="ID Reserva" />
-            <TableColumn fx:id="capacidadColumn" prefWidth="134.0" text="Nombre" />
-            <TableColumn fx:id="precioColumn" prefWidth="137.0" text="Apellido" />
-            <TableColumn fx:id="minimoColumn" prefWidth="83.0" text="DNI" />
-            <TableColumn fx:id="estadoColumn" prefWidth="127.0" text="Email" />
+            <TableColumn fx:id="idReservaColum" prefWidth="43.0" text="ID Reserva" />
+            <TableColumn fx:id="nombreColumn" prefWidth="134.0" text="Nombre" />
+            <TableColumn fx:id="apellidoColumn" prefWidth="137.0" text="Apellido" />
+            <TableColumn fx:id="dniColumn" prefWidth="83.0" text="DNI" />
+            <TableColumn fx:id="emailColumn" prefWidth="127.0" text="Email" />
             <TableColumn fx:id="telefonoColumn" prefWidth="115.0" text="Telefono" />
          </columns>
       </TableView>

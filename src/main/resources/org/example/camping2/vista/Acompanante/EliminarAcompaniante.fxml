@@ -27,43 +27,43 @@
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label fx:id="labelIDCliente" text="ID Cliente" />
-                  <TextField fx:id="nombreText" promptText="Ingrese el Nombre" />
+                  <TextField fx:id="idClienteText" promptText="Ingrese el Nombre" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label fx:id="labelIDReserva" text="ID Reserva" />
-                  <TextField fx:id="tipoText" promptText="Introduce Tipo" />
+                  <TextField fx:id="idReservaText" promptText="Introduce Tipo" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label fx:id="labelNombre" text="Nombre" />
-                  <TextField fx:id="capacidadText" promptText="Introduce Capacidad" />
+                  <TextField fx:id="nombreText" promptText="Introduce Capacidad" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label fx:id="labelApellido" text="Apellido" />
-                  <TextField fx:id="precioText" promptText="Introduce Precio" />
+                  <TextField fx:id="apellidoField" promptText="Introduce Precio" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label fx:id="labelDNI" text="DNI" />
-                  <TextField fx:id="minimoPersonaText" promptText="Introduce Minimo Personas" />
+                  <TextField fx:id="dniText" promptText="Introduce Minimo Personas" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label fx:id="labelEmail" text="Email" />
-                  <TextField fx:id="estadoText" promptText="Introduce Estado" />
+                  <TextField fx:id="emailText" promptText="Introduce Estado" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label text="Telefono" />
-                  <TextField promptText="Introduce el telefono" />
+                  <TextField fx:id="telefonoText" promptText="Introduce el telefono" />
                </children>
             </VBox>
          </children>
@@ -80,12 +80,12 @@
       <TableView fx:id="recursoTable" maxWidth="-Infinity" prefHeight="197.0" prefWidth="673.0">
          <columns>
             <TableColumn fx:id="idColumn" prefWidth="61.0" text="ID Acompañante" />
-            <TableColumn fx:id="nombreColumn" prefWidth="75.0" text="ID Cliente" />
-            <TableColumn fx:id="tipoColumn" prefWidth="65.0" text="ID Reserva" />
-            <TableColumn fx:id="capacidadColumn" prefWidth="77.0" text="Nombre" />
-            <TableColumn fx:id="precioColumn" prefWidth="86.0" text="Apellido" />
-            <TableColumn fx:id="minimoColumn" prefWidth="84.0" text="DNI" />
-            <TableColumn fx:id="estadoColumn" prefWidth="77.0" text="Email" />
+            <TableColumn fx:id="idClienteColumn" prefWidth="75.0" text="ID Cliente" />
+            <TableColumn fx:id="idReservaColumn" prefWidth="65.0" text="ID Reserva" />
+            <TableColumn fx:id="nombreColumn" prefWidth="77.0" text="Nombre" />
+            <TableColumn fx:id="apellidoColumn" prefWidth="86.0" text="Apellido" />
+            <TableColumn fx:id="dniColumn" prefWidth="84.0" text="DNI" />
+            <TableColumn fx:id="emailColumn" prefWidth="77.0" text="Email" />
             <TableColumn fx:id="telefonoColumn" prefWidth="147.0" text="Telefono" />
          </columns>
       </TableView>

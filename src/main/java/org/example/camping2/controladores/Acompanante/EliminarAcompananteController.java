@@ -17,10 +17,10 @@ public class EliminarAcompananteController implements IdiomaListener {
 
     @FXML private Label labelEliminarAcompanante, labelIDAcompanante, labelIDCliente, labelIDReserva, labelNombre, labelApellido, labelDNI, labelEmail;
     @FXML private Button btnBuscar, btnBuscarTodos, btnEliminar;
-    @FXML private TextField idText, nombreText, tipoText, capacidadText, precioText, minimoPersonaText, estadoText;
+    @FXML private TextField idText, idClienteText, idReservaText, nombreText, apellidoField, dniText, emailText, telefonoText;
     @FXML private TableView<Acompanante> recursoTable;
     @FXML private TableColumn<Acompanante, Integer> idColumn;
-    @FXML private TableColumn<Acompanante, String> nombreColumn, tipoColumn, capacidadColumn, precioColumn, minimoColumn, estadoColumn, telefonoColumn;
+    @FXML private TableColumn<Acompanante, String> idClienteColumn, idReservaColumn, nombreColumn, apellidoColumn, dniColumn, emailColumn, telefonoColumn;
 
     private Memoria<Acompanante, Integer> memoriaAcompanante;
 
@@ -32,12 +32,12 @@ public class EliminarAcompananteController implements IdiomaListener {
     @FXML
     public void initialize() {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nombreColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getIdreserva().getIdcliente().getId().toString()));
-        tipoColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getIdreserva().getId().toString()));
-        capacidadColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        precioColumn.setCellValueFactory(new PropertyValueFactory<>("apellido"));
-        minimoColumn.setCellValueFactory(new PropertyValueFactory<>("dni"));
-        estadoColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+        idClienteColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getIdreserva().getIdcliente().getId().toString()));
+        idReservaColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getIdreserva().getId().toString()));
+        nombreColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        apellidoColumn.setCellValueFactory(new PropertyValueFactory<>("apellido"));
+        dniColumn.setCellValueFactory(new PropertyValueFactory<>("dni"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         telefonoColumn.setCellValueFactory(new PropertyValueFactory<>("telefono"));
         GestorIdiomas.agregarListener(this);
         actualizarTexto();
@@ -46,12 +46,13 @@ public class EliminarAcompananteController implements IdiomaListener {
     @FXML
     public void buscar() {
         String idFiltro = idText.getText().trim();
-        String idClienteFiltro = nombreText.getText().trim().toLowerCase();
-        String idReservaFiltro = tipoText.getText().trim().toLowerCase();
-        String nombreFiltro = capacidadText.getText().trim().toLowerCase();
-        String apellidoFiltro = precioText.getText().trim().toLowerCase();
-        String dniFiltro = minimoPersonaText.getText().trim().toLowerCase();
-        String emailFiltro = estadoText.getText().trim().toLowerCase();
+        String idClienteFiltro = idClienteText.getText().trim().toLowerCase();
+        String idReservaFiltro = idReservaText.getText().trim().toLowerCase();
+        String nombreFiltro = nombreText.getText().trim().toLowerCase();
+        String apellidoFiltro = apellidoField.getText().trim().toLowerCase();
+        String dniFiltro = dniText.getText().trim().toLowerCase();
+        String emailFiltro = emailText.getText().trim().toLowerCase();
+        String telefonoFiltro = telefonoText.getText().trim().toLowerCase();
 
         List<Acompanante> filtrados = memoriaAcompanante.findAll().stream()
                 .filter(a -> {
@@ -62,6 +63,7 @@ public class EliminarAcompananteController implements IdiomaListener {
                     if (!apellidoFiltro.isEmpty() && (a.getApellido() == null || !a.getApellido().toLowerCase().contains(apellidoFiltro))) return false;
                     if (!dniFiltro.isEmpty() && (a.getDni() == null || !a.getDni().toLowerCase().contains(dniFiltro))) return false;
                     if (!emailFiltro.isEmpty() && (a.getEmail() == null || !a.getEmail().toLowerCase().contains(emailFiltro))) return false;
+                    if (!telefonoFiltro.isEmpty() && (a.getEmail() == null || !a.getTelefono().toLowerCase().contains(telefonoFiltro))) return false;
                     return true;
                 })
                 .collect(Collectors.toList());
@@ -121,13 +123,23 @@ public class EliminarAcompananteController implements IdiomaListener {
         btnBuscarTodos.setText(GestorIdiomas.getTexto("buscarTodos"));
         btnEliminar.setText(GestorIdiomas.getTexto("eliminar"));
         idText.setPromptText(GestorIdiomas.getTexto("IDAcompananteField"));
-        nombreText.setPromptText(GestorIdiomas.getTexto("idClienteText"));
-        tipoText.setPromptText(GestorIdiomas.getTexto("idReservaText"));
-        capacidadText.setPromptText(GestorIdiomas.getTexto("nombreText"));
-        precioText.setPromptText(GestorIdiomas.getTexto("apellidoField"));
-        minimoColumn.setText(GestorIdiomas.getTexto("dniField"));
-        estadoColumn.setText(GestorIdiomas.getTexto("emailField"));
-        telefonoColumn.setText(GestorIdiomas.getTexto("telefonoField"));
+        idClienteText.setPromptText(GestorIdiomas.getTexto("idClienteText"));
+        idReservaText.setPromptText(GestorIdiomas.getTexto("idReservaText"));
+        nombreText.setPromptText(GestorIdiomas.getTexto("nombreText"));
+        apellidoField.setPromptText(GestorIdiomas.getTexto("apellidoField"));
+        dniText.setPromptText(GestorIdiomas.getTexto("dniText"));
+        emailText.setPromptText(GestorIdiomas.getTexto("emailField"));
+        telefonoText.setPromptText(GestorIdiomas.getTexto("telefonoField"));
+
+
+        idColumn.setText(GestorIdiomas.getTexto("id"));
+        idClienteColumn.setText(GestorIdiomas.getTexto("IDCliente"));
+        idReservaColumn.setText(GestorIdiomas.getTexto("IDReserva"));
+        nombreColumn.setText(GestorIdiomas.getTexto("nombre"));
+        apellidoColumn.setText(GestorIdiomas.getTexto("apellido"));
+        dniColumn.setText(GestorIdiomas.getTexto("dni"));
+        emailColumn.setText(GestorIdiomas.getTexto("email"));
+        telefonoColumn.setText(GestorIdiomas.getTexto("telefono"));
 
 
 
