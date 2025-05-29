@@ -18,6 +18,8 @@ import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import static org.example.camping2.controladores.GestorIdiomas.cambiarIdioma;
+
 /**
  * Controlador para la ventana de inicio de sesión.
  * Este controlador maneja la lógica de autenticación de usuarios en la aplicación, verificando el nombre de usuario
@@ -30,7 +32,7 @@ import java.util.ResourceBundle;
  * @version 1.0.0
  * @since 31/01/2025
  */
-public class ControladorInicio {
+public class ControladorInicio implements IdiomaListener {
 
     private Memoria<Usuario, Integer> memoria;
 
@@ -59,12 +61,18 @@ public class ControladorInicio {
 
     @FXML
     public void initialize() {
-        // Configurar eventos de cambio de idioma
-        menuIngles.setOnAction(event -> cambiarIdioma(new Locale("en", "US")));
-        menuEspañol.setOnAction(event -> cambiarIdioma(new Locale("es", "ES")));
+        GestorIdiomas.agregarListener(this);
+        actualizarTexto();
 
-        // Cargar idioma predeterminado (Español)
+    }
+    @FXML
+    private void cambiarIdiomaEspañol() {
         cambiarIdioma(new Locale("es", "ES"));
+    }
+
+    @FXML
+    private void cambiarIdiomaIngles() {
+        cambiarIdioma(new Locale("en", "US"));
     }
     /**
      * Constructor del controlador. Este constructor está vacío porque JavaFX requiere un constructor sin parámetros
@@ -107,7 +115,9 @@ public class ControladorInicio {
                         if(validarIntentos(usuario)){
                             try {
                                 // Cargar la nueva ventana (Menu.fxml) si el usuario es autenticado
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/Menu.fxml"));
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/Menu.fxml"), GestorIdiomas.getBundleActual());
+                                System.out.println("Idioma activo al cargar menú: " + GestorIdiomas.getLocale());
+
                                 Parent root = loader.load();
 
                                 // Obtener el controlador de la nueva ventana y configurar la memoria de clientes
@@ -217,14 +227,18 @@ public class ControladorInicio {
         stage.setScene(new Scene(root));
         stage.show();
     }
-    private void cambiarIdioma(Locale locale) {
-        bundle = ResourceBundle.getBundle("org.example.camping2.idiomas.messages", locale);
-        labelUsuario.setText(bundle.getString("usuario"));
-        labelContraseña.setText(bundle.getString("contraseña"));
-        textFieldUsuario.setPromptText(bundle.getString("usuario"));
-        textFieldContraseña.setPromptText(bundle.getString("contraseña"));
-        botonInciar.setText(bundle.getString("iniciar"));
-        botonRegistrar.setText(bundle.getString("registrar"));
+
+    @Override
+    public void idiomaCambiado() {
+        actualizarTexto();
     }
 
+    private void actualizarTexto() {
+        labelUsuario.setText(GestorIdiomas.getTexto("usuario"));
+        labelContraseña.setText(GestorIdiomas.getTexto("contraseña"));
+        textFieldUsuario.setPromptText(GestorIdiomas.getTexto("usuario"));
+        textFieldContraseña.setPromptText(GestorIdiomas.getTexto("contraseña"));
+        botonInciar.setText(GestorIdiomas.getTexto("iniciar"));
+        botonRegistrar.setText(GestorIdiomas.getTexto("registrar"));
+    }
 }

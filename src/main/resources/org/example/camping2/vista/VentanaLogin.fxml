@@ -90,8 +90,8 @@
                             <menus>
                                 <Menu mnemonicParsing="false" text="Lenguaje">
                                     <items>
-                                        <MenuItem fx:id="menuIngles" mnemonicParsing="false" text="Ingles" />
-                                        <MenuItem fx:id="menuEspañol" mnemonicParsing="false" text="Español" />
+                                        <MenuItem fx:id="menuIngles" mnemonicParsing="false" text="Ingles" onAction="#cambiarIdiomaIngles" />
+                                        <MenuItem fx:id="menuEspañol" mnemonicParsing="false" text="Español" onAction="#cambiarIdiomaEspañol" />
                                     </items>
                                 </Menu>
                             </menus>

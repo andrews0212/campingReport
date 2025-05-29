@@ -86,7 +86,6 @@ public class Menu implements Liberable,IdiomaListener{
     private Memoria<Recurso, Integer> memoriaRecurso;
     private Memoria<Acompanante, Integer> memoriaAcompanante;
     private ClienteController clienteController;
-    private ResourceBundle bundle;
 
     /**
      * Initializes the controller and the various panels in the client section of the application.

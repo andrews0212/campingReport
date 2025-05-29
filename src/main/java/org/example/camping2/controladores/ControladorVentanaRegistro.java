@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import org.example.camping2.modelo.dto.Usuario;
 import org.example.camping2.modelo.memoria.Memoria;
 import org.example.camping2.modelo.validaciones.RegexValidaciones;
+import org.example.camping2.modelo.validaciones.ValidarUsuario;
 
 public class ControladorVentanaRegistro {
 
@@ -33,15 +34,15 @@ public class ControladorVentanaRegistro {
 
     public void crearUsuario(){
 
-        if(!RegexValidaciones.NOMBRE_USUARIO.matcher(CampoUsuario.getText()).matches()){
+        if(ValidarUsuario.validarNombreUsuario(CampoUsuario.getText())){
             alerta("Nombre de usuario incorrecto");
-        } else if (!RegexValidaciones.NOMBRE.matcher(CampoNombre.getText()).matches()) {
+        } else if (ValidarUsuario.validarNombre(CampoNombre.getText())) {
             alerta("Nombre incorrecto");
-        } else if (!RegexValidaciones.Apellido.matcher(CampoApellido.getText()).matches()) {
+        } else if (ValidarUsuario.validarApellido(CampoApellido.getText())) {
             alerta("Apellido incorrecto");
-        } else if (!RegexValidaciones.CORREO.matcher(CampoCorreo.getText()).matches()) {
+        } else if (ValidarUsuario.validarCorreo(CampoCorreo.getText())) {
             alerta("Correo incorrecto");
-        } else if (!RegexValidaciones.CONTRASEÑA.matcher(CampoContraseña.getText()).matches()) {
+        } else if (ValidarUsuario.validarContrasenia(CampoContraseña.getText())){
             alerta("La contraseña no es valida");
         } else if (CampoContraseña.getText().equals(CampoConfirmarContraseña.getText())){
             Usuario usuario = new Usuario(CampoNombre.getText(), CampoApellido.getText(), CampoCorreo.getText(), CampoUsuario.getText(), "ACTIVO", CampoContraseña.getText());

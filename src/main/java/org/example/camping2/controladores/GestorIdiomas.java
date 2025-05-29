@@ -25,6 +25,10 @@ public class GestorIdiomas {
         return bundle.getString(clave);
     }
 
+    public static ResourceBundle getBundleActual() {
+        return bundle;
+    }
+
     public static Locale getLocale() {
         return locale;
     }
