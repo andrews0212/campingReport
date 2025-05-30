@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="1080.0" prefWidth="1980.0" style="-fx-background-color: #FFF2F2;" stylesheets="@../Css/Iniciar.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.ControladorInicioNew">
+   <children>
+      <AnchorPane layoutX="687.0" layoutY="360.0" prefHeight="361.0" prefWidth="606.0" style="-fx-background-color: #2D336B; -fx-background-radius: 50px;">
+         <children>
+            <Button layoutX="213.0" layoutY="271.0" mnemonicParsing="false" onAction="#iniciar" prefHeight="44.0" prefWidth="181.0" style="-fx-background-radius: 20px;" styleClass="btnEntrar" text="Entrar" />
+            <Label alignment="CENTER" layoutX="184.0" layoutY="25.0" prefHeight="56.0" prefWidth="241.0" text="Iniciar" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="HelveticaRounded-Bold" size="45.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="textFieldContraseña" layoutX="38.0" layoutY="181.0" prefHeight="46.0" prefWidth="532.0" promptText="Contraseña" styleClass="text-field" stylesheets="@../Css/Iniciar.css">
+               <font>
+                  <Font name="MyriadPro-Regular" size="20.0" />
+               </font>
+            </PasswordField>
+            <TextField fx:id="textFieldUsuario" layoutX="39.0" layoutY="104.0" prefHeight="46.0" prefWidth="532.0" promptText="Usuario" styleClass="text-field" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
