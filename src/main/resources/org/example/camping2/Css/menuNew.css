@@ -1,0 +1,30 @@
+@font-face {
+    font-family: "MyriadPro";
+    src: url("fonts/MYRIADPRO-REGULAR.OTF");
+}
+
+.menu-lateral {
+    -fx-background-color: #6A78F5;
+
+}
+
+.titulo-central {
+    -fx-font-family: "Helvetica Rounded";
+    -fx-font-size: 200px;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, black, 4, 0.3, 0, 0);
+}
+.superposicion-negra {
+    -fx-background-color: rgba(0, 0, 0, 0.6); /* negro con opacidad */
+}
+
+.centered-tree-cell {
+    -fx-alignment: center;
+}
+.tree-view .tree-cell{
+    -fx-background-color: #6A78F5;
+    -fx-font-family: "MyriadPro";
+    -fx-font-size: 44px;
+
+}
+

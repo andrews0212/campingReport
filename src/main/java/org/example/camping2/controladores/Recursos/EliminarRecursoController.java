@@ -242,13 +242,6 @@ public class EliminarRecursoController implements IdiomaListener {
         precioColumn.setText(GestorIdiomas.getTexto("precio"));
         minimoColumn.setText(GestorIdiomas.getTexto("minimoPersonas"));
         estadoColumn.setText(GestorIdiomas.getTexto("estado"));
-        nombreText.setPromptText(GestorIdiomas.getTexto("nombreText"));
-        capacidadText.setPromptText(GestorIdiomas.getTexto("capacidadText"));;
-        idText.setPromptText(GestorIdiomas.getTexto("idText"));
-        precioText.setPromptText(GestorIdiomas.getTexto("precioText"));
-        minimoPersonaText.setPromptText(GestorIdiomas.getTexto("minimoPersonaText"));
-        estadoText.setPromptText(GestorIdiomas.getTexto("estadoText"));
-        btnEliminar.setText(GestorIdiomas.getTexto("eliminar"));
 
     }
 }

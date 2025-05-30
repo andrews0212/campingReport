@@ -162,13 +162,7 @@ public class BuscaAcompananteController implements IdiomaListener {
         btnBuscar.setText(GestorIdiomas.getTexto("buscar"));
         btnBuscarTodos.setText(GestorIdiomas.getTexto("buscarTodos"));
 
-        idText.setPromptText(GestorIdiomas.getTexto("idText"));
-        idReservaText.setPromptText(GestorIdiomas.getTexto("idReservaText"));
-        nombreText.setPromptText(GestorIdiomas.getTexto("nombreText"));
-        apellidoText.setPromptText(GestorIdiomas.getTexto("apellidoField"));
-        dniText.setPromptText(GestorIdiomas.getTexto("dniField"));
-        emailText.setPromptText(GestorIdiomas.getTexto("emailField"));
-        telefonoText.setPromptText(GestorIdiomas.getTexto("telefonoField"));
+
         idColumn.setText(GestorIdiomas.getTexto("id"));
         tipoColumn.setText(GestorIdiomas.getTexto("IDReserva"));
         capacidadColumn.setText(GestorIdiomas.getTexto("nombre"));

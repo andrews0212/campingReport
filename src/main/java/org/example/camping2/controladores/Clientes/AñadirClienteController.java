@@ -5,6 +5,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.example.camping2.controladores.GestorIdiomas;
 import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Cliente;
@@ -157,7 +159,13 @@ public class AñadirClienteController implements IdiomaListener {
         Alert alerta = new Alert(tipo);
         alerta.setTitle(titulo);
         alerta.setContentText(mensaje);
-        alerta.showAndWait();
+
+        // Obtener el Stage actual y asignarlo como propietario
+        Stage stage = (Stage) nombreField.getScene().getWindow(); // cualquier nodo sirve
+        alerta.initOwner(stage);
+        alerta.initModality(Modality.WINDOW_MODAL);  // Importante: no usar APPLICATION_MODAL
+
+        alerta.show(); // No bloqueante
     }
 
     /**

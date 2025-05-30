@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import org.example.camping2.modelo.dto.Usuario;
 import org.example.camping2.modelo.memoria.Memoria;
 import org.example.camping2.modelo.validaciones.RegexValidaciones;
@@ -25,7 +26,8 @@ public class ControladorVentanaRegistro {
     private TextField CampoContraseña;
     @FXML
     private TextField CampoConfirmarContraseña;
-
+    @FXML
+    private AnchorPane raiz;
 
 
     public void setMemoria(Memoria<Usuario, Integer> memoria) {
@@ -58,9 +60,21 @@ public class ControladorVentanaRegistro {
         }
     }
 
-    private void alerta(String texto){
+    private void alerta(String texto) {
         Alert alert = new Alert(Alert.AlertType.ERROR, texto, ButtonType.OK);
         alert.setTitle("Error al crear el usuario");
-        alert.show();
+
+        // Obtener el Stage desde el AnchorPane raíz
+        if (raiz != null && raiz.getScene() != null) {
+            alert.initOwner(raiz.getScene().getWindow());
+        }
+
+        alert.showAndWait(); // Mejor usar showAndWait para bloquear y mantener el foco
+    }
+
+
+    public void setRaiz(AnchorPane raiz) {
+        this.raiz = raiz;
+
     }
 }

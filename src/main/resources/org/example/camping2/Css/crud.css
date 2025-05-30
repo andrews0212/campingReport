@@ -1,0 +1,44 @@
+@font-face {
+    font-family: "MyriadPro";
+    src: url("fonts/MYRIADPRO-REGULAR.OTF");
+}
+
+.lateralDerecho {
+    -fx-background-radius: 0 50 50 0;
+    -fx-border-radius: 0 50 50 0;
+
+}
+.lateralIzquierdo {
+    -fx-background-radius: 50 0 0 50;
+    -fx-border-radius: 50 0 0 50;
+}
+.ladoSuperior{
+    -fx-background-radius: 50 50 0 0;
+-fx-border-radius: 50 50 0 0;;
+}
+.table-view {
+    -fx-font-family: "MyriadPro";
+}
+
+.table-view .column-header,
+.table-view .column-header .label {
+    -fx-font-family: "MyriadPro";
+    -fx-text-fill: black; /* color del texto del header */
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-background-color:  #7886C7 ;
+}
+.table-view .table-cell {
+    -fx-font-size: 18px; /* Cambia este valor al que desees */
+}
+.text-field {
+
+    -fx-text-fill: BLACK; /* color texto normal */
+    -fx-prompt-text-fill: black; /* color texto del placeholder */
+    -fx-font-size: 20px;
+}
+
+.texto {
+    -fx-font-family: "MyriadPro";
+    -fx-font-size: 20px;
+}

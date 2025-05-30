@@ -49,7 +49,7 @@ public class ReservaController implements Liberable, IdiomaListener {
         actualizarTexto();
     }
 
-        public void BuscarReservaBoton(ActionEvent actionEvent) {
+        public void BuscarReservaBoton() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/reservas/BuscarReserva.fxml"));
             Parent nuevoPanel = loader.load();
@@ -64,7 +64,7 @@ public class ReservaController implements Liberable, IdiomaListener {
         }
     }
 
-    public void agregarReservaBoton(ActionEvent actionEvent) {
+    public void agregarReservaBoton() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/reservas/CrearReserva.fxml"));
             Parent nuevoPanel = loader.load();

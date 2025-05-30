@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="raiz" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../Css/menuNew.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.MenuNew">
+
+    <!-- MENÚ LATERAL -->
+    <VBox fx:id="menuLateral" alignment="CENTER" layoutY="-4.0" prefHeight="1106.0" prefWidth="642.0" styleClass="menu-lateral" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="1386.0" AnchorPane.topAnchor="-4.0">
+        <TreeView fx:id="treeMenu" prefHeight="774.0" prefWidth="534.0" style="-fx-background-color: #6A78F5;">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor></TreeView>
+      <ComboBox fx:id="comboBoxIdiomas" prefWidth="150.0" />
+    </VBox>
+
+    <!-- CONTENIDO CENTRAL CON FONDO -->
+    <StackPane fx:id="contenedorCentral" layoutX="530.0" prefHeight="1102.0" prefWidth="1390.0" styleClass="fondo" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="530.0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+      <ImageView fitHeight="1102.0" fitWidth="1388.0">
+         <image>
+            <Image url="@../imagenes/cabañaMenu.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane styleClass="superposicion-negra" />
+        <Label styleClass="titulo-central" text="EcoVenture">
+         <font>
+            <Font name="HelveticaRounded-Bold" size="74.0" />
+         </font></Label>
+    </StackPane>
+
+</AnchorPane>

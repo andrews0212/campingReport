@@ -9,6 +9,8 @@ import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.memoria.Memoria;
 
+import java.time.LocalDate;
+
 /**
  * Controller class responsible for handling the "Search Client" functionality in the camping application.
  * This class allows users to search for clients based on various criteria (ID, name, or DNI) and displays
@@ -21,17 +23,13 @@ import org.example.camping2.modelo.memoria.Memoria;
 public class BuscarClientePanelController implements IdiomaListener {
 
     @FXML
-    private Label labelTitulo, labelId, labelNombre, labelDNI;
+    private Label labelTitulo, labelId, labelNombre, labelDNI, labelApellido, labelTelefono, labelEmail, labelFechaNacimiento, labelEstado;
     @FXML
     private Button buttonBuscar;
     @FXML
     private Button buttonBuscarTodos;
     @FXML
-    private TextField idClienteTextField;
-    @FXML
-    private TextField nombreTextField;
-    @FXML
-    private TextField dniTextField;
+    private TextField idClienteTextField, nombreTextField, dniTextField, apellidoTextField, telefonoTextField, emailTextField, fechaNacimientoTextField, estadoTextField;
     @FXML
     private TableView<Cliente> clientesTableView;
     @FXML
@@ -42,6 +40,16 @@ public class BuscarClientePanelController implements IdiomaListener {
     private TableColumn<Cliente, String> apellidoColumn;
     @FXML
     private TableColumn<Cliente, String> dniColumn;
+    @FXML
+    private TableColumn<Cliente, String> telefonoColumn;
+    @FXML
+    private TableColumn<Cliente, String> emailColumn;
+    @FXML
+    private TableColumn<Cliente, String> fechaNacimientoColumn;
+    @FXML
+    private TableColumn<Cliente, String> estadoColumn;
+    @FXML
+    private TableColumn<Cliente, String> comentarioColumn;
     @FXML
     private Label statusLabel;
 
@@ -60,6 +68,15 @@ public class BuscarClientePanelController implements IdiomaListener {
         nombreColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getNombre()));
         apellidoColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getApellido()));
         dniColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getDni()));
+        telefonoColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getTelefono()));
+        emailColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getEmail()));
+        fechaNacimientoColumn.setCellValueFactory(cellData -> {
+            LocalDate fecha = cellData.getValue().getFechaNacimiento();
+            return new javafx.beans.property.SimpleStringProperty(fecha != null ? fecha.toString() : "");
+        });
+        estadoColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getEstado()));
+        comentarioColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getComentarios()));
+
 
         // Bind the observable list to the TableView
         clientesTableView.setItems(clientes);
@@ -73,17 +90,22 @@ public class BuscarClientePanelController implements IdiomaListener {
      * message is shown in the `statusLabel`.
      */
     public void buscarClientes() {
-        // Clear previous results and reset status
         clientes.clear();
         statusLabel.setText("");
 
         try {
             String id = idClienteTextField.getText();
             String nombre = nombreTextField.getText();
+            String apellido = apellidoTextField.getText();
             String dni = dniTextField.getText();
+            String telefono = telefonoTextField.getText();
+            String email = emailTextField.getText();
+            String fechaNacimiento = fechaNacimientoTextField.getText();
+            String estado = estadoTextField.getText();
 
-            // Simulate database search logic
-            ObservableList<Cliente> resultados = buscarClientesEnBaseDatos(id, nombre, dni);
+            ObservableList<Cliente> resultados = buscarClientesEnBaseDatos(
+                    id, nombre, apellido, dni, telefono, email, fechaNacimiento, estado
+            );
 
             if (resultados.isEmpty()) {
                 statusLabel.setText("No se encontraron clientes.");
@@ -94,6 +116,7 @@ public class BuscarClientePanelController implements IdiomaListener {
             statusLabel.setText("Ocurrió un error al buscar los clientes.");
         }
     }
+
 
     public void buscarTodosClientes(){
         // Clear previous results and reset status
@@ -121,42 +144,60 @@ public class BuscarClientePanelController implements IdiomaListener {
      * @param dni The DNI of the client to search for (optional).
      * @return A list of clients that match the search criteria.
      */
-    private ObservableList<Cliente> buscarClientesEnBaseDatos(String id, String nombre, String dni) {
+    private ObservableList<Cliente> buscarClientesEnBaseDatos(
+            String id, String nombre, String apellido, String dni,
+            String telefono, String email, String fechaNacimiento, String estado
+    ) {
         ObservableList<Cliente> resultados = FXCollections.observableArrayList();
 
-        // Validate that at least one search parameter is provided
-        if (id.isEmpty() && nombre.isEmpty() && dni.isEmpty()) {
+        if (id.isEmpty() && nombre.isEmpty() && apellido.isEmpty() && dni.isEmpty()
+                && telefono.isEmpty() && email.isEmpty()
+                && fechaNacimiento.isEmpty() && estado.isEmpty()) {
             System.out.println("No hay datos para buscar.");
             return resultados;
         }
 
-        // Search clients in memory
         try {
             for (Cliente cliente : memoria.findAll()) {
                 boolean coincide = true;
 
-                // Compare ID if provided
                 if (!id.isEmpty()) {
                     try {
                         int idNum = Integer.parseInt(id);
                         coincide &= cliente.getId() == idNum;
                     } catch (NumberFormatException e) {
-                        System.out.println("ID no válido: " + id);
                         coincide = false;
                     }
                 }
 
-                // Compare name if provided
                 if (!nombre.isEmpty()) {
                     coincide &= cliente.getNombre().equalsIgnoreCase(nombre);
                 }
 
-                // Compare DNI if provided
-                if (!dni.isEmpty()) {
-                    coincide &= cliente.getDni().equals(dni);
+                if (!apellido.isEmpty()) {
+                    coincide &= cliente.getApellido().equalsIgnoreCase(apellido);
                 }
 
-                // Add to results if all conditions match
+                if (!dni.isEmpty()) {
+                    coincide &= cliente.getDni().equalsIgnoreCase(dni);
+                }
+
+                if (!telefono.isEmpty()) {
+                    coincide &= cliente.getTelefono().equalsIgnoreCase(telefono);
+                }
+
+                if (!email.isEmpty()) {
+                    coincide &= cliente.getEmail().equalsIgnoreCase(email);
+                }
+
+                if (!fechaNacimiento.isEmpty()) {
+                    coincide &= cliente.getFechaNacimiento().toString().equalsIgnoreCase(fechaNacimiento);
+                }
+
+                if (!estado.isEmpty()) {
+                    coincide &= cliente.getEstado().equalsIgnoreCase(estado);
+                }
+
                 if (coincide) {
                     resultados.add(cliente);
                 }
@@ -175,7 +216,12 @@ public class BuscarClientePanelController implements IdiomaListener {
      */
     public void setMemoria(Memoria<Cliente, Integer> memoria) {
         this.memoria = memoria;
+        if (clientes != null && memoria != null) {
+            clientes.clear();
+            clientes.addAll(memoria.findAll());
+        }
     }
+
 
     @Override
     public void idiomaCambiado() {
@@ -188,15 +234,23 @@ public class BuscarClientePanelController implements IdiomaListener {
     labelId.setText(GestorIdiomas.getTexto("idcliente"));
     labelNombre.setText(GestorIdiomas.getTexto("nombre"));
     labelDNI.setText(GestorIdiomas.getTexto("dni"));
+    labelApellido.setText(GestorIdiomas.getTexto("apellido"));
+    labelTelefono.setText(GestorIdiomas.getTexto("telefono"));
+    labelEmail.setText(GestorIdiomas.getTexto("email"));
+    labelFechaNacimiento.setText(GestorIdiomas.getTexto("fechaNacimiento"));
+    labelEstado.setText(GestorIdiomas.getTexto("estado"));
+
 
     idColumn.setText(GestorIdiomas.getTexto("idcliente"));
     nombreColumn.setText(GestorIdiomas.getTexto("nombre"));
     dniColumn.setText(GestorIdiomas.getTexto("dni"));
     apellidoColumn.setText(GestorIdiomas.getTexto("apellido"));
+    telefonoColumn.setText(GestorIdiomas.getTexto("telefono"));
+    emailColumn.setText(GestorIdiomas.getTexto("email"));
+    fechaNacimientoColumn.setText(GestorIdiomas.getTexto("fechaNacimiento"));
+    estadoColumn.setText(GestorIdiomas.getTexto("estado"));
+    comentarioColumn.setText(GestorIdiomas.getTexto("comentario"));
 
-    idClienteTextField.setPromptText(GestorIdiomas.getTexto("idText"));
-    nombreTextField.setPromptText(GestorIdiomas.getTexto("nombreText"));
-    dniTextField.setPromptText(GestorIdiomas.getTexto("dniText"));
 
     }
 }

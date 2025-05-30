@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="1080.0" prefWidth="1980.0" style="-fx-background-color: #2D336B;" stylesheets="@../Css/registrar.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.ControladorVentanaRegistro">
+   <children>
+      <AnchorPane layoutX="432.0" layoutY="64.0" prefHeight="976.0" prefWidth="1195.0" style="-fx-background-color: #A9B5DF; -fx-background-radius: 100;" stylesheets="@../Css/registrar.css">
+         <children>
+            <Label alignment="CENTER" layoutX="156.0" layoutY="16.0" prefHeight="125.0" prefWidth="872.0" text="Registrar" textFill="WHITE">
+               <font>
+                  <Font name="HelveticaRounded-Bold" size="159.0" />
+               </font>
+            </Label>
+            <TextField fx:id="CampoNombre" layoutX="208.0" layoutY="239.0" prefHeight="80.0" prefWidth="779.0" promptText="Nombres" stylesheets="@../Css/registrar.css">
+               <font>
+                  <Font name="MyriadPro-Regular" size="46.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="CampoApellido" layoutX="210.0" layoutY="339.0" prefHeight="80.0" prefWidth="779.0" promptText="Apellidos">
+               <font>
+                  <Font name="MyriadPro-Regular" size="46.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="CampoCorreo" layoutX="212.0" layoutY="437.0" prefHeight="80.0" prefWidth="779.0" promptText="Correo">
+               <font>
+                  <Font name="MyriadPro-Regular" size="46.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="CampoUsuario" layoutX="213.0" layoutY="535.0" prefHeight="80.0" prefWidth="779.0" promptText="Usuario">
+               <font>
+                  <Font name="MyriadPro-Regular" size="46.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="CampoContraseña" layoutX="214.0" layoutY="635.0" prefHeight="80.0" prefWidth="779.0" promptText="Contraseña">
+               <font>
+                  <Font name="MyriadPro-Regular" size="42.0" />
+               </font>
+            </PasswordField>
+            <PasswordField fx:id="CampoConfirmarContraseña" layoutX="215.0" layoutY="732.0" prefHeight="80.0" prefWidth="779.0" promptText="Confirmar Contraseña">
+               <font>
+                  <Font name="MyriadPro-Regular" size="46.0" />
+               </font>
+            </PasswordField>
+            <Button layoutX="464.0" layoutY="854.0" mnemonicParsing="false" onAction="#crearUsuario" prefHeight="85.0" prefWidth="270.0" text="Continuar">
+               <font>
+                  <Font name="MyriadPro-Regular" size="46.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

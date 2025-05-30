@@ -53,7 +53,7 @@ public class AcompananteController implements Liberable, IdiomaListener {
         actualizarTexto();
     }
     @FXML
-    public void BuscarAcompanante(ActionEvent actionEvent) {
+    public void BuscarAcompanante() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/Acompanante/BuscarAcompaniante.fxml"));
             Parent nuevoPanel = loader.load();
@@ -70,7 +70,7 @@ public class AcompananteController implements Liberable, IdiomaListener {
     }
 
     @FXML
-    public void CrearAcompanante(ActionEvent actionEvent) {
+    public void CrearAcompanante() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/Acompanante/CrearAcompaniante.fxml"));
             Parent nuevoPanel = loader.load();
@@ -88,7 +88,7 @@ public class AcompananteController implements Liberable, IdiomaListener {
     }
 
     @FXML
-    public void ModificarAcompanante(ActionEvent actionEvent) {
+    public void ModificarAcompanante() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/Acompanante/ModificarAcompaniante.fxml"));
             Parent nuevoPanel = loader.load();
@@ -105,7 +105,7 @@ public class AcompananteController implements Liberable, IdiomaListener {
     }
 
     @FXML
-    public void EliminarAcompanante(ActionEvent actionEvent) {
+    public void EliminarAcompanante() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/Acompanante/EliminarAcompaniante.fxml"));
             Parent nuevoPanel = loader.load();

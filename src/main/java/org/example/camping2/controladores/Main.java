@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -33,7 +34,8 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/PantallaCarga.fxml"));
+        Font.loadFont(getClass().getResourceAsStream("/fonts/Helvetica Rounded Bold.otf"), 12);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/raiz.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("EcoVenture");
         URL url = getClass().getResource("/org/example/camping2/logo.png");
@@ -43,7 +45,9 @@ public class Main extends Application {
         imageView.setFitHeight(32); // Establecer la altura del ícono
         stage.getIcons().add(imageView.getImage());
         stage.setScene(scene);
+        stage.setFullScreen(true); // Pantalla completa
         stage.show();
+
     }
 
     /**

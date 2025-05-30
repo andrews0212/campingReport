@@ -2,12 +2,9 @@ package org.example.camping2.controladores.Clientes;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.layout.StackPane;
 import org.example.camping2.controladores.GestorIdiomas;
 import org.example.camping2.controladores.IdiomaListener;
@@ -15,8 +12,6 @@ import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.memoria.Memoria;
 
 import java.io.IOException;
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 public class ClienteController implements IdiomaListener{
 
@@ -47,7 +42,7 @@ public class ClienteController implements IdiomaListener{
      */
 
     @FXML
-    private void manejarBotonAñadir() {
+    public void AgregarPanelCliente() {
         cargarPanel("/org/example/camping2/vista/clientes/AñadirClientePanel.fxml");
     }
 
@@ -56,7 +51,7 @@ public class ClienteController implements IdiomaListener{
      * This method is called when the "Delete" button is pressed.
      */
     @FXML
-    private void manejarBotonEliminar() {
+    public void EliminarPanelCliente() {
         cargarPanel("/org/example/camping2/vista/clientes/EliminarClientePane.fxml");
     }
 
@@ -65,7 +60,7 @@ public class ClienteController implements IdiomaListener{
      * This method is called when the "Update" button is pressed.
      */
     @FXML
-    private void manejarBotonActualizar() {
+    public void ModificarPanelCliente() {
         cargarPanel("/org/example/camping2/vista/clientes/ActualizarClientePanel.fxml");
     }
 
@@ -74,7 +69,7 @@ public class ClienteController implements IdiomaListener{
      * This method is called when the "Search" button is pressed.
      */
     @FXML
-    private void manejarBotonBuscar() {
+    public void BuscarPanelCliente() {
 
         cargarPanel("/org/example/camping2/vista/clientes/BuscarClientePanel.fxml");
 

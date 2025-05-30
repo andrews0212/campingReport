@@ -225,15 +225,7 @@ public class CrearAcompananteController implements IdiomaListener {
     EstadoColumn.setText(GestorIdiomas.getTexto("estado"));
     PersonasColumn.setText(GestorIdiomas.getTexto("numeroPersonas"));
     PrecioTotalColumn.setText(GestorIdiomas.getTexto("precioTotal"));
-    dniText.setPromptText(GestorIdiomas.getTexto("dniText"));
-    fechaInicio.setPromptText(GestorIdiomas.getTexto("fechaInicioText"));
-    fechaFin.setPromptText(GestorIdiomas.getTexto("fechaFinText"));
-    precioText.setPromptText(GestorIdiomas.getTexto("precioText"));
-    nombreText.setPromptText(GestorIdiomas.getTexto("nombreText"));
-    apellidoText.setPromptText(GestorIdiomas.getTexto("apellidoField"));
-    dniAcompText.setPromptText(GestorIdiomas.getTexto("dniField"));
-    emailText.setPromptText(GestorIdiomas.getTexto("emailField"));
-    telefonoText.setPromptText(GestorIdiomas.getTexto("telefonoField"));
+
 
 
 

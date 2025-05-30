@@ -47,7 +47,7 @@ public class RecursoController implements Liberable, IdiomaListener {
         actualizarTexto();
     }
     @FXML
-    public void BuscarRecursos(ActionEvent actionEvent) {
+    public void BuscarRecursos() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/recurso/BuscarRecurso.fxml"));
             Parent nuevoPanel = loader.load();
@@ -62,7 +62,7 @@ public class RecursoController implements Liberable, IdiomaListener {
         }
     }
     @FXML
-    public void CrearRecurso(ActionEvent actionEvent){
+    public void CrearRecurso(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/recurso/CrearRecurso.fxml"));
             Parent nuevoPanel = loader.load();
@@ -77,7 +77,7 @@ public class RecursoController implements Liberable, IdiomaListener {
         }
     }
     @FXML
-    public void ModificarRecurso(ActionEvent actionEvent){
+    public void ModificarRecurso(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/recurso/ModificarRecurso.fxml"));
             Parent nuevoPanel = loader.load();
@@ -92,7 +92,7 @@ public class RecursoController implements Liberable, IdiomaListener {
         }
     }
     @FXML
-    public void EliminarRecurso(ActionEvent actionEvent){
+    public void EliminarRecurso(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/recurso/EliminarRecurso.fxml"));
             Parent nuevoPanel = loader.load();

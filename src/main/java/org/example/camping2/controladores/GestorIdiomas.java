@@ -40,4 +40,7 @@ public class GestorIdiomas {
     public static void quitarListener(IdiomaListener listener) {
         listeners.remove(listener);
     }
+
+
+
 }

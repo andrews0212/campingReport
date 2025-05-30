@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.memoria.Memoria;
@@ -20,19 +21,20 @@ public class MainSinLogin extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/Menu.fxml"));
-            Parent root = loader.load();
-            Menu controladorCliente = loader.getController();
-            controladorCliente.setMemoriaCliente(new Memoria<>(Cliente.class));
-            stage = new Stage();
+            Font.loadFont(getClass().getResourceAsStream("/fonts/MYRIADPRO-REGULAR.OTF"), 12);
+            Font.loadFont(getClass().getResourceAsStream("/fonts/Helvetica Rounded Bold.otf"), 12);
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/menu.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
             stage.setTitle("EcoVenture");
             URL url = getClass().getResource("/org/example/camping2/logo.png");
             Image icon = new Image(url.toString());
             ImageView imageView = new ImageView(icon);
-            imageView.setFitWidth(32);
-            imageView.setFitHeight(32);
+            imageView.setFitWidth(32); // Establecer el ancho del ícono
+            imageView.setFitHeight(32); // Establecer la altura del ícono
             stage.getIcons().add(imageView.getImage());
-            stage.setScene(new Scene(root));
+            stage.setScene(scene);
+            stage.setFullScreen(true); // Pantalla completa
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

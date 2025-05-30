@@ -81,10 +81,12 @@ public class BuscaReservaController implements IdiomaListener {
 
     public void setMemoriaReserva(Memoria<Reserva, Integer> memoriaReserva) {
         this.memoriaReserva = memoriaReserva;
+        buscaTodos(); // Cargar automáticamente las reservas en la tabla
     }
 
+
     @FXML
-    public void buscaTodos(ActionEvent event) {
+    public void buscaTodos() {
         Reservas.clear();
         try {
             // Simulate database search logic
@@ -97,7 +99,7 @@ public class BuscaReservaController implements IdiomaListener {
 
         }
     }
-    public void buscarReserva(ActionEvent event) {
+    public void buscarReserva() {
         // Clear previous results and reset status
         Reservas.clear();
 
@@ -196,10 +198,6 @@ public class BuscaReservaController implements IdiomaListener {
         EstadoColumn.setText(GestorIdiomas.getTexto("estado"));
         PersonasColumn.setText(GestorIdiomas.getTexto("numeroPersonas"));
         PrecioTotalColumn.setText(GestorIdiomas.getTexto("precioTotal"));
-        IDReservaText.setPromptText(GestorIdiomas.getTexto("idReservaText"));
-        IDClienteText.setPromptText(GestorIdiomas.getTexto("idClienteText"));
-        nombreTextField.setPromptText(GestorIdiomas.getTexto("nombreText"));
-        dniTextField.setPromptText(GestorIdiomas.getTexto("dniText"));
         clientesTableView.setPlaceholder(new Label(GestorIdiomas.getTexto("noResultados")));
 
 

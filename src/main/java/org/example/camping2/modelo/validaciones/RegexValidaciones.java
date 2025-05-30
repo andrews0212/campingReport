@@ -12,7 +12,7 @@ public interface RegexValidaciones {
     Pattern NIE = Pattern.compile("^[XZY]{1}[0-9]{7}[A-Za-z]$");
     Pattern TELEFONO = Pattern.compile("^[0-9]{9}$");
     Pattern ESTADO = Pattern.compile("\\b(ACTIVO|BLOQUEADO|SUSPENDIDO)\\b");
-
+    Pattern ESTADO_RESERVA = Pattern.compile("\\b(CONFIRMADA|PENDIENTE|CANCELADA)\\b");
 
 
 

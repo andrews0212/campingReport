@@ -1,0 +1,32 @@
+@font-face {
+    font-family: "MyriadPro";
+    src: url("fonts/MYRIADPRO-REGULAR.OTF");
+}
+
+.text-field {
+    -fx-font-family: "MyriadPro";
+    -fx-font-size: 20px;
+    -fx-background-color: transparent;
+    -fx-background-insets: 0 0 1 0;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent transparent white transparent;
+    -fx-border-width: 0 0 2 0;
+    -fx-border-insets: 0;
+    -fx-border-radius: 0;
+    -fx-text-fill: white; /* Color del texto escrito */
+    -fx-prompt-text-fill: white; /* color texto del placeholder */
+}
+
+/* 🎯 Color del prompt text */
+.text-field .prompt-text {
+    -fx-fill: white;
+    -fx-font-style: italic;
+}
+
+
+.btnEntrar {
+    -fx-font-family: "MyriadPro";
+    -fx-font-size: 20px;
+    -fx-background-color: #A9B5DF;
+    -fx-text-fill: white;
+}

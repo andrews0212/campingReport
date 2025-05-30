@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.example.camping2.modelo.dto.Usuario;
 import org.example.camping2.modelo.memoria.Memoria;
@@ -29,6 +30,7 @@ import javax.swing.*;
  */
 public class ControladorVentanaCarga implements Initializable {
 
+    private AnchorPane raiz; // referencia al AnchorPane principal
     @FXML
     private ProgressBar barraProgreso;  // Progress bar to indicate loading progress
     private Memoria<Usuario, Integer> memoria;  // Memory service for user data
@@ -93,39 +95,26 @@ public class ControladorVentanaCarga implements Initializable {
      */
     private void abrirNuevaVentana() {
         try {
-            // Load the content for the new window
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/VentanaLogin.fxml"));
-            Parent root = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/presentacion.fxml"));
 
-            // Access the controller of the newly loaded FXML
-            ControladorInicio controlador = loader.getController();
+            Parent pantallaPrincipal = loader.load();
+            raiz.getChildren().setAll(pantallaPrincipal);
 
-            // Pass the memory instance to the controller
+            ControladorPresentacion controlador = loader.getController();
             controlador.setMemoria(memoria);
+            controlador.setRaiz(raiz);
 
-            // Create a new scene and set it to the stage
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("EcoVenture");
-            stage.setResizable(false);
-            URL url = getClass().getResource("/org/example/camping2/logo.png");
-            Image icon = new Image(url.toString());
-            ImageView imageView = new ImageView(icon);
-            imageView.setFitWidth(32); // Establecer el ancho del ícono
-            imageView.setFitHeight(32); // Establecer la altura del ícono
-            stage.getIcons().add(imageView.getImage());
-            stage.show();
-
-            // Close the current window (optional)
-            Stage ventanaActual = (Stage) barraProgreso.getScene().getWindow();
-            ventanaActual.close();
+            AnchorPane.setTopAnchor(pantallaPrincipal, 0.0);
+            AnchorPane.setBottomAnchor(pantallaPrincipal, 0.0);
+            AnchorPane.setLeftAnchor(pantallaPrincipal, 0.0);
+            AnchorPane.setRightAnchor(pantallaPrincipal, 0.0);
 
         } catch (Exception e) {
             e.printStackTrace();
-            // Show error message if there is an issue opening the new window
             JOptionPane.showMessageDialog(null, "Error al abrir la nueva ventana: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
 
     /**
      * Initializes the controller and starts the loading task when the window is loaded.
@@ -134,5 +123,9 @@ public class ControladorVentanaCarga implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         cargarBarra();  // Call the method to start the loading process
+    }
+
+    public void setRaiz(AnchorPane raiz) {
+        this.raiz = raiz;
     }
 }

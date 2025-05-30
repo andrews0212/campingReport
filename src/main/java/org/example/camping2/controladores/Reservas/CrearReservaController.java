@@ -93,6 +93,34 @@ public class CrearReservaController implements IdiomaListener {
 
     public void setMemoriaRecurso(Memoria<Recurso, Integer> memoriaRecurso) {
         this.memoriaRecurso = memoriaRecurso;
+
+        // Si el ComboBox ya tiene una selección, cargar los recursos automáticamente
+        if (tipoComboBox.getSelectionModel().getSelectedItem() != null) {
+            cargarRecursosPorTipoSeleccionado();
+        }
+    }
+    private void cargarRecursosPorTipoSeleccionado() {
+        try {
+            recursos.clear();
+            String tipoTraducidoUI = tipoComboBox.getSelectionModel().getSelectedItem().toString();
+
+            // Volver al valor real del tipo (clave)
+            String tipoReal = mapaTipoTraducido.entrySet().stream()
+                    .filter(entry -> entry.getValue().equals(tipoTraducidoUI))
+                    .map(Map.Entry::getKey)
+                    .findFirst()
+                    .orElse(null);
+
+            if (tipoReal != null && memoriaRecurso != null) {
+                recursos.addAll(memoriaRecurso.findAll().stream()
+                        .filter(p -> p.getTipo().equals(tipoReal))
+                        .toList());
+                tablaRecurso.setItems(recursos);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al cargar recursos: " + e.getMessage());
+        }
     }
 
     public void setMemoriaCliente(Memoria<Cliente, Integer> memoriaCliente) {
@@ -150,10 +178,7 @@ public class CrearReservaController implements IdiomaListener {
         mapaTipoTraducido.put("PARCELA", GestorIdiomas.getTexto("PARCELA"));
         mapaTipoTraducido.put("BUNGALOW", GestorIdiomas.getTexto("BUNGALOW"));
         mapaTipoTraducido.put("BARBACOA", GestorIdiomas.getTexto("BARBACOA"));
-        dniText.setPromptText(GestorIdiomas.getTexto("dniField"));
-        precioText.setPromptText(GestorIdiomas.getTexto("precioText"));
-        fechaInicio.setPromptText(GestorIdiomas.getTexto("fechaInicioText"));
-        fechaFin.setPromptText(GestorIdiomas.getTexto("fechaFinText"));
+
 
         tipoComboBox.setItems(FXCollections.observableArrayList(mapaTipoTraducido.values()));
         tipoComboBox.getSelectionModel().select(0);

@@ -5,6 +5,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.example.camping2.controladores.GestorIdiomas;
 import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Acompanante;
@@ -98,11 +100,17 @@ public class EliminarAcompananteController implements IdiomaListener {
         recursoTable.setItems(datos);
     }
 
-    private void mostrarAlerta(Alert.AlertType tipo, String titulo, String contenido) {
+    private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje ) {
         Alert alerta = new Alert(tipo);
         alerta.setTitle(titulo);
-        alerta.setContentText(contenido);
-        alerta.showAndWait();
+        alerta.setContentText(mensaje);
+
+        // Obtener el Stage actual y asignarlo como propietario
+        Stage stage = (Stage) dniText.getScene().getWindow(); // cualquier nodo sirve
+        alerta.initOwner(stage);
+        alerta.initModality(Modality.WINDOW_MODAL);  // Importante: no usar APPLICATION_MODAL
+
+        alerta.show(); // No bloqueante
     }
 
     @Override
@@ -122,14 +130,7 @@ public class EliminarAcompananteController implements IdiomaListener {
         btnBuscar.setText(GestorIdiomas.getTexto("buscar"));
         btnBuscarTodos.setText(GestorIdiomas.getTexto("buscarTodos"));
         btnEliminar.setText(GestorIdiomas.getTexto("eliminar"));
-        idText.setPromptText(GestorIdiomas.getTexto("IDAcompananteField"));
-        idClienteText.setPromptText(GestorIdiomas.getTexto("idClienteText"));
-        idReservaText.setPromptText(GestorIdiomas.getTexto("idReservaText"));
-        nombreText.setPromptText(GestorIdiomas.getTexto("nombreText"));
-        apellidoField.setPromptText(GestorIdiomas.getTexto("apellidoField"));
-        dniText.setPromptText(GestorIdiomas.getTexto("dniText"));
-        emailText.setPromptText(GestorIdiomas.getTexto("emailField"));
-        telefonoText.setPromptText(GestorIdiomas.getTexto("telefonoField"));
+
 
 
         idColumn.setText(GestorIdiomas.getTexto("id"));

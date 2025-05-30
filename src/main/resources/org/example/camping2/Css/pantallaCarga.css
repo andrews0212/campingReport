@@ -1,0 +1,16 @@
+.superposicion-negra {
+    -fx-background-color: rgba(0, 0, 0, 0.6); /* negro con opacidad */
+}
+
+.barra-transparente {
+    -fx-background-color: transparent;
+    -fx-background-radius: 20px; /* Bordes redondeados */
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 20px;
+}
+
+#titulo {
+    -fx-font-family: "Helvetica Rounded";
+    -fx-font-size: 223px;
+}

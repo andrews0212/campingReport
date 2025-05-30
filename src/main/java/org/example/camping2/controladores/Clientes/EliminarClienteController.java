@@ -1,14 +1,15 @@
 package org.example.camping2.controladores.Clientes;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import org.example.camping2.controladores.GestorIdiomas;
 import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.memoria.Memoria;
+
+import java.time.LocalDate;
 
 /**
  * Controller for the "Eliminar Cliente" (Delete Client) view.
@@ -30,27 +31,179 @@ import org.example.camping2.modelo.memoria.Memoria;
 public class EliminarClienteController implements IdiomaListener {
 
     @FXML
-    private Label eliminarText;
+    private Label labelTitulo, labelId, labelNombre, labelDNI, labelApellido, labelTelefono, labelEmail, labelFechaNacimiento, labelEstado;
     @FXML
-    private Label idText;
+    private Button buttonBuscar;
     @FXML
-    private Button btnEliminar;
+    private Button buttonBuscarTodos;
     @FXML
-    private TextField idClienteTextField;  // Text field for entering the client ID to delete
-
+    private TextField idClienteTextField, nombreTextField, dniTextField, apellidoTextField, telefonoTextField, emailTextField, fechaNacimientoTextField, estadoTextField;
     @FXML
-    private Label statusLabel;  // Label for showing the status of the deletion operation
-
-    private Memoria<Cliente, Integer> memoria;  // Memory service for handling client data
-
-
-
+    private TableView<Cliente> clientesTableView;
     @FXML
-    private void initialize() {
+    private TableColumn<Cliente, Integer> idColumn;
+    @FXML
+    private TableColumn<Cliente, String> nombreColumn;
+    @FXML
+    private TableColumn<Cliente, String> apellidoColumn;
+    @FXML
+    private TableColumn<Cliente, String> dniColumn;
+    @FXML
+    private TableColumn<Cliente, String> telefonoColumn;
+    @FXML
+    private TableColumn<Cliente, String> emailColumn;
+    @FXML
+    private TableColumn<Cliente, String> fechaNacimientoColumn;
+    @FXML
+    private TableColumn<Cliente, String> estadoColumn;
+    @FXML
+    private TableColumn<Cliente, String> comentarioColumn;
+    @FXML
+    private Label statusLabel;
+
+
+    private ObservableList<Cliente> clientes = FXCollections.observableArrayList();
+    private Memoria<Cliente, Integer> memoria;
+
+    /**
+     * Initializes the controller and binds the columns of the table to the fields of the `Cliente` class.
+     * Also binds the `clientes` observable list to the `clientesTableView`.
+     */
+    @FXML
+    public void initialize() {
+        // Bind columns to Cliente fields
+        idColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getId()));
+        nombreColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getNombre()));
+        apellidoColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getApellido()));
+        dniColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getDni()));
+        telefonoColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getTelefono()));
+        emailColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getEmail()));
+        fechaNacimientoColumn.setCellValueFactory(cellData -> {
+            LocalDate fecha = cellData.getValue().getFechaNacimiento();
+            return new javafx.beans.property.SimpleStringProperty(fecha != null ? fecha.toString() : "");
+        });
+        estadoColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getEstado()));
+        comentarioColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getComentarios()));
+
+
+        // Bind the observable list to the TableView
+        clientesTableView.setItems(clientes);
         GestorIdiomas.agregarListener(this);
         actualizarTexto();
+
     }
 
+    public void buscarClientes() {
+        clientes.clear();
+        statusLabel.setText("");
+
+        try {
+            String id = idClienteTextField.getText();
+            String nombre = nombreTextField.getText();
+            String apellido = apellidoTextField.getText();
+            String dni = dniTextField.getText();
+            String telefono = telefonoTextField.getText();
+            String email = emailTextField.getText();
+            String fechaNacimiento = fechaNacimientoTextField.getText();
+            String estado = estadoTextField.getText();
+
+            ObservableList<Cliente> resultados = buscarClientesEnBaseDatos(
+                    id, nombre, apellido, dni, telefono, email, fechaNacimiento, estado
+            );
+
+            if (resultados.isEmpty()) {
+                statusLabel.setText("No se encontraron clientes.");
+            } else {
+                clientes.addAll(resultados);
+            }
+        } catch (Exception e) {
+            statusLabel.setText("Ocurrió un error al buscar los clientes.");
+        }
+    }
+
+    private ObservableList<Cliente> buscarClientesEnBaseDatos(
+            String id, String nombre, String apellido, String dni,
+            String telefono, String email, String fechaNacimiento, String estado
+    ) {
+        ObservableList<Cliente> resultados = FXCollections.observableArrayList();
+
+        if (id.isEmpty() && nombre.isEmpty() && apellido.isEmpty() && dni.isEmpty()
+                && telefono.isEmpty() && email.isEmpty()
+                && fechaNacimiento.isEmpty() && estado.isEmpty()) {
+            System.out.println("No hay datos para buscar.");
+            return resultados;
+        }
+
+        try {
+            for (Cliente cliente : memoria.findAll()) {
+                boolean coincide = true;
+
+                if (!id.isEmpty()) {
+                    try {
+                        int idNum = Integer.parseInt(id);
+                        coincide &= cliente.getId() == idNum;
+                    } catch (NumberFormatException e) {
+                        coincide = false;
+                    }
+                }
+
+                if (!nombre.isEmpty()) {
+                    coincide &= cliente.getNombre().equalsIgnoreCase(nombre);
+                }
+
+                if (!apellido.isEmpty()) {
+                    coincide &= cliente.getApellido().equalsIgnoreCase(apellido);
+                }
+
+                if (!dni.isEmpty()) {
+                    coincide &= cliente.getDni().equalsIgnoreCase(dni);
+                }
+
+                if (!telefono.isEmpty()) {
+                    coincide &= cliente.getTelefono().equalsIgnoreCase(telefono);
+                }
+
+                if (!email.isEmpty()) {
+                    coincide &= cliente.getEmail().equalsIgnoreCase(email);
+                }
+
+                if (!fechaNacimiento.isEmpty()) {
+                    coincide &= cliente.getFechaNacimiento().toString().equalsIgnoreCase(fechaNacimiento);
+                }
+
+                if (!estado.isEmpty()) {
+                    coincide &= cliente.getEstado().equalsIgnoreCase(estado);
+                }
+
+                if (coincide) {
+                    resultados.add(cliente);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error al buscar clientes: " + e.getMessage());
+        }
+
+        return resultados;
+    }
+
+
+    public void buscarTodosClientes() {
+        // Clear previous results and reset status
+        clientes.clear();
+        statusLabel.setText("");
+
+        try {
+            // Simulate database search logic
+            ObservableList<Cliente> resultados = FXCollections.observableArrayList();
+            ;
+            resultados.addAll(memoria.findAll());
+            clientes.addAll(resultados);
+
+
+        } catch (Exception e) {
+            statusLabel.setText("Ocurrió un error al buscar los clientes.");
+        }
+    }
 
     /**
      * Attempts to delete the client based on the provided client ID.
@@ -58,28 +211,28 @@ public class EliminarClienteController implements IdiomaListener {
      * If the ID is valid but the client does not exist, a failure message is shown.
      * If an error occurs during deletion, a generic error message is shown.
      */
-    public void eliminarCliente() {
-        String idCliente = idClienteTextField.getText();
+    @FXML
+    public void eliminarClienteSeleccionado() {
+        Cliente clienteSeleccionado = clientesTableView.getSelectionModel().getSelectedItem();
 
-        if (idCliente.isEmpty()) {
-            statusLabel.setText("Por favor, ingrese un ID válido.");
+        if (clienteSeleccionado == null) {
+            statusLabel.setText("Por favor, seleccione un cliente para eliminar.");
             return;
         }
 
         try {
-            // Simulate the deletion logic (replace with actual logic to remove the client)
-            boolean eliminado = eliminarClienteDeBaseDatos(Integer.parseInt(idCliente));
+            boolean eliminado = eliminarClienteDeBaseDatos(clienteSeleccionado.getId());
             if (eliminado) {
+                clientes.remove(clienteSeleccionado); // También quita de la lista observable para refrescar tabla
                 statusLabel.setStyle("-fx-text-fill: green;");
                 statusLabel.setText("Cliente eliminado exitosamente.");
             } else {
                 statusLabel.setStyle("-fx-text-fill: red;");
-                statusLabel.setText("No se encontró un cliente con ese ID.");
+                statusLabel.setText("No se pudo eliminar el cliente seleccionado.");
             }
-        } catch (NumberFormatException e) {
-            statusLabel.setText("El ID debe ser un número válido.");
         } catch (Exception e) {
-            statusLabel.setText("Ocurrió un error al eliminar el cliente.");
+            statusLabel.setStyle("-fx-text-fill: red;");
+            statusLabel.setText("Error al eliminar el cliente seleccionado.");
         }
     }
 
@@ -126,17 +279,40 @@ public class EliminarClienteController implements IdiomaListener {
      */
     public void setMemoria(Memoria<Cliente, Integer> memoria) {
         this.memoria = memoria;
+        if (clientes != null && memoria != null) {
+            clientes.clear();
+            clientes.addAll(memoria.findAll());
+        }
     }
-
 
     @Override
     public void idiomaCambiado() {
         actualizarTexto();
     }
-    public void actualizarTexto(){
-        eliminarText.setText(GestorIdiomas.getTexto("eliminarText"));
-        idText.setText(GestorIdiomas.getTexto("idText"));
-        btnEliminar.setText(GestorIdiomas.getTexto("btnEliminar"));
-        idClienteTextField.setPromptText(GestorIdiomas.getTexto("idTextField"));
+
+    private void actualizarTexto() {
+        buttonBuscar.setText(GestorIdiomas.getTexto("buscar"));
+        buttonBuscarTodos.setText(GestorIdiomas.getTexto("buscarTodos"));
+        labelTitulo.setText(GestorIdiomas.getTexto("buscarCliente"));
+        labelId.setText(GestorIdiomas.getTexto("idcliente"));
+        labelNombre.setText(GestorIdiomas.getTexto("nombre"));
+        labelDNI.setText(GestorIdiomas.getTexto("dni"));
+        labelApellido.setText(GestorIdiomas.getTexto("apellido"));
+        labelTelefono.setText(GestorIdiomas.getTexto("telefono"));
+        labelEmail.setText(GestorIdiomas.getTexto("email"));
+        labelFechaNacimiento.setText(GestorIdiomas.getTexto("fechaNacimiento"));
+        labelEstado.setText(GestorIdiomas.getTexto("estado"));
+
+
+        idColumn.setText(GestorIdiomas.getTexto("idcliente"));
+        nombreColumn.setText(GestorIdiomas.getTexto("nombre"));
+        dniColumn.setText(GestorIdiomas.getTexto("dni"));
+        apellidoColumn.setText(GestorIdiomas.getTexto("apellido"));
+        telefonoColumn.setText(GestorIdiomas.getTexto("telefono"));
+        emailColumn.setText(GestorIdiomas.getTexto("email"));
+        fechaNacimientoColumn.setText(GestorIdiomas.getTexto("fechaNacimiento"));
+        estadoColumn.setText(GestorIdiomas.getTexto("estado"));
+        comentarioColumn.setText(GestorIdiomas.getTexto("comentario"));
+
     }
 }

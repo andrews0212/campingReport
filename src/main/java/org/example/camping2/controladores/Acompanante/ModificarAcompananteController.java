@@ -44,9 +44,27 @@ public class ModificarAcompananteController implements IdiomaListener {
         dniColumn.setCellValueFactory(new PropertyValueFactory<>("dni"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         telefonoColumn.setCellValueFactory(new PropertyValueFactory<>("telefono"));
+        // Listener para cargar datos en campos de texto al seleccionar en la tabla
+        recursoTable.getSelectionModel().selectedItemProperty().addListener((obs, viejo, nuevo) -> {
+            if (nuevo != null) {
+                nombreText1.setText(nuevo.getNombre());
+                ApellidoText1.setText(nuevo.getApellido());
+                dniText1.setText(nuevo.getDni());
+                emailText1.setText(nuevo.getEmail());
+                telefonoText1.setText(nuevo.getTelefono());
+            } else {
+                // Limpiar campos si no hay selección
+                nombreText1.clear();
+                ApellidoText1.clear();
+                dniText1.clear();
+                emailText1.clear();
+                telefonoText1.clear();
+            }
+        });
 
         GestorIdiomas.agregarListener(this);
         actualizarTexto();
+
     }
 
     @FXML
@@ -72,6 +90,7 @@ public class ModificarAcompananteController implements IdiomaListener {
                 }).collect(Collectors.toList());
 
         cargarTabla(filtrados);
+
     }
 
     @FXML
@@ -146,20 +165,6 @@ public class ModificarAcompananteController implements IdiomaListener {
         dniColumn.setText(GestorIdiomas.getTexto("dni"));
         emailColumn.setText(GestorIdiomas.getTexto("email"));
         telefonoColumn.setText(GestorIdiomas.getTexto("telefono"));
-
-        idText.setPromptText(GestorIdiomas.getTexto("labelIDAcompanante"));
-        idReserva.setPromptText(GestorIdiomas.getTexto("labelIDReserva"));
-        nombreText.setPromptText(GestorIdiomas.getTexto("nombreText"));
-        ApellidoText.setPromptText(GestorIdiomas.getTexto("apellidoField"));
-        dniText.setPromptText(GestorIdiomas.getTexto("dniField"));
-        emailText.setPromptText(GestorIdiomas.getTexto("emailField"));
-        telefonoText.setPromptText(GestorIdiomas.getTexto("telefonoField"));
-        nombreText1.setPromptText(GestorIdiomas.getTexto("nombreText"));
-        ApellidoText1.setPromptText(GestorIdiomas.getTexto("apellidoField"));
-        dniText1.setPromptText(GestorIdiomas.getTexto("dniField"));
-        emailText1.setPromptText(GestorIdiomas.getTexto("emailField"));
-        telefonoText1.setPromptText(GestorIdiomas.getTexto("telefonoField"));
-
 
 
     }
