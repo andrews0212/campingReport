@@ -6,12 +6,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.example.camping2.controladores.GestorIdiomas;
 import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Acompanante;
 import org.example.camping2.modelo.dto.Reserva;
 import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.memoria.Memoria;
+import org.example.camping2.modelo.validaciones.ValidarCliente;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -166,6 +169,28 @@ public class CrearAcompananteController implements IdiomaListener {
             return;
         }
 
+        // Validaciones usando ValidarCliente (nota que devuelve true si NO es válido, por eso se niega)
+        if (ValidarCliente.ValidarNombre(nombre)) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Nombre inválido", "El nombre no tiene un formato válido.");
+            return;
+        }
+        if (ValidarCliente.ValidarApellido(apellido)) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Apellido inválido", "El apellido no tiene un formato válido.");
+            return;
+        }
+        if (ValidarCliente.ValidarDNIoNIE(dni)) {
+            mostrarAlerta(Alert.AlertType.WARNING, "DNI/NIE inválido", "El DNI o NIE no es válido.");
+            return;
+        }
+        if (!email.isEmpty() && ValidarCliente.ValidarCorreo(email)) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Correo inválido", "El correo electrónico no tiene un formato válido.");
+            return;
+        }
+        if (!telefono.isEmpty() && ValidarCliente.ValidarTelefono(telefono)) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Teléfono inválido", "El número de teléfono no tiene un formato válido.");
+            return;
+        }
+
         Acompanante acomp = new Acompanante(reservaSeleccionada, nombre, apellido, dni, email, telefono);
 
         boolean exito = memoriaAcompanante.add(acomp);
@@ -190,12 +215,17 @@ public class CrearAcompananteController implements IdiomaListener {
         telefonoText.clear();
     }
 
-    private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
+    private void mostrarAlerta( Alert.AlertType tipo, String titulo, String mensaje) {
         Alert alerta = new Alert(tipo);
         alerta.setTitle(titulo);
-        alerta.setHeaderText(null);
         alerta.setContentText(mensaje);
-        alerta.showAndWait();
+
+        // Obtener el Stage actual y asignarlo como propietario
+        Stage stage = (Stage) labelApellido.getScene().getWindow(); // cualquier nodo sirve
+        alerta.initOwner(stage);
+        alerta.initModality(Modality.WINDOW_MODAL);  // Importante: no usar APPLICATION_MODAL
+
+        alerta.show(); // No bloqueante
     }
 
     @Override

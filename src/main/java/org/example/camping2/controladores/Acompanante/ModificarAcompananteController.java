@@ -5,10 +5,13 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.example.camping2.controladores.GestorIdiomas;
 import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Acompanante;
 import org.example.camping2.modelo.memoria.Memoria;
+import org.example.camping2.modelo.validaciones.ValidarCliente;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -112,12 +115,40 @@ public class ModificarAcompananteController implements IdiomaListener {
             return;
         }
 
-        // Actualizar datos
-        seleccionado.setNombre(nombreText1.getText().trim());
-        seleccionado.setApellido(ApellidoText1.getText().trim());
-        seleccionado.setDni(dniText1.getText().trim());
-        seleccionado.setEmail(emailText1.getText().trim());
-        seleccionado.setTelefono(telefonoText1.getText().trim());
+        String nombre = nombreText1.getText().trim();
+        String apellido = ApellidoText1.getText().trim();
+        String dni = dniText1.getText().trim();
+        String email = emailText1.getText().trim();
+        String telefono = telefonoText1.getText().trim();
+
+        // Validar solo si el campo no está vacío
+        if (!nombre.isEmpty() && ValidarCliente.ValidarNombre(nombre)) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Nombre inválido", "El nombre no tiene un formato válido.");
+            return;
+        }
+        if (!apellido.isEmpty() && ValidarCliente.ValidarApellido(apellido)) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Apellido inválido", "El apellido no tiene un formato válido.");
+            return;
+        }
+        if (!dni.isEmpty() && ValidarCliente.ValidarDNIoNIE(dni)) {
+            mostrarAlerta(Alert.AlertType.WARNING, "DNI/NIE inválido", "El DNI o NIE no es válido.");
+            return;
+        }
+        if (!email.isEmpty() && ValidarCliente.ValidarCorreo(email)) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Correo inválido", "El correo electrónico no tiene un formato válido.");
+            return;
+        }
+        if (!telefono.isEmpty() && ValidarCliente.ValidarTelefono(telefono)) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Teléfono inválido", "El número de teléfono no tiene un formato válido.");
+            return;
+        }
+
+        // Actualizar datos solo si se ingresaron (no vacíos)
+        if (!nombre.isEmpty()) seleccionado.setNombre(nombre);
+        if (!apellido.isEmpty()) seleccionado.setApellido(apellido);
+        if (!dni.isEmpty()) seleccionado.setDni(dni);
+        if (!email.isEmpty()) seleccionado.setEmail(email);
+        if (!telefono.isEmpty()) seleccionado.setTelefono(telefono);
 
         if (memoriaAcompanante.update(seleccionado)) {
             mostrarAlerta(Alert.AlertType.INFORMATION, "Modificado", "Acompañante actualizado correctamente.");
@@ -128,11 +159,18 @@ public class ModificarAcompananteController implements IdiomaListener {
         }
     }
 
-    private void mostrarAlerta(Alert.AlertType tipo, String titulo, String contenido) {
+
+    private void mostrarAlerta( Alert.AlertType tipo, String titulo, String mensaje) {
         Alert alerta = new Alert(tipo);
         alerta.setTitle(titulo);
-        alerta.setContentText(contenido);
-        alerta.showAndWait();
+        alerta.setContentText(mensaje);
+
+        // Obtener el Stage actual y asignarlo como propietario
+        Stage stage = (Stage) labelApellido.getScene().getWindow(); // cualquier nodo sirve
+        alerta.initOwner(stage);
+        alerta.initModality(Modality.WINDOW_MODAL);  // Importante: no usar APPLICATION_MODAL
+
+        alerta.show(); // No bloqueante
     }
 
     @Override

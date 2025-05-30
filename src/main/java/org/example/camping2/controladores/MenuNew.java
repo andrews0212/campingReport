@@ -78,6 +78,7 @@ public class MenuNew implements IdiomaListener {
         reservaController = new ReservaController();
         reservaController.setMemoriaReserva(memoriaReserva);
         reservaController.setMemoriaRecurso(memoriaRecurso);
+        reservaController.setMemoriaCliente(memoriaCliente);
         reservaController.setAreaContenido(contenedorCentral);
 
         // Crear nodos principales del árbol
@@ -317,10 +318,10 @@ public class MenuNew implements IdiomaListener {
         reservaController.agregarReservaBoton();
     }
     private void modificarReserva() {
-        acompananteController.ModificarAcompanante();
+        reservaController.modificarReservaBoton();
     }
     private void eliminarReserva() {
-        acompananteController.EliminarAcompanante();
+        reservaController.eliminarReservaBoton();
     }
 
 

@@ -10,7 +10,7 @@
 
 <VBox alignment="TOP_CENTER" prefHeight="638.0" prefWidth="1071.0" spacing="10" style="-fx-background-color: #2B2525;" stylesheets="@../../Css/crud.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.Recursos.CrearRecursoController">
    <children>
-      <Label fx:id="labelAgregar" text="Añadir Nuevo Recurso" textFill="WHITE">
+      <Label fx:id="labelAgregarRecurso" text="Añadir Nuevo Recurso" textFill="WHITE">
          <font>
             <Font name="HelveticaRounded-Bold" size="56.0" />
          </font>

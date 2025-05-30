@@ -4,10 +4,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.example.camping2.controladores.GestorIdiomas;
 import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Recurso;
 import org.example.camping2.modelo.memoria.Memoria;
+import org.example.camping2.modelo.validaciones.ValidarRecurso;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +18,7 @@ import java.util.Map;
 public class CrearRecursoController implements IdiomaListener {
 
     @FXML
-    private Label labelAgregar;
+    private Label labelAgregarRecurso;
 
 
     @FXML
@@ -88,14 +91,32 @@ public class CrearRecursoController implements IdiomaListener {
 
             Recurso recurso = new Recurso(nombre, tipo, capacidad, precio, minimoPersonas);
 
-            boolean agregado = memoria.add(recurso);
+            if(ValidarRecurso.ValidarNombre(nombre)){
+                if (ValidarRecurso.ValidarCapacidad(Integer.parseInt(capacidadField.getText()))) {
+                    if (ValidarRecurso.ValidarPrecio(Integer.parseInt(precioField.getText()))) {
+                        if (ValidarRecurso.ValidarMinimoPersonas(Integer.parseInt(minimoPersonasField.getText()))) {
+                            boolean agregado = memoria.add(recurso);
+                            if (agregado) {
+                                mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "Recurso creado correctamente");
+                                limpiarCampos();
+                            } else {
+                                mostrarAlerta(Alert.AlertType.ERROR, "Error", "No se pudo crear el recurso");
+                            }
+                        }else {
+                            mostrarAlerta(Alert.AlertType.ERROR, "Error", "El mínimo de personas debe ser mayor a 0");
+                        }
+                    }else {
+                        mostrarAlerta(Alert.AlertType.ERROR, "Error", "El precio debe ser mayor a 0");
 
-            if (agregado) {
-                mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "Recurso creado correctamente");
-                limpiarCampos();
-            } else {
-                mostrarAlerta(Alert.AlertType.ERROR, "Error", "No se pudo crear el recurso");
+                    }
+                }else{
+                    mostrarAlerta(Alert.AlertType.ERROR, "Error", "La capacidad debe ser mayor a 0");
+                }
+            }else {
+                mostrarAlerta(Alert.AlertType.ERROR, "Error", "El nombre no puede estar vacío");
             }
+
+
         } catch (NumberFormatException e) {
             mostrarAlerta(Alert.AlertType.ERROR, "Error de formato", "Capacidad, precio o mínimo deben ser numéricos");
         } catch (Exception e) {
@@ -103,12 +124,17 @@ public class CrearRecursoController implements IdiomaListener {
         }
     }
 
-    private void mostrarAlerta(Alert.AlertType tipo, String titulo, String contenido) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(contenido);
-        alert.showAndWait();
+    private void mostrarAlerta( Alert.AlertType tipo, String titulo, String mensaje) {
+        Alert alerta = new Alert(tipo);
+        alerta.setTitle(titulo);
+        alerta.setContentText(mensaje);
+
+        // Obtener el Stage actual y asignarlo como propietario
+        Stage stage = (Stage) labelAgregarRecurso.getScene().getWindow(); // cualquier nodo sirve
+        alerta.initOwner(stage);
+        alerta.initModality(Modality.WINDOW_MODAL);  // Importante: no usar APPLICATION_MODAL
+
+        alerta.show(); // No bloqueante
     }
 
     private void limpiarCampos() {
@@ -124,7 +150,7 @@ public class CrearRecursoController implements IdiomaListener {
         actualizarTexto();
     }
     public void actualizarTexto(){
-        labelAgregar.setText(GestorIdiomas.getTexto("labelAgregar"));
+        labelAgregarRecurso.setText(GestorIdiomas.getTexto("labelAgregarRecurso"));
         labelNombre.setText(GestorIdiomas.getTexto("nombre"));
         nombreField.setPromptText(GestorIdiomas.getTexto("nombreField"));
         labelTipo.setText(GestorIdiomas.getTexto("tipo"));

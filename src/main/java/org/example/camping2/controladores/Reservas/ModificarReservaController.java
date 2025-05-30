@@ -5,10 +5,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.example.camping2.controladores.GestorIdiomas;
 import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Reserva;
 import org.example.camping2.modelo.memoria.Memoria;
+import org.example.camping2.modelo.validaciones.ValidarReservas;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -186,51 +189,65 @@ public class ModificarReservaController implements IdiomaListener {
         Reserva seleccionada = reservaTable.getSelectionModel().getSelectedItem();
 
         if (seleccionada == null) {
-            mostrarAlerta("Debe seleccionar una reserva para modificar.");
+            mostrarAlerta("Atención","Debe seleccionar una reserva para modificar.",  Alert.AlertType.WARNING);
             return;
         }
 
-        // Validar y actualizar fechaInicio
-        if (fechaInicio.getValue() != null) {
-            seleccionada.setFechaInicio(fechaInicio.getValue());
+        // Validar fechas
+        if (fechaInicio.getValue() == null || fechaFin.getValue() == null) {
+            mostrarAlerta("Atención","Debe ingresar ambas fechas.",  Alert.AlertType.WARNING);
+            return;
         }
 
-        // Validar y actualizar fechaFin
-        if (fechaFin.getValue() != null) {
-            seleccionada.setFechaFin(fechaFin.getValue());
+        if (!ValidarReservas.validarFechas(fechaInicio.getValue(), fechaFin.getValue())) {
+            mostrarAlerta("Atención","La fecha de inicio no puede ser posterior a la fecha de fin.",  Alert.AlertType.WARNING);
+            return;
         }
 
-        // Validar y actualizar precio
+        seleccionada.setFechaInicio(fechaInicio.getValue());
+        seleccionada.setFechaFin(fechaFin.getValue());
+
+        // Validar precio
         if (!precioText.getText().isEmpty()) {
             try {
-                Integer precio = Integer.parseInt(precioText.getText());
+                int precio = Integer.parseInt(precioText.getText());
                 seleccionada.setPrecioTotal(precio);
             } catch (NumberFormatException e) {
-                mostrarAlerta("Precio inválido. Debe ser un número.");
+                mostrarAlerta("Atención","Precio inválido. Debe ser un número.",  Alert.AlertType.WARNING);
                 return;
             }
         }
 
-        // Actualizar estado
-        String estado = (String) estadoCombo.getSelectionModel().getSelectedItem();
-        if (estado != null) {
-            seleccionada.setEstado(estado);
+        // Traducir estado (si estás usando traducción como en EliminarReservaController)
+        String estadoSeleccionado = (String) estadoCombo.getSelectionModel().getSelectedItem();
+        if (estadoSeleccionado != null) {
+            String estadoOriginal = mapaEstadoTraducido.entrySet().stream()
+                    .filter(entry -> entry.getValue().equals(estadoSeleccionado))
+                    .map(Map.Entry::getKey)
+                    .findFirst()
+                    .orElse(null);
+            if (estadoOriginal != null) {
+                seleccionada.setEstado(estadoOriginal);
+            }
         }
 
-        // Guardar los cambios en la memoria
+        // Guardar cambios y refrescar tabla
         memoriaReserva.update(seleccionada);
-
-        // Refrescar la tabla
         reservaTable.refresh();
     }
 
 
-    private void mostrarAlerta(String mensaje) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Advertencia");
-        alert.setHeaderText(null);
-        alert.setContentText(mensaje);
-        alert.showAndWait();
+    private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
+        Alert alerta = new Alert(tipo);
+        alerta.setTitle(titulo);
+        alerta.setContentText(mensaje);
+
+        // Obtener el Stage actual y asignarlo como propietario
+        Stage stage = (Stage) labelDNI.getScene().getWindow(); // cualquier nodo sirve
+        alerta.initOwner(stage);
+        alerta.initModality(Modality.WINDOW_MODAL);  // Importante: no usar APPLICATION_MODAL
+
+        alerta.show(); // No bloqueante
     }
 
 
@@ -240,6 +257,7 @@ public class ModificarReservaController implements IdiomaListener {
 
     public void setMemoriaReserva(Memoria<Reserva, Integer> memoriaReserva) {
         this.memoriaReserva = memoriaReserva;
+        cargarTodos();
     }
 
     @Override
@@ -273,13 +291,7 @@ public class ModificarReservaController implements IdiomaListener {
         apellidoColumn.setText(GestorIdiomas.getTexto("apellido"));
         dniColumn.setText(GestorIdiomas.getTexto("dni"));
 
-        dniText.setPromptText(GestorIdiomas.getTexto("dniText"));
-        idText1.setPromptText(GestorIdiomas.getTexto("idText"));
-        fechaInicio1.setPromptText(GestorIdiomas.getTexto("fechaInicioText"));
-        fechaFin1.setPromptText(GestorIdiomas.getTexto("fechaFinText"));
-        precioText1.setPromptText(GestorIdiomas.getTexto("precioField"));
-        estadoCombo1.setPromptText(GestorIdiomas.getTexto("estadoText"));
-        estadoCombo.setPromptText(GestorIdiomas.getTexto("estadoText"));
+
 
         fechaInicio.setPromptText(GestorIdiomas.getTexto("fechaInicioText"));
         fechaFin.setPromptText(GestorIdiomas.getTexto("fechaFinText"));

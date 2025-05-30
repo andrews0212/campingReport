@@ -81,7 +81,7 @@ public class ReservaController implements Liberable, IdiomaListener {
         }
     }
 
-    public void modificarReservaBoton(ActionEvent actionEvent) {
+    public void modificarReservaBoton() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/reservas/ModificarReservas.fxml"));
             Parent nuevoPanel = loader.load();
@@ -95,7 +95,7 @@ public class ReservaController implements Liberable, IdiomaListener {
         }
     }
 
-    public void eliminarReservaBoton(ActionEvent actionEvent) {
+    public void eliminarReservaBoton() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/reservas/EliminarReserva.fxml"));
             Parent nuevoPanel = loader.load();

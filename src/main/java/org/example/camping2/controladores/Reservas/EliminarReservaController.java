@@ -75,6 +75,7 @@ public class EliminarReservaController implements IdiomaListener {
 
     public void setMemoriaReserva(Memoria<Reserva, Integer> memoriaReserva) {
         this.memoriaReserva = memoriaReserva;
+        cargarTodos();
     }
 
     private Map<String, String> mapaEstadoTraducido;
@@ -214,12 +215,7 @@ public class EliminarReservaController implements IdiomaListener {
         fechaFinColumn.setText(GestorIdiomas.getTexto("fechaFin"));
         nombreColumn.setText(GestorIdiomas.getTexto("nombre"));
         apellidoColumn.setText(GestorIdiomas.getTexto("apellido"));
-        dniColumn.setText(GestorIdiomas.getTexto("dni"));
-        idText1.setPromptText(GestorIdiomas.getTexto("idText"));
-        fechaInicio1.setPromptText(GestorIdiomas.getTexto("fechaInicioText"));
-        fechaFin1.setPromptText(GestorIdiomas.getTexto("fechaFinText"));
-        precioText1.setPromptText(GestorIdiomas.getTexto("precioText"));
-        dniText.setPromptText(GestorIdiomas.getTexto("dniField"));
+
 
 
     }

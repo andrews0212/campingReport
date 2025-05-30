@@ -23,7 +23,7 @@
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label fx:id="labelId" alignment="CENTER" prefHeight="30.0" prefWidth="334.0" style="-fx-background-color: #7886C7;" text="ID" textFill="WHITE">
+                  <Label fx:id="labelId" alignment="CENTER" prefHeight="30.0" prefWidth="418.0" style="-fx-background-color: #7886C7;" text="ID">
                      <styleClass>
                         <String fx:value="texto" />
                         <String fx:value="lateralIzquierdo" />
@@ -39,7 +39,7 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label fx:id="labelFechaInicio" alignment="CENTER" prefHeight="30.0" prefWidth="234.0" style="-fx-background-color: #7886C7;" styleClass="texto" text="Fecha Inicio" textFill="WHITE">
+                  <Label fx:id="labelFechaInicio" alignment="CENTER" prefHeight="30.0" prefWidth="358.0" style="-fx-background-color: #7886C7;" styleClass="texto" text="Fecha Inicio">
                      <VBox.margin>
                         <Insets bottom="20.0" top="20.0" />
                      </VBox.margin></Label>
@@ -51,7 +51,7 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label fx:id="labelFechaFin" alignment="CENTER" prefHeight="30.0" prefWidth="275.0" style="-fx-background-color: #7886C7;" styleClass="texto" text="Fecha Fin" textFill="WHITE">
+                  <Label fx:id="labelFechaFin" alignment="CENTER" prefHeight="30.0" prefWidth="320.0" style="-fx-background-color: #7886C7;" styleClass="texto" text="Fecha Fin">
                      <VBox.margin>
                         <Insets bottom="20.0" top="20.0" />
                      </VBox.margin></Label>
@@ -63,7 +63,7 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label fx:id="labelPrecio" alignment="CENTER" prefHeight="30.0" prefWidth="243.0" style="-fx-background-color: #7886C7;" styleClass="texto" text="Precio" textFill="WHITE">
+                  <Label fx:id="labelPrecio" alignment="CENTER" prefHeight="30.0" prefWidth="303.0" style="-fx-background-color: #7886C7;" styleClass="texto" text="Precio">
                      <VBox.margin>
                         <Insets bottom="20.0" top="20.0" />
                      </VBox.margin></Label>
@@ -75,7 +75,7 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label fx:id="labelEstado" alignment="CENTER" prefHeight="30.0" prefWidth="247.0" style="-fx-background-color: #7886C7;" styleClass="texto" text="Estado" textFill="WHITE">
+                  <Label fx:id="labelEstado" alignment="CENTER" prefHeight="30.0" prefWidth="335.0" style="-fx-background-color: #7886C7;" styleClass="texto" text="Estado">
                      <VBox.margin>
                         <Insets bottom="20.0" top="20.0" />
                      </VBox.margin></Label>
@@ -87,7 +87,7 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label fx:id="labelDNI" alignment="CENTER" prefHeight="30.0" prefWidth="494.0" style="-fx-background-color: #7886C7;" text="DNI" textFill="WHITE">
+                  <Label fx:id="labelDNI" alignment="CENTER" prefHeight="30.0" prefWidth="641.0" style="-fx-background-color: #7886C7;" text="DNI">
                      <styleClass>
                         <String fx:value="texto" />
                         <String fx:value="lateralDerecho" />
@@ -143,7 +143,7 @@
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label fx:id="labelFechaInicio2" alignment="CENTER" style="-fx-background-color: #7886C7;" text="Fecha Inicio">
+                  <Label fx:id="labelFechaInicio2" alignment="CENTER" prefHeight="30.0" prefWidth="651.0" style="-fx-background-color: #7886C7;" text="Fecha Inicio">
                      <styleClass>
                         <String fx:value="texto" />
                         <String fx:value="lateralIzquierdo" />
@@ -174,7 +174,7 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label fx:id="labelEstado2" alignment="CENTER" prefHeight="30.0" prefWidth="411.0" style="-fx-background-color: #7886C7;" text="Estado">
+                  <Label fx:id="labelEstado2" alignment="CENTER" prefHeight="30.0" prefWidth="108.0" style="-fx-background-color: #7886C7;" text="Estado">
                      <styleClass>
                         <String fx:value="texto" />
                         <String fx:value="lateralDerecho" />
@@ -182,7 +182,7 @@
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin></Label>
-                  <ComboBox fx:id="estadoCombo" prefHeight="48.0" prefWidth="100.0" />
+                  <ComboBox fx:id="estadoCombo" prefHeight="44.0" prefWidth="100.0" />
                </children>
             </VBox>
             <Button fx:id="btnModificar" mnemonicParsing="false" onAction="#modificarReserva" style="-fx-background-color: #7886C7; -fx-text-fill: white;" text="Modificar">
@@ -194,6 +194,12 @@
                </font>
             </Button>
          </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets bottom="20.0" />
+         </VBox.margin>
       </HBox>
    </children>
 </VBox>

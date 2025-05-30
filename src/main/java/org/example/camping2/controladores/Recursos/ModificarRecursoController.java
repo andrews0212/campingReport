@@ -5,10 +5,13 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.example.camping2.controladores.GestorIdiomas;
 import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Recurso;
 import org.example.camping2.modelo.memoria.Memoria;
+import org.example.camping2.modelo.validaciones.ValidarRecurso;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -168,14 +171,16 @@ public class ModificarRecursoController implements IdiomaListener {
     }
     @FXML
     private void filtrarRecursos() {
+        String id = idText.getText().trim();
         String nombreFiltro = nombreText.getText().toLowerCase().trim();
         String tipoFiltro = tipoCombo.getValue() != null ? tipoCombo.getValue().toLowerCase().trim() : "";
 
         String tipo = mapaTipoTraducido.entrySet().stream()
-                .filter(e -> e.getValue().equals(tipoFiltro))
+                .filter(e -> e.getValue().equalsIgnoreCase(tipoFiltro))
                 .map(Map.Entry::getKey)
                 .findFirst()
-                .orElse("PARCELA");
+                .orElse(""); // deja vacío si no se selecciona nada
+
 
 
         String estadoFiltro = estadoText.getText().toLowerCase().trim();
@@ -190,16 +195,18 @@ public class ModificarRecursoController implements IdiomaListener {
                 memoria.findAll().stream()
                         .filter(recurso ->
                                 (nombreFiltro.isEmpty() || recurso.getNombre().toLowerCase().contains(nombreFiltro)) &&
-                                        (tipo.isEmpty() || recurso.getTipo().toLowerCase().contains(tipo)) &&
+                                        (tipoFiltro.isEmpty() || recurso.getTipo().equalsIgnoreCase(tipo)) &&
                                         (estadoFiltro.isEmpty() || recurso.getEstado().toLowerCase().contains(estadoFiltro)) &&
 
                                         (capacidadFiltro == null || recurso.getCapacidad() == capacidadFiltro) &&
                                         (precioFiltro == null || recurso.getPrecio() == precioFiltro) &&
-                                        (minimoPersonaFiltro == null || recurso.getMinimoPersonas() == minimoPersonaFiltro)
+                                        (minimoPersonaFiltro == null || recurso.getMinimoPersonas() == minimoPersonaFiltro) &&
+                                        (id.isEmpty() || recurso.getId().equals(Integer.parseInt(id)))
                         )
                         .toList()
         );
     }
+
 
     @FXML
     private void modificarRecurso() {
@@ -211,57 +218,75 @@ public class ModificarRecursoController implements IdiomaListener {
                     .filter(e -> e.getValue().equals(tipoNuevo))
                     .map(Map.Entry::getKey)
                     .findFirst()
-                    .orElse("PARCELA");
+                    .orElse(null); // null si no se seleccionó tipo
             String capacidadNuevo = capacidadText1.getText().trim();
             String precioNuevo = precioText1.getText().trim();
             String minimoNuevo = minimoPersonaText1.getText().trim();
             String estadoNuevo = estadoText1.getText().trim();
 
+            // Validar y modificar solo los campos rellenados
             if (!nombreNuevo.isEmpty()) {
+                if (!ValidarRecurso.ValidarNombre(nombreNuevo)) {
+                    mostrarAlerta(Alert.AlertType.ERROR, "Error", "Nombre no válido (vacío o demasiado largo).");
+                    return;
+                }
                 seleccionado.setNombre(nombreNuevo);
             }
-            if (tipoNuevo != null && !tipoNuevo.isEmpty()) {
+
+            if (tipo != null) {
                 seleccionado.setTipo(tipo);
             }
+
             if (!capacidadNuevo.isEmpty()) {
-                try {
-                    seleccionado.setCapacidad(Integer.parseInt(capacidadNuevo));
-                } catch (NumberFormatException e) {
-                    System.err.println("Capacidad inválida.");
+                Integer capacidad = parseInteger(capacidadNuevo);
+                if (!ValidarRecurso.ValidarCapacidad(capacidad)) {
+                    mostrarAlerta(Alert.AlertType.ERROR, "Error", "Capacidad no válida (debe ser >= 0).");
                     return;
                 }
+                seleccionado.setCapacidad(capacidad);
             }
+
             if (!precioNuevo.isEmpty()) {
-                try {
-                    seleccionado.setPrecio(Integer.parseInt(precioNuevo));
-                } catch (NumberFormatException e) {
-                    System.err.println("Precio inválido.");
+                Integer precio = parseInteger(precioNuevo);
+                if (!ValidarRecurso.ValidarPrecio(precio)) {
+                    mostrarAlerta(Alert.AlertType.ERROR, "Error", "Precio no válido (debe ser >= 0).");
                     return;
                 }
+                seleccionado.setPrecio(precio);
             }
+
             if (!minimoNuevo.isEmpty()) {
-                try {
-                    seleccionado.setMinimoPersonas(Integer.parseInt(minimoNuevo));
-                } catch (NumberFormatException e) {
-                    System.err.println("Mínimo personas inválido.");
+                Integer minimo = parseInteger(minimoNuevo);
+                if (!ValidarRecurso.ValidarMinimoPersonas(minimo)) {
+                    mostrarAlerta(Alert.AlertType.ERROR, "Error", "Mínimo de personas no válido (debe ser >= 0).");
                     return;
                 }
+                seleccionado.setMinimoPersonas(minimo);
             }
+
             if (!estadoNuevo.isEmpty()) {
                 seleccionado.setEstado(estadoNuevo);
             }
 
+            // Guardar en memoria
             if (memoria.update(seleccionado)) {
                 recursoTable.refresh();
+                mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "Recurso modificado correctamente.");
             } else {
-                System.err.println("Error al actualizar el recurso en memoria.");
+                mostrarAlerta(Alert.AlertType.ERROR, "Error", "No se pudo actualizar el recurso en memoria.");
             }
+        } else {
+            mostrarAlerta(Alert.AlertType.WARNING, "Atención", "Debe seleccionar un recurso de la tabla.");
         }
     }
+
+
     @FXML
     public void buscarTodos(){
         cargarRecursosDesdeMemoria();
     }
+    @FXML
+
 
 
     private Integer parseInteger(String texto) {
@@ -312,10 +337,18 @@ public class ModificarRecursoController implements IdiomaListener {
             labelMinimo2.setText(GestorIdiomas.getTexto("minimoPersonas"));
             labelEstado2.setText(GestorIdiomas.getTexto("estado"));
             btnModificar.setText(GestorIdiomas.getTexto("modificar"));
-            nombreText1.setPromptText(GestorIdiomas.getTexto("nombreText"));
-            capacidadText1.setPromptText(GestorIdiomas.getTexto("capacidadText"));
-            precioText1.setPromptText(GestorIdiomas.getTexto("precioText"));
-            minimoPersonaText1.setPromptText(GestorIdiomas.getTexto("minimoPersonaText"));
-            estadoText1.setPromptText(GestorIdiomas.getTexto("estadoText"));
+
+    }
+    private void mostrarAlerta( Alert.AlertType tipo, String titulo, String mensaje) {
+        Alert alerta = new Alert(tipo);
+        alerta.setTitle(titulo);
+        alerta.setContentText(mensaje);
+
+        // Obtener el Stage actual y asignarlo como propietario
+        Stage stage = (Stage) labelNombre2.getScene().getWindow(); // cualquier nodo sirve
+        alerta.initOwner(stage);
+        alerta.initModality(Modality.WINDOW_MODAL);  // Importante: no usar APPLICATION_MODAL
+
+        alerta.show(); // No bloqueante
     }
 }

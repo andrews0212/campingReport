@@ -4,16 +4,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.example.camping2.controladores.GestorIdiomas;
 import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.dto.Recurso;
 import org.example.camping2.modelo.dto.Reserva;
 import org.example.camping2.modelo.memoria.Memoria;
+import org.example.camping2.modelo.validaciones.ValidarReservas;
 
 import java.awt.event.ActionEvent;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 public class CrearReservaController implements IdiomaListener {
 
@@ -149,10 +153,22 @@ public class CrearReservaController implements IdiomaListener {
     }
     @FXML
     private void hacerReserva(){
+
        Recurso recurso = tablaRecurso.getSelectionModel().getSelectedItem();
+       try{
+
+
        Cliente cliente = memoriaCliente.findAll().stream().filter(p -> p.getDni().toUpperCase().equals(dniText.getText().toUpperCase())).findFirst().get();
        if (cliente != null && recurso != null) {
-           memoriaReserva.add(new Reserva(cliente, recurso, fechaInicio.getValue(), fechaFin.getValue(), "ACTIVA", Integer.parseInt(precioText.getText()), 0));
+           if(ValidarReservas.validarFechas(fechaInicio.getValue(), fechaFin.getValue())){
+               memoriaReserva.add(new Reserva(cliente, recurso, fechaInicio.getValue(), fechaFin.getValue(), "ACTIVA", Integer.parseInt(precioText.getText()), 0));
+               mostrarAlerta("Reserva Realizada", "La reserva ha sido realizada con éxito", Alert.AlertType.INFORMATION);
+           }else{
+               mostrarAlerta("Error en las fechas", "Las fechas no son válidas", Alert.AlertType.ERROR);
+           }
+       }
+       } catch (NoSuchElementException e){
+           mostrarAlerta("Cliente No Encontrado", "El cliente no existe", Alert.AlertType.ERROR);
        }
     }
     @Override
@@ -183,5 +199,17 @@ public class CrearReservaController implements IdiomaListener {
         tipoComboBox.setItems(FXCollections.observableArrayList(mapaTipoTraducido.values()));
         tipoComboBox.getSelectionModel().select(0);
 
+    }
+    private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
+        Alert alerta = new Alert(tipo);
+        alerta.setTitle(titulo);
+        alerta.setContentText(mensaje);
+
+        // Obtener el Stage actual y asignarlo como propietario
+        Stage stage = (Stage) labelCrearReserva.getScene().getWindow(); // cualquier nodo sirve
+        alerta.initOwner(stage);
+        alerta.initModality(Modality.WINDOW_MODAL);  // Importante: no usar APPLICATION_MODAL
+
+        alerta.show(); // No bloqueante
     }
 }
