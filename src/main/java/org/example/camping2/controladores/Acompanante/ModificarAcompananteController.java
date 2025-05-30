@@ -9,14 +9,18 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.camping2.controladores.GestorIdiomas;
 import org.example.camping2.controladores.IdiomaListener;
+import org.example.camping2.controladores.LogConfig;
 import org.example.camping2.modelo.dto.Acompanante;
 import org.example.camping2.modelo.memoria.Memoria;
 import org.example.camping2.modelo.validaciones.ValidarCliente;
 
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class ModificarAcompananteController implements IdiomaListener {
+
+    private static final Logger logger = LogConfig.configurarLogger(ModificarAcompananteController.class);
 
     @FXML private Label labelModificarAcompanante;
     @FXML private Button btnBuscar, btnBuscarTodos;
@@ -111,6 +115,7 @@ public class ModificarAcompananteController implements IdiomaListener {
     public void modificar() {
         Acompanante seleccionado = recursoTable.getSelectionModel().getSelectedItem();
         if (seleccionado == null) {
+            logger.warning("Intento de modificar sin selección de acompañante");
             mostrarAlerta(Alert.AlertType.WARNING, "Selección requerida", "Seleccione un acompañante de la tabla.");
             return;
         }
@@ -123,22 +128,27 @@ public class ModificarAcompananteController implements IdiomaListener {
 
         // Validar solo si el campo no está vacío
         if (!nombre.isEmpty() && ValidarCliente.ValidarNombre(nombre)) {
+            logger.warning("Nombre inválido ingresado: " + nombre);
             mostrarAlerta(Alert.AlertType.WARNING, "Nombre inválido", "El nombre no tiene un formato válido.");
             return;
         }
         if (!apellido.isEmpty() && ValidarCliente.ValidarApellido(apellido)) {
+            logger.warning("Apellido inválido ingresado: " + apellido);
             mostrarAlerta(Alert.AlertType.WARNING, "Apellido inválido", "El apellido no tiene un formato válido.");
             return;
         }
         if (!dni.isEmpty() && ValidarCliente.ValidarDNIoNIE(dni)) {
+            logger.warning("DNI/NIE inválido ingresado: " + dni);
             mostrarAlerta(Alert.AlertType.WARNING, "DNI/NIE inválido", "El DNI o NIE no es válido.");
             return;
         }
         if (!email.isEmpty() && ValidarCliente.ValidarCorreo(email)) {
+            logger.warning("Correo inválido ingresado: " + email);
             mostrarAlerta(Alert.AlertType.WARNING, "Correo inválido", "El correo electrónico no tiene un formato válido.");
             return;
         }
         if (!telefono.isEmpty() && ValidarCliente.ValidarTelefono(telefono)) {
+            logger.warning("Teléfono inválido ingresado: " + telefono);
             mostrarAlerta(Alert.AlertType.WARNING, "Teléfono inválido", "El número de teléfono no tiene un formato válido.");
             return;
         }
@@ -151,10 +161,12 @@ public class ModificarAcompananteController implements IdiomaListener {
         if (!telefono.isEmpty()) seleccionado.setTelefono(telefono);
 
         if (memoriaAcompanante.update(seleccionado)) {
+            logger.info("Acompanante modificado correctamente: ID=" + seleccionado.getId());
             mostrarAlerta(Alert.AlertType.INFORMATION, "Modificado", "Acompañante actualizado correctamente.");
             cargarTabla(memoriaAcompanante.findAll());
             recursoTable.refresh();
         } else {
+            logger.severe("Error al actualizar acompañante ID=" + seleccionado.getId());
             mostrarAlerta(Alert.AlertType.ERROR, "Error", "No se pudo actualizar el acompañante.");
         }
     }

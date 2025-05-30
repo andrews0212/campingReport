@@ -14,6 +14,7 @@ import org.example.camping2.modelo.memoria.Memoria;
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.logging.Logger;
 
 public class MainSinLogin extends Application {
 //87654321B
