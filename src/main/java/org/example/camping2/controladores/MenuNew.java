@@ -7,6 +7,7 @@ import javafx.scene.control.TreeView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import org.example.camping2.controladores.Acompanante.AcompananteController;
+import org.example.camping2.controladores.Acompanante.CrearAcompananteController;
 import org.example.camping2.controladores.Clientes.ClienteController;
 import org.example.camping2.controladores.Recursos.RecursoController;
 import org.example.camping2.controladores.Reservas.ReservaController;
@@ -24,12 +25,16 @@ import javafx.scene.image.ImageView;
 import org.example.camping2.modelo.memoria.Memoria;
 
 import java.util.Locale;
+import java.util.logging.Logger;
 
 import static org.example.camping2.controladores.GestorIdiomas.cambiarIdioma;
 import static org.example.camping2.controladores.GestorIdiomas.getTexto;
 
 public class MenuNew implements IdiomaListener {
     private AnchorPane raiz;
+
+    private static final Logger logger = LogConfig.configurarLogger(MenuNew.class);
+
     @FXML
     private StackPane contenedorCentral;
     @FXML
@@ -54,6 +59,7 @@ public class MenuNew implements IdiomaListener {
     public void initialize() {
         TreeItem<String> root = new TreeItem<>("Menú");
         root.setExpanded(true);
+        logger.warning("INICIADO");
 
         // Inicializar memorias
         memoriaCliente = new Memoria<>(Cliente.class);
@@ -67,9 +73,11 @@ public class MenuNew implements IdiomaListener {
         clienteController.setAreaContenido(contenedorCentral);
 
         acompananteController = new AcompananteController();
+        acompananteController.setLogger(logger);
         acompananteController.setMemoriaAcompanante(memoriaAcompanante);
         acompananteController.setMemoriaReserva(memoriaReserva);
         acompananteController.setAreaContenido(contenedorCentral);
+
 
         recursoController = new RecursoController();
         recursoController.setMemoria(memoriaRecurso);

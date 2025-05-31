@@ -1,2 +1,16 @@
-may 30, 2025 10:48:57 P. M. org.example.camping2.controladores.Acompanante.ModificarAcompananteController modificar
-ADVERTENCIA: DNI/NIE inválido ingresado: faf
+jun 01, 2025 1:18:01 A. M. org.example.camping2.controladores.Acompanante.ModificarAcompananteController modificar
+ADVERTENCIA: Apellido inválido ingresado: Mart?nez
+jun 01, 2025 1:18:07 A. M. org.example.camping2.controladores.Acompanante.CrearAcompananteController crearAcompanante
+ADVERTENCIA: Intento de crear acompañante sin seleccionar una reserva.
+jun 01, 2025 1:18:11 A. M. org.example.camping2.controladores.Acompanante.CrearAcompananteController crearAcompanante
+ADVERTENCIA: Intento de crear acompañante sin seleccionar una reserva.
+jun 01, 2025 1:18:21 A. M. org.example.camping2.controladores.Acompanante.CrearAcompananteController crearAcompanante
+ADVERTENCIA: DNI/NIE inválido: saf
+jun 01, 2025 1:20:43 A. M. org.example.camping2.controladores.Acompanante.CrearAcompananteController crearAcompanante
+ADVERTENCIA: DNI/NIE inválido: asf
+jun 01, 2025 1:21:25 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 1:26:27 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 1:31:10 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO

@@ -17,9 +17,10 @@ import org.example.camping2.modelo.memoria.Memoria;
 
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 public class AcompananteController implements Liberable, IdiomaListener {
-
+    private Logger logger;
     @FXML
     private Button ButtonBuscar;
     @FXML
@@ -59,6 +60,7 @@ public class AcompananteController implements Liberable, IdiomaListener {
             Parent nuevoPanel = loader.load();
 
             BuscaAcompananteController buscarRecursoController = loader.getController();
+            buscarRecursoController.setLogger(logger);
             buscarRecursoController.setMemoriaAcompanante(memoriaAcompanante);
             areaContenido.getChildren().clear();
             areaContenido.getChildren().add(nuevoPanel);
@@ -76,8 +78,11 @@ public class AcompananteController implements Liberable, IdiomaListener {
             Parent nuevoPanel = loader.load();
 
             CrearAcompananteController crearAcompananteController = loader.getController();
+            crearAcompananteController.setLogger(logger);
             crearAcompananteController.setMemoriaAcompanante(memoriaAcompanante);
             crearAcompananteController.setMemoriaReserva(memoriaReserva);
+
+
             areaContenido.getChildren().clear();
             areaContenido.getChildren().add(nuevoPanel);
 
@@ -94,7 +99,10 @@ public class AcompananteController implements Liberable, IdiomaListener {
             Parent nuevoPanel = loader.load();
 
             ModificarAcompananteController modificarAcompananteController = loader.getController();
+            modificarAcompananteController.setLogger(logger);
             modificarAcompananteController.setMemoriaAcompanante(memoriaAcompanante);
+
+
             areaContenido.getChildren().clear();
             areaContenido.getChildren().add(nuevoPanel);
 
@@ -111,6 +119,7 @@ public class AcompananteController implements Liberable, IdiomaListener {
             Parent nuevoPanel = loader.load();
 
             EliminarAcompananteController eliminarAcompananteController = loader.getController();
+            eliminarAcompananteController.setLogger(logger);
             eliminarAcompananteController.setMemoriaAcompanante(memoriaAcompanante);
             areaContenido.getChildren().clear();
             areaContenido.getChildren().add(nuevoPanel);
@@ -166,6 +175,10 @@ public class AcompananteController implements Liberable, IdiomaListener {
         ButtonAgregar.setText(GestorIdiomas.getTexto("agregar"));
         ButtonModificar.setText(GestorIdiomas.getTexto("actualizar"));
         ButtonEliminar.setText(GestorIdiomas.getTexto("eliminar"));
+    }
+
+    public void setLogger(Logger logger) {
+        this.logger = logger;
     }
 }
 

@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 public class ModificarAcompananteController implements IdiomaListener {
 
-    private static final Logger logger = LogConfig.configurarLogger(ModificarAcompananteController.class);
+    private Logger logger;
 
     @FXML private Label labelModificarAcompanante;
     @FXML private Button btnBuscar, btnBuscarTodos;
@@ -219,4 +219,7 @@ public class ModificarAcompananteController implements IdiomaListener {
 
     }
 
+    public void setLogger(Logger logger) {
+        this.logger = logger;
+    }
 }

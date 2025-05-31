@@ -11,9 +11,13 @@ import org.example.camping2.modelo.dto.Acompanante;
 import org.example.camping2.modelo.memoria.Memoria;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class BuscaAcompananteController implements IdiomaListener {
+
+    private Logger logger;
 
     private Memoria<Acompanante, Integer> memoriaAcompanante;
 
@@ -39,13 +43,10 @@ public class BuscaAcompananteController implements IdiomaListener {
     @FXML
     private Button btnBuscarTodos;
 
-
-
     @FXML
-    private TextField  idReservaText, nombreText, idText,
+    private TextField idReservaText, nombreText, idText,
             apellidoText, dniText, emailText, telefonoText;
 
-    // Tabla y columnas
     @FXML
     private TableView<Acompanante> recursoTable;
 
@@ -62,19 +63,24 @@ public class BuscaAcompananteController implements IdiomaListener {
     @FXML
     private TableColumn<Acompanante, String> estadoColumn;    // Email
     @FXML
-    private TableColumn<Acompanante, String> telefonoColumn;  // Teléfono, que no tiene fx:id en FXML, se añade aquí
-
+    private TableColumn<Acompanante, String> telefonoColumn;  // Teléfono
 
     private ObservableList<Acompanante> AcompanantesObservable = FXCollections.observableArrayList();
 
     public void setMemoriaAcompanante(Memoria<Acompanante, Integer> memoriaAcompanante) {
         this.memoriaAcompanante = memoriaAcompanante;
+        if (logger != null) {
+            logger.info("Memoria de Acompanante asignada.");
+        }
         cargarTablaCompleta();
     }
 
     @FXML
     private void initialize() {
-        // Asociar columnas a propiedades del objeto Acompanante (ajustar nombres según la clase)
+        if (logger != null) {
+            logger.info("Inicializando BuscaAcompananteController...");
+        }
+
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         tipoColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getIdreserva().getId()));
         capacidadColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
@@ -86,70 +92,89 @@ public class BuscaAcompananteController implements IdiomaListener {
         recursoTable.setItems(AcompanantesObservable);
         GestorIdiomas.agregarListener(this);
         actualizarTextos();
+
+        if (logger != null) {
+            logger.info("BuscaAcompananteController inicializado.");
+        }
     }
 
     @FXML
     private void cargarTablaCompleta() {
+        if (logger != null) {
+            logger.info("Cargando tabla completa de Acompanantes...");
+        }
         AcompanantesObservable.clear();
         if (memoriaAcompanante != null) {
-            List<Acompanante> lista = memoriaAcompanante.findAll(); // Asegúrate que Memoria tiene método listar()
+            List<Acompanante> lista = memoriaAcompanante.findAll();
             AcompanantesObservable.addAll(lista);
+            if (logger != null) {
+                logger.info("Se cargaron " + lista.size() + " acompañantes en la tabla.");
+            }
+        } else {
+            if (logger != null) {
+                logger.warning("Memoria de Acompanante no asignada al cargar tabla.");
+            }
         }
     }
 
     @FXML
     private void buscar() {
-        if (memoriaAcompanante == null) return;
+        if (logger != null) {
+            logger.info("Iniciando búsqueda de acompañantes...");
+        }
+
+        if (memoriaAcompanante == null) {
+            if (logger != null) {
+                logger.warning("Memoria de Acompanante no asignada, búsqueda abortada.");
+            }
+            return;
+        }
 
         List<Acompanante> lista = memoriaAcompanante.findAll();
 
         List<Acompanante> filtrados = lista.stream().filter(a -> {
             boolean coincide = true;
 
-            if (!idText.getText().isEmpty()){
-                coincide &= a.getId() != null &&
-                        a.getId().toString().contains(idText.getText());
+            if (!idText.getText().isEmpty()) {
+                coincide &= a.getId() != null && a.getId().toString().contains(idText.getText());
             }
             if (!idReservaText.getText().isEmpty()) {
-                coincide &= a.getIdreserva().getId() != null &&
-                        a.getIdreserva().getId().toString().contains(idReservaText.getText());
+                coincide &= a.getIdreserva().getId() != null && a.getIdreserva().getId().toString().contains(idReservaText.getText());
             }
             if (!nombreText.getText().isEmpty()) {
-                coincide &= a.getNombre() != null &&
-                        a.getNombre().toLowerCase().contains(nombreText.getText().toLowerCase());
-            }
-            if (!idText.getText().isEmpty()) {
-                coincide &= a.getId() != null &&
-                        a.getId().toString().contains(idText.getText());
+                coincide &= a.getNombre() != null && a.getNombre().toLowerCase().contains(nombreText.getText().toLowerCase());
             }
             if (!apellidoText.getText().isEmpty()) {
-                coincide &= a.getApellido() != null &&
-                        a.getApellido().toLowerCase().contains(apellidoText.getText().toLowerCase());
+                coincide &= a.getApellido() != null && a.getApellido().toLowerCase().contains(apellidoText.getText().toLowerCase());
             }
             if (!dniText.getText().isEmpty()) {
-                coincide &= a.getDni() != null &&
-                        a.getDni().toLowerCase().contains(dniText.getText().toLowerCase());
+                coincide &= a.getDni() != null && a.getDni().toLowerCase().contains(dniText.getText().toLowerCase());
             }
             if (!emailText.getText().isEmpty()) {
-                coincide &= a.getEmail() != null &&
-                        a.getEmail().toLowerCase().contains(emailText.getText().toLowerCase());
+                coincide &= a.getEmail() != null && a.getEmail().toLowerCase().contains(emailText.getText().toLowerCase());
             }
             if (!telefonoText.getText().isEmpty()) {
-                coincide &= a.getTelefono() != null &&
-                        a.getTelefono().toLowerCase().contains(telefonoText.getText().toLowerCase());
+                coincide &= a.getTelefono() != null && a.getTelefono().toLowerCase().contains(telefonoText.getText().toLowerCase());
             }
             return coincide;
         }).collect(Collectors.toList());
 
         AcompanantesObservable.setAll(filtrados);
+
+        if (logger != null) {
+            logger.info("Búsqueda completada. Resultados encontrados: " + filtrados.size());
+        }
     }
 
     @Override
     public void idiomaCambiado() {
+        if (logger != null) {
+            logger.info("Idioma cambiado, actualizando textos...");
+        }
         actualizarTextos();
     }
 
-    private void actualizarTextos(){
+    private void actualizarTextos() {
         labelBuscarAcompanante.setText(GestorIdiomas.getTexto("buscarAcompanante"));
         labelIDAcompanante.setText(GestorIdiomas.getTexto("IDAcompanante"));
         labelIDReserva.setText(GestorIdiomas.getTexto("IDReserva"));
@@ -162,7 +187,6 @@ public class BuscaAcompananteController implements IdiomaListener {
         btnBuscar.setText(GestorIdiomas.getTexto("buscar"));
         btnBuscarTodos.setText(GestorIdiomas.getTexto("buscarTodos"));
 
-
         idColumn.setText(GestorIdiomas.getTexto("id"));
         tipoColumn.setText(GestorIdiomas.getTexto("IDReserva"));
         capacidadColumn.setText(GestorIdiomas.getTexto("nombre"));
@@ -170,9 +194,9 @@ public class BuscaAcompananteController implements IdiomaListener {
         minimoColumn.setText(GestorIdiomas.getTexto("dni"));
         estadoColumn.setText(GestorIdiomas.getTexto("email"));
         telefonoColumn.setText(GestorIdiomas.getTexto("telefono"));
+    }
 
-
-
-
+    public void setLogger(Logger logger) {
+        this.logger = logger;
     }
 }

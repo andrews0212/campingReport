@@ -1,4 +1,5 @@
 package org.example.camping2.controladores;
+
 import java.io.IOException;
 import java.util.logging.*;
 
@@ -12,7 +13,7 @@ public class LogConfig {
 
             logger.addHandler(fileHandler);
             logger.setUseParentHandlers(false);
-            logger.setLevel(Level.WARNING);      // Solo warnings y errores también en el logger
+            logger.setLevel(Level.WARNING);
 
         } catch (IOException e) {
             e.printStackTrace();
