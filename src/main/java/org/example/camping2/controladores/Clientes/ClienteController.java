@@ -12,9 +12,11 @@ import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.memoria.Memoria;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 public class ClienteController implements IdiomaListener{
 
+    private Logger logger;
     @FXML
     private Button ButtonBuscar, ButtonAgregar, ButtonModificar, ButtonEliminar;
     private StackPane areaContenido;
@@ -84,15 +86,19 @@ public class ClienteController implements IdiomaListener{
             // Get the controller of the loaded panel and pass the memory reference
             if (archivoFXML.equals("/org/example/camping2/vista/clientes/AñadirClientePanel.fxml")) {
                 AñadirClienteController controlador = loader.getController();
+                controlador.setLogger(logger);
                 controlador.setMemoria(memoria);
             } else if (archivoFXML.equals("/org/example/camping2/vista/clientes/EliminarClientePane.fxml")) {
                 EliminarClienteController controlador = loader.getController();
+                controlador.setLogger(logger);
                 controlador.setMemoria(memoria);
             } else if (archivoFXML.equals("/org/example/camping2/vista/clientes/ActualizarClientePanel.fxml")) {
                 ModificarClienteController controlador = loader.getController();
+                controlador.setLogger(logger);
                 controlador.setMemoria(memoria);
             } else if (archivoFXML.equals("/org/example/camping2/vista/clientes/BuscarClientePanel.fxml")) {
                 BuscarClientePanelController controlador = loader.getController();
+                controlador.setLogger(logger);
                 controlador.setMemoria(memoria);
             }
 
@@ -159,5 +165,9 @@ public class ClienteController implements IdiomaListener{
     @Override
     public void idiomaCambiado() {
         actualizarTextos();
+    }
+
+    public void setLogger(Logger logger) {
+        this.logger = logger;
     }
 }

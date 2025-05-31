@@ -69,6 +69,7 @@ public class MenuNew implements IdiomaListener {
 
         // Inicializar controladores y pasar memorias y contenedorCentral
         clienteController = new ClienteController();
+        clienteController.setLogger(logger);
         clienteController.setMemoria(memoriaCliente);
         clienteController.setAreaContenido(contenedorCentral);
 

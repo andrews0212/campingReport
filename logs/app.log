@@ -14,3 +14,135 @@ jun 01, 2025 1:26:27 A. M. org.example.camping2.controladores.MenuNew initializ
 ADVERTENCIA: INICIADO
 jun 01, 2025 1:31:10 A. M. org.example.camping2.controladores.MenuNew initialize
 ADVERTENCIA: INICIADO
+jun 01, 2025 1:43:16 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 1:43:58 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 1:44:26 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 1:45:06 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 1:49:12 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 1:51:24 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 1:51:54 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 1:52:12 A. M. org.example.camping2.controladores.Clientes.AñadirClienteController handleAñadirCliente
+ADVERTENCIA: Validación fallida: Nombre inválido -> 
+jun 01, 2025 1:52:45 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 1:52:47 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 1:52:51 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 1:53:53 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 1:54:00 A. M. org.example.camping2.controladores.Clientes.ModificarClienteController guardarCambios
+ADVERTENCIA: Validación fallida: Nombre inválido -> Mar?a
+jun 01, 2025 1:55:14 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 1:55:25 A. M. org.example.camping2.controladores.Clientes.EliminarClienteController eliminarClienteDeBaseDatos
+GRAVE: Error inesperado al eliminar cliente con ID 20
+jakarta.persistence.RollbackException: Error while committing the transaction
+	at org.hibernate.orm.core@7.0.0.Alpha3/org.hibernate.internal.ExceptionConverterImpl.convertCommitException(ExceptionConverterImpl.java:67)
+	at org.hibernate.orm.core@7.0.0.Alpha3/org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:105)
+	at org.example.camping2/org.example.camping2.modelo.dao.DAOGN.delete(DAOGN.java:89)
+	at org.example.camping2/org.example.camping2.modelo.memoria.Memoria.delete(Memoria.java:50)
+	at org.example.camping2/org.example.camping2.controladores.Clientes.EliminarClienteController.eliminarClienteDeBaseDatos(EliminarClienteController.java:225)
+	at org.example.camping2/org.example.camping2.controladores.Clientes.EliminarClienteController.eliminarClienteSeleccionado(EliminarClienteController.java:205)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@20.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@20.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1855)
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1726)
+	at javafx.base@20.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@20.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@20.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@20.0.1/javafx.scene.Node.fireEvent(Node.java:8944)
+	at javafx.controls@20.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@20.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@20.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@20.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@20.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@20.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@20.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@20.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3980)
+	at javafx.graphics@20.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1890)
+	at javafx.graphics@20.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2704)
+	at javafx.graphics@20.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@20.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@20.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@20.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics@20.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@20.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+	at javafx.graphics@20.0.1/com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at javafx.graphics@20.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@20.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement [(conn=157) Cannot delete or update a parent row: a foreign key constraint fails (`gestion_camping`.`reserva`, CONSTRAINT `reserva_ibfk_1` FOREIGN KEY (`IDCLIENTE`) REFERENCES `cliente` (`IDCLIENTE`))] [delete from cliente where IDCLIENTE=?]
+	at org.hibernate.orm.core@7.0.0.Alpha3/org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:62)
+	at org.hibernate.orm.core@7.0.0.Alpha3/org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:58)
+	at org.hibernate.orm.core@7.0.0.Alpha3/org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.orm.core@7.0.0.Alpha3/org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197)
+	at org.hibernate.orm.core@7.0.0.Alpha3/org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.performNonBatchedMutation(AbstractMutationExecutor.java:134)
+	at org.hibernate.orm.core@7.0.0.Alpha3/org.hibernate.engine.jdbc.mutation.internal.MutationExecutorSingleNonBatched.performNonBatchedOperations(MutationExecutorSingleNonBatched.java:55)
+	at org.hibernate.orm.core@7.0.0.Alpha3/org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.execute(AbstractMutationExecutor.java:55)
+	at org.hibernate.orm.core@7.0.0.Alpha3/org.hibernate.persister.entity.mutation.AbstractDeleteCoordinator.doStaticDelete(AbstractDeleteCoordinator.java:278)
+	at org.hibernate.orm.core@7.0.0.Alpha3/org.hibernate.persister.entity.mutation.AbstractDeleteCoordinator.delete(AbstractDeleteCoordinator.java:86)
+	at org.hibernate.orm.core@7.0.0.Alpha3/org.hibernate.action.internal.EntityDeleteAction.execute(EntityDeleteAction.java:131)
+	at org.hibernate.orm.core@7.0.0.Alpha3/org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:644)
+	at org.hibernate.orm.core@7.0.0.Alpha3/org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:511)
+	at org.hibernate.orm.core@7.0.0.Alpha3/org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:400)
+	at org.hibernate.orm.core@7.0.0.Alpha3/org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:41)
+	at org.hibernate.orm.core@7.0.0.Alpha3/org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:127)
+	at org.hibernate.orm.core@7.0.0.Alpha3/org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1444)
+	at org.hibernate.orm.core@7.0.0.Alpha3/org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:506)
+	at org.hibernate.orm.core@7.0.0.Alpha3/org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:2398)
+	at org.hibernate.orm.core@7.0.0.Alpha3/org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2022)
+	at org.hibernate.orm.core@7.0.0.Alpha3/org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:439)
+	at org.hibernate.orm.core@7.0.0.Alpha3/org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:169)
+	at org.hibernate.orm.core@7.0.0.Alpha3/org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:267)
+	at org.hibernate.orm.core@7.0.0.Alpha3/org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:102)
+	... 58 more
+Caused by: java.sql.SQLIntegrityConstraintViolationException: (conn=157) Cannot delete or update a parent row: a foreign key constraint fails (`gestion_camping`.`reserva`, CONSTRAINT `reserva_ibfk_1` FOREIGN KEY (`IDCLIENTE`) REFERENCES `cliente` (`IDCLIENTE`))
+	at org.mariadb.jdbc@3.4.1/org.mariadb.jdbc.export.ExceptionFactory.createException(ExceptionFactory.java:297)
+	at org.mariadb.jdbc@3.4.1/org.mariadb.jdbc.export.ExceptionFactory.create(ExceptionFactory.java:378)
+	at org.mariadb.jdbc@3.4.1/org.mariadb.jdbc.message.ClientMessage.readPacket(ClientMessage.java:189)
+	at org.mariadb.jdbc@3.4.1/org.mariadb.jdbc.client.impl.StandardClient.readPacket(StandardClient.java:1235)
+	at org.mariadb.jdbc@3.4.1/org.mariadb.jdbc.client.impl.StandardClient.readResults(StandardClient.java:1174)
+	at org.mariadb.jdbc@3.4.1/org.mariadb.jdbc.client.impl.StandardClient.readResponse(StandardClient.java:1093)
+	at org.mariadb.jdbc@3.4.1/org.mariadb.jdbc.client.impl.StandardClient.execute(StandardClient.java:1017)
+	at org.mariadb.jdbc@3.4.1/org.mariadb.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:101)
+	at org.mariadb.jdbc@3.4.1/org.mariadb.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:313)
+	at org.mariadb.jdbc@3.4.1/org.mariadb.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:290)
+	at org.hibernate.orm.core@7.0.0.Alpha3/org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:194)
+	... 77 more
+
+jun 01, 2025 1:55:28 A. M. org.example.camping2.controladores.Clientes.EliminarClienteController eliminarClienteSeleccionado
+ADVERTENCIA: No se pudo eliminar cliente con ID: 20

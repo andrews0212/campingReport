@@ -10,25 +10,16 @@ import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.memoria.Memoria;
 
 import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Controller for the "Eliminar Cliente" (Delete Client) view.
- * This class handles the logic for deleting a client from the system based on the client's ID.
- * It interacts with the memory service (Memoria) to perform the deletion and updates the user interface with appropriate status messages.
- *
- * <p>It handles the following:
- * <ul>
- *   <li>Validates the client ID input.</li>
- *   <li>Attempts to delete the client and shows a success or error message.</li>
- *   <li>Handles errors, such as invalid IDs or database connection issues.</li>
- * </ul>
- * </p>
- *
- * @author Andrews Dos Ramos
- * @version 1.0.0
- * @since 31/01/2025
+ * ... [doc unchanged] ...
  */
 public class EliminarClienteController implements IdiomaListener {
+
+    private Logger logger;
 
     @FXML
     private Label labelTitulo, labelId, labelNombre, labelDNI, labelApellido, labelTelefono, labelEmail, labelFechaNacimiento, labelEstado;
@@ -61,17 +52,11 @@ public class EliminarClienteController implements IdiomaListener {
     @FXML
     private Label statusLabel;
 
-
     private ObservableList<Cliente> clientes = FXCollections.observableArrayList();
     private Memoria<Cliente, Integer> memoria;
 
-    /**
-     * Initializes the controller and binds the columns of the table to the fields of the `Cliente` class.
-     * Also binds the `clientes` observable list to the `clientesTableView`.
-     */
     @FXML
     public void initialize() {
-        // Bind columns to Cliente fields
         idColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getId()));
         nombreColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getNombre()));
         apellidoColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getApellido()));
@@ -85,15 +70,13 @@ public class EliminarClienteController implements IdiomaListener {
         estadoColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getEstado()));
         comentarioColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getComentarios()));
 
-
-        // Bind the observable list to the TableView
         clientesTableView.setItems(clientes);
         GestorIdiomas.agregarListener(this);
         actualizarTexto();
-
     }
 
     public void buscarClientes() {
+        logger.info("Inicio de busqueda de clientes con filtros");
         clientes.clear();
         statusLabel.setText("");
 
@@ -113,11 +96,14 @@ public class EliminarClienteController implements IdiomaListener {
 
             if (resultados.isEmpty()) {
                 statusLabel.setText("No se encontraron clientes.");
+                logger.info("No se encontraron clientes con los filtros especificados.");
             } else {
                 clientes.addAll(resultados);
+                logger.info(resultados.size() + " clientes encontrados y cargados en la tabla.");
             }
         } catch (Exception e) {
             statusLabel.setText("Ocurrió un error al buscar los clientes.");
+            logger.log(Level.SEVERE, "Error al buscar clientes", e);
         }
     }
 
@@ -130,7 +116,7 @@ public class EliminarClienteController implements IdiomaListener {
         if (id.isEmpty() && nombre.isEmpty() && apellido.isEmpty() && dni.isEmpty()
                 && telefono.isEmpty() && email.isEmpty()
                 && fechaNacimiento.isEmpty() && estado.isEmpty()) {
-            System.out.println("No hay datos para buscar.");
+            logger.warning("Intento de búsqueda sin criterios especificados.");
             return resultados;
         }
 
@@ -144,6 +130,7 @@ public class EliminarClienteController implements IdiomaListener {
                         coincide &= cliente.getId() == idNum;
                     } catch (NumberFormatException e) {
                         coincide = false;
+                        logger.warning("ID ingresado no es un número válido: " + id);
                     }
                 }
 
@@ -180,7 +167,7 @@ public class EliminarClienteController implements IdiomaListener {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Error al buscar clientes: " + e.getMessage());
+            logger.log(Level.SEVERE, "Error al buscar clientes en la memoria", e);
         }
 
         return resultados;
@@ -188,105 +175,90 @@ public class EliminarClienteController implements IdiomaListener {
 
 
     public void buscarTodosClientes() {
-        // Clear previous results and reset status
+        logger.info("Buscando todos los clientes");
         clientes.clear();
         statusLabel.setText("");
 
         try {
-            // Simulate database search logic
             ObservableList<Cliente> resultados = FXCollections.observableArrayList();
-            ;
             resultados.addAll(memoria.findAll());
             clientes.addAll(resultados);
-
-
+            logger.info(resultados.size() + " clientes cargados.");
         } catch (Exception e) {
             statusLabel.setText("Ocurrió un error al buscar los clientes.");
+            logger.log(Level.SEVERE, "Error al buscar todos los clientes", e);
         }
     }
 
-    /**
-     * Attempts to delete the client based on the provided client ID.
-     * If the ID is empty, an error message is displayed.
-     * If the ID is valid but the client does not exist, a failure message is shown.
-     * If an error occurs during deletion, a generic error message is shown.
-     */
     @FXML
     public void eliminarClienteSeleccionado() {
         Cliente clienteSeleccionado = clientesTableView.getSelectionModel().getSelectedItem();
 
         if (clienteSeleccionado == null) {
             statusLabel.setText("Por favor, seleccione un cliente para eliminar.");
+            logger.warning("Intento de eliminar cliente sin selección.");
             return;
         }
 
         try {
+            logger.info("Intentando eliminar cliente con ID: " + clienteSeleccionado.getId());
             boolean eliminado = eliminarClienteDeBaseDatos(clienteSeleccionado.getId());
             if (eliminado) {
-                clientes.remove(clienteSeleccionado); // También quita de la lista observable para refrescar tabla
+                clientes.remove(clienteSeleccionado);
                 statusLabel.setStyle("-fx-text-fill: green;");
                 statusLabel.setText("Cliente eliminado exitosamente.");
+                logger.info("Cliente con ID " + clienteSeleccionado.getId() + " eliminado exitosamente.");
             } else {
                 statusLabel.setStyle("-fx-text-fill: red;");
                 statusLabel.setText("No se pudo eliminar el cliente seleccionado.");
+                logger.warning("No se pudo eliminar cliente con ID: " + clienteSeleccionado.getId());
             }
         } catch (Exception e) {
             statusLabel.setStyle("-fx-text-fill: red;");
             statusLabel.setText("Error al eliminar el cliente seleccionado.");
+            logger.log(Level.SEVERE, "Error al eliminar cliente con ID " + clienteSeleccionado.getId(), e);
         }
     }
 
-    /**
-     * Attempts to delete a client from the database (or memory).
-     * If the client is successfully deleted, an informational alert is shown to the user.
-     * If there is an error, an error alert is displayed.
-     *
-     * @param id The ID of the client to delete.
-     * @return true if the client was deleted successfully, false otherwise.
-     */
     private boolean eliminarClienteDeBaseDatos(int id) {
         try {
-            boolean valor = memoria.delete(id);  // Try to delete the client from memory (simulating database)
+            boolean valor = memoria.delete(id);
             if (valor) {
-                System.out.println("Cliente con ID " + id + " eliminado (simulado).");
-                // If deleted successfully, show a success message
+                logger.info("Cliente con ID " + id + " eliminado (simulado).");
+
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Éxito");
                 alert.setHeaderText(null);
                 alert.setContentText("Cliente con ID " + id + " eliminado correctamente.");
                 alert.showAndWait();
-                return true;  // Client deleted successfully
+                return true;
             } else {
-                return false;  // Client not found
+                logger.warning("No se encontró cliente con ID " + id + " para eliminar.");
+                return false;
             }
         } catch (Exception e) {
-            // Catch other possible errors and show an error alert
-            System.out.println(e.getMessage());
+            logger.log(Level.SEVERE, "Error inesperado al eliminar cliente con ID " + id, e);
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText(null);
             alert.setContentText("Ocurrió un error inesperado al intentar eliminar el cliente.");
             alert.showAndWait();
-            return false;  // General error
+            return false;
         }
     }
 
-    /**
-     * Sets the memory service that manages the client data.
-     * This is used to interact with the memory and perform deletion operations.
-     *
-     * @param memoria The memory service for client data.
-     */
     public void setMemoria(Memoria<Cliente, Integer> memoria) {
         this.memoria = memoria;
         if (clientes != null && memoria != null) {
             clientes.clear();
             clientes.addAll(memoria.findAll());
+            logger.info("Memoria establecida y clientes cargados: " + clientes.size());
         }
     }
 
     @Override
     public void idiomaCambiado() {
+        logger.info("Idioma cambiado - actualizando textos");
         actualizarTexto();
     }
 
@@ -303,7 +275,6 @@ public class EliminarClienteController implements IdiomaListener {
         labelFechaNacimiento.setText(GestorIdiomas.getTexto("fechaNacimiento"));
         labelEstado.setText(GestorIdiomas.getTexto("estado"));
 
-
         idColumn.setText(GestorIdiomas.getTexto("idcliente"));
         nombreColumn.setText(GestorIdiomas.getTexto("nombre"));
         dniColumn.setText(GestorIdiomas.getTexto("dni"));
@@ -313,6 +284,9 @@ public class EliminarClienteController implements IdiomaListener {
         fechaNacimientoColumn.setText(GestorIdiomas.getTexto("fechaNacimiento"));
         estadoColumn.setText(GestorIdiomas.getTexto("estado"));
         comentarioColumn.setText(GestorIdiomas.getTexto("comentario"));
+    }
 
+    public void setLogger(Logger logger) {
+        this.logger = logger;
     }
 }
