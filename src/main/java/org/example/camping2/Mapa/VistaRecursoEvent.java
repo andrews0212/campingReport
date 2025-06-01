@@ -1,4 +1,4 @@
-package org.example.camping2.controladores.Recursos;
+package org.example.camping2.Mapa;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

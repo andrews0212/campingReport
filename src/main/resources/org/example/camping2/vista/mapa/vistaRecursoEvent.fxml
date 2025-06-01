@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="756.0" prefWidth="1154.0" style="-fx-background-color: #2B2525;" stylesheets="@../../Css/crud.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.Recursos.VistaRecursoEvent">
+<AnchorPane prefHeight="756.0" prefWidth="1154.0" style="-fx-background-color: #2B2525;" stylesheets="@../../Css/crud.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.Mapa.VistaRecursoEvent">
    <children>
       <VBox alignment="CENTER" layoutY="144.0" prefHeight="612.0" prefWidth="592.0">
          <children>
