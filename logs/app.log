@@ -156,3 +156,19 @@ jun 01, 2025 2:11:18 A. M. org.example.camping2.controladores.Recursos.CrearRec
 GRAVE: Error de formato numérico: For input string: ""
 jun 01, 2025 2:11:31 A. M. org.example.camping2.controladores.Recursos.ModificarRecursoController modificarRecurso
 ADVERTENCIA: Mínimo de personas no válido: -1
+jun 01, 2025 2:22:31 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 2:24:41 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 2:25:32 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 2:27:46 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 2:31:08 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 2:32:47 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 2:33:02 A. M. org.example.camping2.controladores.Reservas.CrearReservaController hacerReserva
+ADVERTENCIA: Cliente no encontrado para DNI: 
+jun 01, 2025 2:33:08 A. M. org.example.camping2.controladores.Reservas.ModificarReservaController modificarReserva
+ADVERTENCIA: Fechas incompletas para modificar reserva id 24

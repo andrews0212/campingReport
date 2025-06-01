@@ -12,9 +12,13 @@ import org.example.camping2.modelo.memoria.Memoria;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
 public class EliminarReservaController implements IdiomaListener {
+
+    private Logger logger;
+
     Memoria<Reserva, Integer> memoriaReserva;
 
     @FXML
@@ -39,7 +43,7 @@ public class EliminarReservaController implements IdiomaListener {
     private Button btnEliminar;
 
     @FXML
-    private  TextField idText1;
+    private TextField idText1;
     @FXML
     private DatePicker fechaInicio1;
     @FXML
@@ -69,16 +73,24 @@ public class EliminarReservaController implements IdiomaListener {
 
     private ObservableList<Reserva> Reserva = FXCollections.observableArrayList();
 
+    public void setLogger(Logger logger) {
+        this.logger = logger;
+    }
+
     public Memoria<Reserva, Integer> getMemoriaReserva() {
         return memoriaReserva;
     }
 
     public void setMemoriaReserva(Memoria<Reserva, Integer> memoriaReserva) {
         this.memoriaReserva = memoriaReserva;
+        if (logger != null) {
+            logger.info("Memoria de reservas establecida.");
+        }
         cargarTodos();
     }
 
     private Map<String, String> mapaEstadoTraducido;
+
     @FXML
     public void initialize() {
         mapaEstadoTraducido = new HashMap<>();
@@ -97,9 +109,18 @@ public class EliminarReservaController implements IdiomaListener {
         dniColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getIdcliente().getDni()));
         GestorIdiomas.agregarListener(this);
         actualizarTexto();
+
+        if (logger != null) {
+            logger.info("Inicialización del controlador EliminarReservaController completada.");
+        }
     }
+
     @FXML
     public void buscarReservas() {
+        if (logger != null) {
+            logger.info("Buscando reservas con filtros aplicados.");
+        }
+
         Stream<Reserva> stream = memoriaReserva.findAll().stream();
 
         // Filtrar por ID si no está vacío
@@ -107,19 +128,30 @@ public class EliminarReservaController implements IdiomaListener {
             try {
                 int id = Integer.parseInt(idText1.getText());
                 stream = stream.filter(reserva -> reserva.getId() == id);
+                if (logger != null) {
+                    logger.info("Filtro aplicado: id = " + id);
+                }
             } catch (NumberFormatException e) {
-                // Puedes mostrar una alerta si lo deseas
+                if (logger != null) {
+                    logger.warning("Error al parsear el ID: " + e.getMessage());
+                }
             }
         }
 
         // Filtrar por fecha de inicio
         if (fechaInicio1.getValue() != null) {
             stream = stream.filter(reserva -> !reserva.getFechaInicio().isBefore(fechaInicio1.getValue()));
+            if (logger != null) {
+                logger.info("Filtro aplicado: fechaInicio >= " + fechaInicio1.getValue());
+            }
         }
 
         // Filtrar por fecha de fin
         if (fechaFin1.getValue() != null) {
             stream = stream.filter(reserva -> !reserva.getFechaFin().isAfter(fechaFin1.getValue()));
+            if (logger != null) {
+                logger.info("Filtro aplicado: fechaFin <= " + fechaFin1.getValue());
+            }
         }
 
         // Filtrar por precio
@@ -127,8 +159,13 @@ public class EliminarReservaController implements IdiomaListener {
             try {
                 double precio = Double.parseDouble(precioText1.getText());
                 stream = stream.filter(reserva -> reserva.getPrecioTotal() == precio);
+                if (logger != null) {
+                    logger.info("Filtro aplicado: precioTotal = " + precio);
+                }
             } catch (NumberFormatException e) {
-                // Puedes mostrar una alerta si lo deseas
+                if (logger != null) {
+                    logger.warning("Error al parsear el precio: " + e.getMessage());
+                }
             }
         }
 
@@ -141,30 +178,45 @@ public class EliminarReservaController implements IdiomaListener {
                 .orElse(null);
         if (estadoSeleccionado != null && !estadoSeleccionado.isEmpty()) {
             stream = stream.filter(reserva -> reserva.getEstado().equalsIgnoreCase(estadoTraducido));
+            if (logger != null) {
+                logger.info("Filtro aplicado: estado = " + estadoTraducido);
+            }
         }
 
-        // 🔍 Filtrar por DNI
+        // Filtrar por DNI
         if (!dniText.getText().isEmpty()) {
             String dni = dniText.getText().trim();
             stream = stream.filter(reserva -> reserva.getIdcliente().getDni().equalsIgnoreCase(dni));
+            if (logger != null) {
+                logger.info("Filtro aplicado: dni = " + dni);
+            }
         }
 
-        // Actualizar tabla
         Reserva.setAll(stream.toList());
+
+        if (logger != null) {
+            logger.info("Número de reservas encontradas: " + Reserva.size());
+        }
     }
 
-
     @FXML
-    public void cargarTodos(){
+    public void cargarTodos() {
+        if (logger != null) {
+            logger.info("Cargando todas las reservas.");
+        }
         Reserva.clear();
         Reserva.addAll(memoriaReserva.findAll());
     }
+
     @FXML
     public void eliminarReserva() {
         Reserva seleccionada = reservaTable.getSelectionModel().getSelectedItem();
 
         if (seleccionada == null) {
             mostrarAlerta("Debe seleccionar una reserva para eliminar.");
+            if (logger != null) {
+                logger.warning("Intento de eliminar reserva sin selección.");
+            }
             return;
         }
 
@@ -177,9 +229,13 @@ public class EliminarReservaController implements IdiomaListener {
             if (response == ButtonType.OK) {
                 memoriaReserva.delete(seleccionada.getId());
                 Reserva.remove(seleccionada); // Actualiza la tabla
+                if (logger != null) {
+                    logger.info("Reserva eliminada: ID " + seleccionada.getId());
+                }
             }
         });
     }
+
     private void mostrarAlerta(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Advertencia");
@@ -191,6 +247,9 @@ public class EliminarReservaController implements IdiomaListener {
     @Override
     public void idiomaCambiado() {
         actualizarTexto();
+        if (logger != null) {
+            logger.info("Idioma cambiado y textos actualizados.");
+        }
     }
 
     private void actualizarTexto() {
@@ -215,8 +274,5 @@ public class EliminarReservaController implements IdiomaListener {
         fechaFinColumn.setText(GestorIdiomas.getTexto("fechaFin"));
         nombreColumn.setText(GestorIdiomas.getTexto("nombre"));
         apellidoColumn.setText(GestorIdiomas.getTexto("apellido"));
-
-
-
     }
 }

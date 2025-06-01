@@ -86,7 +86,7 @@ public class MenuNew implements IdiomaListener {
         recursoController.setAreaContenido(contenedorCentral);
 
         reservaController = new ReservaController();
-
+        reservaController.setLogger(logger);
         reservaController.setMemoriaReserva(memoriaReserva);
         reservaController.setMemoriaRecurso(memoriaRecurso);
         reservaController.setMemoriaCliente(memoriaCliente);

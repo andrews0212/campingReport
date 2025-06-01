@@ -14,13 +14,15 @@ import org.example.camping2.modelo.dto.Reserva;
 import org.example.camping2.modelo.memoria.Memoria;
 import org.example.camping2.modelo.validaciones.ValidarReservas;
 
-import java.awt.event.ActionEvent;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CrearReservaController implements IdiomaListener {
 
+    private Logger logger;
 
     Memoria<Reserva, Integer> memoriaReserva;
     Memoria<Recurso, Integer> memoriaRecurso;
@@ -69,40 +71,48 @@ public class CrearReservaController implements IdiomaListener {
 
     private ObservableList<Recurso> recursos = FXCollections.observableArrayList();
     private Map<String, String> mapaTipoTraducido;
+
     @FXML
     public void initialize() {
-    tipoComboBox.setItems(tipos);
+        tipoComboBox.setItems(tipos);
         mapaTipoTraducido = new HashMap<>();
         mapaTipoTraducido.clear();
         mapaTipoTraducido.put("PARCELA", GestorIdiomas.getTexto("PARCELA"));
         mapaTipoTraducido.put("BUNGALOW", GestorIdiomas.getTexto("BUNGALOW"));
         mapaTipoTraducido.put("BARBACOA", GestorIdiomas.getTexto("BARBACOA"));
-    tipoComboBox.setItems(FXCollections.observableArrayList(mapaTipoTraducido.values()));
-    tipoComboBox.getSelectionModel().select(0);
-    nombreColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getNombre()));
-    tipoColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getTipo()));
-    capacidadColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getCapacidad()));
-    precioColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getPrecio()));
-    minimoPersonasColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getMinimoPersonas()));
-    IDColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getId()));
-    recursos.clear();
-    GestorIdiomas.agregarListener(this);
-    actualizarTexto();
+        tipoComboBox.setItems(FXCollections.observableArrayList(mapaTipoTraducido.values()));
+        tipoComboBox.getSelectionModel().select(0);
+        nombreColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getNombre()));
+        tipoColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getTipo()));
+        capacidadColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getCapacidad()));
+        precioColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getPrecio()));
+        minimoPersonasColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getMinimoPersonas()));
+        IDColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getId()));
+        recursos.clear();
+        GestorIdiomas.agregarListener(this);
+        actualizarTexto();
+    }
+
+    // Setter para Logger
+    public void setLogger(Logger logger) {
+        this.logger = logger;
     }
 
     public void setMemoriaReserva(Memoria<Reserva, Integer> memoriaReserva) {
         this.memoriaReserva = memoriaReserva;
+        if (logger != null) logger.info("MemoriaReserva seteada.");
     }
-
 
     public void setMemoriaRecurso(Memoria<Recurso, Integer> memoriaRecurso) {
         this.memoriaRecurso = memoriaRecurso;
+        if (logger != null) logger.info("MemoriaRecurso seteada.");
 
         // Si el ComboBox ya tiene una selección, cargar los recursos automáticamente
         if (tipoComboBox.getSelectionModel().getSelectedItem() != null) {
             cargarRecursosPorTipoSeleccionado();
         }
     }
+
     private void cargarRecursosPorTipoSeleccionado() {
         try {
             recursos.clear();
@@ -120,20 +130,25 @@ public class CrearReservaController implements IdiomaListener {
                         .filter(p -> p.getTipo().equals(tipoReal))
                         .toList());
                 tablaRecurso.setItems(recursos);
+                if (logger != null) logger.info("Recursos cargados para tipo: " + tipoReal);
             }
 
         } catch (Exception e) {
-            System.out.println("Error al cargar recursos: " + e.getMessage());
+            if (logger != null) {
+                logger.log(Level.SEVERE, "Error al cargar recursos", e);
+            } else {
+                System.out.println("Error al cargar recursos: " + e.getMessage());
+            }
         }
     }
 
     public void setMemoriaCliente(Memoria<Cliente, Integer> memoriaCliente) {
         this.memoriaCliente = memoriaCliente;
+        if (logger != null) logger.info("MemoriaCliente seteada.");
     }
 
     public void cargar(javafx.event.ActionEvent actionEvent) {
         try {
-            // Simulate database search logic
             recursos.clear();
             ObservableList<Recurso> recursos1 = FXCollections.observableArrayList();
             String tipo = tipoComboBox.getSelectionModel().getSelectedItem().toString();
@@ -145,35 +160,45 @@ public class CrearReservaController implements IdiomaListener {
             recursos1.addAll(memoriaRecurso.findAll().stream().filter(p -> p.getTipo().equals(tipoTraducido)).toList());
             recursos.addAll(recursos1);
             tablaRecurso.setItems(recursos);
-
-
-        }catch (Exception e){
-            System.out.println(e.getMessage());
+            if (logger != null) logger.info("Carga de recursos completada para tipo: " + tipoTraducido);
+        } catch (Exception e) {
+            if (logger != null) {
+                logger.log(Level.SEVERE, "Error en cargar recursos", e);
+            } else {
+                System.out.println(e.getMessage());
+            }
         }
     }
+
     @FXML
-    private void hacerReserva(){
-
-       Recurso recurso = tablaRecurso.getSelectionModel().getSelectedItem();
-       try{
-
-
-       Cliente cliente = memoriaCliente.findAll().stream().filter(p -> p.getDni().toUpperCase().equals(dniText.getText().toUpperCase())).findFirst().get();
-       if (cliente != null && recurso != null) {
-           if(ValidarReservas.validarFechas(fechaInicio.getValue(), fechaFin.getValue())){
-               memoriaReserva.add(new Reserva(cliente, recurso, fechaInicio.getValue(), fechaFin.getValue(), "ACTIVA", Integer.parseInt(precioText.getText()), 0));
-               mostrarAlerta("Reserva Realizada", "La reserva ha sido realizada con éxito", Alert.AlertType.INFORMATION);
-           }else{
-               mostrarAlerta("Error en las fechas", "Las fechas no son válidas", Alert.AlertType.ERROR);
-           }
-       }
-       } catch (NoSuchElementException e){
-           mostrarAlerta("Cliente No Encontrado", "El cliente no existe", Alert.AlertType.ERROR);
-       }
+    private void hacerReserva() {
+        Recurso recurso = tablaRecurso.getSelectionModel().getSelectedItem();
+        try {
+            Cliente cliente = memoriaCliente.findAll().stream()
+                    .filter(p -> p.getDni().toUpperCase().equals(dniText.getText().toUpperCase()))
+                    .findFirst()
+                    .get();
+            if (cliente != null && recurso != null) {
+                if (ValidarReservas.validarFechas(fechaInicio.getValue(), fechaFin.getValue())) {
+                    memoriaReserva.add(new Reserva(cliente, recurso, fechaInicio.getValue(), fechaFin.getValue(), "ACTIVA", Integer.parseInt(precioText.getText()), 0));
+                    mostrarAlerta("Reserva Realizada", "La reserva ha sido realizada con éxito", Alert.AlertType.INFORMATION);
+                    if (logger != null) logger.info("Reserva realizada para cliente DNI: " + cliente.getDni());
+                } else {
+                    mostrarAlerta("Error en las fechas", "Las fechas no son válidas", Alert.AlertType.ERROR);
+                    if (logger != null) logger.warning("Intento de reserva con fechas inválidas.");
+                }
+            }
+        } catch (NoSuchElementException e) {
+            mostrarAlerta("Cliente No Encontrado", "El cliente no existe", Alert.AlertType.ERROR);
+            if (logger != null) logger.warning("Cliente no encontrado para DNI: " + dniText.getText());
+        } catch (Exception e) {
+            if (logger != null) logger.log(Level.SEVERE, "Error al hacer reserva", e);
+        }
     }
+
     @Override
     public void idiomaCambiado() {
-    actualizarTexto();
+        actualizarTexto();
     }
 
     private void actualizarTexto() {
@@ -195,21 +220,20 @@ public class CrearReservaController implements IdiomaListener {
         mapaTipoTraducido.put("BUNGALOW", GestorIdiomas.getTexto("BUNGALOW"));
         mapaTipoTraducido.put("BARBACOA", GestorIdiomas.getTexto("BARBACOA"));
 
-
         tipoComboBox.setItems(FXCollections.observableArrayList(mapaTipoTraducido.values()));
         tipoComboBox.getSelectionModel().select(0);
-
     }
+
     private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
         Alert alerta = new Alert(tipo);
         alerta.setTitle(titulo);
         alerta.setContentText(mensaje);
 
         // Obtener el Stage actual y asignarlo como propietario
-        Stage stage = (Stage) labelCrearReserva.getScene().getWindow(); // cualquier nodo sirve
+        Stage stage = (Stage) labelCrearReserva.getScene().getWindow();
         alerta.initOwner(stage);
-        alerta.initModality(Modality.WINDOW_MODAL);  // Importante: no usar APPLICATION_MODAL
+        alerta.initModality(Modality.WINDOW_MODAL);
 
-        alerta.show(); // No bloqueante
+        alerta.show();
     }
 }

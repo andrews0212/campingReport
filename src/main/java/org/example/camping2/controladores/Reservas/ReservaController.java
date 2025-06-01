@@ -17,9 +17,11 @@ import org.example.camping2.modelo.dto.Reserva;
 import org.example.camping2.modelo.memoria.Memoria;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 public class ReservaController implements Liberable, IdiomaListener {
 
+    private Logger logger;
     @FXML
     private Button ButtonBuscar;
     @FXML
@@ -55,6 +57,7 @@ public class ReservaController implements Liberable, IdiomaListener {
             Parent nuevoPanel = loader.load();
 
             BuscaReservaController buscaReservaController = loader.getController();
+            buscaReservaController.setLogger(logger);
             buscaReservaController.setMemoriaReserva(memoriaReserva);
             areaContenido.getChildren().clear();
             areaContenido.getChildren().add(nuevoPanel);
@@ -70,6 +73,7 @@ public class ReservaController implements Liberable, IdiomaListener {
             Parent nuevoPanel = loader.load();
 
             CrearReservaController crearReservaController = loader.getController();
+            crearReservaController.setLogger(logger);
             crearReservaController.setMemoriaReserva(memoriaReserva);
             crearReservaController.setMemoriaRecurso(memoriaRecurso);
             crearReservaController.setMemoriaCliente(memoriaCliente);
@@ -87,6 +91,7 @@ public class ReservaController implements Liberable, IdiomaListener {
             Parent nuevoPanel = loader.load();
 
             ModificarReservaController modificarReservaController = loader.getController();
+            modificarReservaController.setLogger(logger);
             modificarReservaController.setMemoriaReserva(memoriaReserva);
             areaContenido.getChildren().clear();
             areaContenido.getChildren().add(nuevoPanel);
@@ -100,6 +105,7 @@ public class ReservaController implements Liberable, IdiomaListener {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/reservas/EliminarReserva.fxml"));
             Parent nuevoPanel = loader.load();
             EliminarReservaController eliminarReservaController = loader.getController();
+            eliminarReservaController.setLogger(logger);
             eliminarReservaController.setMemoriaReserva(memoriaReserva);
 
             areaContenido.getChildren().clear();
@@ -173,5 +179,9 @@ public class ReservaController implements Liberable, IdiomaListener {
         ButtonAgregar.setText(GestorIdiomas.getTexto("agregar"));
         ButtonModificar.setText(GestorIdiomas.getTexto("actualizar"));
         ButtonEliminar.setText(GestorIdiomas.getTexto("eliminar"));
+    }
+
+    public void setLogger(Logger logger) {
+        this.logger = logger;
     }
 }

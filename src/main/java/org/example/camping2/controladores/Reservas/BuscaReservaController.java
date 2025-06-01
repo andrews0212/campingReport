@@ -2,19 +2,19 @@ package org.example.camping2.controladores.Reservas;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.example.camping2.controladores.GestorIdiomas;
 import org.example.camping2.controladores.IdiomaListener;
-import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.dto.Reserva;
 import org.example.camping2.modelo.memoria.Memoria;
 
-import java.util.Date;
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class BuscaReservaController implements IdiomaListener {
+
+    private Logger log;
 
     Memoria<Reserva, Integer> memoriaReserva;
 
@@ -61,8 +61,17 @@ public class BuscaReservaController implements IdiomaListener {
 
     private ObservableList<Reserva> Reservas = FXCollections.observableArrayList();
 
+    // Setter para inyectar el Logger desde fuera
+    public void setLog(Logger log) {
+        this.log = log;
+        if (log != null) {
+            log.info("Logger inyectado correctamente en BuscaReservaController");
+        }
+    }
+
     @FXML
     public void initialize() {
+        if (log != null) log.info("Inicializando BuscaReservaController");
 
         IDReserva.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getId()));
         IDClientecolumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getIdcliente().getId()));
@@ -76,33 +85,33 @@ public class BuscaReservaController implements IdiomaListener {
         GestorIdiomas.agregarListener(this);
         actualizarTexto();
 
-
+        if (log != null) log.info("Tabla y textos inicializados");
     }
 
     public void setMemoriaReserva(Memoria<Reserva, Integer> memoriaReserva) {
         this.memoriaReserva = memoriaReserva;
+        if (log != null) log.info("MemoriaReserva seteada, buscando todas las reservas");
         buscaTodos(); // Cargar automáticamente las reservas en la tabla
     }
-
 
     @FXML
     public void buscaTodos() {
         Reservas.clear();
+        if (log != null) log.info("buscaTodos() llamado: Limpiando lista y cargando todas las reservas");
         try {
-            // Simulate database search logic
-            ObservableList<Reserva> resultados = FXCollections.observableArrayList();;
+            ObservableList<Reserva> resultados = FXCollections.observableArrayList();
             resultados.addAll(memoriaReserva.findAll());
             Reservas.addAll(resultados);
-
-
-        }catch (Exception e){
-
+            if (log != null) log.info("Reservas cargadas: " + resultados.size());
+        } catch (Exception e) {
+            if (log != null) log.log(Level.SEVERE, "Error en buscaTodos: " + e.getMessage(), e);
         }
     }
-    public void buscarReserva() {
-        // Clear previous results and reset status
-        Reservas.clear();
 
+    @FXML
+    public void buscarReserva() {
+        Reservas.clear();
+        if (log != null) log.info("buscarReserva() llamado");
 
         try {
             String idReserva = IDReservaText.getText();
@@ -110,68 +119,70 @@ public class BuscaReservaController implements IdiomaListener {
             String nombre = nombreTextField.getText();
             String dni = dniTextField.getText();
 
-            // Simulate database search logic
+            if (log != null) log.info(String.format("Parámetros búsqueda - idReserva: '%s', idCliente: '%s', nombre: '%s', dni: '%s'",
+                    idReserva, idCliente, nombre, dni));
+
             ObservableList<Reserva> resultados = buscarReservaBaseDatos(idReserva, idCliente, nombre, dni);
 
             if (!resultados.isEmpty()) {
                 Reservas.addAll(resultados);
+                if (log != null) log.info("Reservas encontradas: " + resultados.size());
+            } else {
+                if (log != null) log.info("No se encontraron reservas con los parámetros indicados");
             }
         } catch (Exception e) {
-
+            if (log != null) log.log(Level.SEVERE, "Error en buscarReserva: " + e.getMessage(), e);
         }
     }
 
     private ObservableList<Reserva> buscarReservaBaseDatos(String idReserva, String idCliente, String nombre, String dni) {
         ObservableList<Reserva> resultados = FXCollections.observableArrayList();
 
-        // Validate that at least one search parameter is provided
         if (idCliente.isEmpty() && idReserva.isEmpty() && nombre.isEmpty() && dni.isEmpty()) {
+            if (log != null) log.warning("Intento de búsqueda sin parámetros");
             System.out.println("No hay datos para buscar.");
             return resultados;
         }
 
-        // Search clients in memory
         try {
             for (Reserva reserva : memoriaReserva.findAll()) {
                 boolean coincide = true;
 
-                // Compare ID if provided
                 if (!idReserva.isEmpty()) {
                     try {
                         int idNum = Integer.parseInt(idReserva);
                         coincide &= reserva.getId() == idNum;
                     } catch (NumberFormatException e) {
-                        System.out.println("ID no válido: " + idReserva);
+                        if (log != null) log.warning("ID no válido para reserva: " + idReserva);
                         coincide = false;
                     }
                 }
+
                 if (!idCliente.isEmpty()) {
                     try {
                         int idNum = Integer.parseInt(idCliente);
                         coincide &= reserva.getIdcliente().getId() == idNum;
                     } catch (NumberFormatException e) {
-                        System.out.println("IDCliente no válido: " + idReserva);
+                        if (log != null) log.warning("IDCliente no válido: " + idCliente);
                         coincide = false;
                     }
                 }
 
-                // Compare name if provided
                 if (!nombre.isEmpty()) {
                     coincide &= reserva.getIdcliente().getNombre().equalsIgnoreCase(nombre);
                 }
 
-                // Compare DNI if provided
                 if (!dni.isEmpty()) {
                     coincide &= reserva.getIdcliente().getDni().equals(dni);
                 }
 
-                // Add to results if all conditions match
                 if (coincide) {
                     resultados.add(reserva);
                 }
             }
+            if (log != null) log.info("Búsqueda completada con " + resultados.size() + " resultados");
         } catch (Exception e) {
-            System.out.println("Error al buscar clientes: " + e.getMessage());
+            if (log != null) log.log(Level.SEVERE, "Error al buscar clientes: " + e.getMessage(), e);
         }
 
         return resultados;
@@ -179,6 +190,7 @@ public class BuscaReservaController implements IdiomaListener {
 
     @Override
     public void idiomaCambiado() {
+        if (log != null) log.info("Idioma cambiado, actualizando textos");
         actualizarTexto();
     }
 
@@ -199,8 +211,10 @@ public class BuscaReservaController implements IdiomaListener {
         PersonasColumn.setText(GestorIdiomas.getTexto("numeroPersonas"));
         PrecioTotalColumn.setText(GestorIdiomas.getTexto("precioTotal"));
         clientesTableView.setPlaceholder(new Label(GestorIdiomas.getTexto("noResultados")));
+        if (log != null) log.info("Textos de UI actualizados según idioma");
+    }
 
-
-
+    public void setLogger(Logger logger) {
+        this.log = logger;
     }
 }
