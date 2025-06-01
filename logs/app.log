@@ -222,3 +222,85 @@ jun 01, 2025 3:27:09 A. M. org.example.camping2.controladores.MenuNew abrirMapa
 GRAVE: Error al cargar la vista MapaCamping.fxml: 
 /C:/Users/andre/IdeaProjects/campingReport/target/classes/org/example/camping2/vista/mapa/MapaCamping.fxml
 
+jun 01, 2025 3:27:46 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 3:32:34 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 3:35:15 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 3:35:27 A. M. org.example.camping2.controladores.Recursos.EliminarRecursoController eliminarRecurso
+GRAVE: Error al eliminar el recurso: Error while committing the transaction
+jun 01, 2025 3:37:25 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 3:37:33 A. M. org.example.camping2.controladores.Recursos.EliminarRecursoController eliminarRecurso
+GRAVE: Error al eliminar el recurso: Error while committing the transaction
+jun 01, 2025 3:40:23 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 3:40:39 A. M. org.example.camping2.controladores.Recursos.EliminarRecursoController eliminarRecurso
+GRAVE: Error al eliminar el recurso: Error while committing the transaction
+jun 01, 2025 3:41:09 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 3:41:22 A. M. org.example.camping2.controladores.Recursos.EliminarRecursoController eliminarRecurso
+GRAVE: Error al eliminar el recurso: Error while committing the transaction
+jun 01, 2025 3:41:22 A. M. org.example.camping2.controladores.Recursos.EliminarRecursoController eliminarRecurso
+GRAVE: No se puede eliminar el recurso porque está siendo usado en una reserva.
+jun 01, 2025 10:22:07 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 10:23:21 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 10:45:30 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 10:46:25 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 10:48:07 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 10:50:23 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 10:51:13 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 10:51:26 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 10:52:18 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 10:53:32 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 10:55:06 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 10:56:13 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 10:58:47 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 11:00:03 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 11:05:13 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 11:09:00 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 11:11:20 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 11:14:10 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 11:17:25 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 11:19:53 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 11:20:22 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 11:24:18 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 11:26:49 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 11:27:09 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 11:28:11 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 11:29:19 P. M. org.example.camping2.controladores.Reservas.BuscaReservaController buscarReservaBaseDatos
+ADVERTENCIA: Intento de búsqueda sin parámetros
+jun 01, 2025 11:35:18 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 11:35:55 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 11:37:51 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 11:38:57 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO

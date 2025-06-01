@@ -1,6 +1,9 @@
 package org.example.camping2.Mapa;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,11 +12,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.example.camping2.controladores.Recursos.VistaRecursoEvent;
+import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.dto.Recurso;
 import org.example.camping2.modelo.dto.Reserva;
 import org.example.camping2.modelo.memoria.Memoria;
@@ -245,7 +251,7 @@ public class MapaCamping {
         }
         prepararReferenciasCasas();      // <-- Llama este nuevo método
 
-        bungalowColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getNombre()));
+        bungalowColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
 
 
     }
@@ -387,12 +393,12 @@ public class MapaCamping {
                     }
                 }
 
-                casa.setImage(new javafx.scene.image.Image(
+                casa.setImage(new Image(
                         getClass().getResource("/org/example/camping2/Iconos/" + imagen).toExternalForm()));
 
             } else {
                 // Si no encuentra el recurso, puedes poner imagen por defecto o nada
-                casa.setImage(new javafx.scene.image.Image(
+                casa.setImage(new Image(
                         getClass().getResource("/org/example/camping2/Iconos/home_verde.png").toExternalForm()));
             }
         }
@@ -460,7 +466,9 @@ public class MapaCamping {
             Stage stage = new Stage();
             stage.setTitle("Merendero " + prId);
             stage.setScene(new Scene(root));
-            stage.initModality(Modality.APPLICATION_MODAL);
+            Stage primaryStage = (Stage) casaB12.getScene().getWindow();
+            stage.initOwner(primaryStage); // <-- aquí el stage principal, no null
+            stage.initModality(Modality.WINDOW_MODAL);
             stage.show();
 
         } catch (IOException e) {
@@ -473,37 +481,55 @@ public class MapaCamping {
                 .filter(p -> p.getNombre().equals(idBoton))
                 .findFirst();
 
-        if (recursoEncontrado.isPresent()) {
-            Recurso recurso = recursoEncontrado.get();
-
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/mapa/vistaRecursoEvent.fxml"));
-                Parent root = loader.load();
-
-                // Obtener el controlador de la ventana detalle
-                VistaRecursoEvent controladorDetalle = loader.getController();
-
-                // Pasar el recurso al controlador
-                controladorDetalle.setRecurso(recurso);
-
-                // Crear nueva escena y ventana para mostrar
-                Stage stage = new Stage();
-                stage.setTitle("Detalles del recurso");
-                stage.setScene(new Scene(root));
-                stage.initModality(Modality.APPLICATION_MODAL); // Bloquea la ventana principal mientras está abierta
-                stage.show();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.out.println("Error al abrir la ventana de detalles");
-            }
-
-        } else {
+        if (recursoEncontrado.isEmpty()) {
             System.out.println("Recurso con nombre " + idBoton + " no encontrado.");
+            return;
+        }
+        System.out.println(recursoEncontrado.get().getId());
+
+        Recurso recurso = recursoEncontrado.get();
+
+        Reserva reservaEncontrada = null;
+        // Se puede que no tenga reserva
+        for (Reserva reserva : memoriaReserva.findAll()) {
+            if (reserva.getIdrecurso().getId().equals(recurso.getId())) {
+                reservaEncontrada = reserva;
+                break;
+            }
+        }
+        Cliente cliente = null;
+        if (reservaEncontrada != null) {
+            cliente = reservaEncontrada.getIdcliente(); // puede ser null
         }
 
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/mapa/vistaRecursoEvent.fxml"));
+            Parent root = loader.load();
+
+            VistaRecursoEvent controladorDetalle = loader.getController();
+            controladorDetalle.setCliente(cliente);
+            controladorDetalle.setRecurso(recurso);
+            // Puede ser null, pero el controlador debe saber gestionarlo
+
+
+            Stage stage = new Stage();
+            stage.setTitle("Detalles del recurso");
+            stage.setScene(new Scene(root));
+            Stage primaryStage = (Stage) casaB12.getScene().getWindow();
+            stage.initOwner(primaryStage); // <-- aquí el stage principal, no null
+            stage.initModality(Modality.WINDOW_MODAL);
+
+
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error al abrir la ventana de detalles");
+        }
     }
-    
+
+
 
 
     public void setMemoriaRecurso(Memoria<Recurso, Integer> memoriaRecurso) {
@@ -511,10 +537,10 @@ public class MapaCamping {
         actualizarColoresCasas();        // <-- Primer actualización al inicio
 
         // Crear temporizador que actualice cada 5 minutos
-        Timeline timeline = new javafx.animation.Timeline(
-                new javafx.animation.KeyFrame(javafx.util.Duration.minutes(5), e -> actualizarColoresCasas())
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.minutes(5), e -> actualizarColoresCasas())
         );
-        timeline.setCycleCount(javafx.animation.Animation.INDEFINITE); // hace que se repita indefinidamente
+        timeline.setCycleCount(Animation.INDEFINITE); // hace que se repita indefinidamente
         timeline.play();
     }
 

@@ -4,6 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.example.camping2.controladores.GestorIdiomas;
 import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Recurso;
@@ -181,32 +183,57 @@ public class EliminarRecursoController implements IdiomaListener {
 
     @FXML
     private void eliminarRecurso() {
-        Recurso seleccionado = recursoTable.getSelectionModel().getSelectedItem();
-        if (seleccionado == null) {
-            logger.warning("Intento de eliminar sin seleccionar un recurso");
-            mostrarAlerta("Debe seleccionar un recurso para eliminar.");
-            return;
-        }
+        try {
+            Recurso seleccionado = recursoTable.getSelectionModel().getSelectedItem();
+            if (seleccionado == null) {
+                logger.warning("Intento de eliminar sin seleccionar un recurso");
+                mostrarAlerta("Error","Debe seleccionar un recurso para eliminar.", Alert.AlertType.WARNING);
+                return;
+            }
 
-        logger.info("Eliminando recurso con ID: " + seleccionado.getId());
-        boolean eliminado = memoria.delete(seleccionado.getId());
-        if (eliminado) {
-            logger.info("Recurso eliminado exitosamente: " + seleccionado.getId());
-            recursoList.remove(seleccionado);
-            mostrarAlerta("Recurso eliminado correctamente.");
-        } else {
-            logger.severe("Error al eliminar el recurso con ID: " + seleccionado.getId());
-            mostrarAlerta("Error al eliminar el recurso.");
+            logger.info("Eliminando recurso con ID: " + seleccionado.getId());
+            boolean eliminado = memoria.delete(seleccionado.getId());
+            if (eliminado) {
+                logger.info("Recurso eliminado exitosamente: " + seleccionado.getId());
+                recursoList.remove(seleccionado);
+                mostrarAlerta("Error","Recurso eliminado correctamente.", Alert.AlertType.WARNING);
+            } else {
+                logger.severe("Error al eliminar el recurso con ID: " + seleccionado.getId());
+                mostrarAlerta("Error","Error al eliminar el recurso.", Alert.AlertType.WARNING);
+            }
+        } catch (Exception e) {
+            logger.severe("Error al eliminar el recurso: " + e.getMessage());
+
+            // Aquí detectamos si la causa es la violación de FK
+            Throwable cause = e;
+            while (cause != null) {
+                if (cause instanceof org.hibernate.exception.ConstraintViolationException
+                        || (cause.getMessage() != null && cause.getMessage().contains("Cannot delete or update a parent row"))) {
+                    mostrarAlerta("Error","No se puede eliminar el recurso porque está siendo usado en una reserva.", Alert.AlertType.WARNING);
+                    logger.severe("No se puede eliminar el recurso porque está siendo usado en una reserva.");
+                    break;
+                }
+                cause = cause.getCause();
+            }
+
+            // Si no era por FK, mostramos el mensaje genérico
+            if (cause == null) {
+                mostrarAlerta("Error", "Error al eliminar el recurso: " + e.getMessage(), Alert.AlertType.WARNING);
+            }
         }
     }
 
-    private void mostrarAlerta(String mensaje) {
-        logger.fine("Mostrando alerta: " + mensaje);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Información");
-        alert.setHeaderText(null);
-        alert.setContentText(mensaje);
-        alert.showAndWait();
+
+    private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
+        Alert alerta = new Alert(tipo);
+        alerta.setTitle(titulo);
+        alerta.setContentText(mensaje);
+
+        Stage stage = (Stage) tipoCombo.getScene().getWindow();
+        alerta.initOwner(stage);
+        alerta.initModality(Modality.WINDOW_MODAL);
+        alerta.show();
+        logger.info("Mostrando alerta - Tipo: " + tipo + ", Título: " + titulo + ", Mensaje: " + mensaje);
     }
 
     @Override

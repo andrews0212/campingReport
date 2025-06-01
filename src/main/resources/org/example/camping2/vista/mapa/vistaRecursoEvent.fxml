@@ -1,51 +1,189 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.Recursos.VistaRecursoEvent">
+<AnchorPane prefHeight="756.0" prefWidth="1154.0" style="-fx-background-color: #2B2525;" stylesheets="@../../Css/crud.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.Recursos.VistaRecursoEvent">
    <children>
-      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0">
+      <VBox alignment="CENTER" layoutY="144.0" prefHeight="612.0" prefWidth="592.0">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Nombre:  " />
-                  <Label fx:id="nombre" text="Nombre recurso" />
+                  <Label fx:id="labelNombreRecurso" text="Nombre:  " textFill="WHITE">
+                     <font>
+                        <Font name="MyriadPro-Regular" size="24.0" />
+                     </font></Label>
+                  <Label fx:id="nombre" text="Nombre recurso" textFill="WHITE">
+                     <font>
+                        <Font name="MyriadPro-Regular" size="24.0" />
+                     </font></Label>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Tipo:  " />
-                  <Label fx:id="tipo" text="Tipo recurso" />
+                  <Label fx:id="labelTipo" text="Tipo:  " textFill="WHITE">
+                     <font>
+                        <Font name="MyriadPro-Regular" size="24.0" />
+                     </font></Label>
+                  <Label fx:id="tipo" text="Tipo recurso" textFill="WHITE">
+                     <font>
+                        <Font name="MyriadPro-Regular" size="24.0" />
+                     </font></Label>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Capacidad:  " />
-                  <Label fx:id="capacidad" text="Capacidad recurso" />
+                  <Label fx:id="labelCapacidad" text="Capacidad:  " textFill="WHITE">
+                     <font>
+                        <Font name="MyriadPro-Regular" size="24.0" />
+                     </font></Label>
+                  <Label fx:id="capacidad" text="Capacidad recurso" textFill="WHITE">
+                     <font>
+                        <Font name="MyriadPro-Regular" size="24.0" />
+                     </font></Label>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Precio:  " />
-                  <Label fx:id="precio" text="Precio recurso" />
+                  <Label fx:id="labelPrecio" text="Precio:  " textFill="WHITE">
+                     <font>
+                        <Font name="MyriadPro-Regular" size="24.0" />
+                     </font></Label>
+                  <Label fx:id="precio" text="Precio recurso" textFill="WHITE">
+                     <font>
+                        <Font name="MyriadPro-Regular" size="24.0" />
+                     </font></Label>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Minimo Persona:  " />
-                  <Label fx:id="minimo" text=" Minimo Persona" />
+                  <Label fx:id="labelMinimoPersonas" text="Minimo Persona:  " textFill="WHITE">
+                     <font>
+                        <Font name="MyriadPro-Regular" size="24.0" />
+                     </font></Label>
+                  <Label fx:id="minimo" text=" Minimo Persona" textFill="WHITE">
+                     <font>
+                        <Font name="MyriadPro-Regular" size="24.0" />
+                     </font></Label>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Estado:  " />
-                  <Label fx:id="estado" text="Estado" />
+                  <Label fx:id="labelEstado" text="Estado:  " textFill="WHITE">
+                     <font>
+                        <Font name="MyriadPro-Regular" size="24.0" />
+                     </font></Label>
+                  <Label fx:id="estado" text="Estado" textFill="WHITE">
+                     <font>
+                        <Font name="MyriadPro-Regular" size="24.0" />
+                     </font></Label>
                </children>
             </HBox>
          </children>
       </VBox>
+      <VBox alignment="CENTER" layoutX="556.0" layoutY="128.0" prefHeight="633.0" prefWidth="592.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="592.0">
+               <children>
+                  <Label fx:id="labelNombre" text="Nombre Cliente:" textFill="WHITE">
+                     <font>
+                        <Font name="MyriadPro-Regular" size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="labelResultNombre" text="Nombre Cliente" textFill="WHITE">
+                     <font>
+                        <Font name="MyriadPro-Regular" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="labelApellido" text="Apellido:" textFill="WHITE">
+                     <font>
+                        <Font name="MyriadPro-Regular" size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="labelResultApellido" text="Apellido Cliente" textFill="WHITE">
+                     <font>
+                        <Font name="MyriadPro-Regular" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="LabelDNI" text="DNI:" textFill="WHITE">
+                     <font>
+                        <Font name="MyriadPro-Regular" size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="labelResultDNI" text="DNI Cliente" textFill="WHITE">
+                     <font>
+                        <Font name="MyriadPro-Regular" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="labelEmail" text="Email:" textFill="WHITE">
+                     <font>
+                        <Font name="MyriadPro-Regular" size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="labelResultEmail" text="Email Cliente" textFill="WHITE">
+                     <font>
+                        <Font name="MyriadPro-Regular" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="labelTelefono" text="Telefono:" textFill="WHITE">
+                     <font>
+                        <Font name="MyriadPro-Regular" size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="labelResultTelefono" text="Telefono Cliente" textFill="WHITE">
+                     <font>
+                        <Font name="MyriadPro-Regular" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+         </children>
+      </VBox>
+      <Label fx:id="labelRecurso" alignment="CENTER" layoutX="102.0" layoutY="62.0" prefHeight="66.0" prefWidth="387.0" text="Recurso" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="HelveticaRounded-Bold" size="56.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelCliente" alignment="CENTER" layoutX="659.0" layoutY="62.0" prefHeight="66.0" prefWidth="387.0" text="Cliente" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="HelveticaRounded-Bold" size="56.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
