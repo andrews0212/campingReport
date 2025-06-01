@@ -15,7 +15,7 @@
 
     <!-- MENÚ LATERAL -->
     <VBox fx:id="menuLateral" alignment="CENTER" layoutY="-4.0" prefHeight="1106.0" prefWidth="642.0" styleClass="menu-lateral" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="1386.0" AnchorPane.topAnchor="-4.0">
-        <TreeView fx:id="treeMenu" prefHeight="774.0" prefWidth="534.0" style="-fx-background-color: #6A78F5;">
+        <TreeView fx:id="treeMenu" prefHeight="874.0" prefWidth="534.0" style="-fx-background-color: #6A78F5;">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor></TreeView>

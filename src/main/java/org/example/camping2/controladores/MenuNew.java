@@ -1,11 +1,13 @@
 package org.example.camping2.controladores;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import org.example.camping2.Mapa.MapaCamping;
 import org.example.camping2.controladores.Acompanante.AcompananteController;
 import org.example.camping2.controladores.Acompanante.CrearAcompananteController;
 import org.example.camping2.controladores.Clientes.ClienteController;
@@ -24,6 +26,7 @@ import javafx.scene.image.ImageView;
 
 import org.example.camping2.modelo.memoria.Memoria;
 
+import java.io.IOException;
 import java.util.Locale;
 import java.util.logging.Logger;
 
@@ -54,6 +57,7 @@ public class MenuNew implements IdiomaListener {
     private TreeItem<String> acompanante;
     private TreeItem<String> recurso;
     private TreeItem<String> reserva;
+    private TreeItem<String> mapa;
 
     @FXML
     public void initialize() {
@@ -97,6 +101,8 @@ public class MenuNew implements IdiomaListener {
         acompanante = new TreeItem<>("Acompañante");
         recurso = new TreeItem<>("Recurso");
         reserva = new TreeItem<>("Reserva");
+        mapa = new TreeItem<>("Mapa");
+
 
         // Añadir acciones a cada nodo
         cliente.getChildren().addAll(
@@ -128,7 +134,7 @@ public class MenuNew implements IdiomaListener {
         );
 
         // Añadir nodos principales al root
-        root.getChildren().addAll(cliente, acompanante, recurso, reserva);
+        root.getChildren().addAll(cliente, acompanante, recurso, reserva, mapa);
         treeMenu.setRoot(root);
         treeMenu.setShowRoot(false);
 
@@ -150,12 +156,20 @@ public class MenuNew implements IdiomaListener {
             });
         }
 
-        // Listener para detectar selección y ejecutar acción correspondiente
         treeMenu.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null && newSelection.getParent() != null) {
-                String categoria = newSelection.getParent().getValue();
-                String accion = newSelection.getValue();
-                ejecutarAccion(categoria, accion);
+            if (newSelection != null) {
+                // Si el nodo tiene padre y es un subnodo (Buscar, Añadir, etc)
+                if (newSelection.getParent() != null && !newSelection.getParent().getValue().equals("Menú")) {
+                    String categoria = newSelection.getParent().getValue();
+                    String accion = newSelection.getValue();
+                    ejecutarAccion(categoria, accion);
+                } else {
+                    // Si el nodo es un nodo principal, por ejemplo "Mapa"
+                    String valorNodo = newSelection.getValue();
+                    if (valorNodo.equals(GestorIdiomas.getTexto("Mapa"))) {
+                        abrirMapa();
+                    }
+                }
             }
         });
 
@@ -226,6 +240,34 @@ public class MenuNew implements IdiomaListener {
         actualizarTextos();
     }
 
+    private void abrirMapa() {
+        try {
+            // Supongamos que tienes un FXML llamado MapaCamping.fxml para el mapa
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/mapa/MapaCamping.fxml"));
+            AnchorPane mapaPane = loader.load();
+            MapaCamping mapaController = loader.getController();
+            mapaController.setMemoriaRecurso(memoriaRecurso);
+            mapaController.setMemoriaReserva(memoriaReserva);
+
+
+
+            // Limpia y pone el mapa en el contenedor central
+            contenedorCentral.getChildren().clear();
+            contenedorCentral.getChildren().add(mapaPane);
+
+            // Opcional: ajustar anclas para que el AnchorPane ocupe todo el contenedor
+            AnchorPane.setTopAnchor(mapaPane, 0.0);
+            AnchorPane.setBottomAnchor(mapaPane, 0.0);
+            AnchorPane.setLeftAnchor(mapaPane, 0.0);
+            AnchorPane.setRightAnchor(mapaPane, 0.0);
+
+            logger.info("Mapa cargado correctamente");
+
+        } catch (IOException e) {
+            logger.severe("Error al cargar la vista MapaCamping.fxml: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 
     private void cambiarIdiomaEspañol() {
         cambiarIdioma(new Locale("es", "ES"));

@@ -172,3 +172,53 @@ jun 01, 2025 2:33:02 A. M. org.example.camping2.controladores.Reservas.CrearRes
 ADVERTENCIA: Cliente no encontrado para DNI: 
 jun 01, 2025 2:33:08 A. M. org.example.camping2.controladores.Reservas.ModificarReservaController modificarReserva
 ADVERTENCIA: Fechas incompletas para modificar reserva id 24
+jun 01, 2025 2:35:56 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 2:36:27 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 2:37:20 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 2:40:22 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 2:41:11 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 2:42:14 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 2:43:50 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 2:51:33 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 2:52:26 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 2:55:34 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 2:58:55 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 3:01:10 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 3:01:28 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 3:02:00 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 3:03:30 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 3:06:12 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 3:07:14 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 3:08:07 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 3:08:54 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 3:09:56 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 3:12:14 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 3:12:48 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 3:27:04 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 3:27:09 A. M. org.example.camping2.controladores.MenuNew abrirMapa
+GRAVE: Error al cargar la vista MapaCamping.fxml: 
+/C:/Users/andre/IdeaProjects/campingReport/target/classes/org/example/camping2/vista/mapa/MapaCamping.fxml
+

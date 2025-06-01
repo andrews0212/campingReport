@@ -1,20 +1,26 @@
 package org.example.camping2.Mapa;
 
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.camping2.controladores.Recursos.VistaRecursoEvent;
 import org.example.camping2.modelo.dto.Recurso;
+import org.example.camping2.modelo.dto.Reserva;
 import org.example.camping2.modelo.memoria.Memoria;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +33,11 @@ public class MapaCamping {
     private Map<String, ImageView> casas = new HashMap<>();
 
     private Memoria<Recurso, Integer> memoriaRecurso;
+    private Memoria<Reserva, Integer> memoriaReserva;
+
+    @FXML private TableView tablaBungalow;
+    @FXML private TableColumn<Recurso, String> bungalowColumn;
+
 
     //=== Imagenes parcelas == /
 
@@ -233,6 +244,9 @@ public class MapaCamping {
             boton.setOnMouseClicked(event -> manejarClicBoton(entry.getKey(), event));
         }
         prepararReferenciasCasas();      // <-- Llama este nuevo método
+
+        bungalowColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getNombre()));
+
 
     }
 
@@ -502,5 +516,27 @@ public class MapaCamping {
         );
         timeline.setCycleCount(javafx.animation.Animation.INDEFINITE); // hace que se repita indefinidamente
         timeline.play();
+    }
+
+    public List<Recurso> getBungalowsPorSalir() {
+        LocalDate hoy = LocalDate.now();
+        LocalTime ahora = LocalTime.now();
+        LocalTime horaSalida = LocalTime.NOON; // 12:00 PM
+
+        // Solo filtra reservas con salida hoy si la hora actual es antes de las 12
+        if (ahora.isBefore(horaSalida)) {
+            return memoriaReserva.findAll().stream()
+                    .filter(reserva -> reserva.getFechaFin().equals(hoy))
+                    .map(Reserva::getIdrecurso)
+                    .collect(Collectors.toList());
+        } else {
+            // Ya pasó mediodía, no quedan reservas por salir hoy
+            return List.of();
+        }
+    }
+
+    public void setMemoriaReserva(Memoria<Reserva, Integer> memoriaReserva) {
+        this.memoriaReserva = memoriaReserva;
+        tablaBungalow.setItems(FXCollections.observableArrayList(getBungalowsPorSalir()));
     }
 }

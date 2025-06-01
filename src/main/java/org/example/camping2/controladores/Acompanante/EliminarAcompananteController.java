@@ -38,7 +38,7 @@ public class EliminarAcompananteController implements IdiomaListener {
 
     @FXML
     public void initialize() {
-        logger.info("Inicializando EliminarAcompananteController");
+
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         idClienteColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getIdreserva().getIdcliente().getId().toString()));
         idReservaColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getIdreserva().getId().toString()));
@@ -49,7 +49,7 @@ public class EliminarAcompananteController implements IdiomaListener {
         telefonoColumn.setCellValueFactory(new PropertyValueFactory<>("telefono"));
         GestorIdiomas.agregarListener(this);
         actualizarTexto();
-        logger.info("Tabla y textos inicializados.");
+
     }
 
     @FXML
