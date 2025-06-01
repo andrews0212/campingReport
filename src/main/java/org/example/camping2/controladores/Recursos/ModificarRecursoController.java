@@ -13,145 +13,68 @@ import org.example.camping2.modelo.dto.Recurso;
 import org.example.camping2.modelo.memoria.Memoria;
 import org.example.camping2.modelo.validaciones.ValidarRecurso;
 
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
-
+import java.util.logging.Logger;
 
 public class ModificarRecursoController implements IdiomaListener {
 
+    private Logger logger;
+
+    public void setLogger(Logger logger) {
+        this.logger = logger;
+    }
 
     @FXML
-    private Label labelModificar;
+    private Label labelModificar, labelId, labelNombre, labelTipo, labelCapacidad, labelPrecio, labelMinimoPersona, labelEstado;
     @FXML
-    private Label labelId;
+    private Label labelNombre2, labelTipo2, labelCapacidad2, labelPrecio2, labelMinimo2, labelEstado2;
     @FXML
-    private Label labelNombre;
+    private Button btnModificar, btnBuscar, btnBuscarTodos;
     @FXML
-    private Label labelTipo;
+    private TextField idText, nombreText, capacidadText, precioText, minimoPersonaText, estadoText;
     @FXML
-    private Label labelCapacidad;
-    @FXML
-    private Label labelPrecio;
-    @FXML
-    private Label labelMinimoPersona;
-    @FXML
-    private Label labelEstado;
-    @FXML
-    private Label labelNombre2;
-    @FXML
-    private Label labelTipo2;
-    @FXML
-    private Label labelCapacidad2;
-    @FXML
-    private Label labelPrecio2;
-    @FXML
-    private Label labelMinimo2;
-    @FXML
-    private Label labelEstado2;
-
-    @FXML
-    private Button btnModificar;
-    @FXML
-    private Button btnBuscar;
-    @FXML
-    private Button btnBuscarTodos;
-
-
-    @FXML
-    private TextField idText;
-
-    @FXML
-    private TextField nombreText;
-
-    @FXML
-    private ComboBox<String> tipoCombo; // No tiene fx:id, debes añadírselo en el FXML (sugerencia: fx:id="tipoComboBox")
-
-    @FXML
-    private TextField capacidadText;
-
-    @FXML
-    private TextField precioText;
-
-    @FXML
-    private TextField minimoPersonaText;
-
-    @FXML
-    private TextField estadoText;
-
-
+    private ComboBox<String> tipoCombo;
     @FXML
     private TableView<Recurso> recursoTable;
-
     @FXML
-    private TableColumn<Recurso, Integer> idColumn;
-
+    private TableColumn<Recurso, Integer> idColumn, capacidadColumn, precioColumn, minimoColumn;
     @FXML
-    private TableColumn<Recurso, String> nombreColumn;
-
+    private TableColumn<Recurso, String> nombreColumn, tipoColumn, estadoColumn;
     @FXML
-    private TableColumn<Recurso, String> tipoColumn;
-
+    private TextField nombreText1, capacidadText1, precioText1, minimoPersonaText1, estadoText1;
     @FXML
-    private TableColumn<Recurso, Integer> capacidadColumn;
-
-    @FXML
-    private TableColumn<Recurso, Integer> precioColumn;
-
-    @FXML
-    private TableColumn<Recurso, Integer> minimoColumn;
-
-    @FXML
-    private TableColumn<Recurso, String> estadoColumn;
+    private ComboBox<String> tipoCombo1;
 
     private final ObservableList<Recurso> recursoList = FXCollections.observableArrayList();
-
-
-    @FXML
-    private TextField nombreText1;
-
-    @FXML
-    private ComboBox<String> tipoCombo1; // También deberías asignarle un fx:id, como fx:id="tipoComboBox1"
-
-    @FXML
-    private TextField capacidadText1;
-
-    @FXML
-    private TextField precioText1;
-
-    @FXML
-    private TextField minimoPersonaText1;
-
-    @FXML
-    private TextField estadoText1;
-
     private Map<String, String> mapaTipoTraducido;
-
     private Memoria<Recurso, Integer> memoria;
 
-    public  void setMemoriaRecurso(Memoria<Recurso, Integer> memoria) {
-
-            this.memoria = memoria;
-
-            // Cargar recursos desde la memoria y mostrarlos directamente
+    public void setMemoriaRecurso(Memoria<Recurso, Integer> memoria) {
+        this.memoria = memoria;
+        if (logger != null) {
+            logger.info("Memoria de recursos establecida.");
+        }
         cargarRecursosDesdeMemoria();
-
     }
 
     @FXML
     public void initialize() {
+        if (logger != null) {
+            logger.info("Inicializando controlador ModificarRecursoController.");
+        }
         mapaTipoTraducido = new HashMap<>();
-        mapaTipoTraducido.clear();
         mapaTipoTraducido.put("PARCELA", GestorIdiomas.getTexto("PARCELA"));
         mapaTipoTraducido.put("BUNGALOW", GestorIdiomas.getTexto("BUNGALOW"));
         mapaTipoTraducido.put("BARBACOA", GestorIdiomas.getTexto("BARBACOA"));
+
         ObservableList<String> traducciones = FXCollections.observableArrayList(mapaTipoTraducido.values());
         tipoCombo.setItems(traducciones);
         tipoCombo.getSelectionModel().select(0);
         tipoCombo1.setItems(traducciones);
         tipoCombo1.getSelectionModel().select(0);
-        // Asociar columnas con propiedades del modelo Recurso
+
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nombreColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         tipoColumn.setCellValueFactory(new PropertyValueFactory<>("tipo"));
@@ -160,87 +83,110 @@ public class ModificarRecursoController implements IdiomaListener {
         minimoColumn.setCellValueFactory(new PropertyValueFactory<>("minimoPersonas"));
         estadoColumn.setCellValueFactory(new PropertyValueFactory<>("estado"));
         recursoTable.setItems(recursoList);
+
         GestorIdiomas.agregarListener(this);
         actualizarTexto();
-
     }
 
     private void cargarRecursosDesdeMemoria() {
         recursoList.setAll(memoria.findAll());
+        if (logger != null) {
+            logger.info("Recursos cargados desde memoria: " + recursoList.size());
+        }
         recursoTable.setItems(recursoList);
     }
+
     @FXML
     private void filtrarRecursos() {
-        String id = idText.getText().trim();
-        String nombreFiltro = nombreText.getText().toLowerCase().trim();
-        String tipoFiltro = tipoCombo.getValue() != null ? tipoCombo.getValue().toLowerCase().trim() : "";
+        if (logger != null) {
+            logger.info("Filtrando recursos...");
+        }
+        try {
+            String id = idText.getText().trim();
+            String nombreFiltro = nombreText.getText().toLowerCase().trim();
+            String tipoFiltro = tipoCombo.getValue() != null ? tipoCombo.getValue().toLowerCase().trim() : "";
 
-        String tipo = mapaTipoTraducido.entrySet().stream()
-                .filter(e -> e.getValue().equalsIgnoreCase(tipoFiltro))
-                .map(Map.Entry::getKey)
-                .findFirst()
-                .orElse(""); // deja vacío si no se selecciona nada
+            String tipo = mapaTipoTraducido.entrySet().stream()
+                    .filter(e -> e.getValue().equalsIgnoreCase(tipoFiltro))
+                    .map(Map.Entry::getKey)
+                    .findFirst()
+                    .orElse("");
 
+            String estadoFiltro = estadoText.getText().toLowerCase().trim();
 
+            Integer capacidadFiltro = parseInteger(capacidadText.getText());
+            Integer precioFiltro = parseInteger(precioText.getText());
+            Integer minimoPersonaFiltro = parseInteger(minimoPersonaText.getText());
 
-        String estadoFiltro = estadoText.getText().toLowerCase().trim();
+            recursoList.setAll(
+                    memoria.findAll().stream()
+                            .filter(recurso ->
+                                    (nombreFiltro.isEmpty() || recurso.getNombre().toLowerCase().contains(nombreFiltro)) &&
+                                            (tipoFiltro.isEmpty() || recurso.getTipo().equalsIgnoreCase(tipo)) &&
+                                            (estadoFiltro.isEmpty() || recurso.getEstado().toLowerCase().contains(estadoFiltro)) &&
+                                            (capacidadFiltro == null || recurso.getCapacidad() == capacidadFiltro) &&
+                                            (precioFiltro == null || recurso.getPrecio() == precioFiltro) &&
+                                            (minimoPersonaFiltro == null || recurso.getMinimoPersonas() == minimoPersonaFiltro) &&
+                                            (id.isEmpty() || recurso.getId().equals(Integer.parseInt(id)))
+                            ).toList()
+            );
 
-        // Para los campos numéricos, parseamos con cuidado:
-        Integer capacidadFiltro = parseInteger(capacidadText.getText());
-        Integer precioFiltro = parseInteger(precioText.getText());
-        Integer minimoPersonaFiltro = parseInteger(minimoPersonaText.getText());
-
-
-        recursoList.setAll(
-                memoria.findAll().stream()
-                        .filter(recurso ->
-                                (nombreFiltro.isEmpty() || recurso.getNombre().toLowerCase().contains(nombreFiltro)) &&
-                                        (tipoFiltro.isEmpty() || recurso.getTipo().equalsIgnoreCase(tipo)) &&
-                                        (estadoFiltro.isEmpty() || recurso.getEstado().toLowerCase().contains(estadoFiltro)) &&
-
-                                        (capacidadFiltro == null || recurso.getCapacidad() == capacidadFiltro) &&
-                                        (precioFiltro == null || recurso.getPrecio() == precioFiltro) &&
-                                        (minimoPersonaFiltro == null || recurso.getMinimoPersonas() == minimoPersonaFiltro) &&
-                                        (id.isEmpty() || recurso.getId().equals(Integer.parseInt(id)))
-                        )
-                        .toList()
-        );
+            if (logger != null) {
+                logger.info("Filtrado completado. Recursos encontrados: " + recursoList.size());
+            }
+        } catch (Exception e) {
+            if (logger != null) {
+                logger.severe("Error al filtrar recursos: " + e.getMessage());
+            }
+        }
     }
-
 
     @FXML
     private void modificarRecurso() {
         Recurso seleccionado = recursoTable.getSelectionModel().getSelectedItem();
-        if (seleccionado != null) {
+        if (seleccionado == null) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Atención", "Debe seleccionar un recurso de la tabla.");
+            if (logger != null) {
+                logger.warning("Intento de modificar sin seleccionar recurso.");
+            }
+            return;
+        }
+        if (logger != null) {
+            logger.info("Modificando recurso con ID: " + seleccionado.getId());
+        }
+        try {
             String nombreNuevo = nombreText1.getText().trim();
             String tipoNuevo = tipoCombo1.getValue();
             String tipo = mapaTipoTraducido.entrySet().stream()
                     .filter(e -> e.getValue().equals(tipoNuevo))
                     .map(Map.Entry::getKey)
-                    .findFirst()
-                    .orElse(null); // null si no se seleccionó tipo
+                    .findFirst().orElse(null);
+
             String capacidadNuevo = capacidadText1.getText().trim();
             String precioNuevo = precioText1.getText().trim();
             String minimoNuevo = minimoPersonaText1.getText().trim();
             String estadoNuevo = estadoText1.getText().trim();
 
-            // Validar y modificar solo los campos rellenados
             if (!nombreNuevo.isEmpty()) {
                 if (!ValidarRecurso.ValidarNombre(nombreNuevo)) {
                     mostrarAlerta(Alert.AlertType.ERROR, "Error", "Nombre no válido (vacío o demasiado largo).");
+                    if (logger != null) {
+                        logger.warning("Nombre no válido: " + nombreNuevo);
+                    }
                     return;
                 }
                 seleccionado.setNombre(nombreNuevo);
             }
 
-            if (tipo != null) {
-                seleccionado.setTipo(tipo);
-            }
+            if (tipo != null) seleccionado.setTipo(tipo);
 
             if (!capacidadNuevo.isEmpty()) {
                 Integer capacidad = parseInteger(capacidadNuevo);
                 if (!ValidarRecurso.ValidarCapacidad(capacidad)) {
                     mostrarAlerta(Alert.AlertType.ERROR, "Error", "Capacidad no válida (debe ser >= 0).");
+                    if (logger != null) {
+                        logger.warning("Capacidad no válida: " + capacidadNuevo);
+                    }
                     return;
                 }
                 seleccionado.setCapacidad(capacidad);
@@ -250,6 +196,9 @@ public class ModificarRecursoController implements IdiomaListener {
                 Integer precio = parseInteger(precioNuevo);
                 if (!ValidarRecurso.ValidarPrecio(precio)) {
                     mostrarAlerta(Alert.AlertType.ERROR, "Error", "Precio no válido (debe ser >= 0).");
+                    if (logger != null) {
+                        logger.warning("Precio no válido: " + precioNuevo);
+                    }
                     return;
                 }
                 seleccionado.setPrecio(precio);
@@ -259,6 +208,9 @@ public class ModificarRecursoController implements IdiomaListener {
                 Integer minimo = parseInteger(minimoNuevo);
                 if (!ValidarRecurso.ValidarMinimoPersonas(minimo)) {
                     mostrarAlerta(Alert.AlertType.ERROR, "Error", "Mínimo de personas no válido (debe ser >= 0).");
+                    if (logger != null) {
+                        logger.warning("Mínimo de personas no válido: " + minimoNuevo);
+                    }
                     return;
                 }
                 seleccionado.setMinimoPersonas(minimo);
@@ -268,87 +220,102 @@ public class ModificarRecursoController implements IdiomaListener {
                 seleccionado.setEstado(estadoNuevo);
             }
 
-            // Guardar en memoria
             if (memoria.update(seleccionado)) {
                 recursoTable.refresh();
                 mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "Recurso modificado correctamente.");
+                if (logger != null) {
+                    logger.info("Recurso modificado con éxito: " + seleccionado);
+                }
             } else {
                 mostrarAlerta(Alert.AlertType.ERROR, "Error", "No se pudo actualizar el recurso en memoria.");
+                if (logger != null) {
+                    logger.warning("Fallo al actualizar el recurso en memoria: " + seleccionado);
+                }
             }
-        } else {
-            mostrarAlerta(Alert.AlertType.WARNING, "Atención", "Debe seleccionar un recurso de la tabla.");
+
+        } catch (Exception e) {
+            if (logger != null) {
+                logger.severe("Error al modificar recurso: " + e.getMessage());
+            }
         }
     }
 
-
     @FXML
-    public void buscarTodos(){
+    public void buscarTodos() {
+        if (logger != null) {
+            logger.info("Recargando todos los recursos desde memoria.");
+        }
         cargarRecursosDesdeMemoria();
     }
-    @FXML
-
-
 
     private Integer parseInteger(String texto) {
         try {
-            if (texto == null || texto.trim().isEmpty()) {
-                return null; // Si el texto está vacío o es nulo, devuelvo null
-            }
-            return Integer.parseInt(texto.trim()); // Si no, intento parsear
+            if (texto == null || texto.trim().isEmpty()) return null;
+            return Integer.parseInt(texto.trim());
         } catch (NumberFormatException e) {
-            return null; // Si no es un número válido, devuelvo null para ignorar el filtro
+            if (logger != null) {
+                logger.warning("No se pudo parsear número: " + texto);
+            }
+            return null;
         }
     }
 
-
     @Override
     public void idiomaCambiado() {
+        if (logger != null) {
+            logger.info("Idioma cambiado. Actualizando textos...");
+        }
         actualizarTexto();
     }
-    private void actualizarTexto(){
 
-            labelModificar.setText(GestorIdiomas.getTexto("modificarRecurso"));
-            labelNombre.setText(GestorIdiomas.getTexto("nombre"));
-            labelTipo.setText(GestorIdiomas.getTexto("tipo"));
-            labelCapacidad.setText(GestorIdiomas.getTexto("capacidad"));
-            labelId.setText(GestorIdiomas.getTexto("id"));
-            labelPrecio.setText(GestorIdiomas.getTexto("precio"));
-            labelMinimoPersona.setText(GestorIdiomas.getTexto("minimoPersonas"));
-            labelEstado.setText(GestorIdiomas.getTexto("estado"));
-            btnBuscar.setText(GestorIdiomas.getTexto("buscar"));
-            btnBuscarTodos.setText(GestorIdiomas.getTexto("buscarTodos"));
-            idColumn.setText(GestorIdiomas.getTexto("id"));
-            nombreColumn.setText(GestorIdiomas.getTexto("nombre"));
-            tipoColumn.setText(GestorIdiomas.getTexto("tipo"));
-            capacidadColumn.setText(GestorIdiomas.getTexto("capacidad"));
-            precioColumn.setText(GestorIdiomas.getTexto("precio"));
-            minimoColumn.setText(GestorIdiomas.getTexto("minimoPersonas"));
-            estadoColumn.setText(GestorIdiomas.getTexto("estado"));
-            nombreText.setPromptText(GestorIdiomas.getTexto("nombreText"));
-            capacidadText.setPromptText(GestorIdiomas.getTexto("capacidadText"));;
-            idText.setPromptText(GestorIdiomas.getTexto("idText"));
-            precioText.setPromptText(GestorIdiomas.getTexto("precioText"));
-            minimoPersonaText.setPromptText(GestorIdiomas.getTexto("minimoPersonaText"));
-            estadoText.setPromptText(GestorIdiomas.getTexto("estadoText"));
-            labelNombre2.setText(GestorIdiomas.getTexto("nombre"));
-            labelTipo2.setText(GestorIdiomas.getTexto("tipo"));
-            labelCapacidad2.setText(GestorIdiomas.getTexto("capacidad"));
-            labelPrecio2.setText(GestorIdiomas.getTexto("precio"));
-            labelMinimo2.setText(GestorIdiomas.getTexto("minimoPersonas"));
-            labelEstado2.setText(GestorIdiomas.getTexto("estado"));
-            btnModificar.setText(GestorIdiomas.getTexto("modificar"));
+    private void actualizarTexto() {
+        labelModificar.setText(GestorIdiomas.getTexto("modificarRecurso"));
+        labelId.setText(GestorIdiomas.getTexto("id"));
+        labelNombre.setText(GestorIdiomas.getTexto("nombre"));
+        labelTipo.setText(GestorIdiomas.getTexto("tipo"));
+        labelCapacidad.setText(GestorIdiomas.getTexto("capacidad"));
+        labelPrecio.setText(GestorIdiomas.getTexto("precio"));
+        labelMinimoPersona.setText(GestorIdiomas.getTexto("minimoPersonas"));
+        labelEstado.setText(GestorIdiomas.getTexto("estado"));
 
+        labelNombre2.setText(GestorIdiomas.getTexto("nombre"));
+        labelTipo2.setText(GestorIdiomas.getTexto("tipo"));
+        labelCapacidad2.setText(GestorIdiomas.getTexto("capacidad"));
+        labelPrecio2.setText(GestorIdiomas.getTexto("precio"));
+        labelMinimo2.setText(GestorIdiomas.getTexto("minimoPersonas"));
+        labelEstado2.setText(GestorIdiomas.getTexto("estado"));
+
+        btnModificar.setText(GestorIdiomas.getTexto("modificar"));
+        btnBuscar.setText(GestorIdiomas.getTexto("buscar"));
+        btnBuscarTodos.setText(GestorIdiomas.getTexto("buscarTodos"));
+
+        // Actualizar elementos de comboBox con traducciones
+        mapaTipoTraducido.put("PARCELA", GestorIdiomas.getTexto("PARCELA"));
+        mapaTipoTraducido.put("BUNGALOW", GestorIdiomas.getTexto("BUNGALOW"));
+        mapaTipoTraducido.put("BARBACOA", GestorIdiomas.getTexto("BARBACOA"));
+
+        ObservableList<String> traducciones = FXCollections.observableArrayList(mapaTipoTraducido.values());
+        tipoCombo.setItems(traducciones);
+        tipoCombo.getSelectionModel().select(0);
+        tipoCombo1.setItems(traducciones);
+        tipoCombo1.getSelectionModel().select(0);
+
+        idColumn.setText(GestorIdiomas.getTexto("id"));
+        nombreColumn.setText(GestorIdiomas.getTexto("nombre"));
+        tipoColumn.setText(GestorIdiomas.getTexto("tipo"));
+        capacidadColumn.setText(GestorIdiomas.getTexto("capacidad"));
+        precioColumn.setText(GestorIdiomas.getTexto("precio"));
+        minimoColumn.setText(GestorIdiomas.getTexto("minimoPersonas"));
+        estadoColumn.setText(GestorIdiomas.getTexto("estado"));
     }
-    private void mostrarAlerta( Alert.AlertType tipo, String titulo, String mensaje) {
+
+    private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
         Alert alerta = new Alert(tipo);
         alerta.setTitle(titulo);
         alerta.setContentText(mensaje);
-
-        // Obtener el Stage actual y asignarlo como propietario
-        Stage stage = (Stage) labelNombre2.getScene().getWindow(); // cualquier nodo sirve
+        Stage stage = (Stage) labelNombre2.getScene().getWindow();
         alerta.initOwner(stage);
-        alerta.initModality(Modality.WINDOW_MODAL);  // Importante: no usar APPLICATION_MODAL
-
-        alerta.show(); // No bloqueante
+        alerta.initModality(Modality.WINDOW_MODAL);
+        alerta.show();
     }
 }

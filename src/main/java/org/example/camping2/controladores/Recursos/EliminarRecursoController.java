@@ -11,8 +11,10 @@ import org.example.camping2.modelo.memoria.Memoria;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class EliminarRecursoController implements IdiomaListener {
+    private Logger logger;
 
     @FXML
     private Button btnBuscar;
@@ -95,91 +97,75 @@ public class EliminarRecursoController implements IdiomaListener {
 
     @FXML
     private void initialize() {
+
         mapaTipoTraducido = new HashMap<>();
-        mapaTipoTraducido.clear();
         mapaTipoTraducido.put("PARCELA", GestorIdiomas.getTexto("PARCELA"));
         mapaTipoTraducido.put("BUNGALOW", GestorIdiomas.getTexto("BUNGALOW"));
         mapaTipoTraducido.put("BARBACOA", GestorIdiomas.getTexto("BARBACOA"));
         ObservableList<String> traducciones = FXCollections.observableArrayList(mapaTipoTraducido.values());
         tipoCombo.setItems(traducciones);
         tipoCombo.getSelectionModel().select(0);
-        idColumn.setCellValueFactory(cellData ->
-                new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getId()));
-        nombreColumn.setCellValueFactory(cellData ->
-                new javafx.beans.property.SimpleStringProperty(cellData.getValue().getNombre()));
-        tipoColumn.setCellValueFactory(cellData ->
-                new javafx.beans.property.SimpleStringProperty(cellData.getValue().getTipo()));
-        capacidadColumn.setCellValueFactory(cellData ->
-                new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getCapacidad()));
-        precioColumn.setCellValueFactory(cellData ->
-                new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getPrecio()));
-        minimoColumn.setCellValueFactory(cellData ->
-                new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getMinimoPersonas()));
-        estadoColumn.setCellValueFactory(cellData ->
-                new javafx.beans.property.SimpleStringProperty(cellData.getValue().getEstado()));
+
+        // Configuración de columnas...
+        idColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getId()));
+        nombreColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getNombre()));
+        tipoColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getTipo()));
+        capacidadColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getCapacidad()));
+        precioColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getPrecio()));
+        minimoColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getMinimoPersonas()));
+        estadoColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getEstado()));
 
         recursoTable.setItems(recursoList);
         GestorIdiomas.agregarListener(this);
         actualizarTexto();
     }
 
-
-    // Método para cargar todos los recursos en la tabla
     private void cargarTabla() {
+        logger.info("Cargando todos los recursos en la tabla");
         recursoList.setAll(memoria.findAll());
     }
 
     @FXML
     private void buscarRecursos() {
+        logger.info("Buscando recursos con los filtros ingresados");
         recursoList.setAll(
                 memoria.findAll().stream()
                         .filter(r -> {
                             boolean coincide = true;
-                            if (!idText.getText().trim().isEmpty()) {
-                                try {
+                            try {
+                                if (!idText.getText().trim().isEmpty()) {
                                     int idBuscado = Integer.parseInt(idText.getText().trim());
                                     coincide = coincide && r.getId() == idBuscado;
-                                } catch (NumberFormatException e) {
-                                    return false;
                                 }
-                            }
-                            if (!nombreText.getText().trim().isEmpty()) {
-                                coincide = coincide && r.getNombre().toLowerCase().contains(nombreText.getText().toLowerCase().trim());
-                            }
-                            if (tipoCombo.getValue() != null && !tipoCombo.getValue().isEmpty()) {
-                                String tipo = mapaTipoTraducido.entrySet().stream()
-                                        .filter(e -> e.getValue().equals(tipoCombo.getValue()))
-                                        .map(Map.Entry::getKey)
-                                        .findFirst()
-                                        .orElse("PARCELA");
-                                coincide = coincide && r.getTipo().toLowerCase().contains(tipo.toLowerCase());
-                            }
-                            if (!capacidadText.getText().trim().isEmpty()) {
-                                try {
+                                if (!nombreText.getText().trim().isEmpty()) {
+                                    coincide = coincide && r.getNombre().toLowerCase().contains(nombreText.getText().toLowerCase().trim());
+                                }
+                                if (tipoCombo.getValue() != null && !tipoCombo.getValue().isEmpty()) {
+                                    String tipo = mapaTipoTraducido.entrySet().stream()
+                                            .filter(e -> e.getValue().equals(tipoCombo.getValue()))
+                                            .map(Map.Entry::getKey)
+                                            .findFirst()
+                                            .orElse("PARCELA");
+                                    coincide = coincide && r.getTipo().toLowerCase().contains(tipo.toLowerCase());
+                                }
+                                if (!capacidadText.getText().trim().isEmpty()) {
                                     int capacidadBuscada = Integer.parseInt(capacidadText.getText().trim());
                                     coincide = coincide && r.getCapacidad() == capacidadBuscada;
-                                } catch (NumberFormatException e) {
-                                    return false;
                                 }
-                            }
-                            if (!precioText.getText().trim().isEmpty()) {
-                                try {
+                                if (!precioText.getText().trim().isEmpty()) {
                                     int precioBuscado = Integer.parseInt(precioText.getText().trim());
                                     coincide = coincide && r.getPrecio() == precioBuscado;
-                                } catch (NumberFormatException e) {
-                                    return false;
                                 }
-                            }
-                            if (!minimoPersonaText.getText().trim().isEmpty()) {
-                                try {
+                                if (!minimoPersonaText.getText().trim().isEmpty()) {
                                     int minimoBuscado = Integer.parseInt(minimoPersonaText.getText().trim());
                                     coincide = coincide && r.getMinimoPersonas() == minimoBuscado;
-                                } catch (NumberFormatException e) {
-                                    return false;
                                 }
-                            }
-                            if (!estadoText.getText().trim().isEmpty()) {
-                                coincide = coincide && r.getEstado().toLowerCase().contains(estadoText.getText().toLowerCase().trim());
+                                if (!estadoText.getText().trim().isEmpty()) {
+                                    coincide = coincide && r.getEstado().toLowerCase().contains(estadoText.getText().toLowerCase().trim());
+                                }
+                            } catch (NumberFormatException e) {
+                                logger.warning("Error al convertir valor numérico durante búsqueda: " + e.getMessage());
+                                return false;
                             }
                             return coincide;
                         })
@@ -189,28 +175,33 @@ public class EliminarRecursoController implements IdiomaListener {
 
     @FXML
     private void buscarTodos() {
+        logger.info("Acción: Buscar todos los recursos");
         cargarTabla();
     }
-
 
     @FXML
     private void eliminarRecurso() {
         Recurso seleccionado = recursoTable.getSelectionModel().getSelectedItem();
         if (seleccionado == null) {
+            logger.warning("Intento de eliminar sin seleccionar un recurso");
             mostrarAlerta("Debe seleccionar un recurso para eliminar.");
             return;
         }
 
+        logger.info("Eliminando recurso con ID: " + seleccionado.getId());
         boolean eliminado = memoria.delete(seleccionado.getId());
         if (eliminado) {
+            logger.info("Recurso eliminado exitosamente: " + seleccionado.getId());
             recursoList.remove(seleccionado);
             mostrarAlerta("Recurso eliminado correctamente.");
         } else {
+            logger.severe("Error al eliminar el recurso con ID: " + seleccionado.getId());
             mostrarAlerta("Error al eliminar el recurso.");
         }
     }
 
     private void mostrarAlerta(String mensaje) {
+        logger.fine("Mostrando alerta: " + mensaje);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Información");
         alert.setHeaderText(null);
@@ -220,10 +211,11 @@ public class EliminarRecursoController implements IdiomaListener {
 
     @Override
     public void idiomaCambiado() {
+        logger.info("Idioma cambiado, actualizando textos");
         actualizarTexto();
     }
 
-    private void actualizarTexto(){
+    private void actualizarTexto() {
 
         labelEliminar.setText(GestorIdiomas.getTexto("eliminarRecurso"));
         labelNombre.setText(GestorIdiomas.getTexto("nombre"));
@@ -242,6 +234,10 @@ public class EliminarRecursoController implements IdiomaListener {
         precioColumn.setText(GestorIdiomas.getTexto("precio"));
         minimoColumn.setText(GestorIdiomas.getTexto("minimoPersonas"));
         estadoColumn.setText(GestorIdiomas.getTexto("estado"));
+    }
 
+    public void setLogger(Logger logger) {
+        this.logger = logger;
+        logger.info("Inicializando EliminarRecursoController");
     }
 }

@@ -14,13 +14,12 @@ import org.example.camping2.modelo.validaciones.ValidarRecurso;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class CrearRecursoController implements IdiomaListener {
 
     @FXML
     private Label labelAgregarRecurso;
-
-
     @FXML
     private Label labelTipo;
     @FXML
@@ -34,35 +33,32 @@ public class CrearRecursoController implements IdiomaListener {
     @FXML
     private Button btnCrear;
 
+    @FXML
+    private TextField nombreField;
+    @FXML
+    private ComboBox<String> tipoComboBox;
+    @FXML
+    private TextField capacidadField;
+    @FXML
+    private TextField precioField;
+    @FXML
+    private TextField minimoPersonasField;
+
     private Memoria<Recurso, Integer> memoria;
+    private Logger log;
+    private Map<String, String> mapaTipoTraducido;
+
+    public void setLogger(Logger logger) {
+        this.log = logger;
+    }
 
     public void setMemoriaRecurso(Memoria<Recurso, Integer> memoria) {
         this.memoria = memoria;
     }
 
     @FXML
-    private TextField nombreField;
-
-    @FXML
-    private ComboBox<String> tipoComboBox;
-
-    @FXML
-    private TextField capacidadField;
-
-    @FXML
-    private TextField precioField;
-
-    @FXML
-    private TextField minimoPersonasField;
-
-    private Map<String, String> mapaTipoTraducido;
-
-
-    @FXML
     public void initialize() {
-
         mapaTipoTraducido = new HashMap<>();
-        mapaTipoTraducido.clear();
         mapaTipoTraducido.put("PARCELA", GestorIdiomas.getTexto("PARCELA"));
         mapaTipoTraducido.put("BUNGALOW", GestorIdiomas.getTexto("BUNGALOW"));
         mapaTipoTraducido.put("BARBACOA", GestorIdiomas.getTexto("BARBACOA"));
@@ -72,6 +68,7 @@ public class CrearRecursoController implements IdiomaListener {
         GestorIdiomas.agregarListener(this);
         actualizarTexto();
 
+        if (log != null) log.info("CrearRecursoController inicializado correctamente");
     }
 
     @FXML
@@ -83,58 +80,65 @@ public class CrearRecursoController implements IdiomaListener {
                     .filter(e -> e.getValue().equals(tipoTraducido))
                     .map(Map.Entry::getKey)
                     .findFirst()
-                    .orElse("PARCELA");  // valor por defecto si no se encuentra
+                    .orElse("PARCELA");
 
             int capacidad = Integer.parseInt(capacidadField.getText());
             int precio = Integer.parseInt(precioField.getText());
             int minimoPersonas = Integer.parseInt(minimoPersonasField.getText());
 
-            Recurso recurso = new Recurso(nombre, tipo, capacidad, precio, minimoPersonas);
+            if (log != null) {
+                log.info("Intentando crear recurso: " + nombre + ", Tipo: " + tipo + ", Capacidad: " + capacidad +
+                        ", Precio: " + precio + ", Mínimo: " + minimoPersonas);
+            }
 
-            if(ValidarRecurso.ValidarNombre(nombre)){
-                if (ValidarRecurso.ValidarCapacidad(Integer.parseInt(capacidadField.getText()))) {
-                    if (ValidarRecurso.ValidarPrecio(Integer.parseInt(precioField.getText()))) {
-                        if (ValidarRecurso.ValidarMinimoPersonas(Integer.parseInt(minimoPersonasField.getText()))) {
+            if (ValidarRecurso.ValidarNombre(nombre)) {
+                if (ValidarRecurso.ValidarCapacidad(capacidad)) {
+                    if (ValidarRecurso.ValidarPrecio(precio)) {
+                        if (ValidarRecurso.ValidarMinimoPersonas(minimoPersonas)) {
+                            Recurso recurso = new Recurso(nombre, tipo, capacidad, precio, minimoPersonas);
                             boolean agregado = memoria.add(recurso);
                             if (agregado) {
                                 mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "Recurso creado correctamente");
+                                if (log != null) log.info("Recurso creado exitosamente: " + recurso);
                                 limpiarCampos();
                             } else {
                                 mostrarAlerta(Alert.AlertType.ERROR, "Error", "No se pudo crear el recurso");
+                                if (log != null) log.warning("No se pudo agregar el recurso: " + recurso);
                             }
-                        }else {
+                        } else {
                             mostrarAlerta(Alert.AlertType.ERROR, "Error", "El mínimo de personas debe ser mayor a 0");
+                            if (log != null) log.warning("Validación fallida: mínimo de personas inválido");
                         }
-                    }else {
+                    } else {
                         mostrarAlerta(Alert.AlertType.ERROR, "Error", "El precio debe ser mayor a 0");
-
+                        if (log != null) log.warning("Validación fallida: precio inválido");
                     }
-                }else{
+                } else {
                     mostrarAlerta(Alert.AlertType.ERROR, "Error", "La capacidad debe ser mayor a 0");
+                    if (log != null) log.warning("Validación fallida: capacidad inválida");
                 }
-            }else {
+            } else {
                 mostrarAlerta(Alert.AlertType.ERROR, "Error", "El nombre no puede estar vacío");
+                if (log != null) log.warning("Validación fallida: nombre vacío");
             }
-
 
         } catch (NumberFormatException e) {
             mostrarAlerta(Alert.AlertType.ERROR, "Error de formato", "Capacidad, precio o mínimo deben ser numéricos");
+            if (log != null) log.severe("Error de formato numérico: " + e.getMessage());
         } catch (Exception e) {
             mostrarAlerta(Alert.AlertType.ERROR, "Error", "Ocurrió un error: " + e.getMessage());
+            if (log != null) log.severe("Excepción inesperada al crear recurso: " + e.getMessage());
         }
     }
 
-    private void mostrarAlerta( Alert.AlertType tipo, String titulo, String mensaje) {
+    private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
         Alert alerta = new Alert(tipo);
         alerta.setTitle(titulo);
         alerta.setContentText(mensaje);
-
-        // Obtener el Stage actual y asignarlo como propietario
-        Stage stage = (Stage) labelAgregarRecurso.getScene().getWindow(); // cualquier nodo sirve
+        Stage stage = (Stage) labelAgregarRecurso.getScene().getWindow();
         alerta.initOwner(stage);
-        alerta.initModality(Modality.WINDOW_MODAL);  // Importante: no usar APPLICATION_MODAL
-
-        alerta.show(); // No bloqueante
+        alerta.initModality(Modality.WINDOW_MODAL);
+        alerta.show();
     }
 
     private void limpiarCampos() {
@@ -143,13 +147,17 @@ public class CrearRecursoController implements IdiomaListener {
         capacidadField.clear();
         precioField.clear();
         minimoPersonasField.clear();
+
+        if (log != null) log.info("Campos del formulario limpiados");
     }
 
     @Override
     public void idiomaCambiado() {
         actualizarTexto();
+        if (log != null) log.info("Idioma cambiado y texto actualizado");
     }
-    public void actualizarTexto(){
+
+    public void actualizarTexto() {
         labelAgregarRecurso.setText(GestorIdiomas.getTexto("labelAgregarRecurso"));
         labelNombre.setText(GestorIdiomas.getTexto("nombre"));
         nombreField.setPromptText(GestorIdiomas.getTexto("nombreField"));

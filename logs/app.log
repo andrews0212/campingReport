@@ -146,3 +146,13 @@ Caused by: java.sql.SQLIntegrityConstraintViolationException: (conn=157) Cannot 
 
 jun 01, 2025 1:55:28 A. M. org.example.camping2.controladores.Clientes.EliminarClienteController eliminarClienteSeleccionado
 ADVERTENCIA: No se pudo eliminar cliente con ID: 20
+jun 01, 2025 2:09:53 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 2:10:24 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 2:11:07 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 01, 2025 2:11:18 A. M. org.example.camping2.controladores.Recursos.CrearRecursoController crearRecurso
+GRAVE: Error de formato numérico: For input string: ""
+jun 01, 2025 2:11:31 A. M. org.example.camping2.controladores.Recursos.ModificarRecursoController modificarRecurso
+ADVERTENCIA: Mínimo de personas no válido: -1

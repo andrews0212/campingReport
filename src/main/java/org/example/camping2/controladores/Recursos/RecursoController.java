@@ -15,9 +15,11 @@ import org.example.camping2.modelo.dto.Recurso;
 import org.example.camping2.modelo.memoria.Memoria;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 public class RecursoController implements Liberable, IdiomaListener {
 
+    private Logger logger;
     @FXML
     private ImageView buscarImage;
     @FXML
@@ -53,6 +55,7 @@ public class RecursoController implements Liberable, IdiomaListener {
             Parent nuevoPanel = loader.load();
 
             BuscarRecursoController buscarRecursoController = loader.getController();
+            buscarRecursoController.setLogger(logger);
             buscarRecursoController.setMemoriaRecurso(memoria);
             areaContenido.getChildren().clear();
             areaContenido.getChildren().add(nuevoPanel);
@@ -68,6 +71,7 @@ public class RecursoController implements Liberable, IdiomaListener {
             Parent nuevoPanel = loader.load();
 
             CrearRecursoController crearRecursoController = loader.getController();
+            crearRecursoController.setLogger(logger);
             crearRecursoController.setMemoriaRecurso(memoria);
             areaContenido.getChildren().clear();
             areaContenido.getChildren().add(nuevoPanel);
@@ -83,6 +87,7 @@ public class RecursoController implements Liberable, IdiomaListener {
             Parent nuevoPanel = loader.load();
 
             ModificarRecursoController modificarRecursoController = loader.getController();
+            modificarRecursoController.setLogger(logger);
             modificarRecursoController.setMemoriaRecurso(memoria);
             areaContenido.getChildren().clear();
             areaContenido.getChildren().add(nuevoPanel);
@@ -98,6 +103,7 @@ public class RecursoController implements Liberable, IdiomaListener {
             Parent nuevoPanel = loader.load();
 
             EliminarRecursoController eliminarRecursoController = loader.getController();
+            eliminarRecursoController.setLogger(logger);
             eliminarRecursoController.setMemoriaRecurso(memoria);
             areaContenido.getChildren().clear();
             areaContenido.getChildren().add(nuevoPanel);
@@ -156,6 +162,10 @@ public class RecursoController implements Liberable, IdiomaListener {
     ButtonModificar.setText(GestorIdiomas.getTexto("actualizar"));
     ButtonEliminar.setText(GestorIdiomas.getTexto("eliminar"));
 
+    }
+
+    public void setLogger(Logger logger) {
+        this.logger = logger;
     }
 }
 
