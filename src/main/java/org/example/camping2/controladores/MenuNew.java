@@ -34,6 +34,7 @@ import static org.example.camping2.controladores.GestorIdiomas.cambiarIdioma;
 import static org.example.camping2.controladores.GestorIdiomas.getTexto;
 
 public class MenuNew implements IdiomaListener {
+
     private AnchorPane raiz;
 
     private static final Logger logger = LogConfig.configurarLogger(MenuNew.class);

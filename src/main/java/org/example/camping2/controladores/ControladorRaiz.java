@@ -16,12 +16,16 @@ public class ControladorRaiz {
     @FXML
     public void initialize() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/MenuNew.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/PantallaCargaNew.fxml"));
             Parent pantallaCarga = loader.load();
 
             // Obtener el controlador y pasarle la raíz
-            MenuNew controlador = loader.getController();
+            ControladorVentanaCarga controlador = loader.getController();
             controlador.setRaiz(raiz);
+
+
+//            MenuNew controlador = loader.getController();
+//            controlador.setRaiz(raiz);
 
             // Mostrar pantalla de carga
             raiz.getChildren().setAll(pantallaCarga);

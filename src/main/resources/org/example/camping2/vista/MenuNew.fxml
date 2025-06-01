@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="raiz" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../Css/menuNew.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.MenuNew">
+<AnchorPane  prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../Css/menuNew.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.controladores.MenuNew">
 
     <!-- MENÚ LATERAL -->
     <VBox fx:id="menuLateral" alignment="CENTER" layoutY="-4.0" prefHeight="1106.0" prefWidth="642.0" styleClass="menu-lateral" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="1386.0" AnchorPane.topAnchor="-4.0">

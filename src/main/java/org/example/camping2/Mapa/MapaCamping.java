@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
@@ -18,6 +19,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.example.camping2.controladores.GestorIdiomas;
+import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.dto.Recurso;
 import org.example.camping2.modelo.dto.Reserva;
@@ -32,7 +35,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class MapaCamping {
+public class MapaCamping implements IdiomaListener {
 
     private final Map<String, Button> botones = new HashMap<>();
     private Map<String, ImageView> casas = new HashMap<>();
@@ -42,8 +45,8 @@ public class MapaCamping {
 
     @FXML private TableView tablaBungalow;
     @FXML private TableColumn<Recurso, String> bungalowColumn;
-
-
+    @FXML private Label labelMapaCamping, labelMantenimiento, labelDisponible, labelOcupado;
+    @FXML private Button btnRefrezcar;
     //=== Imagenes parcelas == /
 
     @FXML private ImageView parcelaA30;
@@ -229,6 +232,7 @@ public class MapaCamping {
 
     @FXML
     public void initialize() {
+
         agregarBotones(
                 EL1, EL2, EL3, EL4,
                 DI, DII,B5,B6,B7,
@@ -251,6 +255,9 @@ public class MapaCamping {
         prepararReferenciasCasas();      // <-- Llama este nuevo método
 
         bungalowColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
+
+        GestorIdiomas.agregarListener(this);
+        actualizarTexto();
 
 
     }
@@ -563,5 +570,20 @@ public class MapaCamping {
     public void setMemoriaReserva(Memoria<Reserva, Integer> memoriaReserva) {
         this.memoriaReserva = memoriaReserva;
         tablaBungalow.setItems(FXCollections.observableArrayList(getBungalowsPorSalir()));
+    }
+
+    @Override
+    public void idiomaCambiado() {
+        actualizarTexto();
+    }
+
+    private void actualizarTexto() {
+        labelMapaCamping.setText(GestorIdiomas.getTexto("mapa"));
+        labelMantenimiento.setText(GestorIdiomas.getTexto("MANTENIMIENTO"));
+        labelDisponible.setText(GestorIdiomas.getTexto("DISPONIBLE"));
+        labelOcupado.setText(GestorIdiomas.getTexto("OCUPADO"));
+        bungalowColumn.setText(GestorIdiomas.getTexto("bungalowMapa"));
+        btnRefrezcar.setText(GestorIdiomas.getTexto("btnRefrezcar"));
+
     }
 }

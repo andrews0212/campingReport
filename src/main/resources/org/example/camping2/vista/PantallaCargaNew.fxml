@@ -16,12 +16,12 @@
       </ImageView>
       <AnchorPane prefHeight="1080.0" prefWidth="1920.0" styleClass="superposicion-negra">
          <children>
-            <Label fx:id="titulo" alignment="CENTER" layoutX="311.0" layoutY="406.0" prefHeight="292.0" prefWidth="1443.0" text="EcoAventure" textAlignment="JUSTIFY" textFill="WHITE">
+            <Label fx:id="titulo" alignment="CENTER" layoutX="221.0" layoutY="362.0" prefHeight="292.0" prefWidth="1443.0" text="EcoAventure" textAlignment="JUSTIFY" textFill="WHITE">
                <font>
                   <Font name="HelveticaRounded-Bold" />
                </font>
             </Label>
-            <ProgressBar fx:id="barraProgreso" layoutX="219.0" layoutY="844.0" prefHeight="18.0" prefWidth="1627.0" progress="0.0" styleClass="barra-transparente" />
+            <ProgressBar fx:id="barraProgreso" layoutX="137.0" layoutY="830.0" prefHeight="18.0" prefWidth="1627.0" progress="0.0" styleClass="barra-transparente" />
          </children>
       </AnchorPane>
    </children>

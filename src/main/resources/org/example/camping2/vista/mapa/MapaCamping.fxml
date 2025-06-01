@@ -519,17 +519,17 @@
             <Font name="HelveticaRounded-Bold" size="56.0" />
          </font>
       </Label>
-      <Label layoutX="224.0" layoutY="662.0" text="Mantenimiento" textFill="WHITE">
+      <Label fx:id="labelMantenimiento" layoutX="224.0" layoutY="662.0" text="Mantenimiento" textFill="WHITE">
          <font>
             <Font name="MyriadPro-Regular" size="33.0" />
          </font>
       </Label>
-      <Label layoutX="225.0" layoutY="711.0" text="Disponible" textFill="WHITE">
+      <Label fx:id="labelDisponible" layoutX="225.0" layoutY="711.0" text="Disponible" textFill="WHITE">
          <font>
             <Font name="MyriadPro-Regular" size="33.0" />
          </font>
       </Label>
-      <Label layoutX="227.0" layoutY="764.0" text="Ocupado" textFill="WHITE">
+      <Label fx:id="labelOcupado" layoutX="227.0" layoutY="764.0" text="Ocupado" textFill="WHITE">
          <font>
             <Font name="MyriadPro-Regular" size="33.0" />
          </font>
