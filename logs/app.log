@@ -334,3 +334,23 @@ jun 02, 2025 11:38:01 P. M. org.example.camping2.controladores.MenuNew initiali
 ADVERTENCIA: INICIADO
 jun 02, 2025 11:43:29 P. M. org.example.camping2.controladores.MenuNew initialize
 ADVERTENCIA: INICIADO
+jun 03, 2025 7:37:03 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 03, 2025 7:37:08 A. M. org.example.camping2.controladores.MenuNew generarInformes
+GRAVE: Error al cargar la vista MapaCamping.fxml: 
+/C:/Users/andre/IdeaProjects/campingReport/target/classes/org/example/camping2/vista/GenerarInformes.fxml:12
+
+jun 03, 2025 7:38:26 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 03, 2025 7:40:24 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 03, 2025 8:04:31 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 03, 2025 8:10:39 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 03, 2025 8:10:44 A. M. org.example.camping2.controladores.MenuNew generarInformes
+GRAVE: Error al cargar la vista MapaCamping.fxml: 
+/C:/Users/andre/IdeaProjects/campingReport/target/classes/org/example/camping2/vista/GenerarInformes.fxml
+
+jun 03, 2025 8:12:46 A. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO

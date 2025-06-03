@@ -59,6 +59,7 @@ public class MenuNew implements IdiomaListener {
     private TreeItem<String> recurso;
     private TreeItem<String> reserva;
     private TreeItem<String> mapa;
+    private TreeItem<String> generarInformes;
 
     @FXML
     public void initialize() {
@@ -103,6 +104,8 @@ public class MenuNew implements IdiomaListener {
         recurso = new TreeItem<>("Recurso");
         reserva = new TreeItem<>("Reserva");
         mapa = new TreeItem<>("Mapa");
+        generarInformes = new TreeItem<>("Generar Informes");
+
 
 
         // Añadir acciones a cada nodo
@@ -135,7 +138,7 @@ public class MenuNew implements IdiomaListener {
         );
 
         // Añadir nodos principales al root
-        root.getChildren().addAll(cliente, acompanante, recurso, reserva, mapa);
+        root.getChildren().addAll(cliente, acompanante, recurso, reserva, mapa, generarInformes);
         treeMenu.setRoot(root);
         treeMenu.setShowRoot(false);
 
@@ -159,20 +162,21 @@ public class MenuNew implements IdiomaListener {
 
         treeMenu.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
-                // Si el nodo tiene padre y es un subnodo (Buscar, Añadir, etc)
                 if (newSelection.getParent() != null && !newSelection.getParent().getValue().equals("Menú")) {
                     String categoria = newSelection.getParent().getValue();
                     String accion = newSelection.getValue();
                     ejecutarAccion(categoria, accion);
                 } else {
-                    // Si el nodo es un nodo principal, por ejemplo "Mapa"
                     String valorNodo = newSelection.getValue();
                     if (valorNodo.equals(GestorIdiomas.getTexto("Mapa"))) {
                         abrirMapa();
+                    } else if (valorNodo.equals("Generar Informes")) { // <-- Aquí lo manejas
+                        generarInformes();
                     }
                 }
             }
         });
+
 
         // Inicializar ComboBox de idiomas con imágenes
         ObservableList<IdiomaVisual> idiomas = FXCollections.observableArrayList(
@@ -239,6 +243,35 @@ public class MenuNew implements IdiomaListener {
 
         // Actualizar textos iniciales en árbol
         actualizarTextos();
+    }
+
+    private void generarInformes() {
+        try {
+            // Supongamos que tienes un FXML llamado MapaCamping.fxml para el mapa
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/GenerarInformes.fxml"));
+            AnchorPane mapaPane = loader.load();
+            GenerarInformeController mapaController = loader.getController();
+            mapaController.setMemoriaRecurso(memoriaRecurso);
+            mapaController.setMemoriaReserva(memoriaReserva);
+            mapaController.setMemoriaAcompanante(memoriaAcompanante);
+            mapaController.setMemoriaCliente(memoriaCliente);
+
+            // Limpia y pone el mapa en el contenedor central
+            contenedorCentral.getChildren().clear();
+            contenedorCentral.getChildren().add(mapaPane);
+
+            // Opcional: ajustar anclas para que el AnchorPane ocupe todo el contenedor
+            AnchorPane.setTopAnchor(mapaPane, 0.0);
+            AnchorPane.setBottomAnchor(mapaPane, 0.0);
+            AnchorPane.setLeftAnchor(mapaPane, 0.0);
+            AnchorPane.setRightAnchor(mapaPane, 0.0);
+
+            logger.info("Mapa cargado correctamente");
+
+        } catch (IOException e) {
+            logger.severe("Error al cargar la vista MapaCamping.fxml: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     private void abrirMapa() {
