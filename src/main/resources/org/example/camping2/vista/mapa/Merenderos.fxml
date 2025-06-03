@@ -8,14 +8,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../../Css/mapa.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.Mapa.MerenderoControlador">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="954.0" prefWidth="1389.0" style="-fx-background-color: #2B2525;" stylesheets="@../../Css/mapa.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.Mapa.MerenderoControlador">
    <children>
-      <VBox prefHeight="400.0" prefWidth="600.0">
+      <VBox alignment="CENTER" prefHeight="953.0" prefWidth="1395.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="110.0" prefWidth="600.0">
+            <HBox alignment="CENTER" prefHeight="110.0" prefWidth="1389.0">
                <children>
-                  <Button fx:id="mesa1" mnemonicParsing="false" prefHeight="69.0" prefWidth="90.0">
+                  <Button fx:id="mesa1" mnemonicParsing="false" prefHeight="110.0" prefWidth="300.0">
                      <graphic>
                         <ImageView fitHeight="103.0" fitWidth="75.0">
                            <image>
@@ -27,7 +28,7 @@
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="mesa2" mnemonicParsing="false" prefHeight="69.0" prefWidth="90.0">
+                  <Button fx:id="mesa2" mnemonicParsing="false" prefHeight="110.0" prefWidth="300.0">
                      <graphic>
                         <ImageView fitHeight="103.0" fitWidth="75.0">
                            <image>
@@ -39,7 +40,7 @@
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="mesa3" mnemonicParsing="false" prefHeight="69.0" prefWidth="90.0">
+                  <Button fx:id="mesa3" mnemonicParsing="false" prefHeight="110.0" prefWidth="300.0">
                      <graphic>
                         <ImageView fitHeight="103.0" fitWidth="75.0">
                            <image>
@@ -51,7 +52,7 @@
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="mesa4" mnemonicParsing="false" prefHeight="69.0" prefWidth="90.0">
+                  <Button fx:id="mesa4" mnemonicParsing="false" prefHeight="110.0" prefWidth="300.0">
                      <graphic>
                         <ImageView fitHeight="103.0" fitWidth="75.0">
                            <image>
@@ -63,7 +64,7 @@
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="mesa5" mnemonicParsing="false" prefHeight="69.0" prefWidth="90.0">
+                  <Button fx:id="mesa5" mnemonicParsing="false" prefHeight="110.0" prefWidth="300.0">
                      <graphic>
                         <ImageView fitHeight="103.0" fitWidth="75.0">
                            <image>
@@ -79,65 +80,95 @@
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="text1" prefHeight="18.0" prefWidth="90.0" text="Label">
+                  <Label fx:id="text1" prefHeight="0.0" prefWidth="300.0" text="Label" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
+                     <font>
+                        <Font name="MyriadPro-Regular" size="22.0" />
+                     </font>
                   </Label>
-                  <Label fx:id="text2" prefHeight="18.0" prefWidth="90.0" text="Label">
+                  <Label fx:id="text2" prefHeight="0.0" prefWidth="300.0" text="Label" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
+                     <font>
+                        <Font name="MyriadPro-Regular" size="22.0" />
+                     </font>
                   </Label>
-                  <Label fx:id="text3" prefHeight="18.0" prefWidth="90.0" text="Label">
+                  <Label fx:id="text3" prefHeight="0.0" prefWidth="300.0" text="Label" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
+                     <font>
+                        <Font name="MyriadPro-Regular" size="22.0" />
+                     </font>
                   </Label>
-                  <Label fx:id="text4" prefHeight="18.0" prefWidth="90.0" text="Label">
+                  <Label fx:id="text4" prefHeight="0.0" prefWidth="300.0" text="Label" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
+                     <font>
+                        <Font name="MyriadPro-Regular" size="22.0" />
+                     </font>
                   </Label>
-                  <Label fx:id="text5" prefHeight="18.0" prefWidth="90.0" text="Label">
+                  <Label fx:id="text5" prefHeight="0.0" prefWidth="300.0" text="Label" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
+                     <font>
+                        <Font name="MyriadPro-Regular" size="22.0" />
+                     </font>
                   </Label>
                </children>
             </HBox>
             <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="text6" prefHeight="18.0" prefWidth="90.0" text="Label">
+                  <Label fx:id="text6" prefHeight="18.0" prefWidth="300.0" text="Label" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
+                     <font>
+                        <Font name="MyriadPro-Regular" size="22.0" />
+                     </font>
                   </Label>
-                  <Label fx:id="text7" prefHeight="18.0" prefWidth="90.0" text="Label">
+                  <Label fx:id="text7" prefHeight="18.0" prefWidth="300.0" text="Label" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
+                     <font>
+                        <Font name="MyriadPro-Regular" size="22.0" />
+                     </font>
                   </Label>
-                  <Label fx:id="text8" prefHeight="18.0" prefWidth="90.0" text="Label">
+                  <Label fx:id="text8" prefHeight="18.0" prefWidth="300.0" text="Label" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
+                     <font>
+                        <Font name="MyriadPro-Regular" size="22.0" />
+                     </font>
                   </Label>
-                  <Label fx:id="text9" prefHeight="18.0" prefWidth="90.0" text="Label">
+                  <Label fx:id="text9" prefHeight="18.0" prefWidth="300.0" text="Label" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
+                     <font>
+                        <Font name="MyriadPro-Regular" size="22.0" />
+                     </font>
                   </Label>
-                  <Label fx:id="text10" prefHeight="18.0" prefWidth="90.0" text="Label">
+                  <Label fx:id="text10" prefHeight="18.0" prefWidth="300.0" text="Label" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
+                     <font>
+                        <Font name="MyriadPro-Regular" size="22.0" />
+                     </font>
                   </Label>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="mesa6" mnemonicParsing="false" prefHeight="69.0" prefWidth="90.0">
+                  <Button fx:id="mesa6" mnemonicParsing="false" prefHeight="110.0" prefWidth="300.0">
                      <graphic>
                         <ImageView fitHeight="103.0" fitWidth="75.0">
                            <image>
@@ -149,7 +180,7 @@
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="mesa7" mnemonicParsing="false" prefHeight="69.0" prefWidth="90.0">
+                  <Button fx:id="mesa7" mnemonicParsing="false" prefHeight="110.0" prefWidth="300.0">
                      <graphic>
                         <ImageView fitHeight="103.0" fitWidth="75.0">
                            <image>
@@ -161,7 +192,7 @@
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="mesa8" mnemonicParsing="false" prefHeight="69.0" prefWidth="90.0">
+                  <Button fx:id="mesa8" mnemonicParsing="false" prefHeight="110.0" prefWidth="300.0">
                      <graphic>
                         <ImageView fitHeight="103.0" fitWidth="75.0">
                            <image>
@@ -173,7 +204,7 @@
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="mesa9" mnemonicParsing="false" prefHeight="69.0" prefWidth="90.0">
+                  <Button fx:id="mesa9" mnemonicParsing="false" prefHeight="110.0" prefWidth="300.0">
                      <graphic>
                         <ImageView fitHeight="103.0" fitWidth="75.0">
                            <image>
@@ -185,7 +216,7 @@
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="mesa10" mnemonicParsing="false" prefHeight="69.0" prefWidth="90.0">
+                  <Button fx:id="mesa10" mnemonicParsing="false" prefHeight="110.0" prefWidth="300.0">
                      <graphic>
                         <ImageView fitHeight="103.0" fitWidth="75.0">
                            <image>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="954.0" prefWidth="1389.0" style="-fx-background-color: #2B2525;" stylesheets="@../Css/crud.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.camping2.vista.GenerarInformes">
+   <children>
+      <Label fx:id="labelMapaCamping" layoutX="22.0" layoutY="77.0" prefHeight="66.0" prefWidth="251.0" text="Clientes" textFill="WHITE">
+         <font>
+            <Font name="HelveticaRounded-Bold" size="56.0" />
+         </font>
+      </Label>
+      <TextField layoutX="297.0" layoutY="90.0" />
+      <TextField layoutX="569.0" layoutY="90.0" />
+      <DatePicker layoutX="851.0" layoutY="87.0" />
+      <ComboBox layoutX="1154.0" layoutY="84.0" prefHeight="45.0" prefWidth="273.0" />
+      <Label layoutX="382.0" layoutY="60.0" text="Nombre" textFill="WHITE">
+         <font>
+            <Font name="MyriadPro-Regular" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="645.0" layoutY="58.0" text="Apellido" textFill="WHITE">
+         <font>
+            <Font name="MyriadPro-Regular" size="23.0" />
+         </font>
+      </Label>
+      <Label layoutX="911.0" layoutY="56.0" text="Fecha Nacimiento" textFill="WHITE">
+         <font>
+            <Font name="MyriadPro-Regular" size="23.0" />
+         </font>
+      </Label>
+      <Label layoutX="1260.0" layoutY="54.0" text="Estado" textFill="WHITE">
+         <font>
+            <Font name="MyriadPro-Regular" size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelMapaCamping1" layoutX="26.0" layoutY="248.0" prefHeight="66.0" prefWidth="317.0" text="Reservas" textFill="WHITE">
+         <font>
+            <Font name="HelveticaRounded-Bold" size="56.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelMapaCamping11" layoutX="25.0" layoutY="392.0" prefHeight="66.0" prefWidth="385.0" text="Acompañante" textFill="WHITE">
+         <font>
+            <Font name="HelveticaRounded-Bold" size="56.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelMapaCamping111" layoutX="35.0" layoutY="581.0" prefHeight="66.0" prefWidth="388.0" text="Recursos" textFill="WHITE">
+         <font>
+            <Font name="HelveticaRounded-Bold" size="56.0" />
+         </font>
+      </Label>
+      <Label layoutX="431.0" layoutY="221.0" text="DNI" textFill="WHITE">
+         <font>
+            <Font name="MyriadPro-Regular" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="631.0" layoutY="219.0" text="Fecha Inicio" textFill="WHITE">
+         <font>
+            <Font name="MyriadPro-Regular" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="936.0" layoutY="221.0" text="Fecha Fin" textFill="WHITE">
+         <font>
+            <Font name="MyriadPro-Regular" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="1249.0" layoutY="224.0" text="Estado" textFill="WHITE">
+         <font>
+            <Font name="MyriadPro-Regular" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="459.0" layoutY="374.0" text="ID Reserva" textFill="WHITE">
+         <font>
+            <Font name="MyriadPro-Regular" size="22.0" />
+         </font>
+      </Label>
+      <TextField layoutX="585.0" layoutY="408.0" />
+      <TextField layoutX="851.0" layoutY="408.0" prefHeight="43.0" prefWidth="282.0" />
+      <DatePicker layoutX="1151.0" layoutY="405.0" />
+      <Label layoutX="670.0" layoutY="378.0" text="Nombre" textFill="WHITE">
+         <font>
+            <Font name="MyriadPro-Regular" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="933.0" layoutY="376.0" text="Apellido" textFill="WHITE">
+         <font>
+            <Font name="MyriadPro-Regular" size="23.0" />
+         </font>
+      </Label>
+      <Label layoutX="1199.0" layoutY="374.0" text="Fecha Nacimiento" textFill="WHITE">
+         <font>
+            <Font name="MyriadPro-Regular" size="23.0" />
+         </font>
+      </Label>
+      <TextField layoutX="429.0" layoutY="408.0" prefHeight="43.0" prefWidth="141.0" />
+      <TextField layoutX="360.0" layoutY="591.0" />
+      <Label layoutX="445.0" layoutY="561.0" text="Nombre" textFill="WHITE">
+         <font>
+            <Font name="MyriadPro-Regular" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="738.0" layoutY="559.0" text="Tipo" textFill="WHITE">
+         <font>
+            <Font name="MyriadPro-Regular" size="23.0" />
+         </font>
+      </Label>
+      <Label layoutX="994.0" layoutY="558.0" text="Capacidad" textFill="WHITE">
+         <font>
+            <Font name="MyriadPro-Regular" size="23.0" />
+         </font>
+      </Label>
+      <ComboBox layoutX="623.0" layoutY="590.0" prefHeight="45.0" prefWidth="273.0" />
+      <TextField layoutX="915.0" layoutY="590.0" />
+      <ComboBox layoutX="1175.0" layoutY="588.0" prefHeight="45.0" prefWidth="251.0" />
+      <Label layoutX="1259.0" layoutY="561.0" text="Estado" textFill="WHITE">
+         <font>
+            <Font name="MyriadPro-Regular" size="23.0" />
+         </font>
+      </Label>
+      <TextField layoutX="372.0" layoutY="252.0" prefHeight="43.0" prefWidth="165.0" />
+      <DatePicker layoutX="555.0" layoutY="250.0" />
+      <DatePicker layoutX="846.0" layoutY="249.0" />
+      <ComboBox layoutX="1151.0" layoutY="249.0" prefHeight="45.0" prefWidth="273.0" />
+      <Button layoutX="660.0" layoutY="766.0" mnemonicParsing="false" prefHeight="96.0" prefWidth="335.0" text="Generar Reportes" />
+   </children>
+</AnchorPane>

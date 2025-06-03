@@ -3,11 +3,20 @@ package org.example.camping2.Mapa;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.dto.Recurso;
+import org.example.camping2.modelo.dto.Reserva;
+import org.example.camping2.modelo.memoria.Memoria;
 
+import java.io.IOException;
 import java.util.List;
 
 public class MerenderoControlador {
@@ -18,6 +27,8 @@ public class MerenderoControlador {
     private List<Button> botonesMesas;
     private List<Label> textosMesas;
     private List<Recurso> recursosActuales;
+    private Memoria<Reserva, Integer> memoriaReserva;
+
 
     @FXML
     public void initialize() {
@@ -30,9 +41,42 @@ public class MerenderoControlador {
             botonesMesas.get(i).setOnAction(event -> {
                 if (recursosActuales != null && index < recursosActuales.size()) {
                     Recurso recurso = recursosActuales.get(index);
-                    System.out.println("Info recurso seleccionado:");
-                    System.out.println("Nombre: " + recurso.getNombre());
-                    System.out.println("Estado: " + recurso.getEstado());
+                    Reserva reservaEncontrada = null;
+                    // Se puede que no tenga reserva
+                    for (Reserva reserva : memoriaReserva.findAll()) {
+                        if (reserva.getIdrecurso().getId().equals(recurso.getId())) {
+                            reservaEncontrada = reserva;
+                            break;
+                        }
+                    }
+                    Cliente cliente = null;
+                    if (reservaEncontrada != null) {
+                        cliente = reservaEncontrada.getIdcliente(); // puede ser null
+                    }
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/mapa/vistaRecursoEvent.fxml"));
+                        Parent root = loader.load();
+
+                        VistaRecursoEvent controladorDetalle = loader.getController();
+                        controladorDetalle.setCliente(cliente);
+                        controladorDetalle.setRecurso(recurso);
+                        // Puede ser null, pero el controlador debe saber gestionarlo
+
+
+                        Stage stage = new Stage();
+                        stage.setTitle("Detalles del recurso");
+                        stage.setScene(new Scene(root));
+                        Stage primaryStage = (Stage) mesa1.getScene().getWindow();
+                        stage.initOwner(primaryStage); // <-- aquí el stage principal, no null
+                        stage.initModality(Modality.WINDOW_MODAL);
+
+
+                        stage.show();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        System.out.println("Error al abrir la ventana de detalles");
+                    }
                     // Añade aquí más info si quieres
                 }
             });
@@ -92,4 +136,7 @@ public class MerenderoControlador {
         }
     }
 
+    public void setMemoriaReserva(Memoria<Reserva, Integer> memoriaReserva) {
+        this.memoriaReserva = memoriaReserva;
+    }
 }

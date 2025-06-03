@@ -468,6 +468,7 @@ public class MapaCamping implements IdiomaListener {
 
             // Pasar barbacoas al controlador
             controlador.setBarbacoas(barbacoas);
+            controlador.setMemoriaReserva(memoriaReserva);
 
             Stage stage = new Stage();
             stage.setTitle("Merendero " + prId);
