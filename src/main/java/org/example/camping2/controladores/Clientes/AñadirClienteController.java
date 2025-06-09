@@ -166,15 +166,10 @@ public class AñadirClienteController implements IdiomaListener {
     private void actualizarTexto() {
         labelAgregar.setText(GestorIdiomas.getTexto("labelAgregar"));
         labelNombre.setText(GestorIdiomas.getTexto("nombre"));
-        nombreField.setPromptText(GestorIdiomas.getTexto("nombreField"));
         labelApellido.setText(GestorIdiomas.getTexto("apellido"));
-        apellidoField.setPromptText(GestorIdiomas.getTexto("apellidoField"));
         labelDNI.setText(GestorIdiomas.getTexto("dni"));
-        dniField.setPromptText(GestorIdiomas.getTexto("dniField"));
         labelEmail.setText(GestorIdiomas.getTexto("email"));
-        emailField.setPromptText(GestorIdiomas.getTexto("emailField"));
         labelTelefono.setText(GestorIdiomas.getTexto("telefono"));
-        telefonoField.setPromptText(GestorIdiomas.getTexto("telefonoField"));
         labelFechaNacimiento.setText(GestorIdiomas.getTexto("fechaNacimiento"));
         labelEstado.setText(GestorIdiomas.getTexto("estado"));
         añadirClienteButton.setText(GestorIdiomas.getTexto("addCliente"));

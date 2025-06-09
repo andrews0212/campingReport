@@ -160,5 +160,6 @@ public class BuscarRecursoController implements IdiomaListener {
         precioColumn.setText(GestorIdiomas.getTexto("precio"));
         minimoColumn.setText(GestorIdiomas.getTexto("minimoPersonas"));
         estadoColumn.setText(GestorIdiomas.getTexto("estado"));
+
     }
 }

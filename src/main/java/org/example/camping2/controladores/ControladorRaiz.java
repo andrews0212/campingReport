@@ -20,8 +20,8 @@ public class ControladorRaiz {
             Parent pantallaCarga = loader.load();
 
             // Obtener el controlador y pasarle la raíz
-//            ControladorVentanaCarga controlador = loader.getController();
-//            controlador.setRaiz(raiz);
+//           ControladorVentanaCarga controlador = loader.getController();
+//           controlador.setRaiz(raiz);
 
 
             MenuNew controlador = loader.getController();

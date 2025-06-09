@@ -14,12 +14,14 @@ import org.example.camping2.modelo.dto.Recurso;
 import org.example.camping2.modelo.dto.Reserva;
 import org.example.camping2.modelo.memoria.Memoria;
 
+import java.nio.file.Paths;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GenerarInformeController {
+public class GenerarInformeController implements IdiomaListener {
 
     private Memoria<Recurso, Integer> memoriaRecurso;
     private Memoria<Reserva, Integer> memoriaReserva;
@@ -71,6 +73,10 @@ public class GenerarInformeController {
 
     @FXML private Button btnGenerarCliente;
     @FXML private Label labelGenerar;
+    @FXML private Button btnGenerarReserva;
+    @FXML private Button btnGenerarRecurso;
+    @FXML private Button btnGenerarAcom;
+
 
     private Map<String, String> mapaClienteTraducido;
     private Map<String, String> mapaRecursoTraducido;
@@ -91,15 +97,26 @@ public class GenerarInformeController {
         mapaRecursoTraducido.put("BUNGALOW", GestorIdiomas.getTexto("BUNGALOW"));
         mapaRecursoTraducido.put("BARBACOA", GestorIdiomas.getTexto("BARBACOA"));
         ObservableList<String> traduccionesRecurso = FXCollections.observableArrayList(mapaRecursoTraducido.values());
+        tipoRecuCombo.setItems(traduccionesRecurso);
+        tipoRecuCombo.getSelectionModel().select(0);
+        mapaRecursoTraducido.clear();
+        mapaRecursoTraducido.put("DISPONIBLE", GestorIdiomas.getTexto("DISPONIBLE"));
+        mapaRecursoTraducido.put("OCUPADO", GestorIdiomas.getTexto("OCUPADO"));
+        mapaRecursoTraducido.put("MANTENIMIENTO", GestorIdiomas.getTexto("MANTENIMIENTO"));
+        traduccionesRecurso = FXCollections.observableArrayList(mapaRecursoTraducido.values());
         estadoRecuCombo.setItems(traduccionesRecurso);
         estadoRecuCombo.getSelectionModel().select(0);
+
         mapaReservaTraducido = new HashMap<>();
         mapaReservaTraducido.put("PENDIENTE", GestorIdiomas.getTexto("PENDIENTE"));
         mapaReservaTraducido.put("CANCELADA", GestorIdiomas.getTexto("CANCELADA"));
         mapaReservaTraducido.put("CONFIRMADA", GestorIdiomas.getTexto("CONFIRMADA"));
+        mapaRecursoTraducido.put("NINGUN ESTADO", GestorIdiomas.getTexto("NINGUNESTADO"));
         ObservableList<String> traduccionesReserva = FXCollections.observableArrayList(mapaReservaTraducido.values());
         estadoReservaCombo.setItems(traduccionesReserva);
         estadoReservaCombo.getSelectionModel().select(0);
+        GestorIdiomas.agregarListener(this);
+        actualizarTextos();
     }
 
 
@@ -133,57 +150,298 @@ public class GenerarInformeController {
     @FXML
     private void generarReporte() {
         try {
-            // Prepare parameters for the report
+            // Validar que al menos un filtro tenga valor para evitar cargar todo
+            boolean filtroNombre = !nombreClienteField.getText().isEmpty();
+            boolean filtroApellido = !apellidoClienteField.getText().isEmpty();
+            boolean filtroFecha = fNacClienteField.getValue() != null;
+            boolean filtroEstado = estadoClienteCombo.getValue() != null
+                    && !estadoClienteCombo.getValue().equals("NINGUN ESTADO");
+
+            if (!filtroNombre && !filtroApellido && !filtroFecha && !filtroEstado) {
+                // No hay filtros, no generamos reporte
+                System.out.println("No se puede generar reporte sin filtros.");
+                // Puedes mostrar una alerta:
+                Alert alerta = new Alert(Alert.AlertType.WARNING, "Debe ingresar al menos un filtro para generar el reporte.", ButtonType.OK);
+                alerta.showAndWait();
+                return;
+            }
+            String estado = null;
+            if (estadoClienteCombo.getValue().equals("Asset")){
+                estado = "ACTIVO";
+            } else if (estadoClienteCombo.getValue().equals("Blocked")){
+                estado = "BLOQUEADO";
+            } else if (estadoClienteCombo.getValue().equals("Suspended")){
+                estado = "SUSPENDIDO";
+
+            }
+
             Map<String, Object> parametros = new HashMap<>();
 
-            // Si el campo de nombre no está vacío, filtrar por aquellos nombres que comienzan con la letra proporcionada
-            String nombre = nombreClienteField.getText().isEmpty() ? null : nombreAcomField.getText();
-            if (nombre != null && !nombre.isEmpty()) {
-                // Si el nombre empieza con "A", podemos poner un filtro en el reporte para que solo se muestren los que comienzan con "A"
-                parametros.put("nombre", nombre + "%"); // El "%" es para la consulta SQL para el "LIKE"
-            } else {
-                parametros.put("nombre", null);
-            }
+            // Igual que antes, poner los parámetros si existen
+            if (filtroNombre) parametros.put("nombre", nombreClienteField.getText() + "%");
+            else parametros.put("nombre", null);
 
-            // Si el campo de apellido no está vacío, filtrar por aquellos apellidos que comienzan con la letra proporcionada
-            String apellido = apellidoClienteField.getText().isEmpty() ? null : apellidoClienteField.getText();
-            if (apellido != null && !apellido.isEmpty()) {
-                parametros.put("apellido", apellido + "%"); // Similar al filtro de nombre
-            } else {
-                parametros.put("apellido", null);
-            }
+            if (filtroApellido) parametros.put("apellido", apellidoClienteField.getText() + "%");
+            else parametros.put("apellido", null);
 
-            // Si la fecha de nacimiento no es nula, convertirla a java.sql.Date
-            parametros.put("fechaNacimiento", fNacClienteField.getValue() == null ? null : java.sql.Date.valueOf(fNacClienteField.getValue()));
+            parametros.put("fechaNacimiento", filtroFecha ? java.sql.Date.valueOf(fNacClienteField.getValue()) : null);
 
-            // Solo agregar el estado si no es "NINGUN ESTADO"
-            String estado = estadoClienteCombo.getValue();
-            if (estado == null || estado.isEmpty() || "NINGUN ESTADO".equals(estado)) {
-                parametros.put("estado", null); // No se pasa el estado
-            } else {
-                parametros.put("estado", estado);
-            }
+            if (filtroEstado) parametros.put("estado", estado);
+            else parametros.put("estado", null);
 
-            // Obtener la conexión a la base de datos
             Connection conexion = obtenerConexion();
 
-            // Llenar el reporte con la conexión, los parámetros y el diseño
-            JasperPrint jasperPrint = JasperFillManager.fillReport(Menu.class.getResource("/Camping/Flower.jasper").getPath(),
+            JasperPrint jasperPrint = JasperFillManager.fillReport(Menu.class.getResource("/Camping/Cliente.jasper").getPath(),
                     parametros,
                     conexion
             );
 
-            // Exportar el reporte a un archivo PDF
             JasperExportManager.exportReportToPdfFile(jasperPrint, "src/main/resources/Pdf/report.pdf");
-
-            // Mostrar el reporte
             JasperViewer.viewReport(jasperPrint, false);
-
-            // Cerrar la conexión
             conexion.close();
+
         } catch (Exception e) {
             e.printStackTrace();
-
         }
     }
+    @FXML
+    private void generarReporteReserva() {
+        try {
+            boolean filtroDNI = dniReservasField.getText() != null && !dniReservasField.getText().trim().isEmpty();
+            boolean filtroFechaInicio = fechaInicioDate.getValue() != null;
+            boolean filtroFechaFin = fechaFinDate.getValue() != null;
+            boolean filtroEstado = estadoReservaCombo.getValue() != null
+                    && !estadoReservaCombo.getValue().equalsIgnoreCase("NINGUN ESTADO");
+
+            if (!filtroDNI && !filtroFechaInicio && !filtroFechaFin && !filtroEstado) {
+                Alert alerta = new Alert(Alert.AlertType.WARNING, "Debe ingresar al menos un filtro para generar el reporte.", ButtonType.OK);
+                alerta.showAndWait();
+                return;
+            }
+
+            Map<String, Object> parametros = new HashMap<>();
+            parametros.put("dni", filtroDNI ? dniReservasField.getText() : null);
+            parametros.put("fechaInicio", filtroFechaInicio ? java.sql.Date.valueOf(fechaInicioDate.getValue()) : null);
+            parametros.put("fechaFin", filtroFechaFin ? java.sql.Date.valueOf(fechaFinDate.getValue()) : null);
+            String estado = filtroEstado ? estadoReservaCombo.getValue() : null;
+            if(estado.equals("Pending")){
+                estado = "PENDIENTE";
+            } else if (estado.equals("Cancelled")) {
+                estado = "CANCELADA";
+            } else if (estado.equals("Confirmed")) {
+                estado = "CONFIRMADA";
+            }
+            parametros.put("estado", filtroEstado ? estado : null);
+
+            Connection conexion = obtenerConexion();
+            if (conexion == null) {
+                Alert alerta = new Alert(Alert.AlertType.ERROR, "No se pudo conectar a la base de datos.", ButtonType.OK);
+                alerta.showAndWait();
+                return;
+            }
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(
+                    Menu.class.getResource("/Camping/Reserva.jasper").getPath(),
+                    parametros,
+                    conexion
+            );
+
+            conexion.close();
+
+            if (jasperPrint.getPages().isEmpty()) {
+                Alert alerta = new Alert(Alert.AlertType.INFORMATION, "No se encontraron reservas que coincidan con los filtros.", ButtonType.OK);
+                alerta.showAndWait();
+                return;
+            }
+
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "src/main/resources/Pdf/reportReserva.pdf");
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alerta = new Alert(Alert.AlertType.ERROR, "Error al generar el reporte: " + e.getMessage(), ButtonType.OK);
+            alerta.showAndWait();
+        }
+    }
+
+    @FXML
+    private void generarReporteRecurso() {
+        try {
+            boolean filtroTipo = tipoRecuCombo.getValue() != null;
+            boolean filtroCapacidad = capacidadRecuText.getText() != null && !capacidadRecuText.getText().trim().isEmpty();
+            boolean filtroEstado = estadoRecuCombo.getValue() != null;
+
+            if (!filtroTipo && !filtroCapacidad && !filtroEstado) {
+                Alert alerta = new Alert(Alert.AlertType.WARNING, "Debe ingresar al menos un filtro para generar el reporte.", ButtonType.OK);
+                alerta.showAndWait();
+                return;
+            }
+            String tipo = null;
+            if(tipoRecuCombo.getValue().equals("BARBECUE")){
+                tipo = "BARBACOA";
+            } else if (tipoRecuCombo.getValue().equals("BUNGALOW")) {
+                tipo = "BUNGALOW";
+            } else if (tipoRecuCombo.getValue().equals("PARCEL")) {
+                tipo = "PARCELA";
+            }
+
+            String estado = null;
+            if (estadoRecuCombo.getValue().equals("Available")){
+                estado = "DISPONIBLE";
+            }
+            else if (estadoRecuCombo.getValue().equals("Occupied")) {
+                estado = "OCUPADO";
+            }
+            else if (estadoRecuCombo.getValue().equals("Maintenance")) {
+                estado = "MANTENIMIENTO";
+            }
+
+
+            Map<String, Object> parametros = new HashMap<>();
+            parametros.put("tipo", tipo);
+            parametros.put("capacidad", filtroCapacidad ? Integer.parseInt(capacidadRecuText.getText()) : null);
+            parametros.put("estado", estado);
+
+            Connection conexion = obtenerConexion();
+            if (conexion == null) {
+                Alert alerta = new Alert(Alert.AlertType.ERROR, "No se pudo conectar a la base de datos.", ButtonType.OK);
+                alerta.showAndWait();
+                return;
+            }
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(
+                    Menu.class.getResource("/Camping/Recurso.jasper").getPath(),
+                    parametros,
+                    conexion
+            );
+
+            conexion.close();
+
+            if (jasperPrint.getPages().isEmpty()) {
+                Alert alerta = new Alert(Alert.AlertType.INFORMATION, "No se encontraron recursos que coincidan con los filtros.", ButtonType.OK);
+                alerta.showAndWait();
+                return;
+            }
+
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "src/main/resources/Pdf/reportRecurso.pdf");
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alerta = new Alert(Alert.AlertType.ERROR, "Error al generar el reporte: " + e.getMessage(), ButtonType.OK);
+            alerta.showAndWait();
+        }
+    }
+    @FXML
+    private void generarReporteAcompanante() {
+        try {
+            boolean filtroNombre = nombreAcomField.getText() != null && !nombreAcomField.getText().trim().isEmpty();
+            boolean filtroApellido = apellidoAcomField.getText() != null && !apellidoAcomField.getText().trim().isEmpty();
+            boolean filtroReserva = idReservaAcomField.getText() != null && !idReservaAcomField.getText().trim().isEmpty();
+
+            // Eliminar validación que bloquea el reporte si no hay filtros
+            // Para que devuelva todos cuando todos los parámetros sean nulos
+
+            Map<String, Object> parametros = new HashMap<>();
+            parametros.put("nombre", filtroNombre ? nombreAcomField.getText().trim() + "%" : null);
+            parametros.put("apellido", filtroApellido ? apellidoAcomField.getText().trim() + "%" : null);
+            parametros.put("idReserva", filtroReserva ? Integer.parseInt(idReservaAcomField.getText().trim()) : null);
+
+            Connection conexion = obtenerConexion();
+            if (conexion == null) {
+                Alert alerta = new Alert(Alert.AlertType.ERROR, "No se pudo conectar a la base de datos.", ButtonType.OK);
+                alerta.showAndWait();
+                return;
+            }
+
+            String rutaJasper = Paths.get(getClass().getResource("/Camping/Flower.jasper").toURI()).toString();
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(
+                    rutaJasper,
+                    parametros,
+                    conexion
+            );
+
+            conexion.close();
+
+            if (jasperPrint.getPages().isEmpty()) {
+                Alert alerta = new Alert(Alert.AlertType.INFORMATION, "No se encontraron acompañantes que coincidan con los filtros.", ButtonType.OK);
+                alerta.showAndWait();
+                return;
+            }
+
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "src/main/resources/Pdf/reportAcompanante.pdf");
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alerta = new Alert(Alert.AlertType.ERROR, "Error al generar el reporte: " + e.getMessage(), ButtonType.OK);
+            alerta.showAndWait();
+        }
+    }
+
+    @Override
+    public void idiomaCambiado() {
+        actualizarTextos();
+    }
+
+    private void actualizarTextos() {
+        labelCliente.setText(GestorIdiomas.getTexto("cliente"));
+        labelNombre.setText(GestorIdiomas.getTexto("nombre"));
+        labelApellido.setText(GestorIdiomas.getTexto("apellido"));
+        labelFNacimiento.setText(GestorIdiomas.getTexto("fechaNacimiento"));
+        labelEstado.setText(GestorIdiomas.getTexto("estado"));
+        labelReservas.setText(GestorIdiomas.getTexto("reserva"));
+        labelAcompanante.setText(GestorIdiomas.getTexto("acompanante"));
+        labelRecurso.setText(GestorIdiomas.getTexto("recurso"));
+        labelDNI.setText(GestorIdiomas.getTexto("dni"));
+        labelFInicio.setText(GestorIdiomas.getTexto("fechaInicio"));
+        labelFechaFin.setText(GestorIdiomas.getTexto("fechaFin"));
+        labelEstadoReserva.setText(GestorIdiomas.getTexto("estado"));
+        labelIDReserva.setText(GestorIdiomas.getTexto("IDReserva"));
+        labelNombreAcom.setText(GestorIdiomas.getTexto("nombre"));
+        labelApellidoAcom.setText(GestorIdiomas.getTexto("apellido"));
+        labelTipo.setText(GestorIdiomas.getTexto("tipo"));
+        labelCapacidad.setText(GestorIdiomas.getTexto("capacidad"));
+        labelEstadoRecu.setText(GestorIdiomas.getTexto("estado"));
+        labelGenerar.setText(GestorIdiomas.getTexto("GenerarInformes"));
+        btnGenerarCliente.setText(GestorIdiomas.getTexto("GenerarInformes"));
+        btnGenerarReserva.setText(GestorIdiomas.getTexto("GenerarInformes"));
+        btnGenerarRecurso.setText(GestorIdiomas.getTexto("GenerarInformes"));
+        btnGenerarAcom.setText(GestorIdiomas.getTexto("GenerarInformes"));
+
+        mapaClienteTraducido.clear();
+        mapaClienteTraducido.put("ACTIVO", GestorIdiomas.getTexto("ACTIVO"));
+        mapaClienteTraducido.put("BLOQUEADO", GestorIdiomas.getTexto("BLOQUEADO"));
+        mapaClienteTraducido.put("SUSPENDIDO", GestorIdiomas.getTexto("SUSPENDIDO"));
+        ObservableList<String> traducciones = FXCollections.observableArrayList(mapaClienteTraducido.values());
+        estadoClienteCombo.setItems(traducciones);
+        estadoClienteCombo.getSelectionModel().select(0);
+        mapaRecursoTraducido.clear();
+        mapaRecursoTraducido.put("PARCELA", GestorIdiomas.getTexto("PARCELA"));
+        mapaRecursoTraducido.put("BUNGALOW", GestorIdiomas.getTexto("BUNGALOW"));
+        mapaRecursoTraducido.put("BARBACOA", GestorIdiomas.getTexto("BARBACOA"));
+        ObservableList<String> traduccionesRecurso = FXCollections.observableArrayList(mapaRecursoTraducido.values());
+        tipoRecuCombo.setItems(traduccionesRecurso);
+        tipoRecuCombo.getSelectionModel().select(0);
+        mapaRecursoTraducido.clear();
+        mapaRecursoTraducido.put("DISPONIBLE", GestorIdiomas.getTexto("DISPONIBLE"));
+        mapaRecursoTraducido.put("OCUPADO", GestorIdiomas.getTexto("OCUPADO"));
+        mapaRecursoTraducido.put("MANTENIMIENTO", GestorIdiomas.getTexto("MANTENIMIENTO"));
+        traduccionesRecurso = FXCollections.observableArrayList(mapaRecursoTraducido.values());
+        estadoRecuCombo.setItems(traduccionesRecurso);
+        estadoRecuCombo.getSelectionModel().select(0);
+
+        mapaReservaTraducido = new HashMap<>();
+        mapaReservaTraducido.put("PENDIENTE", GestorIdiomas.getTexto("PENDIENTE"));
+        mapaReservaTraducido.put("CANCELADA", GestorIdiomas.getTexto("CANCELADA"));
+        mapaReservaTraducido.put("CONFIRMADA", GestorIdiomas.getTexto("CONFIRMADA"));
+        mapaRecursoTraducido.put("NINGUN ESTADO", GestorIdiomas.getTexto("NINGUNESTADO"));
+        ObservableList<String> traduccionesReserva = FXCollections.observableArrayList(mapaReservaTraducido.values());
+        estadoReservaCombo.setItems(traduccionesReserva);
+        estadoReservaCombo.getSelectionModel().select(0);
+
+
+    }
 }
+

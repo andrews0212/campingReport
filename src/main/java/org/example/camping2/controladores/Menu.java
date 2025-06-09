@@ -37,7 +37,6 @@ import java.sql.DriverManager;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-import java.util.ResourceBundle;
 
 import static org.example.camping2.controladores.GestorIdiomas.cambiarIdioma;
 import static org.example.camping2.controladores.GestorIdiomas.getTexto;

@@ -26,7 +26,10 @@ import javafx.scene.image.ImageView;
 
 import org.example.camping2.modelo.memoria.Memoria;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Locale;
 import java.util.logging.Logger;
 
@@ -104,7 +107,7 @@ public class MenuNew implements IdiomaListener {
         recurso = new TreeItem<>("Recurso");
         reserva = new TreeItem<>("Reserva");
         mapa = new TreeItem<>("Mapa");
-        generarInformes = new TreeItem<>("Generar Informes");
+        generarInformes = new TreeItem<>("GenerarInformes");
 
 
 
@@ -170,7 +173,7 @@ public class MenuNew implements IdiomaListener {
                     String valorNodo = newSelection.getValue();
                     if (valorNodo.equals(GestorIdiomas.getTexto("Mapa"))) {
                         abrirMapa();
-                    } else if (valorNodo.equals("Generar Informes")) { // <-- Aquí lo manejas
+                    } else if (valorNodo.equals(GestorIdiomas.getTexto("GenerarInformes"))) { // <-- Aquí lo manejas
                         generarInformes();
                     }
                 }
@@ -449,6 +452,20 @@ public class MenuNew implements IdiomaListener {
         reserva.getChildren().get(1).setValue(GestorIdiomas.getTexto("agregar"));
         reserva.getChildren().get(2).setValue(GestorIdiomas.getTexto("actualizar"));
         reserva.getChildren().get(3).setValue(GestorIdiomas.getTexto("eliminar"));
+        mapa.setValue(GestorIdiomas.getTexto("Mapa"));
+        generarInformes.setValue(GestorIdiomas.getTexto("GenerarInformes"));
     }
+    public void abrirAyuda(){
+        if (Desktop.isDesktopSupported()) {
+            try {
+                Desktop.getDesktop().browse(new URI("https://gestioncamp.wordpress.com/"));
+            } catch (IOException | URISyntaxException e) {
+                System.err.println("Error al abrir la página de ayuda: " + e.getMessage());
+            }
+        } else {
+            System.err.println("El escritorio no es compatible en este sistema.");
+        }
+    }
+
 
 }

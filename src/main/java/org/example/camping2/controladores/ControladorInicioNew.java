@@ -1,5 +1,6 @@
 package org.example.camping2.controladores;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.camping2.modelo.dto.Cliente;
 import org.example.camping2.modelo.dto.Usuario;
@@ -87,10 +89,19 @@ public class ControladorInicioNew implements IdiomaListener {
                 }
 
                 memoria.update(usuario);
-
-
-            } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
+                Stage stage = (Stage) textFieldContraseña.getScene().getWindow();
+                alert.initOwner(stage);
+                alert.initModality(Modality.WINDOW_MODAL);
+                alert.setContentText("contraseña incorrectos.");
+                alert.showAndWait();
+
+
+            }  else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                Stage stage = (Stage) textFieldContraseña.getScene().getWindow();
+                alert.initOwner(stage);
+                alert.initModality(Modality.WINDOW_MODAL);
                 alert.setContentText("Usuario o contraseña incorrectos.");
                 alert.showAndWait();
             }
@@ -122,6 +133,9 @@ public class ControladorInicioNew implements IdiomaListener {
         }
         if(usuario.getIntentos() >= 3) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
+            Stage stage = (Stage) textFieldContraseña.getScene().getWindow();
+            alert.initOwner(stage);
+            alert.initModality(Modality.WINDOW_MODAL);
             alert.setContentText("Se han agotado los intentos");
             alert.showAndWait();
             return false;
@@ -131,5 +145,26 @@ public class ControladorInicioNew implements IdiomaListener {
 
     public void setRaiz(AnchorPane raiz) {
         this.raiz = raiz;
+    }
+
+    public void volver(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/presentacion.fxml"));
+
+            Parent pantallaPrincipal = loader.load();
+            raiz.getChildren().setAll(pantallaPrincipal);
+
+            ControladorPresentacion controlador = loader.getController();
+            controlador.setMemoria(memoria);
+            controlador.setRaiz(raiz);
+
+            AnchorPane.setTopAnchor(pantallaPrincipal, 0.0);
+            AnchorPane.setBottomAnchor(pantallaPrincipal, 0.0);
+            AnchorPane.setLeftAnchor(pantallaPrincipal, 0.0);
+            AnchorPane.setRightAnchor(pantallaPrincipal, 0.0);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

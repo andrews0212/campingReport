@@ -1,6 +1,9 @@
 package org.example.camping2.controladores;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
@@ -9,6 +12,8 @@ import org.example.camping2.modelo.dto.Usuario;
 import org.example.camping2.modelo.memoria.Memoria;
 import org.example.camping2.modelo.validaciones.RegexValidaciones;
 import org.example.camping2.modelo.validaciones.ValidarUsuario;
+
+import java.io.IOException;
 
 public class ControladorVentanaRegistro {
 
@@ -76,5 +81,26 @@ public class ControladorVentanaRegistro {
     public void setRaiz(AnchorPane raiz) {
         this.raiz = raiz;
 
+    }
+
+    public void volver(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/presentacion.fxml"));
+
+            Parent pantallaPrincipal = loader.load();
+            raiz.getChildren().setAll(pantallaPrincipal);
+
+            ControladorPresentacion controlador = loader.getController();
+            controlador.setMemoria(memoria);
+            controlador.setRaiz(raiz);
+
+            AnchorPane.setTopAnchor(pantallaPrincipal, 0.0);
+            AnchorPane.setBottomAnchor(pantallaPrincipal, 0.0);
+            AnchorPane.setLeftAnchor(pantallaPrincipal, 0.0);
+            AnchorPane.setRightAnchor(pantallaPrincipal, 0.0);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

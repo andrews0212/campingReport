@@ -40,7 +40,7 @@
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin></Label>
-                  <TextField fx:id="idText" promptText="Ingrese el ID">
+                  <TextField fx:id="idText">
                      <VBox.margin>
                         <Insets right="10.0" />
                      </VBox.margin></TextField>
@@ -52,7 +52,7 @@
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin></Label>
-                  <TextField fx:id="nombreText" promptText="Ingrese el Nombre">
+                  <TextField fx:id="nombreText">
                      <VBox.margin>
                         <Insets right="10.0" />
                      </VBox.margin></TextField>
@@ -76,7 +76,7 @@
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin></Label>
-                  <TextField fx:id="capacidadText" promptText="Introduce Capacidad">
+                  <TextField fx:id="capacidadText">
                      <VBox.margin>
                         <Insets right="10.0" />
                      </VBox.margin></TextField>
@@ -88,7 +88,7 @@
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin></Label>
-                  <TextField fx:id="precioText" promptText="Introduce Precio">
+                  <TextField fx:id="precioText">
                      <VBox.margin>
                         <Insets right="10.0" />
                      </VBox.margin></TextField>
@@ -100,7 +100,7 @@
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin></Label>
-                  <TextField fx:id="minimoPersonaText" promptText="Introduce Minimo Personas">
+                  <TextField fx:id="minimoPersonaText">
                      <VBox.margin>
                         <Insets right="10.0" />
                      </VBox.margin></TextField>
@@ -116,7 +116,7 @@
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin></Label>
-                  <TextField fx:id="estadoText" promptText="Introduce Estado">
+                  <TextField fx:id="estadoText">
                      <VBox.margin>
                         <Insets right="10.0" />
                      </VBox.margin></TextField>
@@ -172,7 +172,7 @@
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin></Label>
-                  <TextField fx:id="nombreText1" promptText="Ingrese el Nombre">
+                  <TextField fx:id="nombreText1">
                      <VBox.margin>
                         <Insets right="10.0" />
                      </VBox.margin></TextField>
@@ -196,7 +196,7 @@
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin></Label>
-                  <TextField fx:id="capacidadText1" promptText="Introduce Capacidad">
+                  <TextField fx:id="capacidadText1">
                      <VBox.margin>
                         <Insets right="10.0" />
                      </VBox.margin></TextField>
@@ -208,7 +208,7 @@
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin></Label>
-                  <TextField fx:id="precioText1" promptText="Introduce Precio">
+                  <TextField fx:id="precioText1">
                      <VBox.margin>
                         <Insets right="10.0" />
                      </VBox.margin></TextField>
@@ -220,7 +220,7 @@
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin></Label>
-                  <TextField fx:id="minimoPersonaText1" promptText="Introduce Minimo Personas">
+                  <TextField fx:id="minimoPersonaText1">
                      <VBox.margin>
                         <Insets right="10.0" />
                      </VBox.margin></TextField>
@@ -236,7 +236,7 @@
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin></Label>
-                  <TextField fx:id="estadoText1" promptText="Introduce Estado">
+                  <TextField fx:id="estadoText1">
                      <VBox.margin>
                         <Insets right="10.0" />
                      </VBox.margin></TextField>

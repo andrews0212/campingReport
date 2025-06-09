@@ -67,7 +67,16 @@
             <artifactId>jasperreports-pdf</artifactId>
             <version>7.0.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>5.2.3</version> <!-- o versión compatible -->
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>5.2.3</version>
+        </dependency>
 
         <dependency>
             <groupId>mysql</groupId>
