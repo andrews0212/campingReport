@@ -118,9 +118,5 @@ public class DAOGN<T, ID> {
      *
      * @param args The command-line arguments (not used).
      */
-    public static void main(String[] args) {
-        DAOGN<Cliente, Integer> daoGN = new DAOGN<>(Cliente.class);
-        daoGN.findAll().forEach(System.out::println);
-        daoGN.add(new Cliente("Andrews", "Dos Ramos", "19234567A", "andrewsdosramos@gmail.com", "634127185", LocalDate.now(), "ACTIVO", ""));
-    }
+
 }

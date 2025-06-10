@@ -347,6 +347,8 @@ public class MapaCamping implements IdiomaListener {
 
     }
     private void actualizarColoresCasas() {
+        memoriaRecurso.actualizarMemoriaBD();
+        memoriaReserva.actualizarMemoriaBD();
         for (Map.Entry<String, ImageView> entry : casas.entrySet()) {
             String id = entry.getKey();
             ImageView casa = entry.getValue();
@@ -408,6 +410,7 @@ public class MapaCamping implements IdiomaListener {
                         getClass().getResource("/org/example/camping2/Iconos/home_verde.png").toExternalForm()));
             }
         }
+
     }
 
 

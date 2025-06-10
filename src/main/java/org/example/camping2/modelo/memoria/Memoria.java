@@ -88,5 +88,8 @@ public class Memoria<T, ID> {
         return lista;
     }
 
+    public void actualizarMemoriaBD(){
+        lista = daogn.findAll();
+    }
 
 }
