@@ -19,26 +19,9 @@ import org.example.camping2.modelo.memoria.Memoria;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-public class ReservaController implements Liberable, IdiomaListener {
+public class ReservaController implements IdiomaListener {
 
     private Logger logger;
-    @FXML
-    private Button ButtonBuscar;
-    @FXML
-    private Button ButtonAgregar;
-     @FXML
-    private Button ButtonModificar;
-     @FXML
-    private Button ButtonEliminar;
-
-    @FXML
-    private ImageView buscarImage;
-    @FXML
-    private ImageView agregarImage;
-    @FXML
-    private ImageView modificarImage;
-    @FXML
-    private ImageView eliminarImage;
 
     private StackPane areaContenido;
     private Memoria<Reserva, Integer> memoriaReserva;
@@ -142,32 +125,6 @@ public class ReservaController implements Liberable, IdiomaListener {
         this.memoriaCliente = memoriaCliente;
     }
 
-    @Override
-    public void liberarRecursos() {
-        Platform.runLater(() -> {
-
-
-        if (agregarImage.getImage() != null) {
-            agregarImage.getImage().cancel();
-        }
-        agregarImage.setImage(null);
-
-        if (eliminarImage.getImage() != null) {
-            eliminarImage.getImage().cancel();
-        }
-        eliminarImage.setImage(null);
-
-        if (modificarImage.getImage() != null) {
-            modificarImage.getImage().cancel();
-        }
-        modificarImage.setImage(null);
-
-        if (buscarImage.getImage() != null) {
-            buscarImage.getImage().cancel();
-        }
-        buscarImage.setImage(null);
-        });
-    }
 
     @Override
     public void idiomaCambiado() {
@@ -175,10 +132,7 @@ public class ReservaController implements Liberable, IdiomaListener {
     }
 
     private void actualizarTexto() {
-        ButtonBuscar.setText(GestorIdiomas.getTexto("buscar"));
-        ButtonAgregar.setText(GestorIdiomas.getTexto("agregar"));
-        ButtonModificar.setText(GestorIdiomas.getTexto("actualizar"));
-        ButtonEliminar.setText(GestorIdiomas.getTexto("eliminar"));
+
     }
 
     public void setLogger(Logger logger) {

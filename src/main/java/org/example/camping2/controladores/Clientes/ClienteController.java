@@ -17,8 +17,6 @@ import java.util.logging.Logger;
 public class ClienteController implements IdiomaListener{
 
     private Logger logger;
-    @FXML
-    private Button ButtonBuscar, ButtonAgregar, ButtonModificar, ButtonEliminar;
     private StackPane areaContenido;
     private Memoria<Cliente, Integer> memoria;
 
@@ -121,44 +119,10 @@ public class ClienteController implements IdiomaListener{
         alert.showAndWait();
     }
 
-    public Button getButtonBuscar() {
-        return ButtonBuscar;
-    }
-
-    public Button getButtonAgregar() {
-        return ButtonAgregar;
-    }
-
-    public Button getButtonModificar() {
-        return ButtonModificar;
-    }
-
-    public Button getButtonEliminar() {
-        return ButtonEliminar;
-    }
-
-    public void setButtonBuscar(Button buttonBuscar) {
-        ButtonBuscar = buttonBuscar;
-    }
-
-    public void setButtonAgregar(Button buttonAgregar) {
-        ButtonAgregar = buttonAgregar;
-    }
-
-    public void setButtonModificar(Button buttonModificar) {
-        ButtonModificar = buttonModificar;
-    }
-
-    public void setButtonEliminar(Button buttonEliminar) {
-        ButtonEliminar = buttonEliminar;
-    }
 
 
     private void actualizarTextos() {
-        ButtonBuscar.setText(GestorIdiomas.getTexto("buscar"));
-        ButtonAgregar.setText(GestorIdiomas.getTexto("agregar"));
-        ButtonModificar.setText(GestorIdiomas.getTexto("actualizar"));
-        ButtonEliminar.setText(GestorIdiomas.getTexto("eliminar"));
+
 
     }
 

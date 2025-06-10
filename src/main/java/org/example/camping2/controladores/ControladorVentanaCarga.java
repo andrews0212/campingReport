@@ -9,10 +9,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.camping2.modelo.dto.Usuario;
 import org.example.camping2.modelo.memoria.Memoria;
@@ -76,9 +78,21 @@ public class ControladorVentanaCarga implements Initializable {
             } catch (Exception e) {
                 // Handle any errors and display an error message
                 Platform.runLater(() -> {
-                    JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                    System.exit(0);  // Exit the application on error
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Se ha producido un error");
+                    alert.setContentText(e.getMessage());
+
+                    // Obtener el Stage desde cualquier nodo visible
+                    Stage stage = (Stage) barraProgreso.getScene().getWindow();
+                    alert.initModality(Modality.APPLICATION_MODAL);
+                    alert.initOwner(stage);  // Esto hace que el Alert se muestre delante
+
+                    alert.showAndWait();  // Espera hasta que el usuario cierre el alert
+
+                    System.exit(0);  // Solo salir después de mostrar el mensaje
                 });
+
             }
         });
 

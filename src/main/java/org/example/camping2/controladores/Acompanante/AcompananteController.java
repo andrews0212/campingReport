@@ -1,16 +1,12 @@
 package org.example.camping2.controladores.Acompanante;
 
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import org.example.camping2.controladores.GestorIdiomas;
 import org.example.camping2.controladores.IdiomaListener;
-import org.example.camping2.controladores.Liberable;
 import org.example.camping2.modelo.dto.Acompanante;
 import org.example.camping2.modelo.dto.Reserva;
 import org.example.camping2.modelo.memoria.Memoria;
@@ -19,24 +15,8 @@ import org.example.camping2.modelo.memoria.Memoria;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-public class AcompananteController implements Liberable, IdiomaListener {
+public class AcompananteController implements  IdiomaListener {
     private Logger logger;
-    @FXML
-    private Button ButtonBuscar;
-    @FXML
-    private Button ButtonAgregar;
-    @FXML
-    private Button ButtonModificar;
-    @FXML
-    private Button ButtonEliminar;
-    @FXML
-    private ImageView buscarImage;
-    @FXML
-    private ImageView agregarImage;
-    @FXML
-    private ImageView modificarImage;
-    @FXML
-    private ImageView eliminarImage;
 
 
     private Memoria<Acompanante, Integer> memoriaAcompanante;
@@ -138,32 +118,6 @@ public class AcompananteController implements Liberable, IdiomaListener {
         this.memoriaReserva = memoriaReserva;
     }
 
-    @Override
-    public void liberarRecursos() {
-        Platform.runLater(() -> {
-
-
-            if (agregarImage.getImage() != null) {
-                agregarImage.getImage().cancel();
-            }
-            agregarImage.setImage(null);
-
-            if (eliminarImage.getImage() != null) {
-                eliminarImage.getImage().cancel();
-            }
-            eliminarImage.setImage(null);
-
-            if (modificarImage.getImage() != null) {
-                modificarImage.getImage().cancel();
-            }
-            modificarImage.setImage(null);
-
-            if (buscarImage.getImage() != null) {
-                buscarImage.getImage().cancel();
-            }
-            buscarImage.setImage(null);
-        });
-    }
 
     @Override
     public void idiomaCambiado() {
@@ -171,10 +125,7 @@ public class AcompananteController implements Liberable, IdiomaListener {
     }
 
     private void actualizarTexto() {
-        ButtonBuscar.setText(GestorIdiomas.getTexto("buscar"));
-        ButtonAgregar.setText(GestorIdiomas.getTexto("agregar"));
-        ButtonModificar.setText(GestorIdiomas.getTexto("actualizar"));
-        ButtonEliminar.setText(GestorIdiomas.getTexto("eliminar"));
+
     }
 
     public void setLogger(Logger logger) {
