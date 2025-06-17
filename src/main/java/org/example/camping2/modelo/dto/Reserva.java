@@ -255,4 +255,8 @@ public class Reserva {
     public void setAcompañantes(Set<Acompanante> acompañantes) {
         this.acompañantes = acompañantes;
     }
+
+    public Cliente getCliente() {
+        return null;
+    }
 }

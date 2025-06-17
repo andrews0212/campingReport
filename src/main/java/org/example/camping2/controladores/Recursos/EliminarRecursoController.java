@@ -248,13 +248,13 @@ public class EliminarRecursoController implements IdiomaListener {
         labelNombre.setText(GestorIdiomas.getTexto("nombre"));
         labelTipo.setText(GestorIdiomas.getTexto("tipo"));
         labelCapacidad.setText(GestorIdiomas.getTexto("capacidad"));
-        labelId.setText(GestorIdiomas.getTexto("id"));
+        labelId.setText(GestorIdiomas.getTexto("labelIDRecurso"));
         labelPrecio.setText(GestorIdiomas.getTexto("precio"));
         labelMinimoPersona.setText(GestorIdiomas.getTexto("minimoPersonas"));
         labelEstado.setText(GestorIdiomas.getTexto("estado"));
         btnBuscar.setText(GestorIdiomas.getTexto("buscar"));
         btnBuscarTodos.setText(GestorIdiomas.getTexto("buscarTodos"));
-        idColumn.setText(GestorIdiomas.getTexto("id"));
+        idColumn.setText(GestorIdiomas.getTexto("labelIDRecurso"));
         nombreColumn.setText(GestorIdiomas.getTexto("nombre"));
         tipoColumn.setText(GestorIdiomas.getTexto("tipo"));
         capacidadColumn.setText(GestorIdiomas.getTexto("capacidad"));

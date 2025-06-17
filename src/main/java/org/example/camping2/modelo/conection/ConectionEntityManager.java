@@ -25,4 +25,8 @@ public class ConectionEntityManager {
         em = emf.createEntityManager();
         return em;
     }
+    public static EntityManagerFactory getEntityManagerFactory() {
+        return emf; // donde emf es la instancia creada con Persistence.createEntityManagerFactory(...)
+    }
+
 }

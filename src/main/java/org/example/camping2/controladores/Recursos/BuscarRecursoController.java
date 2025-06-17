@@ -153,7 +153,7 @@ public class BuscarRecursoController implements IdiomaListener {
         labelEstado.setText(GestorIdiomas.getTexto("estado"));
         buscarButton.setText(GestorIdiomas.getTexto("buscar"));
         buscarTodosButton.setText(GestorIdiomas.getTexto("buscarTodos"));
-        idColumn.setText(GestorIdiomas.getTexto("id"));
+        idColumn.setText(GestorIdiomas.getTexto("labelIDRecurso"));
         nombreColumn.setText(GestorIdiomas.getTexto("nombre"));
         tipoColumn.setText(GestorIdiomas.getTexto("tipo"));
         capacidadColumn.setText(GestorIdiomas.getTexto("capacidad"));

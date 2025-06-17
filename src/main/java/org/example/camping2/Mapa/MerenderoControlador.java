@@ -28,6 +28,7 @@ public class MerenderoControlador {
     private List<Label> textosMesas;
     private List<Recurso> recursosActuales;
     private Memoria<Reserva, Integer> memoriaReserva;
+    private Memoria<Recurso, Integer> memoriaRecurso;
 
 
     @FXML
@@ -110,14 +111,24 @@ public class MerenderoControlador {
     }
 
     private void actualizarColores() {
-        if (recursosActuales == null) return;
+        if (recursosActuales == null || memoriaRecurso == null) return;
+
+        memoriaRecurso.actualizarMemoriaBD();
+        memoriaReserva.actualizarMemoriaBD();
 
         for (int i = 0; i < recursosActuales.size() && i < botonesMesas.size(); i++) {
-            Button boton = botonesMesas.get(i);
-            Recurso recurso = recursosActuales.get(i);
-            cambiarColorBotonPorEstado(boton, recurso.getEstado());
+            Recurso recursoViejo = recursosActuales.get(i);
+            Recurso recursoActualizado = memoriaRecurso.findById(recursoViejo.getId());
+
+            if (recursoActualizado != null) {
+                recursosActuales.set(i, recursoActualizado);  // actualizar la lista
+                cambiarColorBotonPorEstado(botonesMesas.get(i), recursoActualizado.getEstado());
+                textosMesas.get(i).setText(recursoActualizado.getNombre() + "\n" + recursoActualizado.getEstado());
+            }
         }
     }
+
+
 
     private void cambiarColorBotonPorEstado(Button boton, String estado) {
         if (estado == null) estado = "";
@@ -138,5 +149,13 @@ public class MerenderoControlador {
 
     public void setMemoriaReserva(Memoria<Reserva, Integer> memoriaReserva) {
         this.memoriaReserva = memoriaReserva;
+        memoriaReserva.actualizarMemoriaBD();
     }
+
+
+    public void setMemoriaRecurso(Memoria<Recurso, Integer> memoriaRecurso) {
+        this.memoriaRecurso = memoriaRecurso;
+        memoriaRecurso.actualizarMemoriaBD();
+    }
+
 }

@@ -4,6 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -150,7 +152,6 @@ public class GenerarInformeController implements IdiomaListener {
     @FXML
     private void generarReporte() {
         try {
-            // Validar que al menos un filtro tenga valor para evitar cargar todo
             boolean filtroNombre = !nombreClienteField.getText().isEmpty();
             boolean filtroApellido = !apellidoClienteField.getText().isEmpty();
             boolean filtroFecha = fNacClienteField.getValue() != null;
@@ -158,26 +159,21 @@ public class GenerarInformeController implements IdiomaListener {
                     && !estadoClienteCombo.getValue().equals("NINGUN ESTADO");
 
             if (!filtroNombre && !filtroApellido && !filtroFecha && !filtroEstado) {
-                // No hay filtros, no generamos reporte
-                System.out.println("No se puede generar reporte sin filtros.");
-                // Puedes mostrar una alerta:
                 Alert alerta = new Alert(Alert.AlertType.WARNING, "Debe ingresar al menos un filtro para generar el reporte.", ButtonType.OK);
                 alerta.showAndWait();
                 return;
             }
-            String estado = null;
-            if (estadoClienteCombo.getValue().equals("Asset")){
-                estado = "ACTIVO";
-            } else if (estadoClienteCombo.getValue().equals("Blocked")){
-                estado = "BLOQUEADO";
-            } else if (estadoClienteCombo.getValue().equals("Suspended")){
-                estado = "SUSPENDIDO";
 
+            String estado = estadoClienteCombo.getValue();
+            if (estadoClienteCombo.getValue().equals("Asset")) {
+                estado = "ACTIVO";
+            } else if (estadoClienteCombo.getValue().equals("Blocked")) {
+                estado = "BLOQUEADO";
+            } else if (estadoClienteCombo.getValue().equals("Suspended")) {
+                estado = "SUSPENDIDO";
             }
 
             Map<String, Object> parametros = new HashMap<>();
-
-            // Igual que antes, poner los parámetros si existen
             if (filtroNombre) parametros.put("nombre", nombreClienteField.getText() + "%");
             else parametros.put("nombre", null);
 
@@ -185,16 +181,28 @@ public class GenerarInformeController implements IdiomaListener {
             else parametros.put("apellido", null);
 
             parametros.put("fechaNacimiento", filtroFecha ? java.sql.Date.valueOf(fNacClienteField.getValue()) : null);
-
-            if (filtroEstado) parametros.put("estado", estado);
-            else parametros.put("estado", null);
+            parametros.put("estado", filtroEstado ? estado : null);
 
             Connection conexion = obtenerConexion();
 
-            JasperPrint jasperPrint = JasperFillManager.fillReport(Menu.class.getResource("/Camping/Cliente.jasper").getPath(),
+            String rutaJasper = Paths.get(getClass().getResource("/Camping/Cliente.jasper").toURI()).toString();
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(
+                    rutaJasper,
                     parametros,
                     conexion
             );
+
+            // 🚨 Verificamos si no hay resultados
+            if (jasperPrint.getPages().isEmpty()) {
+                Alert alerta = new Alert(Alert.AlertType.INFORMATION, "No se encontraron resultados con los filtros aplicados.", ButtonType.OK);
+                Stage stage = (Stage) capacidadRecuText.getScene().getWindow();
+                alerta.initOwner(stage);
+                alerta.initModality(Modality.WINDOW_MODAL);
+                alerta.showAndWait();
+                conexion.close();
+                return;
+            }
 
             JasperExportManager.exportReportToPdfFile(jasperPrint, "src/main/resources/Pdf/report.pdf");
             JasperViewer.viewReport(jasperPrint, false);
@@ -204,6 +212,7 @@ public class GenerarInformeController implements IdiomaListener {
             e.printStackTrace();
         }
     }
+
     @FXML
     private void generarReporteReserva() {
         try {
@@ -215,6 +224,9 @@ public class GenerarInformeController implements IdiomaListener {
 
             if (!filtroDNI && !filtroFechaInicio && !filtroFechaFin && !filtroEstado) {
                 Alert alerta = new Alert(Alert.AlertType.WARNING, "Debe ingresar al menos un filtro para generar el reporte.", ButtonType.OK);
+                Stage stage = (Stage) capacidadRecuText.getScene().getWindow();
+                alerta.initOwner(stage);
+                alerta.initModality(Modality.WINDOW_MODAL);
                 alerta.showAndWait();
                 return;
             }
@@ -236,12 +248,17 @@ public class GenerarInformeController implements IdiomaListener {
             Connection conexion = obtenerConexion();
             if (conexion == null) {
                 Alert alerta = new Alert(Alert.AlertType.ERROR, "No se pudo conectar a la base de datos.", ButtonType.OK);
+                Stage stage = (Stage) capacidadRecuText.getScene().getWindow();
+                alerta.initOwner(stage);
+                alerta.initModality(Modality.WINDOW_MODAL);
                 alerta.showAndWait();
                 return;
             }
 
+            String rutaJasper = Paths.get(getClass().getResource("/Camping/Reserva.jasper").toURI()).toString();
+
             JasperPrint jasperPrint = JasperFillManager.fillReport(
-                    Menu.class.getResource("/Camping/Reserva.jasper").getPath(),
+                    rutaJasper,
                     parametros,
                     conexion
             );
@@ -250,6 +267,9 @@ public class GenerarInformeController implements IdiomaListener {
 
             if (jasperPrint.getPages().isEmpty()) {
                 Alert alerta = new Alert(Alert.AlertType.INFORMATION, "No se encontraron reservas que coincidan con los filtros.", ButtonType.OK);
+                Stage stage = (Stage) capacidadRecuText.getScene().getWindow();
+                alerta.initOwner(stage);
+                alerta.initModality(Modality.WINDOW_MODAL);
                 alerta.showAndWait();
                 return;
             }
@@ -260,6 +280,9 @@ public class GenerarInformeController implements IdiomaListener {
         } catch (Exception e) {
             e.printStackTrace();
             Alert alerta = new Alert(Alert.AlertType.ERROR, "Error al generar el reporte: " + e.getMessage(), ButtonType.OK);
+            Stage stage = (Stage) capacidadRecuText.getScene().getWindow();
+            alerta.initOwner(stage);
+            alerta.initModality(Modality.WINDOW_MODAL);
             alerta.showAndWait();
         }
     }
@@ -276,7 +299,7 @@ public class GenerarInformeController implements IdiomaListener {
                 alerta.showAndWait();
                 return;
             }
-            String tipo = null;
+            String tipo = tipoRecuCombo.getValue();
             if(tipoRecuCombo.getValue().equals("BARBECUE")){
                 tipo = "BARBACOA";
             } else if (tipoRecuCombo.getValue().equals("BUNGALOW")) {
@@ -285,7 +308,7 @@ public class GenerarInformeController implements IdiomaListener {
                 tipo = "PARCELA";
             }
 
-            String estado = null;
+            String estado = estadoRecuCombo.getValue();
             if (estadoRecuCombo.getValue().equals("Available")){
                 estado = "DISPONIBLE";
             }
@@ -309,8 +332,10 @@ public class GenerarInformeController implements IdiomaListener {
                 return;
             }
 
+            String rutaJasper = Paths.get(getClass().getResource("/Camping/Recurso.jasper").toURI()).toString();
+
             JasperPrint jasperPrint = JasperFillManager.fillReport(
-                    Menu.class.getResource("/Camping/Recurso.jasper").getPath(),
+                    rutaJasper,
                     parametros,
                     conexion
             );
@@ -329,6 +354,9 @@ public class GenerarInformeController implements IdiomaListener {
         } catch (Exception e) {
             e.printStackTrace();
             Alert alerta = new Alert(Alert.AlertType.ERROR, "Error al generar el reporte: " + e.getMessage(), ButtonType.OK);
+            Stage stage = (Stage) capacidadRecuText.getScene().getWindow();
+            alerta.initOwner(stage);
+            alerta.initModality(Modality.WINDOW_MODAL);
             alerta.showAndWait();
         }
     }
@@ -350,6 +378,9 @@ public class GenerarInformeController implements IdiomaListener {
             Connection conexion = obtenerConexion();
             if (conexion == null) {
                 Alert alerta = new Alert(Alert.AlertType.ERROR, "No se pudo conectar a la base de datos.", ButtonType.OK);
+                Stage stage = (Stage) capacidadRecuText.getScene().getWindow();
+                alerta.initOwner(stage);
+                alerta.initModality(Modality.WINDOW_MODAL);
                 alerta.showAndWait();
                 return;
             }
@@ -366,6 +397,9 @@ public class GenerarInformeController implements IdiomaListener {
 
             if (jasperPrint.getPages().isEmpty()) {
                 Alert alerta = new Alert(Alert.AlertType.INFORMATION, "No se encontraron acompañantes que coincidan con los filtros.", ButtonType.OK);
+                Stage stage = (Stage) capacidadRecuText.getScene().getWindow();
+                alerta.initOwner(stage);
+                alerta.initModality(Modality.WINDOW_MODAL);
                 alerta.showAndWait();
                 return;
             }
@@ -376,6 +410,9 @@ public class GenerarInformeController implements IdiomaListener {
         } catch (Exception e) {
             e.printStackTrace();
             Alert alerta = new Alert(Alert.AlertType.ERROR, "Error al generar el reporte: " + e.getMessage(), ButtonType.OK);
+            Stage stage = (Stage) capacidadRecuText.getScene().getWindow();
+            alerta.initOwner(stage);
+            alerta.initModality(Modality.WINDOW_MODAL);
             alerta.showAndWait();
         }
     }

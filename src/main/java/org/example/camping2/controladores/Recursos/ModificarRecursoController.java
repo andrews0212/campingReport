@@ -15,7 +15,6 @@ import org.example.camping2.modelo.validaciones.ValidarRecurso;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 public class ModificarRecursoController implements IdiomaListener {
@@ -43,12 +42,17 @@ public class ModificarRecursoController implements IdiomaListener {
     @FXML
     private TableColumn<Recurso, String> nombreColumn, tipoColumn, estadoColumn;
     @FXML
-    private TextField nombreText1, capacidadText1, precioText1, minimoPersonaText1, estadoText1;
+    private TextField nombreText1, capacidadText1, precioText1, minimoPersonaText1;
     @FXML
     private ComboBox<String> tipoCombo1;
+    @FXML
+    private ComboBox<String> estadoCombo;
+
 
     private final ObservableList<Recurso> recursoList = FXCollections.observableArrayList();
     private Map<String, String> mapaTipoTraducido;
+    private Map<String, String> mapaEstadoTraducido;
+
     private Memoria<Recurso, Integer> memoria;
 
     public void setMemoriaRecurso(Memoria<Recurso, Integer> memoria) {
@@ -83,6 +87,14 @@ public class ModificarRecursoController implements IdiomaListener {
         minimoColumn.setCellValueFactory(new PropertyValueFactory<>("minimoPersonas"));
         estadoColumn.setCellValueFactory(new PropertyValueFactory<>("estado"));
         recursoTable.setItems(recursoList);
+
+        mapaEstadoTraducido = new HashMap<>();
+        mapaEstadoTraducido.put("DISPONIBLE", GestorIdiomas.getTexto("DISPONIBLE"));
+        mapaEstadoTraducido.put("OCUPADO", GestorIdiomas.getTexto("OCUPADO"));
+        mapaEstadoTraducido.put("MANTENIMIENTO", GestorIdiomas.getTexto("MANTENIMIENTO"));
+        traducciones = FXCollections.observableArrayList(mapaEstadoTraducido.values());
+        estadoCombo.setItems(traducciones);
+        estadoCombo.getSelectionModel().select(0);
 
         GestorIdiomas.agregarListener(this);
         actualizarTexto();
@@ -165,7 +177,14 @@ public class ModificarRecursoController implements IdiomaListener {
             String capacidadNuevo = capacidadText1.getText().trim();
             String precioNuevo = precioText1.getText().trim();
             String minimoNuevo = minimoPersonaText1.getText().trim();
-            String estadoNuevo = estadoText1.getText().trim();
+
+
+            String estadoNuevo = estadoCombo.getValue();
+            String estado = mapaEstadoTraducido.entrySet().stream()
+                    .filter(e -> e.getValue().equals(estadoNuevo))
+                    .map(Map.Entry::getKey)
+                    .findFirst().orElse(null);
+
 
             if (!nombreNuevo.isEmpty()) {
                 if (!ValidarRecurso.ValidarNombre(nombreNuevo)) {
@@ -217,7 +236,7 @@ public class ModificarRecursoController implements IdiomaListener {
             }
 
             if (!estadoNuevo.isEmpty()) {
-                seleccionado.setEstado(estadoNuevo);
+                seleccionado.setEstado(estado);
             }
 
             if (memoria.update(seleccionado)) {
@@ -270,7 +289,7 @@ public class ModificarRecursoController implements IdiomaListener {
 
     private void actualizarTexto() {
         labelModificar.setText(GestorIdiomas.getTexto("modificarRecurso"));
-        labelId.setText(GestorIdiomas.getTexto("id"));
+        labelId.setText(GestorIdiomas.getTexto("labelIDRecurso"));
         labelNombre.setText(GestorIdiomas.getTexto("nombre"));
         labelTipo.setText(GestorIdiomas.getTexto("tipo"));
         labelCapacidad.setText(GestorIdiomas.getTexto("capacidad"));
@@ -300,7 +319,16 @@ public class ModificarRecursoController implements IdiomaListener {
         tipoCombo1.setItems(traducciones);
         tipoCombo1.getSelectionModel().select(0);
 
-        idColumn.setText(GestorIdiomas.getTexto("id"));
+        // Actualizar elementos de comboBox con traducciones
+        mapaEstadoTraducido.put("DISPONIBLE", GestorIdiomas.getTexto("DISPONIBLE"));
+        mapaEstadoTraducido.put("OCUPADO", GestorIdiomas.getTexto("OCUPADO"));
+        mapaEstadoTraducido.put("MANTENIMIENTO", GestorIdiomas.getTexto("MANTENIMIENTO"));
+
+         traducciones = FXCollections.observableArrayList(mapaEstadoTraducido.values());
+        estadoCombo.setItems(traducciones);
+        estadoCombo.getSelectionModel().select(0);
+
+        idColumn.setText(GestorIdiomas.getTexto("labelIDRecurso"));
         nombreColumn.setText(GestorIdiomas.getTexto("nombre"));
         tipoColumn.setText(GestorIdiomas.getTexto("tipo"));
         capacidadColumn.setText(GestorIdiomas.getTexto("capacidad"));

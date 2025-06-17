@@ -40,7 +40,7 @@ public class MenuNew implements IdiomaListener {
 
     private AnchorPane raiz;
 
-    private static final Logger logger = LogConfig.configurarLogger(MenuNew.class);
+    private static final Logger logger = Logger.getLogger(MenuNew.class.getName());
 
     @FXML
     private StackPane contenedorCentral;
@@ -283,6 +283,8 @@ public class MenuNew implements IdiomaListener {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/mapa/MapaCamping.fxml"));
             AnchorPane mapaPane = loader.load();
             MapaCamping mapaController = loader.getController();
+            memoriaRecurso.actualizarMemoriaBD();
+            memoriaReserva.actualizarMemoriaBD();
             mapaController.setMemoriaRecurso(memoriaRecurso);
             mapaController.setMemoriaReserva(memoriaReserva);
 

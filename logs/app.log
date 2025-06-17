@@ -510,3 +510,363 @@ jun 09, 2025 6:51:56 P. M. org.example.camping2.controladores.MenuNew initializ
 ADVERTENCIA: INICIADO
 jun 09, 2025 6:56:59 P. M. org.example.camping2.controladores.MenuNew initialize
 ADVERTENCIA: INICIADO
+jun 16, 2025 1:00:23 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 16, 2025 1:12:53 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 16, 2025 1:15:35 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 16, 2025 1:25:16 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 16, 2025 1:30:04 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 16, 2025 1:33:10 P. M. org.example.camping2.controladores.Reservas.CrearReservaController hacerReserva
+ADVERTENCIA: Cliente no encontrado para DNI: Y8217590A
+jun 16, 2025 1:34:22 P. M. org.example.camping2.controladores.Reservas.CrearReservaController hacerReserva
+ADVERTENCIA: Cliente no encontrado para DNI: 123456789A
+jun 16, 2025 1:37:07 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 16, 2025 1:39:20 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 16, 2025 1:39:28 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 16, 2025 1:41:13 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 16, 2025 1:44:52 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 16, 2025 1:47:55 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 17, 2025 3:59:34 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 17, 2025 4:04:51 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 17, 2025 4:08:32 P. M. org.example.camping2.controladores.MenuNew initialize
+ADVERTENCIA: INICIADO
+jun 17, 2025 4:49:57 P. M. org.example.camping2.controladores.ControladorInicioNew iniciar
+ADVERTENCIA: Intento de inicio con usuario no existente: afsasf
+jun 17, 2025 4:50:45 P. M. org.example.camping2.controladores.ControladorVentanaRegistro crearUsuario
+ADVERTENCIA: Contraseña inválida
+jun 17, 2025 4:50:48 P. M. org.example.camping2.controladores.ControladorVentanaRegistro crearUsuario
+ADVERTENCIA: Contraseña inválida
+jun 17, 2025 4:51:21 P. M. org.example.camping2.controladores.ControladorVentanaRegistro crearUsuario
+ADVERTENCIA: Contraseña inválida
+jun 17, 2025 5:21:44 P. M. org.example.camping2.controladores.ControladorVentanaRegistro crearUsuario
+ADVERTENCIA: Contraseña inválida
+jun 17, 2025 5:23:50 P. M. org.example.camping2.controladores.ControladorInicioNew iniciar
+ADVERTENCIA: Error cargando MenuNew.fxml
+javafx.fxml.LoadException: 
+/C:/Users/andre/IdeaProjects/campingReport/target/classes/org/example/camping2/vista/MenuNew.fxml
+
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader.constructLoadException(FXMLLoader.java:2722)
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2692)
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2563)
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2531)
+	at org.example.camping2/org.example.camping2.controladores.ControladorInicioNew.iniciar(ControladorInicioNew.java:79)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@20.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@20.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1853)
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1726)
+	at javafx.base@20.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@20.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@20.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@20.0.1/javafx.scene.Node.fireEvent(Node.java:8944)
+	at javafx.controls@20.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@20.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@20.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@20.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@20.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@20.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@20.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@20.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3980)
+	at javafx.graphics@20.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1890)
+	at javafx.graphics@20.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2704)
+	at javafx.graphics@20.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@20.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@20.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@20.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics@20.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@20.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+	at javafx.graphics@20.0.1/com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at javafx.graphics@20.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@20.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:115)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@20.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@20.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2688)
+	... 57 more
+Caused by: java.lang.NullPointerException: Cannot invoke "java.util.logging.Logger.warning(String)" because "this.logger" is null
+	at org.example.camping2/org.example.camping2.controladores.MenuNew.initialize(MenuNew.java:71)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	... 64 more
+
+jun 17, 2025 5:27:13 P. M. org.example.camping2.controladores.ControladorInicioNew iniciar
+ADVERTENCIA: Error cargando MenuNew.fxml
+javafx.fxml.LoadException: 
+/C:/Users/andre/IdeaProjects/campingReport/target/classes/org/example/camping2/vista/MenuNew.fxml
+
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader.constructLoadException(FXMLLoader.java:2722)
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2692)
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2563)
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2531)
+	at org.example.camping2/org.example.camping2.controladores.ControladorInicioNew.iniciar(ControladorInicioNew.java:79)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@20.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@20.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1853)
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1726)
+	at javafx.base@20.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@20.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@20.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@20.0.1/javafx.scene.Node.fireEvent(Node.java:8944)
+	at javafx.controls@20.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@20.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@20.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@20.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@20.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@20.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@20.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@20.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3980)
+	at javafx.graphics@20.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1890)
+	at javafx.graphics@20.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2704)
+	at javafx.graphics@20.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@20.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@20.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@20.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics@20.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@20.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+	at javafx.graphics@20.0.1/com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at javafx.graphics@20.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@20.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:115)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@20.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@20.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2688)
+	... 57 more
+Caused by: java.lang.NullPointerException: Cannot invoke "java.util.logging.Logger.warning(String)" because "this.logger" is null
+	at org.example.camping2/org.example.camping2.controladores.MenuNew.initialize(MenuNew.java:71)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	... 64 more
+
+jun 17, 2025 5:28:39 P. M. org.example.camping2.controladores.ControladorInicioNew iniciar
+ADVERTENCIA: Error cargando MenuNew.fxml
+javafx.fxml.LoadException: 
+/C:/Users/andre/IdeaProjects/campingReport/target/classes/org/example/camping2/vista/MenuNew.fxml
+
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader.constructLoadException(FXMLLoader.java:2722)
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2692)
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2563)
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2531)
+	at org.example.camping2/org.example.camping2.controladores.ControladorInicioNew.iniciar(ControladorInicioNew.java:79)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@20.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@20.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1853)
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1726)
+	at javafx.base@20.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@20.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@20.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@20.0.1/javafx.scene.Node.fireEvent(Node.java:8944)
+	at javafx.controls@20.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@20.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@20.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@20.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@20.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@20.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@20.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@20.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3980)
+	at javafx.graphics@20.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1890)
+	at javafx.graphics@20.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2704)
+	at javafx.graphics@20.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@20.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@20.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@20.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics@20.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@20.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+	at javafx.graphics@20.0.1/com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at javafx.graphics@20.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@20.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:115)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@20.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@20.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2688)
+	... 57 more
+Caused by: java.lang.NullPointerException: Cannot invoke "java.util.logging.Logger.warning(String)" because "this.logger" is null
+	at org.example.camping2/org.example.camping2.controladores.MenuNew.initialize(MenuNew.java:71)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	... 64 more
+
+jun 17, 2025 5:31:49 P. M. org.example.camping2.controladores.ControladorInicioNew iniciar
+ADVERTENCIA: Error cargando MenuNew.fxml
+javafx.fxml.LoadException: 
+/C:/Users/andre/IdeaProjects/campingReport/target/classes/org/example/camping2/vista/MenuNew.fxml
+
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader.constructLoadException(FXMLLoader.java:2722)
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2692)
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2563)
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2531)
+	at org.example.camping2/org.example.camping2.controladores.ControladorInicioNew.iniciar(ControladorInicioNew.java:79)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@20.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@20.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1853)
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1726)
+	at javafx.base@20.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@20.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@20.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@20.0.1/javafx.scene.Node.fireEvent(Node.java:8944)
+	at javafx.controls@20.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@20.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@20.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@20.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@20.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@20.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@20.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@20.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@20.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3980)
+	at javafx.graphics@20.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1890)
+	at javafx.graphics@20.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2704)
+	at javafx.graphics@20.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@20.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@20.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@20.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics@20.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@20.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+	at javafx.graphics@20.0.1/com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at javafx.graphics@20.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@20.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:115)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@20.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@20.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@20.0.1/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2688)
+	... 57 more
+Caused by: java.lang.NullPointerException: Cannot invoke "java.util.logging.Logger.warning(String)" because "this.logger" is null
+	at org.example.camping2/org.example.camping2.controladores.MenuNew.initialize(MenuNew.java:71)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	... 64 more
+
+jun 17, 2025 6:57:48 P. M. org.example.camping2.controladores.ControladorInicioNew iniciar
+ADVERTENCIA: Intento de inicio con usuario no existente: asfaf

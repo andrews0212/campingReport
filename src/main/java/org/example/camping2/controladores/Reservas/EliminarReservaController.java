@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import org.example.camping2.controladores.GestorIdiomas;
 import org.example.camping2.controladores.IdiomaListener;
 import org.example.camping2.modelo.dto.Reserva;
@@ -220,25 +221,37 @@ public class EliminarReservaController implements IdiomaListener {
             return;
         }
 
-        Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmacion.setTitle("Confirmar eliminación");
-        confirmacion.setHeaderText(null);
-        confirmacion.setContentText("¿Está seguro de que desea eliminar esta reserva?");
-
-        confirmacion.showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK) {
-                memoriaReserva.delete(seleccionada.getId());
-                Reserva.remove(seleccionada); // Actualiza la tabla
+        try {
+            memoriaReserva.delete(seleccionada.getId());
+            Reserva.remove(seleccionada); // Actualiza la tabla
+            if (logger != null) {
+                logger.info("Reserva eliminada: ID " + seleccionada.getId());
+            }
+        } catch (Exception e) {
+            // Verificamos si es una excepción por restricción de clave foránea
+            if (e.getCause() != null && e.getCause().getMessage().contains("a foreign key constraint fails")) {
+                mostrarAlerta("No se puede eliminar la reserva porque tiene acompañantes asociados.");
                 if (logger != null) {
-                    logger.info("Reserva eliminada: ID " + seleccionada.getId());
+                    logger.warning("Error al eliminar reserva: reserva con acompañantes asociados. ID: " + seleccionada.getId());
+                }
+            } else {
+                mostrarAlerta("Error inesperado al eliminar la reserva.");
+                e.printStackTrace(); // o usar logger
+                if (logger != null) {
+                    logger.severe("Error inesperado al eliminar reserva: " + e.getMessage());
                 }
             }
-        });
+        }
     }
+
+
 
     private void mostrarAlerta(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Advertencia");
+        // Obtener el Stage actual y asignarlo como propietario
+        Stage stage = (Stage) labelDNI.getScene().getWindow(); // cualquier nodo sirve
+        alert.initOwner(stage);
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
         alert.showAndWait();
@@ -260,7 +273,7 @@ public class EliminarReservaController implements IdiomaListener {
         estadoCombo1.setItems(FXCollections.observableArrayList(mapaEstadoTraducido.values()));
         estadoCombo1.getSelectionModel().selectFirst();
         labelEliminarReserva.setText(GestorIdiomas.getTexto("eliminarReserva"));
-        labelId.setText(GestorIdiomas.getTexto("id"));
+        labelId.setText(GestorIdiomas.getTexto("labelIDReserva"));
         labelFechaInicio.setText(GestorIdiomas.getTexto("fechaInicio"));
         labelFechaFin.setText(GestorIdiomas.getTexto("fechaFin"));
         labelPrecio.setText(GestorIdiomas.getTexto("precioTotal"));
@@ -269,7 +282,7 @@ public class EliminarReservaController implements IdiomaListener {
         btnBuscar.setText(GestorIdiomas.getTexto("buscar"));
         btnBuscarTodos.setText(GestorIdiomas.getTexto("buscarTodos"));
         btnEliminar.setText(GestorIdiomas.getTexto("eliminar"));
-        idColumn.setText(GestorIdiomas.getTexto("id"));
+        idColumn.setText(GestorIdiomas.getTexto("labelIDReserva"));
         fechaInicioColumn.setText(GestorIdiomas.getTexto("fechaInicio"));
         fechaFinColumn.setText(GestorIdiomas.getTexto("fechaFin"));
         nombreColumn.setText(GestorIdiomas.getTexto("nombre"));

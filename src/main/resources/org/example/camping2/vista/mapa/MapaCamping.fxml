@@ -542,7 +542,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button fx:id="btnRefrezcar" layoutX="1054.0" layoutY="860.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="196.0" style="-fx-background-color: #7886C7;" text="Refrecar" textFill="WHITE">
+      <Button onAction="#getBungalowsPorSalir" fx:id="btnRefrezcar" layoutX="1054.0" layoutY="860.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="196.0" style="-fx-background-color: #7886C7;" text="Refrecar" textFill="WHITE">
          <font>
             <Font name="MyriadPro-Regular" size="21.0" />
          </font>

@@ -160,14 +160,10 @@ public class CrearRecursoController implements IdiomaListener {
     public void actualizarTexto() {
         labelAgregarRecurso.setText(GestorIdiomas.getTexto("labelAgregarRecurso"));
         labelNombre.setText(GestorIdiomas.getTexto("nombre"));
-        nombreField.setPromptText(GestorIdiomas.getTexto("nombreField"));
         labelTipo.setText(GestorIdiomas.getTexto("tipo"));
         labelCapacidad.setText(GestorIdiomas.getTexto("capacidad"));
-        capacidadField.setPromptText(GestorIdiomas.getTexto("capacidadField"));
         labelPrecio.setText(GestorIdiomas.getTexto("precio"));
-        precioField.setPromptText(GestorIdiomas.getTexto("precioField"));
         labelMinimoPersonas.setText(GestorIdiomas.getTexto("minimoPersonas"));
-        minimoPersonasField.setPromptText(GestorIdiomas.getTexto("minimoPersonasField"));
         btnCrear.setText(GestorIdiomas.getTexto("btnCrear"));
         mapaTipoTraducido.clear();
         mapaTipoTraducido.put("PARCELA", GestorIdiomas.getTexto("PARCELA"));

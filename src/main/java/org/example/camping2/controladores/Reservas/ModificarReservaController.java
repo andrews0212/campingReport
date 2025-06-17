@@ -321,7 +321,7 @@ public class ModificarReservaController implements IdiomaListener {
 
     private void actualizarTexto() {
         labelModificar.setText(GestorIdiomas.getTexto("labelModificarReserva"));
-        labelId.setText(GestorIdiomas.getTexto("id"));
+        labelId.setText(GestorIdiomas.getTexto("labelIDReserva"));
         labelFechaInicio.setText(GestorIdiomas.getTexto("fechaInicio"));
         labelFechaFin.setText(GestorIdiomas.getTexto("fechaFin"));
         labelPrecio.setText(GestorIdiomas.getTexto("precioTotal"));
@@ -337,7 +337,7 @@ public class ModificarReservaController implements IdiomaListener {
         labelPrecio2.setText(GestorIdiomas.getTexto("precioTotal"));
         labelEstado2.setText(GestorIdiomas.getTexto("estado"));
 
-        idColumn.setText(GestorIdiomas.getTexto("id"));
+        idColumn.setText(GestorIdiomas.getTexto("labelIDReserva"));
         fechaInicioColumn.setText(GestorIdiomas.getTexto("fechaInicio"));
         fechaFinColumn.setText(GestorIdiomas.getTexto("fechaFin"));
         precioColumn.setText(GestorIdiomas.getTexto("precioTotal"));
@@ -345,9 +345,7 @@ public class ModificarReservaController implements IdiomaListener {
         apellidoColumn.setText(GestorIdiomas.getTexto("apellido"));
         dniColumn.setText(GestorIdiomas.getTexto("dni"));
 
-        fechaInicio.setPromptText(GestorIdiomas.getTexto("fechaInicioText"));
-        fechaFin.setPromptText(GestorIdiomas.getTexto("fechaFinText"));
-        precioText.setPromptText(GestorIdiomas.getTexto("precioField"));
+
         estadoCombo.setPromptText(GestorIdiomas.getTexto("estadoText"));
 
         mapaEstadoTraducido.clear();

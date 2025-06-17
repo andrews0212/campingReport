@@ -84,6 +84,7 @@ public class Memoria<T, ID> {
     }
 
     public List<T> findAll() {
+        daogn.limpiarCache();  // Limpiar caché antes de consultar
         lista = daogn.findAll();
         return lista;
     }

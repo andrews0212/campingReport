@@ -37,8 +37,10 @@ import java.util.stream.Collectors;
 
 public class MapaCamping implements IdiomaListener {
 
-    private final Map<String, Button> botones = new HashMap<>();
-    private Map<String, ImageView> casas = new HashMap<>();
+    private static final Map<String, Button> botones = new HashMap<>();
+
+    private static Map<String, ImageView> casas = new HashMap<>();
+
 
     private Memoria<Recurso, Integer> memoriaRecurso;
     private Memoria<Reserva, Integer> memoriaReserva;
@@ -230,6 +232,18 @@ public class MapaCamping implements IdiomaListener {
     @FXML private Button PR4;
     @FXML private Button PR15;
 
+    public static Map<String, Button> getBotones() {
+        return botones;
+    }
+
+    public static Map<String, ImageView> getCasas() {
+        return casas;
+    }
+    // En MapaCamping.java
+    public static ImageView getCasa(String id) {
+        return casas.get(id);
+    }
+
     @FXML
     public void initialize() {
 
@@ -346,9 +360,12 @@ public class MapaCamping implements IdiomaListener {
         casas.put("S13", parcelaS13);
 
     }
-    private void actualizarColoresCasas() {
-        memoriaRecurso.actualizarMemoriaBD();
-        memoriaReserva.actualizarMemoriaBD();
+    public void actualizarColoresCasas() {
+        if (memoriaRecurso != null && memoriaReserva != null){
+            memoriaRecurso.actualizarMemoriaBD();
+            memoriaReserva.actualizarMemoriaBD();
+        }
+
         for (Map.Entry<String, ImageView> entry : casas.entrySet()) {
             String id = entry.getKey();
             ImageView casa = entry.getValue();
@@ -454,6 +471,7 @@ public class MapaCamping implements IdiomaListener {
 
             final int inicio = rango[0];
             final int fin = rango[1];
+            memoriaRecurso.actualizarMemoriaBD();
 
             List<Recurso> barbacoas = memoriaRecurso.findAll().stream()
                     .filter(r -> r.getTipo().toLowerCase().contains("barbacoa"))
@@ -472,6 +490,8 @@ public class MapaCamping implements IdiomaListener {
             // Pasar barbacoas al controlador
             controlador.setBarbacoas(barbacoas);
             controlador.setMemoriaReserva(memoriaReserva);
+            controlador.setMemoriaRecurso(memoriaRecurso);
+
 
             Stage stage = new Stage();
             stage.setTitle("Merendero " + prId);
@@ -495,42 +515,37 @@ public class MapaCamping implements IdiomaListener {
             System.out.println("Recurso con nombre " + idBoton + " no encontrado.");
             return;
         }
-        System.out.println(recursoEncontrado.get().getId());
 
         Recurso recurso = recursoEncontrado.get();
+        LocalDate hoy = LocalDate.now();
 
-        Reserva reservaEncontrada = null;
-        // Se puede que no tenga reserva
-        for (Reserva reserva : memoriaReserva.findAll()) {
-            if (reserva.getIdrecurso().getId().equals(recurso.getId())) {
-                reservaEncontrada = reserva;
-                break;
-            }
-        }
+        // LÓGICA CORREGIDA: Buscar la reserva activa para la fecha actual
+        Optional<Reserva> reservaActualOpt = memoriaReserva.findAll().stream()
+                .filter(reserva -> reserva.getIdrecurso().getId().equals(recurso.getId()) &&
+                        !hoy.isBefore(reserva.getFechaInicio()) && // hoy >= fechaInicio
+                        !hoy.isAfter(reserva.getFechaFin()))      // hoy <= fechaFin
+                .findFirst();
+
+        Reserva reservaEncontrada = reservaActualOpt.orElse(null);
         Cliente cliente = null;
         if (reservaEncontrada != null) {
-            cliente = reservaEncontrada.getIdcliente(); // puede ser null
+            cliente = reservaEncontrada.getIdcliente();
         }
-
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/camping2/vista/mapa/vistaRecursoEvent.fxml"));
             Parent root = loader.load();
 
             VistaRecursoEvent controladorDetalle = loader.getController();
-            controladorDetalle.setCliente(cliente);
+            controladorDetalle.setCliente(cliente); // Puede ser null si no hay reserva hoy
             controladorDetalle.setRecurso(recurso);
-            // Puede ser null, pero el controlador debe saber gestionarlo
-
 
             Stage stage = new Stage();
             stage.setTitle("Detalles del recurso");
             stage.setScene(new Scene(root));
             Stage primaryStage = (Stage) casaB12.getScene().getWindow();
-            stage.initOwner(primaryStage); // <-- aquí el stage principal, no null
+            stage.initOwner(primaryStage);
             stage.initModality(Modality.WINDOW_MODAL);
-
-
             stage.show();
 
         } catch (IOException e) {
@@ -544,6 +559,7 @@ public class MapaCamping implements IdiomaListener {
 
     public void setMemoriaRecurso(Memoria<Recurso, Integer> memoriaRecurso) {
         this.memoriaRecurso = memoriaRecurso;
+        memoriaRecurso.actualizarMemoriaBD();
         actualizarColoresCasas();        // <-- Primer actualización al inicio
 
         // Crear temporizador que actualice cada 5 minutos
@@ -555,14 +571,15 @@ public class MapaCamping implements IdiomaListener {
     }
 
     public List<Recurso> getBungalowsPorSalir() {
+        memoriaReserva.actualizarMemoriaBD();
         LocalDate hoy = LocalDate.now();
         LocalTime ahora = LocalTime.now();
-        LocalTime horaSalida = LocalTime.NOON; // 12:00 PM
+        LocalTime horaSalida = LocalTime.of(14, 0); // 12:00 PM
 
         // Solo filtra reservas con salida hoy si la hora actual es antes de las 12
         if (ahora.isBefore(horaSalida)) {
             return memoriaReserva.findAll().stream()
-                    .filter(reserva -> reserva.getFechaFin().equals(hoy))
+                    .filter(reserva -> reserva.getFechaFin().equals(hoy) && !reserva.getIdrecurso().getTipo().equals("BARBACOA"))
                     .map(Reserva::getIdrecurso)
                     .collect(Collectors.toList());
         } else {
@@ -573,6 +590,7 @@ public class MapaCamping implements IdiomaListener {
 
     public void setMemoriaReserva(Memoria<Reserva, Integer> memoriaReserva) {
         this.memoriaReserva = memoriaReserva;
+        memoriaReserva.actualizarMemoriaBD();
         tablaBungalow.setItems(FXCollections.observableArrayList(getBungalowsPorSalir()));
     }
 
@@ -590,4 +608,6 @@ public class MapaCamping implements IdiomaListener {
         btnRefrezcar.setText(GestorIdiomas.getTexto("btnRefrezcar"));
 
     }
+
+
 }

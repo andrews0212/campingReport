@@ -209,7 +209,7 @@ public class CrearReservaController implements IdiomaListener {
         labelFechaInicio.setText(GestorIdiomas.getTexto("fechaInicio"));
         labelFechaFin.setText(GestorIdiomas.getTexto("fechaFin"));
         labelPrecio.setText(GestorIdiomas.getTexto("precioTotal"));
-        IDColumn.setText(GestorIdiomas.getTexto("id"));
+        IDColumn.setText(GestorIdiomas.getTexto("labelIDRecurso"));
         nombreColumn.setText(GestorIdiomas.getTexto("nombre"));
         tipoColumn.setText(GestorIdiomas.getTexto("tipo"));
         capacidadColumn.setText(GestorIdiomas.getTexto("capacidad"));
